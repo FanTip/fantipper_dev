@@ -1,0 +1,21 @@
+<div class="container">
+    <p>{{message}}</p>
+    {{csrfToken}}
+    <div class="row">
+        <div class="col-mg-12">
+            {{file}}
+            <br>
+           <form action="/editImage?_csrf={{csrfToken}}" method="POST" enctype="multipart/form-data">
+                <div class="btn grey">
+                    <span>File</span>
+                    <input type="file" class="form-control-file" name="profileImage"/>
+                </div>
+                <button type="submit" class="btn">Submit</button>
+            </form>
+            
+            <a href="/profile" class="btn btn-primary">Back</a>
+        </div>
+            <img src="{{file}}" alt="">
+    </div>
+    </div>
+</div>

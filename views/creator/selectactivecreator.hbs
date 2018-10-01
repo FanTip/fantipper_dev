@@ -1,0 +1,201 @@
+<div class="container">
+    <input type="hidden" value="{{csrfToken}}">
+    <div class="row">
+        <div class="col-lg-3" style="border-right : 1px double gray">
+            <h2>Creator Profile</h2>
+            <ul class="list-group">
+                <li class="list-group">
+                    <span> <a href="/creatorprofile"> <img src="{{imagePath}}" alt="..." class="rounded-circle" height="50px" width="50px"></a>
+                </li>
+                <li class="list-group">
+                    <a href="/selectactivecreator">Edit Creator Profile</a>
+                </li>
+                <li class="list-group">
+                    <a href="">Notifications</a>
+                </li>
+                <li class="list-group">
+                    <a href="">Offers</a>
+                </li>
+                <li class="list-group">
+                    <a href="">Messages</a>
+                </li>
+                <li class="list-group">
+                    <a href="/creatortiphistory">Tipping History</a>
+                </li>
+                <li class="list-group">
+                    <a href="">Account Balance</a>
+                </li>
+                <li class="list-group">
+                    <a href="">Groups</a>
+                </li>
+                <li class="list-group">
+                    <div class="dropdown-divider"></div>
+                    <a href="/profile">Back to fan profile</a>
+                </li>
+                <div class="dropdown-divider"></div>
+                <button class="btn btn-danger float-sm-right" data-toggle="modal" data-target="#deleteAccount">Delete Creator Profile</button>
+                 <div class="dropdown-divider"></div>
+                 <a href="">Privacy Settings</a>
+            </ul>
+            
+           {{CreatorUserName}}
+        </div>
+        <div class="col-lg-9" ng-controller = "usernameCtrl"  >
+            <form action="/selectactivecreator" method="POST" ng-init="creator_username = {{CreatorUserName}}">
+                <div class="form-group" ng-model = "creator_username">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" class="form-control" id="fullname" name="fullname" value="{{CreatorName}}">
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" class="form-control"  value="{{CreatorUserName}}">
+                </div>
+                <div class="form-group">
+                    <label for="shortdesc">Short Description</label>
+                    <input type="text" id="shortdesc" name="shortdesc" class="form-control" value="{{CreatorDescription}}">
+                </div>
+                <div class="form-group">
+                    <label for="maintext">Main Text</label>
+                    <input type="text" id="maintext" name="maintext" class="form-control" value="{{CreatorAbout}}">
+                </div>
+                <div class="form-group">Pictures</div>
+                
+                {{# if CreatorUserName}}
+                <div class="form-group" > 
+                    <label for="basic-url">Your Fantipper URL</label>
+                        <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon3">fantipper.com/</span>
+                        </div>
+                        <input type="text" id="staticEmail" class="form-control" id="basic-url" readonly aria-describedby="basic-addon3" value="{{CreatorUserName}}">
+                        <small id="emailHelp" class="form-text text-muted">Fantipper personal URL will be your username</small>
+                        </div>
+
+                    <button onclick="copyFunction()" class="btn btn-primary">Copy</button>
+                    <button  id="shareBtn" class="btn btn-success clearfix">Share</button>
+
+                </div>
+                {{/if}}
+                
+                
+                <div class="form-group">
+                    <label for="categories">CATEGORIES</label>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="HOSPITALITY">HOSPITALITY</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="PERSONAL SPONSORSHIP">PERSONAL SPONSORSHIP</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="SCIENCE & RESEARCH">SCIENCE & RESEARCH</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="MUSIC">MUSIC</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="COMEDY">COMEDY</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="FILM & VIDEO">FILM & VIDEO</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="SOFTWARE,APPS & GAMES">SOFTWARE,APPS & GAMES</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="TOURISM">TOURISM</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="EVENTS">EVENTS</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="EDUCATION">EDUCATION</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="DRAWING & PAINTING">DRAWING & PAINTING</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="DANCE & THEATRE">DANCE & THEATRE</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="JOURNALISM & BLOGGING">JOURNALISM & BLOGGING</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="CRAFTS & DIY">CRAFTS & DIY</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="COMMUNITY & SOCIAL SERVICES">COMMUNITY & SOCIAL SERVICES</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="GROUPS & CLUBS">GROUPS & CLUBS</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="SPORTS">SPORTS</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="COMICS">COMICS</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="DESIGN">DESIGN</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="PHOTOGRAPHY">PHOTOGRAPHY</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="OTHER">OTHER</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="paymentoprions">Payment Options</label>
+                </div>
+                <div class="form-group">
+                    <label for="privacy">Privacy Settings</label>
+                </div>
+                <div class="form-group">
+                    <label for="emailpreference">Email Preference</label>
+                </div>
+                
+                <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteAccount" tabindex="-1" role="dialog" aria-labelledby="deleteAccountLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Do you really wish to delete your Creator profile?</h4>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                 
+                    <div class="modal-footer">
+                        <form action="/selectactivecreator/delete" method="POST">
+                            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No, Go back!</button>
+                            <button type="submit" class="btn btn-primary">I'm pretty sure!</button>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+<script>
+    function copyFunction() {
+    var copyText = document.getElementById("staticEmail");
+    copyText.select();
+    document.execCommand("copy");
+    alert("Copied the text: " + copyText.value);
+    }
+</script>

@@ -1,0 +1,122 @@
+var express = require('express');
+var router = express.Router();
+var empty = require('is-empty');
+var fs = require('fs');
+var csrf = require('csurf');
+var csrfProtection = csrf();
+var passport = require('passport');
+var User = require('../models/user');
+var toastr = require('toastr');
+var tipper = require('../models/tipper');
+var tippee = require('../models/tippee');
+var message = require('../models/message');
+
+router.use(csrfProtection);
+
+router.post('/', function(req, res, next){
+    console.log('req.body', req.body);
+});
+
+router.get('/',function(req, res, next){
+    User.find(function(err, result){
+        res.send(result);
+    });
+});
+router.post('/', function(req, res, next){
+    console.log(req.body);
+});
+
+router.post('/sendtip', function(req, res, next){
+
+    
+
+    if(res.locals.login){
+        var tipperData = new tipper({
+            tipperID : req.user._id,
+            tipAmount : req.body._tipamount,
+            tipTo : req.body._creatorEmail,
+            tipDate : Date.now()
+        });
+        
+        var tipMessage = new message({
+            messageFrom : req.user.email,
+            content : req.body._message,
+            sentDate : Date.now(),
+            isRead : false,
+            reply : {
+                replyFrom : null,
+                replyDate : null,
+                replyContent : null 
+            }
+        });
+
+        console.log(tipperData);
+        tipperData.save(function(err){
+            if(err){
+                console.log(err);
+            }else{
+                tipMessage.save(function(err){
+                    console.log(err);
+                });
+            }
+            User.findOne({'creator.creatorEmail':req.body._creatorEmail}).exec(function(err, creator){
+                var tippeeData = new tippee({
+                    tipeeID : creator._id,
+                    tipAmount : req.body._tipamount,
+                    tipFrom : req.body._creatorEmail,
+                    tipDate : Date.now(),
+                });
+                tippeeData.save(function(err){
+                    if(err){
+                        console.log(err);
+                    }else{
+                        res.status(200).send('done');
+                    }
+                });
+            });
+            
+        });
+
+    }else{
+        User.findOne({'creator.creatorEmail':req.body._creatorEmail}).exec(function(err, creator){
+            console.log(creator._id);
+            var tipeeData = new tippee({
+                tipeeID : creator._id,
+                tipAmount : req.body._tipamount,
+                tipFrom : req.body._email,
+                tipMessage : req.body._message,
+                tipDate : Date.now(),
+            });
+
+            var tipMessage = new message({
+                messageFrom : req.body._email,
+                content : req.body._message,
+                sentDate : Date.now(),
+                isRead : false,
+                reply : {
+                    replyFrom : null,
+                    replyDate : null,
+                    replyContent : null
+                }
+            });
+            console.log(tipeeData);
+            tipeeData.save(function(err){
+                if(err){ res.status(500).send(err);}
+                else{
+                    tipMessage.save(function(err){
+                        if(err){
+                            console.log(err);
+                        }
+                    });
+                    res.status(200).send('done');
+                }
+                
+            });
+        });
+        
+        console.log(req.body);
+    }
+});
+
+
+module.exports = router;

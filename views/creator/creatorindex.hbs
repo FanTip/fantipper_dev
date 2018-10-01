@@ -1,0 +1,63 @@
+<div class="container">
+    <input type="hidden" value="{{csrfToken}}">
+    <div class="row">
+        <div class="col-lg-3" style="border-right : 1px double gray">
+            <h2>Creator Profile</h2>
+            <ul class="list-group">
+                <li class="list-group">
+                    <span> <a href="/creatorprofile"> <img src="{{imagePath}}" alt="..." class="rounded-circle" height="50px" width="50px"></a>
+                </li>
+                <li class="list-group">
+                    <a href="/selectactivecreator">Edit Creator Profile</a>
+                </li>
+                <li class="list-group">
+                    <a href="">Notifications</a>
+                </li>
+                <li class="list-group">
+                    <a href="">Offers</a>
+                </li>
+                <li class="list-group">
+                    <a href="">Messages</a>
+                </li>
+                <li class="list-group">
+                    <a href="/creatortiphistory">Tipping History</a>
+                </li>
+                <li class="list-group">
+                    <a href="">Account Balance</a>
+                </li>
+                <li class="list-group">
+                    <a href="">Groups</a>
+                </li>
+                <li class="list-group">
+                    <div class="dropdown-divider"></div>
+                    <a href="/profile">Back to fan profile</a>
+                </li>
+            </ul>
+            
+           
+        </div>
+        <div class="col-lg-9">
+            <div class="creator-head text-center" style="background-image: url('/images/img.jpg');">
+                <div>
+                    <img src="/images/example.jpg" class="img-circle" alt="" height="50px" width="50px">
+                </div>
+                <h2>{{CreatorName}}</h2>
+                <h3>{{CreatorUserName}}</h3>
+            </div>
+            <div class="creator-content container">
+                <div class="row">
+                    <div class="col-md-7 creator-main" id="creatorAbout">
+                        <h3>About</h3>
+                        <p>{{CreatorDescription}}</p>
+                        <p>{{CreatorAbout}}</p>
+                    </div>
+
+                    <div class="col-md-5 creator-sidebar" id="creatorTip">
+                        <p>Show your support, give a tip and become a fan</p>
+                        <button class="btn btn-success">FanTip</button>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </div>
+</div>

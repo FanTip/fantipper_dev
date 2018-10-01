@@ -1,0 +1,32 @@
+Current routes in the Fantipper
+
+-'/', indexRouter-
+    ->index.hbs
+
+-'/editImage', editImage-
+    ->editImage -> uploading new images for the profile picture
+-'/users', usersRouter-
+    -> yet to be implemented
+-'/login', loginRouter-
+    ->login -> Login in the users
+-'/signup', signupRouter-
+    ->signup ->Signin in the users to their accounts -> after the authentication processes done in passport.js
+-'/profile', profileRouter-
+    ->profile.hbs -> loading the profile page
+-'/logout', logoutRouter-
+    ->log
+-'/learn', learnRouter-
+
+-'/explore', exploreRouter-
+
+-'/editfanprofile', editFanProfile-
+
+-'/creatorprofile', creatorProfile-
+
+-'/selectactivecreator', selectActiveCreator-
+
+-'/tipping', tippingRouter-
+
+-'/fantiphistory', fanTipHistory-
+
+-'/creatortiphistory', creatorTipHistory-

@@ -1,0 +1,123 @@
+<div class="container">
+    <input type="hidden" value="{{csrfToken}}">
+    {{isCreator}}
+    <div class="row">
+        <div class="col-lg-3" style="border-right : 1px double gray">
+            <h2>Create the Creator Profile</h2>
+            <div class="dropdown-divider"></div>
+            <a href="/profile">Back to fan profile</a>
+        </div>
+        <div class="col-lg-9">
+            <form action="/creatorprofile/updatecreator?_csrf={{csrfToken}}" method="POST">
+                <div class="form-group">
+                    <label for="creator_name">CREATOR NAME</label>
+                    <input name="creator_name" id="creator_name" type="text" class="form-control" value="{{CreatorName}}">
+                </div>
+                <div class="form-group">
+                    <label for="url">URL</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                        <div class="input-group-text">fantipper.com/</div>
+                        </div>
+                        <input name="url" id="url" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="creator_description">SHORT DESCRIPTION</label>
+                    <input name="creator_description" id="creator_description" type="text" class="form-control" value="{{CreatorDescription}}">
+                </div>
+                <div class="form-group">
+                    <label for="creator_location">HOME</label>
+                    <input name="creator_location" id="creator_location" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="categories">CATEGORIES</label>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="HOSPITALITY">HOSPITALITY</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="PERSONAL SPONSORSHIP">PERSONAL SPONSORSHIP</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="SCIENCE & RESEARCH">SCIENCE & RESEARCH</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="MUSIC">MUSIC</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="COMEDY">COMEDY</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="FILM & VIDEO">FILM & VIDEO</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="SOFTWARE,APPS & GAMES">SOFTWARE,APPS & GAMES</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="TOURISM">TOURISM</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="EVENTS">EVENTS</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="EDUCATION">EDUCATION</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="DRAWING & PAINTING">DRAWING & PAINTING</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="DANCE & THEATRE">DANCE & THEATRE</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="JOURNALISM & BLOGGING">JOURNALISM & BLOGGING</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="CRAFTS & DIY">CRAFTS & DIY</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="COMMUNITY & SOCIAL SERVICES">COMMUNITY & SOCIAL SERVICES</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="GROUPS & CLUBS">GROUPS & CLUBS</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="SPORTS">SPORTS</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="COMICS">COMICS</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="DESIGN">DESIGN</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="PHOTOGRAPHY">PHOTOGRAPHY</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="option" name="name" value="OTHER">OTHER</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="">FAN TIPPER TILE IMAGE</label>
+                    <input name="" id="" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="image">BACKGROUND IMAGE</label>
+                    <input name="" id="" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="about">TELL THE FANS ABOUT YOU</label>
+                    <input name="about" id="about"  type="text" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

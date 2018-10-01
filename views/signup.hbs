@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="panel panel-default">
+      {{# if messages}}
+        <div class="alert alert-warning" role="alert">
+          <p>{{messages}}</p>
+        </div>
+      {{/if}}
+      <div class="panel-heading text-left">
+          <h3>Sign Up</h3>
+      </div>
+      <div class="panel-body">
+        <div class="main-login main-center">
+          <p>Already have an account?<a href="">Log In!</a></p>
+          <div class="form-group">
+            <button type="button" class="btn btn-primary" name="button">Signup with Facebook</button>
+            <button type="button" class="btn btn-danger" name="button">Signup with Google</button>
+            <p>We'll never post anything on Facebook without your permission.</p>
+          </div>
+          <form class="" action="/signup" method="post">
+            <div class="form-group">
+              <input name="name" type="text" id="name" placeholder="Name">
+            </div>
+            <div class="form-group">
+              <input name="email" type="email" id="email" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <input name="password" type="password" id="password" placeholder="Password">
+            </div>
+            <div class="form-group">
+              <input type="checkbox" name="checkbox" value="1"> Remember me?
+              <a href="#">Forgot password?</a>
+            </div>
+            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+            <button type="submit" class="btn btn-success" name="button">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,173 @@
+/* Specific configurations of the elements */
+
+/* Css for signup modal on the layout.hbs */
+
+
+
+
+#signup h4 {
+    font-family: 'Larsseit-Bold';
+    color: #00d178; 
+}
+
+#signup a{
+    color: #00d178;
+}
+
+#signup .text-center {
+    font-family: 'Larsseit-Bold';
+    color: #412042; 
+}
+
+#signup p{
+    font-family: 'Larsseit';
+    color: black;
+}
+
+#signup .modal-content{
+    width: 90%;
+}
+
+#signup .modal-body{
+    background-color: #f2f2f2;
+}
+
+#signup #facebook-button-signup{
+    background-color: #3B5998;
+    color: #e4e2e2;
+}
+
+
+#signup #facebook-button-signup:hover{
+    background-color: #0d2e69;
+    color: #e4e2e2;
+}
+
+#signup #beta{
+    font-family: 'Larsseit';
+    color: gray;
+}
+#signup #footer{
+    font-family: 'Larsseit-Thin';
+    color: grey;
+    font-size: 8pt;
+    float: left;
+}
+
+#signup button{
+    font-family: 'Larsseit-Bold';
+    letter-spacing: 2px;
+}
+
+#signup input{
+    font-family: 'Larsseit';
+}
+
+#signup input[type=text]:focus {
+    outline: none;
+    box-shadow: 1px 1px #00d278 !important;
+    border:1px solid #00d278 !important;
+}
+#signup input[type=email]:focus {
+    outline: none;
+    box-shadow: 1px 1px #00d278 !important;
+    border:1px solid #00d278 !important;
+}
+#signup input[type=password]:focus {
+    outline: none;
+    box-shadow: 1px 1px #00d278 !important;
+    border:1px solid #00d278 !important;
+}
+
+
+
+/* End of signup modal css */
+
+/* CSS for the login modal in the layout.hbs */
+
+#login h4{
+    font-family: 'Larsseit-Bold';
+    color: #00d178;
+}
+
+#login a{
+    color: #00d178;
+}
+
+#login #facebook-button-login{
+    background-color: #3B5998 ;
+    color: #e4e2e2;
+}
+
+#login #facebook-button-login:hover {
+    background-color: #0d2e69 ;
+    color: #e4e2e2;
+}
+
+#or{
+    width: 100%;
+    text-align: center;
+    border-bottom:1px solid #e4e2e2;
+    line-height: 0.1em;
+    margin: 10px 0 20px;
+}
+
+#or span{
+    color: #cec8c8;
+    background: #f5f5f5;
+    padding: 0 10px;
+}
+
+#login p{
+    text-align: center;
+}
+
+#login .modal-header{
+    padding-top: 10px;
+    padding-left: 30px;
+}
+
+#login .modal-body{
+    padding: 30px;
+    background-color: #f2f2f2;
+}
+
+#login p{
+    font-family: 'Larsseit';
+}
+
+#login button{
+    font-family: 'Larsseit-Bold';
+    letter-spacing: 2px;
+}
+
+#login input{
+    font-family: 'Larsseit';
+}
+
+#login #checkbox{
+    font-family: 'Larsseit';
+    color: grey;
+}
+
+#login #forgot-password{
+    font-family: 'Larsseit';
+    color: #414042;
+}
+
+#login input[type=email]:focus {
+    outline: none;
+    box-shadow: 1px 1px #00d278 !important;
+    border:1px solid #00d278 !important;
+}
+#login input[type=password]:focus {
+    outline: none;
+    box-shadow: 1px 1px #00d278 !important;
+    border:1px solid #00d278 !important;
+}
+
+#forgot-password :hover{
+    color: #00d178;
+}
+
+/* End of login modal CSS */

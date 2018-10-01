@@ -1,0 +1,86 @@
+<div class="container">
+    {{csrfToken}}
+    <div class="row" style="margin-top:1%;">
+        <dir class="col-sm-3" style="border-right : 1px double gray">
+            <ul class="list-group">
+                <li class="list-group">
+                    <span> <a href="/creatorprofile"> <img src="{{imagePath}}" alt="..." class="rounded-circle" height="50px" width="50px"></a>
+                </li>
+                <li class="list-group">
+                    <a href="/selectactivecreator">Edit Creator Profile</a>
+                </li>
+                <li class="list-group">
+                    <a href="">Notifications</a>
+                </li>
+                <li class="list-group">
+                    <a href="">Offers</a>
+                </li>
+                <li class="list-group">
+                    <a href="">Messages</a>
+                </li>
+                <li class="list-group">
+                    <a href="/creatortiphistory">Tipping History</a>
+                </li>
+                <li class="list-group">
+                    <a href="">Account Balance</a>
+                </li>
+                <li class="list-group">
+                    <a href="">Groups</a>
+                </li>
+                <li class="list-group">
+                    <div class="dropdown-divider"></div>
+                    <a href="/profile">Back to fan profile</a>
+                </li>
+            </ul>
+        </dir>
+        <div class="col-sm-9 ">
+            <h3>Tippees</h3>
+            <div ng-init = "tippees = {{tippeedata}}">
+
+                <table class="table">
+                    <thead>
+                        <th scope="col"></th>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="singleTippee in tippees ">
+                            <td>{[{singleTippee.tipDate}]}</td>
+                            <td>{[{singleTippee.tipeeID.email}]}</td>
+                            <td>&#36;{[{singleTippee.tipAmount}]}</td>
+                            <td>{[{singleTippee.tipFrom}]}</td>
+                            <td>{[{singleTippee.tipMessage}]}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </div>
+
+            <h3>Tippers</h3>
+            <div ng-init = "tippers = {{tipperdata}}">
+
+                <table class="table">
+                    <thead>
+                        <th scope="col"></th>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat = "singleTipper in tippers">
+                            <td>{[{singleTipper.tipperID.email}]}</td>
+                            <td>{[{singleTipper.tipTo}]}</td>
+                            <td>{[{singleTipper.tipDate}]}</td>
+                            <td>&#36;{[{singleTipper.tipAmount}]}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </div>
+            {{!-- {{#each tippeedata}}
+            <h2>Tippee Data</h2>
+            <p>{{this}}</p>
+            {{/each}}
+
+            {{#each tipperdata}}
+            <h2>Tipper Data</h2>
+            <p>{{this}}</p>
+            {{/each}} --}}
+        </div>
+    </div>
+</div>

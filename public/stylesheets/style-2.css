@@ -1,0 +1,264 @@
+/* General CSS configurations of the main elements */
+body {
+    padding-top: 0px;
+    /* padding-left: 50px;
+    padding-right: 50px; */
+    font: 14px;
+    -webkit-font-smoothing : antialiased;
+    font-family: 'Larsseit';
+}
+input[type=text]:focus {
+    outline: none;
+    box-shadow: 1px 1px #00d278 !important;
+    border:1px solid #00d278 !important;
+}
+input[type=email]:focus {
+    outline: none;
+    box-shadow: 1px 1px #00d278 !important;
+    border:1px solid #00d278 !important;
+}
+input[type=password]:focus {
+    outline: none;
+    box-shadow: 1px 1px #00d278 !important;
+    border:1px solid #00d278 !important;
+}
+select:focus {
+    outline: none;
+    box-shadow: 1px 1px #00d278 !important;
+    border:1px solid #00d278 !important;
+}
+textarea:focus {
+    outline: none;
+    box-shadow: 1px 1px #00d278 !important;
+    border:1px solid #00d278 !important;
+}
+
+h1, h2, h3, h4, h5, p{
+    font-family: 'Larsseit';
+}
+
+.notifications{
+    margin: 10px 10px 10px 10px;
+}
+
+.notifications .messages .fa-envelope{
+    margin-left: 10px;
+}
+.notifications .offers .fa-certificate{
+    margin-left: 10px;
+}
+
+#i{
+    margin-right: 20px;
+}
+
+/* nav{
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+
+} */
+
+.container{
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 0px;
+}
+
+#editfanptofile input[type=text]:focus {
+    outline: none;
+    background-color: #00D278;
+    color: azure;
+    box-shadow: 1px 1px #00d278 !important;
+    border:1px solid #00d278 !important;
+}
+#editfanptofile input[type=email]:focus {
+    outline: none;
+    background-color: #00D278;
+    color: azure;
+    box-shadow: 1px 1px #00d278 !important;
+    border:1px solid #00d278 !important;
+}
+#editfanptofile select:focus {
+    outline: none;
+    background-color: #00D278;
+    color: azure;
+    box-shadow: 1px 1px #00d278 !important;
+    border:1px solid #00d278 !important;
+}
+
+.gallery{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+.nav-link{
+    color: #fff;
+}
+
+.navbar-nav .link:hover{
+    border-bottom: #00D278 solid;
+}
+.navbar-nav .nav-item a:hover{
+    color: #00D278;
+}
+
+.navbar-nav .nav-item a{
+    letter-spacing: 1pt;
+    color: #414042;
+    font-family: 'Larsseit-Bold';
+}
+
+.dropdown-menu .dropdown-item a{
+    color: #414042;
+}
+
+.dropdown-menu .dropdown-item a:hover{
+    color: #00D278;
+    text-decoration: none;
+}
+
+.navbar-nav .nav-item .signup{
+    letter-spacing: 1pt;
+    color: #fff;
+    font-family: 'Larsseit-Bold';
+}
+
+.navbar-nav .nav-item .signup:hover{
+    letter-spacing: 1pt;
+    color: #fff;
+    font-family: 'Larsseit-Bold';
+}
+
+.navbar-nav .nav-item a:hover{
+    letter-spacing: 1pt;
+    color: #00D278;
+}
+
+
+.affix {
+    top: 0;
+    width: 100%;
+    z-index: 9999 !important;
+}
+
+.affix + .container-fluid {
+    padding-top: 70px;
+}
+
+
+
+
+/* Profile image effects */
+
+.image{
+    opacity: 1;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
+
+.middle{
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50% !important;
+    left: 40% !important;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}   
+
+.cont:hover .image{
+    opacity: 0.3;
+}
+
+.cont:hover .middle{
+    opacity: 1;
+}
+
+/* Profile image effects ends */
+
+
+.main-text{
+    padding-top: 50px;
+    padding-right: 20%;
+    padding-left: 20%;
+}
+
+
+.col-lg-12 .responsive-video{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+nav{
+    font-family: 'Larsseit';
+    color: #414042;
+    
+}
+.nav-link{
+    color: #414042;
+}
+span{
+    color: #414042;
+}
+i{
+    padding-right: 10px;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #414042;
+}
+
+a:active{
+    text-decoration: none;
+    color: #414042;
+}
+
+.navbar-right {
+    padding-right: .5rem !important;
+    padding-left: .5rem !important;
+  }
+
+  .ml-auto .dropdown-menu {
+    left: auto !important;
+    right: 0px;
+  }
+
+.icon-bar{
+    background-color: black;
+}
+
+.body-text{
+    font-family: 'Larsseit-Bold';
+}
+
+.btn-primary{
+    font-family: 'Larsseit';
+}
+
+.btn-success{
+    font-family: 'Larsseit';
+}
+
+.btn-light{
+    font-family: 'Larsseit';
+}
+
+.messages .offers :hover {
+    border-radius: 25px;
+}
+
+.nav-item .glyphicon{
+}
+
+.nav-item .badge{
+    position: absolute;
+    
+    font-family: 'Larsseit-Thin'
+}
+
+
+
