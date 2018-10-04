@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 passport.use('google', new googleStrategy({
     clientID : '358968116641-0jnhgv8m97h4dj5kheijj3stt2tf3ohc.apps.googleusercontent.com',
     clientSecret : 'Zq0fvZOOTIlNAXJsQpc6xz_x',
-    callbackURL: 'http://localhost:3000/auth/google/callback',
+    callbackURL: 'http://localhost:3000/auth/google/callback' || 'https://fantipper.herokuapp.com/auth/google/callback',
     profileFields : ['emails','picture.type(large)','name']
 },
     function(accessToken, refreshToken, profile, done){

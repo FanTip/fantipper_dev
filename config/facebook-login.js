@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 passport.use('facebook',new Strategy({
     clientID: '563423380470078',
     clientSecret: '214cce65d9185d7775c95e2a0a32e91a',
-    callbackURL: 'http://localhost:3000/login/facebook/callback',
+    callbackURL: 'http://localhost:3000/login/facebook/callback' || 'https://fantipper.herokuapp.com/login/facebook/callback',
     profileFields : ['emails','picture.type(large)','name']
   },
   function(accessToken, refreshToken, profile, done) {

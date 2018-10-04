@@ -7,9 +7,6 @@ var csrfProtection = csrf();
 var passport = require('passport');
 var User = require('../models/user');
 
-var verifier = require('email-verify');
-var infoCodes = verifier.infoCodes;
-
 router.use(csrfProtection);
 
 

@@ -10,7 +10,6 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const validator = require('express-validator');
 const exphbs = require('express-handlebars');
-var icons = require('glyphicons');
 var favicon = require('serve-favicon');
 var dotenv = require('dotenv');
 
@@ -164,6 +163,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+console.log(typeof process.env.MONGODB_URI);
+var url = process.env.MONGODB_URI;
 mongoose.connect('mongodb://fantipper:fantipper123@ds121183.mlab.com:21183/fantipper');
 let db = mongoose.connection;
 db.once('open', function(){
