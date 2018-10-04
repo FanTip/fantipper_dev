@@ -164,7 +164,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-mongoose.connect('mongodb://localhost/FanTipper');
+mongoose.connect('mongodb://localhost/FanTipper' || process.env.DB_URL);
 let db = mongoose.connection;
 db.once('open', function(){
   console.log('Connection Successful');
