@@ -1,6 +1,4 @@
-
-
-const image = document.getElementsByClassName('preview');
+const image = document.getElementById('priview');
 const cropper = new Cropper(image, {
     aspectRatio : 16/9,
     crop(event){

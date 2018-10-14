@@ -78,7 +78,6 @@ app.use(function(req, res, next){
     res.locals.description = req.user.description;
     res.locals.location = req.user.location;
     if(req.user.creator.isCreator){
-      console.log('creator profile made');
       res.locals.isCreator = req.user.creator.isCreator;
       res.locals.CreatorName = req.user.creator.creatorName;
       res.locals.CreatorDescription = req.user.creator.creatorDesc;
@@ -111,8 +110,10 @@ app.use('/quill', express.static(path.join(__dirname, 'node_modules/quill/dist')
 app.use('/typeahead', express.static(path.join(__dirname, 'node_modules/typeahead.js/dist')));
 app.use('/bloodhound', express.static(path.join(__dirname,'node_modules/bloodhound/index.js')));
 
+
+app.use('/socket', express.static(path.join(__dirname, 'node_modules/socket.io/lib')));
 // Configuration to dropzone
-app.use('/dropzone', express.static(path.join(__dirname, 'node_modules/dropzone/dist')))
+app.use('/dropzone', express.static(path.join(__dirname, 'node_modules/dropzone/dist')));
 
 // Configuration to cropper.js
 app.use('/cropper', express.static(path.join(__dirname, 'node_modules/cropperjs/dist')));
@@ -166,6 +167,7 @@ app.use(function(err, req, res, next) {
 console.log(typeof process.env.MONGODB_URI);
 var url = process.env.MONGODB_URI;
 mongoose.connect('mongodb://fantipper:fantipper123@ds121183.mlab.com:21183/fantipper');
+// mongoose.connect('mongodb://localhost:27017/fantipper');
 let db = mongoose.connection;
 db.once('open', function(){
   console.log('Connection Successful');

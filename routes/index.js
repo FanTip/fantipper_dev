@@ -7,6 +7,9 @@ var csrfProtection = csrf();
 var passport = require('passport');
 var User = require('../models/user');
 
+var server = require('http').Server(express);
+var io = require('socket.io')(server);
+
 router.use(csrfProtection);
 
 
@@ -42,6 +45,13 @@ router.get('/', function(req, res, next) {
                 csrfToken : req.csrfToken()
             });
         }
+
+        io.on('connection', function(socket){
+            socket.emit('news',{hello : 'world'});
+            socket.on('on other event', function(data){
+                console.log(data)
+            });
+        });
     });
 });
 

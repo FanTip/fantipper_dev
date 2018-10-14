@@ -55,10 +55,6 @@ router.post('/', function(req, res){
                     }
                     res.status(200).send('User created successfully!');
                 });
-                // user.create(req.body).then(function(){
-                //     res.status(200).send('OK');
-                // }
-                // );
             }
         }
     );

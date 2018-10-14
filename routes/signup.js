@@ -12,17 +12,6 @@ router.use('/', notLoggedIn, function(req, res, next){
   next();
 });
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('signup', { title: 'Signup', csrfToken : req.csrfToken(), messages : req.session.errors});
-});
-
-// authenticate user
-// router.post('/', passport.authenticate('local.signup',{
-//     successRedirect: '/profile',
-//     failureRedirect: '/signup',
-//     failureFlash: true
-// }));
 
 router.post('/', passport.authenticate('local.signup', {failWithError : true, failureFlash:true}),
   function(req, res, next){
@@ -38,16 +27,6 @@ router.post('/', passport.authenticate('local.signup', {failWithError : true, fa
     return res.redirect('/');
   }
 );
-
-
-
-// router.post('/', function(req, res, next){
-//   passport.authenticate('local.signup', function(err, user, info){
-//     if(err){ console.log(err);}
-//     if(user){ console.log(user);}
-//     if(info){ console.log(info);}    
-//   });
-// });
 
 
 module.exports = router;

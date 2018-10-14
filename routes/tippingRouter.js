@@ -38,26 +38,32 @@ router.post('/sendtip', function(req, res, next){
             tipDate : Date.now()
         });
         
-        var tipMessage = new message({
-            messageFrom : req.user.email,
-            content : req.body._message,
-            sentDate : Date.now(),
-            isRead : false,
-            reply : {
-                replyFrom : null,
-                replyDate : null,
-                replyContent : null 
-            }
-        });
+        if(req.body._message){
+            var tipMessage = new message({
+                creatorEmail : req.body._creatorEmail,   
+                messageFrom : req.user.email,
+                content : req.body._message,
+                sentDate : Date.now(),
+                isRead : false,
+                reply : {
+                    replyFrom : null,
+                    replyDate : null,
+                    replyContent : null 
+                }
+            });
+        }
+        
 
         console.log(tipperData);
         tipperData.save(function(err){
             if(err){
                 console.log(err);
             }else{
-                tipMessage.save(function(err){
-                    console.log(err);
-                });
+                if(req.body._message){
+                    tipMessage.save(function(err){
+                        console.log(err);
+                    });
+                }
             }
             User.findOne({'creator.creatorEmail':req.body._creatorEmail}).exec(function(err, creator){
                 var tippeeData = new tippee({
@@ -79,35 +85,40 @@ router.post('/sendtip', function(req, res, next){
 
     }else{
         User.findOne({'creator.creatorEmail':req.body._creatorEmail}).exec(function(err, creator){
-            console.log(creator._id);
+            console.log(req.body);
             var tipeeData = new tippee({
                 tipeeID : creator._id,
                 tipAmount : req.body._tipamount,
                 tipFrom : req.body._email,
-                tipMessage : req.body._message,
                 tipDate : Date.now(),
             });
 
-            var tipMessage = new message({
-                messageFrom : req.body._email,
-                content : req.body._message,
-                sentDate : Date.now(),
-                isRead : false,
-                reply : {
-                    replyFrom : null,
-                    replyDate : null,
-                    replyContent : null
-                }
-            });
+            if(req.body._message){
+                var tipMessage = new message({
+                    creatorEmail : req.body._creatorEmail,
+                    messageFrom : req.body._email,
+                    content : req.body._message,
+                    sentDate : Date.now(),
+                    isRead : false,
+                    reply : {
+                        replyFrom : null,
+                        replyDate : null,
+                        replyContent : null
+                    }
+                });
+            }
+
             console.log(tipeeData);
             tipeeData.save(function(err){
                 if(err){ res.status(500).send(err);}
                 else{
-                    tipMessage.save(function(err){
-                        if(err){
-                            console.log(err);
-                        }
-                    });
+                    if(req.body._message){
+                        tipMessage.save(function(err){
+                            if(err){
+                                console.log(err);
+                            }
+                        });
+                    }
                     res.status(200).send('done');
                 }
                 

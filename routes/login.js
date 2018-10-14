@@ -9,17 +9,6 @@ router.use(csrfProtection);
 router.use('/', notLoggedIn, function(req, res, next){
   next();
 });
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('login', { title: 'Login', csrfToken : req.csrfToken()});
-});
-
-// authenticate user
-// router.post('/', passport.authenticate('local.signin',{
-//     successRedirect: '/profile',
-//     failureRedirect: '/login',
-//     failureFlash: true
-// }));
 
 router.post('/', passport.authenticate('local.signin',{failWithError:true}),
   function(req, res, next){

@@ -7,4 +7,7 @@ router.get('/', function(req, res, next) {
   res.render('creatorProfileApplication/creatorProfileCreate', { title: 'Let\'s get you signed up!' });
 });
 
+router.post('/', function(req, res, next){
+  console.log(req.body);
+});
 module.exports = router;

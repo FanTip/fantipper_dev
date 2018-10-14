@@ -1,6 +1,6 @@
 
 
-var fantipperApp = angular.module('fantipperApp', []);
+var fantipperApp = angular.module('fantipperApp', ["ngRoute"]);
 
 fantipperApp.config(function($interpolateProvider) {
   $interpolateProvider.startSymbol('{[{');

@@ -38,22 +38,23 @@
                 </li>
             </ul>
         </div>
-        <div ng-controller = 'messagingController as msgCtrl' class="col-sm-9"> 
-            <p ng-init = "msgs = {{messages}}"></p>
-            <div ng-repeat = "msg in msgs">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="col-lg-9">
-                           <h4>{[{msg.content}]}</h4> 
-                        </div>
-                        <div class="col-lg-3">
-                            <a href="" class="btn btn-primary">Reply</a>
-                        </div>
-                        
-                    </div>
-                </div>
-                
-            </div>
+
+        <div class="col-sm-9 " id="messageBody">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Content</th>
+                        <th scope="col">From</th>
+                        <th scope="col">Date</th>
+                    </tr>
+                    <tbody>
+                        <tr id="messagesTableBody">
+
+                        </tr>
+                    </tbody>
+                </thead>
+            </table>
         </div>
     </div>
 </div>

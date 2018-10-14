@@ -8,6 +8,7 @@ $(function () {
         var tipAmount = $('#tipamout').val();
         var csrf = $('#_csrf').val();
         var creatorEmail = $('#_creatorEmail').val();
+        console.log(creatorEmail);
         var message = $('#message').val();
         var email = $('#email').val();
         var data = {

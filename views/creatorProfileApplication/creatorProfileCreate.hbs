@@ -2,181 +2,178 @@
      {{!-- ng-controller="CreatorApplicationController as CAC" --}}
         
 
-    <div>
+    <div ng-controller="CreatorApplicationController as CAC">
         <div class="col-lg-3">
 
         </div>
         <div class="col-lg-9">
             <h4>Welcome! <br> Let's build your Creator page </h4>
-            <form enctype="multipart/form-data"  id="creator_profile_create">
-                <div class="form-group">
-                    <label for="creator_name_create">CREATOR NAME</label>
-                    <input type="text" name="creator_name_create" id="creator_name_create" ng-model = "creatorName" class="form-control form-control-lg">
-                </div>
-                <div class="form-group">
-                    <label for="url">URL</label> <br>
-                    <small>Direct link to your profile. Generated automatically from your creator name</small>
-                    <div class="input-group mb-3" ng-model="staticURL">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon3">fantipper.com/</span>
+                <div class="" id="part_1" ng-model='part_1'>
+                    <form id="creator_profile_create-part_1" ng-show='part_1' >
+                        <div class="form-group">
+                            <label for="creator_name_create">CREATOR NAME</label>
+                            <input type="text" name="creator_name_create" id="creator_name_create" ng-model = "creatorName" class="form-control form-control-lg">
                         </div>
-                            <input type="text" id="staticURL" value="{[{creatorName | usernameCreator}]}" class="form-control form-control-lg" id="basic-url" readonly aria-describedby="basic-addon3" max ="10">
-                    </div>
+                        <div class="form-group">
+                            <label for="url">URL</label> <br>
+                            <small>Direct link to your profile. Generated automatically from your creator name</small>
+                            <div class="input-group mb-3" ng-model="staticURL">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon3">fantipper.com/</span>
+                                </div>
+                                    <input type="text" id="staticURL" value="{[{creatorName | usernameCreator}]}" class="form-control form-control-lg" id="basic-url" readonly aria-describedby="basic-addon3" max ="10">
+                            </div>
+                        </div>  
+                        <div class="form-group">
+                            <label for="short_desc">SHORT DESCRIPTION</label>
+                            <textarea class="form-control form-control-lg" placeholder="Describe what you do in 140 characters...." id="short_desc" rows="3" ng-model = "textModel" ng-disabled = "textModel.length == 140;" ></textarea>
+                            <small ng-class = "{'color-green' : textModel.length < 100}">{[{ 140 - textModel.length}]}</small>
+                        </div>
+                        
+                        <div class="form-group" id="the-basics">
+                            <label for="location">LOCATION</label>
+                            <input type="text" id="location_now" name="location" class="form-control form-control-lg" >
+                        
+                        </div>
+                        <div class="form-group">
+                            <label for="categories">CATEGORIES</label>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" id="option" name="name" value="HOSPITALITY">HOSPITALITY</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" id="option" name="name" value="PERSONAL SPONSORSHIP">PERSONAL SPONSORSHIP</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" id="option" name="name" value="SCIENCE & RESEARCH">SCIENCE & RESEARCH</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" id="option" name="name" value="MUSIC">MUSIC</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" id="option" name="name" value="COMEDY">COMEDY</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" id="option" name="name" value="FILM & VIDEO">FILM & VIDEO</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" id="option" name="name" value="SOFTWARE,APPS & GAMES">SOFTWARE,APPS & GAMES</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" id="option" name="name" value="TOURISM">TOURISM</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" id="option" name="name" value="EVENTS">EVENTS</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" id="option" name="name" value="EDUCATION">EDUCATION</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" id="option" name="name" value="DRAWING & PAINTING">DRAWING & PAINTING</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" id="option" name="name" value="DANCE & THEATRE">DANCE & THEATRE</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" id="option" name="name" value="JOURNALISM & BLOGGING">JOURNALISM & BLOGGING</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" id="option" name="name" value="CRAFTS & DIY">CRAFTS & DIY</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" id="option" name="name" value="COMMUNITY & SOCIAL SERVICES">COMMUNITY & SOCIAL SERVICES</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" id="option" name="name" value="GROUPS & CLUBS">GROUPS & CLUBS</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" id="option" name="name" value="SPORTS">SPORTS</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" id="option" name="name" value="COMICS">COMICS</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" id="option" name="name" value="DESIGN">DESIGN</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" id="option" name="name" value="PHOTOGRAPHY">PHOTOGRAPHY</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" id="option" name="name" value="OTHER">OTHER</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#part_2" class="btn btn-primary" data-ng-click="showpart2()"> Next...</a>
+                    </form>
+                    
                 </div>  
-                <div class="form-group">
-                    <label for="short_desc">SHORT DESCRIPTION</label>
-                    <textarea class="form-control form-control-lg" placeholder="Describe what you do in 140 characters...." id="short_desc" rows="3" ng-model = "textModel" ng-disabled = "textModel.length == 140;" ></textarea>
-                    <small ng-class = "{'color-green' : textModel.length < 100}">{[{ 140 - textModel.length}]}</small>
-                    
-                </div>
-                
-                <div class="form-group" id="the-basics">
-                    <label for="location">LOCATION</label>
-                    <input type="text" id="location_now" name="location" class="form-control form-control-lg" >
-                
-                    {{!-- <span class="fas fa-map-marker-alt form-control-feedback"></span> --}}
-                </div>
-                <div class="form-group">
-                    <label for="categories">CATEGORIES</label>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="checkbox">
-                                <label><input type="checkbox" id="option" name="name" value="HOSPITALITY">HOSPITALITY</label>
+                <div id="part_2" ng-model='part_2'>
+                    <form id="creator_profile_create-part_2"  ng-show='part_2'>
+                        <div class="form-group">
+                                <label for="profile_image">PROFILE IMAGE</label> <br>
+                                <small>This is the small creator image that appears in your pack down profile on the main page. This is what will grab peoples attention. Make an impact</small> <br>
+                                <div id="profileImageCanvas" width="200" class="dropzone dz-clickable dz-default" height="100" style="border:1px solid #000000;">
                             </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" id="option" name="name" value="PERSONAL SPONSORSHIP">PERSONAL SPONSORSHIP</label>
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" id="option" name="name" value="SCIENCE & RESEARCH">SCIENCE & RESEARCH</label>
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" id="option" name="name" value="MUSIC">MUSIC</label>
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" id="option" name="name" value="COMEDY">COMEDY</label>
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" id="option" name="name" value="FILM & VIDEO">FILM & VIDEO</label>
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" id="option" name="name" value="SOFTWARE,APPS & GAMES">SOFTWARE,APPS & GAMES</label>
-                            </div>
+                            
+                            <span class="preview"><img data-dz-thumbnail /></span>
+                            <input type="file" multiple="multiple" class="dz-hidden-input" style="visibility: hidden;position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;">
+                            <br>
+                            {{!-- <button class="btn btn-primary"><i class="fas fa-upload"></i>UPLOAD IMAGE</button> --}}
                         </div>
-                        <div class="col-sm-4">
-                            <div class="checkbox">
-                                <label><input type="checkbox" id="option" name="name" value="TOURISM">TOURISM</label>
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" id="option" name="name" value="EVENTS">EVENTS</label>
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" id="option" name="name" value="EDUCATION">EDUCATION</label>
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" id="option" name="name" value="DRAWING & PAINTING">DRAWING & PAINTING</label>
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" id="option" name="name" value="DANCE & THEATRE">DANCE & THEATRE</label>
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" id="option" name="name" value="JOURNALISM & BLOGGING">JOURNALISM & BLOGGING</label>
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" id="option" name="name" value="CRAFTS & DIY">CRAFTS & DIY</label>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="checkbox">
-                                <label><input type="checkbox" id="option" name="name" value="COMMUNITY & SOCIAL SERVICES">COMMUNITY & SOCIAL SERVICES</label>
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" id="option" name="name" value="GROUPS & CLUBS">GROUPS & CLUBS</label>
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" id="option" name="name" value="SPORTS">SPORTS</label>
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" id="option" name="name" value="COMICS">COMICS</label>
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" id="option" name="name" value="DESIGN">DESIGN</label>
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" id="option" name="name" value="PHOTOGRAPHY">PHOTOGRAPHY</label>
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" id="option" name="name" value="OTHER">OTHER</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="form-group">
-                    <img src="/images/example.jpg" id="imageTest" alt="">
-                    <label for="profile_image">PROFILE IMAGE</label> <br>
-                    <small>This is the small creator image that appears in your pack down profile on the main page. This is what will grab peoples attention. Make an impact</small> <br>
-                    <div id="profileImageCanvas" width="200" class="dropzone dz-clickable dz-default" height="100" style="border:1px solid #000000;">
+                        <div class="form-group">
+                            <label for="backgrundImageCanvas">BACKGROUND IMAGE</label> <br>
+                            
+                            <div id="backgrundImageCanvas" width="200" class="dropzone dz-clickable dz-default" height="100" style="border:1px solid #000000;">
+                            </div>
+                            <span class="preview"><img data-dz-thumbnail /></span>
+                            <input type="file" multiple="multiple" class="dz-hidden-input" style="visibility: hidden;position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;">
+                            <br>
+                            {{!-- <button class="btn btn-primary"><i class="fas fa-upload"></i>UPLOAD IMAGE</button> --}}
+                        </div>
+                        <div class="form-group">
+                            <label for="ImageGallery">IMAGE GALLERY</label> <br>
+                            <small>Upload upto 12 images for your gallery</small>  <br>
+                            <div id="ImageGallery" width="200" class="dropzone dz-clickable dz-default" height="100" style="border:1px solid #000000;">
+                            </div>
+                            <input type="file" multiple="multiple" class="dz-hidden-input" style="visibility: hidden;position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;">
+                            
+                            <br>
+                            {{!-- <button class="btn btn-primary"><i class="fas fa-upload"></i>UPLOAD IMAGE</button> --}}
+                        </div>
+                    </form>
                         
-                    </div>
-                    <span class="preview"><img data-dz-thumbnail /></span>
-                    <input type="file" multiple="multiple" class="dz-hidden-input" style="visibility: hidden;position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;">
-                    <br>
-                    {{!-- <button class="btn btn-primary"><i class="fas fa-upload"></i>UPLOAD IMAGE</button> --}}
-                </div>
-
-                <div class="form-group">
-                    <label for="profile_image">BACKGROUND IMAGE</label> <br>
-                    <canvas id="backgrundImageCanvas" width="200" height="100" style="border:1px solid #000000;">
-                    </canvas>
-                    <br>
-                    {{!-- <button class="btn btn-primary"><i class="fas fa-upload"></i>UPLOAD IMAGE</button> --}}
-                </div>
-                <div class="form-group">
-                    <label for="profile_image">IMAGE GALLERY</label> <br>
-                    <small>Upload upto 12 images for your gallery</small>  <br>
-                    <canvas id="imageGalleryCanvas" width="200" height="100" style="border:1px solid #000000;">
-                    </canvas>
-                    <br>
-                    {{!-- <button class="btn btn-primary"><i class="fas fa-upload"></i>UPLOAD IMAGE</button> --}}
-                </div>
-
-                <div class="form-group">
-                    <label for="short_desc">ABOUT YOU</label>
+                </div> 
+                <div id="part_3">
+                    <form id="creator_profile_create-part_3" ng-model='part_3' ng-show=''>
+                        <div class="form-group">
+                        <label for="short_desc">ABOUT YOU</label>
  
-                    <!-- Create the toolbar container -->
-                    <div id="toolbar">
-                    </div>
+                        <!-- Create the toolbar container -->
+                        <div id="toolbar">
+                        </div>
                     
-                    <!-- Create the editor container -->
-                    <div id="editor-container">
-                        <p>Tell us little bit about you!</p>
-                    </div>
-                    
-                    
-                    
-                    <!-- Initialize Quill editor -->
-                    <style>
-                        #editor-container {
-                                                height: 375px;
-                                            }
-                    </style>
-                    <script src="/javascripts/quill-settings/settings.js"></script>
-
-                    
-                </div>
-                
-                
-
-                <button type="submit" class="btn btn-success">Submit</button>
-            </form>
-
-                {{!-- <form class="dropzone" >
-                    <div class="fallback dz-default dz-message">
+                        <!-- Create the editor container -->
+                        <div id="editor-container">
+                            <p>Tell us little bit about you!</p>
+                        </div>
                         
-                        <input type="file" class="dz-hidden-input" id="profileImageCanvas" style="visibility: hidden;" multiple>
+                        <!-- Initialize Quill editor -->
+                        <style>
+                            #editor-container {
+                                                    height: 375px;
+                                                }
+                        </style>
+                        <script src="/javascripts/quill-settings/settings.js"></script>   
                     </div>
-                </form> --}}
-
+                    </form>
+                </div>
             <script src="/javascripts/cropper_settings.js"></script>
 
         </div>
