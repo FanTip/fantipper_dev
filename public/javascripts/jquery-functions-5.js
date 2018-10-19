@@ -6,7 +6,8 @@ $(window).load(function(){
         crossDomain : false,
         url : '/messages/getmessage',
         dataType : 'json',
-        contentType: 'application/json; charset=utf-8'
+        contentType: 'application/json; charset=utf-8',
+        async:true
     });
 
     var tableBody = $('#messagesTableBody');

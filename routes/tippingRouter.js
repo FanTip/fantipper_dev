@@ -28,7 +28,7 @@ router.post('/', function(req, res, next){
 
 router.post('/sendtip', function(req, res, next){
 
-    
+    console.log(req.body);
 
     if(res.locals.login){
         var tipperData = new tipper({

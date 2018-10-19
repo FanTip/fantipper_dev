@@ -11,7 +11,11 @@ var User = require('../models/user');
 /* GET home page. */
 router.get('/',isLoggedIn, function(req, res, next) {
   console.log(req.user.creator.isCreator);
-  res.render('creator/creatorindex', { title: 'Express', csrfToken : req.csrfToken()});
+  res.render('creator/creatorindex', { title: 'Creator', csrfToken : req.csrfToken()});
+});
+
+router.get('/preview', function(req, res, next){
+  res.render('creator/previewmode', { title: 'Creator Profile', csrfToken : req.csrfToken()});
 });
 
 router.post('/updatecreator',isLoggedIn, function(req, res, next){

@@ -1,9 +1,10 @@
+// Uploading profile images
 var express = require('express');
 var router = express.Router();
 const upload = require('../config/upload');
-var csrf = require('csurf');
-var csrfProtection = csrf();
-router.use(csrfProtection);
+// var csrf = require('csurf');
+// var csrfProtection = csrf();
+// router.use(csrfProtection);
 var newModel = require('../models/user');
 
 /* GET users listing. */
@@ -13,6 +14,7 @@ router.get('/',isLoggedIn, function(req, res, next) {
 });
 
 router.post('/',isLoggedIn, function(req, res, next){
+    console.log(req);
     upload.upload(req, res, function(err){
         if(err){
             res.render('editImage', {message : err, csrfToken : req.csrfToken()});
@@ -39,6 +41,12 @@ router.post('/',isLoggedIn, function(req, res, next){
             }
         }
     });
+});
+
+router.post('/profileimage', function(req, res, next){
+
+    console.log(req.body);
+
 });
 module.exports = router;
 function isLoggedIn(req, res, next){

@@ -37,12 +37,15 @@
            
         </div>
         <div class="col-lg-9">
-            <div class="creator-head text-center" style="background-image: url('/images/img.jpg');">
-                <div>
-                    <img src="/images/example.jpg" class="img-circle" alt="" height="50px" width="50px">
+            <div class="creator-head text-center" style="background-image: url('/images/arbory.jpg');">
+                <div class="creatorImage">
+                    <img src="/images/example.jpg" class="img-circle" alt="" height="100px" width="100px">
                 </div>
                 <h2>{{CreatorName}}</h2>
-                <h3>{{CreatorUserName}}</h3>
+                <h3>{{location}}</h3>
+                <p>{{CreatorURL}}</p>
+                <p><span class="label label-default">facebook</span><span class="label label-default">Tweetr</span></p>
+                <span class="label label-default">Default Label</span>
             </div>
             <div class="creator-content container">
                 <div class="row">
@@ -50,11 +53,50 @@
                         <h3>About</h3>
                         <p>{{CreatorDescription}}</p>
                         <p>{{CreatorAbout}}</p>
+
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <span>Gallery</span><br>
+                                <img src="/images/example.jpg" alt="" height="100px" width="100px">
+                                <img src="/images/example.jpg" alt="" height="100px" width="100px">
+                                <img src="/images/example.jpg" alt="" height="100px" width="100px">
+                                <img src="/images/example.jpg" alt="" height="100px" width="100px">
+                                <img src="/images/example.jpg" alt="" height="100px" width="100px">
+                                <img src="/images/example.jpg" alt="" height="100px" width="100px">
+                                <img src="/images/example.jpg" alt="" height="100px" width="100px">
+                                <img src="/images/example.jpg" alt="" height="100px" width="100px">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <span>Memebers</span> <br>
+                                <img src="/images/example.jpg" alt="" height="100px" width="100px"> <br>
+                                <img src="/images/example.jpg" alt="" height="100px" width="100px"> <br>
+                                <img src="/images/example.jpg" alt="" height="100px" width="100px"> <br>
+                                <img src="/images/example.jpg" alt="" height="100px" width="100px"> <br>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col-md-5 creator-sidebar" id="creatorTip">
                         <p>Show your support, give a tip and become a fan</p>
                         <button class="btn btn-success">FanTip</button>
+                        <div class="totalTips">
+                            <span>Tips</span>
+                            <h3>00000</h3>
+                        </div>
+                        <div class="totalTipAmount">
+                            <span>$</span>
+                            <h3>00000</h3>
+                        </div>
+
+                        <div class="TopFans">
+                            <p><span>Top Fans</span></p>
+                            <p>Fan 1</p>
+                            <p>Fan 2</p>
+                            <p>Fan 3</p>
+                        </div>
                     </div>
                 </div>
             </div>            

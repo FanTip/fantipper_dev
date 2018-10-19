@@ -116,10 +116,11 @@ app.use('/socket', express.static(path.join(__dirname, 'node_modules/socket.io/l
 app.use('/dropzone', express.static(path.join(__dirname, 'node_modules/dropzone/dist')));
 
 // Configuration to cropper.js
-app.use('/cropper', express.static(path.join(__dirname, 'node_modules/cropperjs/dist')));
+app.use('/cropper', express.static(path.join(__dirname, 'node_modules/jquery-cropper/dist')));
+app.use('/cropperjs', express.static(path.join(__dirname, 'node_modules/cropperjs/dist')));
 
 app.use('/', indexRouter);
-app.use('/editImage', editImage);
+app.use('/upload', editImage);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
@@ -164,9 +165,9 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-console.log(typeof process.env.MONGODB_URI);
-var url = process.env.MONGODB_URI;
-mongoose.connect('mongodb://fantipper:fantipper123@ds121183.mlab.com:21183/fantipper');
+
+
+mongoose.connect(process.env.MONGODB_URI);
 // mongoose.connect('mongodb://localhost:27017/fantipper');
 let db = mongoose.connection;
 db.once('open', function(){

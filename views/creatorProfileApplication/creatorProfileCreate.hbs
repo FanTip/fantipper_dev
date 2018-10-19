@@ -114,20 +114,68 @@
                     
                 </div>  
                 <div id="part_2" ng-model='part_2'>
-                    <form id="creator_profile_create-part_2"  ng-show='part_2'>
+                    <form id="creator_profile_create-part_2" class="md-form" ng-show='part_2' action="/upload" method="POST">
                         <div class="form-group">
                                 <label for="profile_image">PROFILE IMAGE</label> <br>
                                 <small>This is the small creator image that appears in your pack down profile on the main page. This is what will grab peoples attention. Make an impact</small> <br>
-                                <div id="profileImageCanvas" width="200" class="dropzone dz-clickable dz-default" height="100" style="border:1px solid #000000;">
-                            </div>
-                            
-                            <span class="preview"><img data-dz-thumbnail /></span>
-                            <input type="file" multiple="multiple" class="dz-hidden-input" style="visibility: hidden;position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;">
                             <br>
-                            {{!-- <button class="btn btn-primary"><i class="fas fa-upload"></i>UPLOAD IMAGE</button> --}}
+                        </div>
+                        <div>
+                            <input type="hidden" id="_csrf" value="{{csrfToken}}">
+                            <style>
+                                canvas {
+                                    width: 500px;
+                                    height: 300px;
+                                    border: 1px solid #aaa;
+                                    cursor: default;
+                                }
+                                
+                            </style>
+
+                                <div>
+                                    <div>
+                                        <span>Choose file</span>
+                                        <input type="file" name="img_file" id="img_file">
+                                    </div>
+                                    
+                                </div>
+                                <div>
+                                    <a class="btn btn-primary" id="crop"> Crop Image</a>
+                                </div>
+
+                            <canvas id="canvas">
+
+                            </canvas>
+
+                            <div id="result">
+
+                            </div>
+
+                            <form action="/upload/profileimage" method="POST" id="profileImageForm">
+                                <input type="hidden" name="fileName" id="fileName">
+                                <input type="hidden" name="croppedImage" id="croppedImage">
+                                <a class='btn btn-primary' id="uploadImage" style="{color:white}" disabled>Submit</a>
+                            </form>
+
                         </div>
 
-                        <div class="form-group">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        {{!-- <div class="form-group">
                             <label for="backgrundImageCanvas">BACKGROUND IMAGE</label> <br>
                             
                             <div id="backgrundImageCanvas" width="200" class="dropzone dz-clickable dz-default" height="100" style="border:1px solid #000000;">
@@ -135,7 +183,6 @@
                             <span class="preview"><img data-dz-thumbnail /></span>
                             <input type="file" multiple="multiple" class="dz-hidden-input" style="visibility: hidden;position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;">
                             <br>
-                            {{!-- <button class="btn btn-primary"><i class="fas fa-upload"></i>UPLOAD IMAGE</button> --}}
                         </div>
                         <div class="form-group">
                             <label for="ImageGallery">IMAGE GALLERY</label> <br>
@@ -145,13 +192,13 @@
                             <input type="file" multiple="multiple" class="dz-hidden-input" style="visibility: hidden;position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;">
                             
                             <br>
-                            {{!-- <button class="btn btn-primary"><i class="fas fa-upload"></i>UPLOAD IMAGE</button> --}}
-                        </div>
+                        </div> --}}
+                        {{!-- <a href="#part_3" class="btn btn-primary" data-ng-click="showpart3()">Next</a> --}}
                     </form>
                         
                 </div> 
-                <div id="part_3">
-                    <form id="creator_profile_create-part_3" ng-model='part_3' ng-show=''>
+                <div id="part_3" ng-model='part_3'>
+                    <form id="creator_profile_create-part_3"  ng-show='part_3'>
                         <div class="form-group">
                         <label for="short_desc">ABOUT YOU</label>
  
