@@ -32,7 +32,7 @@ router.post('/', function(req, res, next){
   });
 });
 
-// Delete the account 
+// Delete the account
 router.post('/delete', isLoggedIn, function(req, res, next){
   User.findByIdAndRemove(req.user._id, function(err){
     if(err){
@@ -41,7 +41,7 @@ router.post('/delete', isLoggedIn, function(req, res, next){
     req.logout();
     req.session.destroy();
     res.redirect('/');
-    
+
   });
 });
 

@@ -1,0 +1,11 @@
+.creator-poster {
+  margin-bottom: 2; }
+  .creator-poster .background-image-preview {
+    position: relative;
+    width: 100%;
+    top: 0px;
+    left: 10px; }
+  .creator-poster .profile-image-preview {
+    position: absolute;
+    top: 7% !important;
+    left: 35% !important; }

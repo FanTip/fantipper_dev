@@ -1,8 +1,6 @@
 /* General CSS configurations of the main elements */
 body {
     padding-top: 0px;
-    /* padding-left: 50px;
-    padding-right: 50px; */
     font: 14px;
     -webkit-font-smoothing : antialiased;
     font-family: 'Larsseit';
@@ -188,8 +186,7 @@ h1, h2, h3, h4, h5, p{
 
 
 .col-lg-12 .responsive-video{
-    padding-left: 30px;
-    padding-right: 30px;
+   
 }
 
 nav{

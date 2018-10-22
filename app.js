@@ -85,6 +85,10 @@ app.use(function(req, res, next){
       res.locals.CreatorURL = req.user.creator.creatorUrl;
       res.locals.CreatorAbout = req.user.creator.creatorAbout;
       res.locals.facebookID = req.user.facebookID;
+      res.locals.creatorTile = req.user.creator.creatorTileImage;
+      res.locals.creatorBackground = req.user.creatorBackground;
+      res.locals.image1 = req.user.image1;
+      res.locals.image2 = req.user.image2;
     }
     if(req.user.card.isCard){
       res.locals.cardOptions = req.user.card.isCard;

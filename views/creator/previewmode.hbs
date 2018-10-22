@@ -1,29 +1,158 @@
-<div class="container">
+<div class="container-fluid">
     <input type="hidden" value="{{csrfToken}}">
     <div class="row">
-        
         <div class="col-lg-12">
-            <div class="creator-head text-center" style="background-image: url('/images/img.jpg');">
-                <div class="creatorImage">
-                    <img src="/images/example.jpg" class="img-circle" alt="" height="100px" width="100px">
+            {{!-- Creator banner starts --}}
+            <div class="row creator-poster">
+                <img src="/images/arbory.jpg" alt="" class="img-responsive background-image-preview" height="200" width="100">
+                <div class="profile-image-preview">
+                  <ul class="profile-list">
+                    <li><img src="/images/example.jpg" alt="" class="img-responsive rounded-circle " height="150" width="150"></li>
+                    <li>
+                      <ul class="menu">
+                        <li class="name"><h4>{{CreatorName}}</h4></li>
+                        <li class="location">{{location}}</li>
+                        <li>
+                          <ul class="list-inline" id="tags">
+                            <li class="list-inline-item">music</li>
+                          </ul>
+                        </li>
+                        <li class="share">
+                          <ul class="list-inline">
+                            <li class="list-inline-item"> <button type="button" class="btn btn-sm facebook"><i class="fab fa-facebook-f"></i>Share</button> </li>
+                            <li class="list-inline-item"> <button type="button" class="btn btn-sm tweetr"><i class="fab fa-twitter"></i>Share</button>  </li>
+                            <li class="list-inline-item"> <button type="button" class="btn btn-sm url"><i class="fas fa-paperclip"></i>{{CreatorURL}}</button>  </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
                 </div>
-                <h2>{{CreatorName}}</h2>
-                <h3>{{CreatorUserName}}</h3>
             </div>
+            {{!-- Creator banner ends --}}
+
+            {{!-- Creator body starts --}}
             <div class="creator-content container">
                 <div class="row">
-                    <div class="col-md-7 creator-main" id="creatorAbout">
-                        <h3>About</h3>
-                        <p>{{CreatorDescription}}</p>
-                        <p>{{CreatorAbout}}</p>
+                    {{!-- Creator description and About --}}
+                    <div class="col-md-7 creator-main">
+                        <div class="section-1">
+                            <h4 class="creator-about">ABOUT</h4> <br>
+                            <p class="creator-description">{{CreatorDescription}} </p>
+                        </div>
+                        <div class="section-2">
+                            <h4>GALLERY</h4> <br>
+                            <div class="gallery">
+                                <div class="row">
+                                    <div class="col-md-2" id="gallery"><img src="/images/example.jpg" alt="" class="img-responsive" height="100" width="120"></div>
+                                    <div class="col-md-2" id="gallery"><img src="/images/example.jpg" alt="" class="img-responsive" height="100" width="120"></div>
+                                    <div class="col-md-2" id="gallery"><img src="/images/example.jpg" alt="" class="img-responsive" height="100" width="120"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2" id="gallery"><img src="/images/example.jpg" alt="" class="img-responsive" height="100" width="120"></div>
+                                    <div class="col-md-2" id="gallery"><img src="/images/example.jpg" alt="" class="img-responsive" height="100" width="120"></div>
+                                    <div class="col-md-2" id="gallery"><img src="/images/example.jpg" alt="" class="img-responsive" height="100" width="120"></div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        
+                        <div class="section-3" >
+                            <h4>MEMBERS</h4>
+                            <ul class="members">
+                                {{#each obj1}}
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <img src="{{this.image}}" class="img-responsive rounded-circle" alt="" height="100px" width="100px">
+                                            </div>
+                                            <div class="col-md-9">
+                                                <p>{{this.name}}</p>
+                                                <p class="desc">{{this.description}}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                {{/each}}
+                            </ul>
+                        </div>
                     </div>
 
-                    <div class="col-md-5 creator-sidebar" id="creatorTip">
-                        <p>Show your support, give a tip and become a fan</p>
-                        <button class="btn btn-success">FanTip</button>
+                    {{!-- Creator sidebar --}}
+                    <div class="col-md-5 creator-sidebar">
+                        <div class="row">
+                            <button class="btn" id="fantipButton"> <img src="/images/Fantipper-button.jpg" alt=""> </button>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <p style="color:#e4e2e2">TIPS</p>
+                            <h2>2000</h2>
+                          </div>
+                          <div class="col-md-12">
+                            <p style="color:#e4e2e2">$</p>
+                            <h2>500.20</h2>
+                          </div>
+                          <div class="col-md-12">
+                            <h3>&ldquo; Repurpose cutting-edge platforms extend end-to-end partnerships grow dynamic vortals. &rdquo;</h3>
+                          </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                              <h4 class="top-fans"><i class="fas fa-heart"></i> TOP FANS</h4>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>            
+            </div>
+
+            <div class="bottom-section container-fluid">
+                <div class="row">
+                    <div class="col-md-7 messages-section">
+                        <div class="row">
+                            <div class="col">
+                                <h4>MESSAGES</h4>
+                            </div>
+                        </div>
+                        <div class="row creator-main">
+                            <ul class="messages">
+                                {{#each obj2}}
+                                    <div class="row" id="message-object">
+                                        <div class="col-md-2">
+                                            <img src="{{this.photo}}" alt="" height="50px" width="50px">
+                                        </div>
+                                        <div class="col-md-10" id="each-message">
+                                            <div class="row">
+                                                {{this.message}}
+                                            </div>
+                                            <div class="row">
+                                                <p>by </p> <p>{{this.name}}</p> <p>, {{this.date}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                {{/each}}
+                            </ul>
+                        </div>
+                    </div>
+
+                    {{!-- Creator sidebar --}}
+                    <div class="col-md-5 creator-sidebar">
+                      fanbase
+                    </div>
+                </div>
+                <div class="row fantip-button">
+                    <div class="col-md-12 ">
+                        <div class="row">
+                            <div class="col-md-12 d-flex justify-content-center">
+                                <h4>Become a fan of {{CreatorName}} and leave a message of support!</h4>
+                            </div>
+                            <div class="col-md-12 d-flex justify-content-center">
+                                <button class="btn btn-success">FANTIP</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

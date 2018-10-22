@@ -1,6 +1,5 @@
 // Retrieving messages from the server
 $(window).load(function(){
-    console.log('jvfj');
     var xhr = $.ajax({
         type : "GET",
         crossDomain : false,
