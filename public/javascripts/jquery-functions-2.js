@@ -1,9 +1,12 @@
+/**
+ * JQuery implementation to call login functions in passport
+ * Ajax object is used to pass the authentication
+ * 
+ */
+
 $(function(){
-    // JQuery implementation to call login functions in passport
-    // Ajax object is used to pass the authentication 
     $('#login-form').on('submit', function(event){
         event.preventDefault();
-        console.log('came here');
         var csrf = $('#_csrf').val();
         var email = $('#email').val();
         var password = $('#password').val();
@@ -32,8 +35,12 @@ $(function(){
     });
 
 
-    // JQuery implementation to call the signup functions in the passport
-    // Ajax object is used to pass the authentication 
+    /**
+     * JQuery implementation to call the signup functions in the passport
+     * Ajax object is used to pass the authentication 
+     * 
+     */
+
     $('#signup-form').on('submit', function(event){
         event.preventDefault();
         console.log('dhdd');

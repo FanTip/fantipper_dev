@@ -1,211 +1,211 @@
-// color variables
-$fantipper_color : 00d278;
-/* width */
-::-webkit-scrollbar {
-    width: 10px;
-}
+// // color variables
+// $fantipper_color : 00d278;
+// /* width */
+// ::-webkit-scrollbar {
+//     width: 10px;
+// }
 
-/* Track */
-::-webkit-scrollbar-track {
-    background: #f1f1f1; 
-}
+// /* Track */
+// ::-webkit-scrollbar-track {
+//     background: #f1f1f1; 
+// }
  
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: #00d278; 
-}
+// /* Handle */
+// ::-webkit-scrollbar-thumb {
+//     background: #00d278; 
+// }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-    background: #00d278; 
-}
+// /* Handle on hover */
+// ::-webkit-scrollbar-thumb:hover {
+//     background: #00d278; 
+// }
 
-.creator-poster{
-    margin-bottom: 2;
+// .creator-poster{
+//     margin-bottom: 2;
 
-    .background-image{
-        position: relative;
-        width: 100%;
-        top: 0px;
-        left: 10px;
+//     .background-image{
+//         position: relative;
+//         width: 100%;
+//         top: 0px;
+//         left: 10px;
 
-    }
+//     }
 
-    .profile-image{
-        position: absolute;
-        top: 7% !important;
-        left: 30% !important;
-        ul{
-            list-style: none;
-            color: #e4e2e2;
-            padding: 0;
-            margin: 0;
-            text-align: center;
-            img{
-                border:2px solid #000;
-            }
-            .menu{
-                text-align: center;
-                vertical-align: middle;
-                .name{
-                    font-family: Larsseit-Bold; 
-                }
-                .location{
-                    font-family: Larsseit-Medium;
-                    color: grey;
+//     .profile-image{
+//         position: absolute;
+//         top: 7% !important;
+//         left: 30% !important;
+//         ul{
+//             list-style: none;
+//             color: #e4e2e2;
+//             padding: 0;
+//             margin: 0;
+//             text-align: center;
+//             img{
+//                 border:2px solid #000;
+//             }
+//             .menu{
+//                 text-align: center;
+//                 vertical-align: middle;
+//                 .name{
+//                     font-family: Larsseit-Bold; 
+//                 }
+//                 .location{
+//                     font-family: Larsseit-Medium;
+//                     color: grey;
 
-                }
+//                 }
 
-                #tags{
-                    li{
-                        text-align: center;
-                        border: grey 1px solid;
-                        border-radius: 5px;
-                        color: grey;
-                        padding-left: 2px;
-                        padding-right: 2px;
-                        padding-bottom: 2px;
-                        font-family: Larsseit-Medium;
-                    }
-                }
-                .share{
-                    padding-top: 50%;
-                    font-family: Larsseit-Medium;
-                    .facebook{
-                        background-color: #3B5998;
-                        color: #e4e2e2;
-                    }
-                    .tweetr{
-                        background-color: #1DA1F2 ;
-                        color: #e4e2e2;
-                    }
-                    .url{
-                        color: darkgrey; 
-                    }
-                }
-            }
-        }
-    }
-}
+//                 #tags{
+//                     li{
+//                         text-align: center;
+//                         border: grey 1px solid;
+//                         border-radius: 5px;
+//                         color: grey;
+//                         padding-left: 2px;
+//                         padding-right: 2px;
+//                         padding-bottom: 2px;
+//                         font-family: Larsseit-Medium;
+//                     }
+//                 }
+//                 .share{
+//                     padding-top: 50%;
+//                     font-family: Larsseit-Medium;
+//                     .facebook{
+//                         background-color: #3B5998;
+//                         color: #e4e2e2;
+//                     }
+//                     .tweetr{
+//                         background-color: #1DA1F2 ;
+//                         color: #e4e2e2;
+//                     }
+//                     .url{
+//                         color: darkgrey; 
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
 
-.creator-content{
-    margin: 5%;
-    .section-1{
-        margin-bottom: 10%;
-        border-bottom: 1px solid #e4e2e2;
-        .creator-about{
-            color: #00d278
-        }
-        .creator-description::first-line{
-            font-weight: bold;
-        }
-    }
-    .section-2{
-        margin-bottom: 10%;
-        border-bottom: 1px solid #e4e2e2;
-        padding-bottom: 5%;
-        .gallery{
-            height: 300px !important;
-            overflow-y: auto;
-            overflow-x: hidden;
+// .creator-content{
+//     margin: 5%;
+//     .section-1{
+//         margin-bottom: 10%;
+//         border-bottom: 1px solid #e4e2e2;
+//         .creator-about{
+//             color: #00d278
+//         }
+//         .creator-description::first-line{
+//             font-weight: bold;
+//         }
+//     }
+//     .section-2{
+//         margin-bottom: 10%;
+//         border-bottom: 1px solid #e4e2e2;
+//         padding-bottom: 5%;
+//         .gallery{
+//             height: 300px !important;
+//             overflow-y: auto;
+//             overflow-x: hidden;
             
-        }
+//         }
         
-        h4{
-            color: #00d278;
-        }
+//         h4{
+//             color: #00d278;
+//         }
         
-        #gallery{
-            margin:15px;
-            margin-right: 55px;
-        }
+//         #gallery{
+//             margin:15px;
+//             margin-right: 55px;
+//         }
 
-    }
-    .section-2::after{
-        height: 100px;
-    }
-    .section-3{
-        h4{
-            color: #00d278;
-        }
-        .members{
-            li{
-                list-style: none;
-                .desc{
-                    color: #e4e2e2;
-                    font-size: 0.9em;
-                }
-            }
+//     }
+//     .section-2::after{
+//         height: 100px;
+//     }
+//     .section-3{
+//         h4{
+//             color: #00d278;
+//         }
+//         .members{
+//             li{
+//                 list-style: none;
+//                 .desc{
+//                     color: #e4e2e2;
+//                     font-size: 0.9em;
+//                 }
+//             }
 
-        }
-    }
-}
+//         }
+//     }
+// }
 
-.creator-sidebar{
-    border-left: 1px solid #e4e2e2;
-    padding-left: 5%;
-    .row{
-        padding-left:5%;
-    }
-    #fantipButton{
-        background-color: #fff;
-        border: #fff;
-        margin-bottom: 40px
-   }
-    h2{
-        font-family: Larsseit-Bold;
-    }
-    h3{
-        font-family: Larsseit-Bold;
-        color: #00d278;
-    }
-    .top-fans{
-        margin-top: 15px;
-        color: #00d278;
-    }
-}
+// .creator-sidebar{
+//     border-left: 1px solid #e4e2e2;
+//     padding-left: 5%;
+//     .row{
+//         padding-left:5%;
+//     }
+//     #fantipButton{
+//         background-color: #fff;
+//         border: #fff;
+//         margin-bottom: 40px
+//    }
+//     h2{
+//         font-family: Larsseit-Bold;
+//     }
+//     h3{
+//         font-family: Larsseit-Bold;
+//         color: #00d278;
+//     }
+//     .top-fans{
+//         margin-top: 15px;
+//         color: #00d278;
+//     }
+// }
 
-.bottom-section{
-    padding-top: 5%;
-    padding-left: 3%;
-    width: 100%;
-    background-color: #e4e2e2;
+// .bottom-section{
+//     padding-top: 5%;
+//     padding-left: 3%;
+//     width: 100%;
+//     background-color: #e4e2e2;
 
-    .creator-main{
-        height: 300px !important;
-        overflow-x: hidden;
-        overflow-y: auto;
-        .messages-section{
+//     .creator-main{
+//         height: 300px !important;
+//         overflow-x: hidden;
+//         overflow-y: auto;
+//         .messages-section{
            
-            margin: 20px;
-            .messages{
-                #message-object{
-                    padding-bottom: 10px;
-                    #each-message{
-                        background: #00d278;
-                        padding-left: 5px;
-                    }
-                }
-            }
+//             margin: 20px;
+//             .messages{
+//                 #message-object{
+//                     padding-bottom: 10px;
+//                     #each-message{
+//                         background: #00d278;
+//                         padding-left: 5px;
+//                     }
+//                 }
+//             }
             
-        }
-    }
+//         }
+//     }
     
-    .fantip-button{
-        height: 160px !important;
-        justify-content: center;
-        h4{
-            font-family: Larsseit-Bold;
-            color: #00d278;
-            padding-top: 5%;
-        }
-    }
+//     .fantip-button{
+//         height: 160px !important;
+//         justify-content: center;
+//         h4{
+//             font-family: Larsseit-Bold;
+//             color: #00d278;
+//             padding-top: 5%;
+//         }
+//     }
 
-    .fanbase{
-        border-left: 2px solid #fff;
-    }
+//     .fanbase{
+//         border-left: 2px solid #fff;
+//     }
 
-    // .fantip-button{
-    //     border-top:  1px solid #fff;
-    // }
-}
+//     // .fantip-button{
+//     //     border-top:  1px solid #fff;
+//     // }
+// }

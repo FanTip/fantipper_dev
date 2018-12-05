@@ -12,6 +12,25 @@ fantipperApp.controller('CreatorApplicationController', function($scope){
         $scope.part_3 = true;
         $scope.part_2 = false;
     }
+    
+    /**
+     * Checking the form for validation
+     */
+        console.log( typeof $scope.creatorName);
+     if(($scope.creatorName != undefined ) && ($scope.textModel != undefined ) && ($scope.location != undefined)){
+        // $scope.buttonSection1 = 
+        this.checked = true;
+     }else{
+         this.checked = false;
+     }
+
 
     console.log($scope.part_2);    
 });
+
+// Removes white spaces in the creatorProfileCreate file in order to generate the creator url
+fantipperApp.filter('usernameCreator', function(){
+    return function (value) {
+      return (!value) ? '' : value.replace(/ /g, '');
+    };
+  });

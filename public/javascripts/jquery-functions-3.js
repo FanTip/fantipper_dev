@@ -1,173 +1,308 @@
-// Implemetations for the creatorProfileCreate
+// // Implemetations for the creatorProfileCreate
 
+window.addEventListener('DOMContentLoaded', function(){
 
+    /**
+     * Cropping image functions
+     * 
+     * 
+     * TODO : Implement the cropping for background image and allow users to upload multiple images in to their profile
+     */
+    var avatar = document.getElementById('avatar');
+    var image = document.getElementById('image');
+    var input = document.getElementById('input');
 
+    var $progress = $('.progress');
+    var $progressBar = $('.progress-bar');
+    var $alert = $('.alert');
+    var $modal = $('#modal');
 
+    $progress.hide();
+    // input.hide();
 
+    var cropper;
 
+    $('[data-toggle = "tooltip"]').tooltip();
 
-
-    function b64toBlob(b64Data, contentType, sliceSize) {
-        contentType = contentType || '';
-        sliceSize = sliceSize || 512;
-        console.log(sliceSize);
-        var byteCharacters = atob(b64Data);
-        var byteArrays = [];
-
-        for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-            var slice = byteCharacters.slice(offset, offset + sliceSize);
-
-            var byteNumbers = new Array(slice.length);
-            for (var i = 0; i < slice.length; i++) {
-                byteNumbers[i] = slice.charCodeAt(i);
-            }
-
-            var byteArray = new Uint8Array(byteNumbers);
-
-            byteArrays.push(byteArray);
+    input.addEventListener('change', function(e){
+        var files = e.target.files;
+        var done = function(url){
+            console.log(url);
+            input.value = '';
+            image.src = url;
+            $alert.hide();
+            $modal.modal('show');
         }
+        var reader;
+        var file;
+        var url;
 
-      var blob = new Blob(byteArrays, {type: contentType});
-      return blob;
-    }
-
-    var csrf = $('#_csrf').val();
-        var $canvas = $('#canvas');
-    var context = $canvas.get(0).getContext('2d');
-
-    $('#img_file').on('change', function(){
-        if(this.files && this.files[0]){
-            if(this.files[0].type.match(/^image\//)){
-            var cropper;
-            var filename = this.files[0].name;
-                console.log(this.files[0])
-                var reader = new FileReader();
-                reader.onload = function(e){
-                    var img = new Image();
-                    img.onload = function(){
-                        context.canvas.width = img.width;
-                        context.canvas.height = img.height;
-                        context.drawImage(img, 0, 0);
-
-                        cropper = $canvas.cropper({});
-                    };
-                    img.src = e.target.result;
+        if(files && files.length > 0){
+            file = files[0];
+            if(url) {
+                console.log(url);
+                done(URL.createObjectURL(file));
+            } else if (FileReader) {
+                reader = new FileReader();
+                reader.onload = function(e) {
+                    done(reader.result);
                 };
-
-                
-
-                $('#crop').click(function(){
-                    var croppedImage = $canvas.cropper('getCroppedCanvas').toDataURL('image/jpg');
-                    $('#result').append($('<img>').attr('src', croppedImage));
-                    $('#uploadImage').removeAttr('disabled');
-                    // console.log(croppedImage);
-                    var processedImage = croppedImage.split(',', 2)[1];
-                    console.log(processedImage);
-                    // var image = Base64.decode(processedImage);
-                    console.log('atob',atob(processedImage))
-                    var img = atob(processedImage);
-                    
-
-                    $('#croppedImage').attr('value', croppedImage);
-
-
-
-                    // $('#uploadImage').click(function () { 
-                        
-                    //     var formData = new FormData();
-                    //     formData.append('filename',img);
-                        
-                    //     console.log(formData);
-                        
-
-                    //     var xhr = new XMLHttpRequest();
-                    //     xhr.open('POST', '/creator/application', true);
-                    //     xhr.setRequestHeader('CSRF-Token' , csrf)
-                    //     xhr.onreadystatechange = function(response){};
-                    //     xhr.send(formData);
-    
-                    //     var xhr = $.ajax({
-                    //         type : 'POST',
-                    //         url : '/creator/application',
-                    //         processData : false,
-                            // headers : {
-                            //     'CSRF-Token' : csrf
-                            // },
-                    //         data : formData,
-                    //         crossDomain : false,
-                            
-                    //         // xhr : function(){
-                    //         //     var xhr = new XMLHttpRequest();
-                    //         //     xhr.upload.onprogress = function(e){
-
-                    //         //     };
-                    //         //     return xhr;
-                    //         // }
-                    //     })
-                        
-                        
-                    //  });
-    
-                });
-
-                $('#uploadImage').click(function(){
-
-                    var reader = new FileReader();
-
-                    var image = $('#croppedImage').val();
-
-                    var block = image.split(";");
-                    var contentType = block[0].split(":")[1];
-                    var realData = block[1].split(",")[1];
-
-                    var blob = b64toBlob(realData, contentType);
-                   
-                    console.log(blob);
-                    // var formData = new FormData(document.getElementById("profileImageForm"));
-                    var formData = new FormData();
-                    console.log(formData);
-                    // formData.append("image", blob);
-                    formData.append('file', blob, 'file.png');
-                    var temp = reader.readAsDataURL(blob);
-                    console.log('teml',temp);
-                    console.log(formData);
-                    $.ajax({
-                        url : '/creator/application',
-                        type : 'POST',
-                        contentType:false,
-                        processData:false,
-                        cache:false,
-                        files : formData,
-                        data : formData,
-                        headers : {
-                            'CSRF-Token' : csrf
-                        },
-                        dataType : "json",
-                        error : function(err){
-                            console.log(err);
-                        },success:function(data){
-                            console.log(data);
-                        },
-                        complete:function(){
-                            console.log("Request finished.");
-                        }
-                    });
-                });
-
-
-
-                
-
-                reader.readAsDataURL(this.files[0]);
-
-            }else{
-                toastr.options.showMethod = 'slideDown';
-                toastr.options.hideMethod = 'slideUp';
-                toastr.options.closeButton = true;
-                toastr.error("Incorrect image format!")
+                reader.readAsDataURL(file);
             }
-        }else{
-            toastr.info("Sorry! You must select a profile image!")
         }
     });
+
+        $modal.on('show.bs.modal', function(){
+            cropper = new Cropper(image, {
+                aspectRatio : 1,
+                viewMode : 3
+            });
+            console.log(cropper);
+
+        }).on('hidden.bs.modal', function(){
+            cropper.destroy();
+            cropper = null;
+        });
+
+        document.getElementById('crop').addEventListener('click', function(){
+            var initialAvatarURL;
+            var canvas;
+
+            $modal.hide();
+
+            if(cropper){
+                canvas = cropper.getCroppedCanvas({
+                    width : 600,
+                    height : 600
+                });
+                initialAvatarURL = avatar.src;
+                avatar.src = canvas.toDataURL();
+                $progress.show();
+                $alert.removeClass('alert-success alert-warning');
+                canvas.toBlob(function(blob){
+                    var formData = new FormData();  
+
+                    formData.append('avatar', blob, 'avatar.jpg');
+
+                    $.ajax('/test',{
+                        type: "POST",
+                        data: formData,
+                        processData : false,
+                        contentType : false,
+                        headers : {
+                            'CSRF-Token' : $('meta[name="csrf-token"]').attr('content')
+                        },
+
+                        xhr: function(){
+                            var xhr = new XMLHttpRequest();
+
+                            xhr.upload.onprogress = function(e){
+                                var precent = '0';
+                                var precentage = '0%';
+
+                                if(e.lengthComputable){
+                                    precent = Math.round((e.loaded / e.total) * 100);
+                                    precentage = precent + '%';
+                                    $progressBar.width(precentage).attr('aria-valuenow', precent).text(precentage);
+                                }
+                            };
+                            return xhr;
+                        },
+                        success : function(){
+                            toastr.success('Upload Complete');
+                        },
+                        error : function(){
+                            avatar.src = initialAvatarURL;
+                            toastr.error('Upload Error');
+                        },
+                        complete : function(){
+                            $progress.hide();
+                        }
+
+                    });
+                });
+            }
+        });
+/**
+ * End of cropping images for Creator profile image
+ */
+
+ /**
+  * 
+  * TODO : Implement the Background image and uploading multiple images
+  */
+
+}); 
+
+/**
+ * Creator data save in section 1
+ */
+
+$(document).ready(function(){
+    
+    var saveButton1 = $('#section1');
+
+    saveButton1.on('click', function(){
+        var creatorname = $('#creator_name_create').val();
+        var staticURL = $('#staticURL').val();
+        var short_desc = $('#short_desc').val();
+        var location_now = $('#location_now').val();
+
+        var section1Data = {
+            name : creatorname,
+            url : staticURL,
+            desc : short_desc,
+            username : staticURL,
+            location : location_now
+        }
+
+        console.log(section1Data);
+        var xhr = $.ajax('/test/section1',{
+            method : 'POST', 
+            headers : {
+                'CSRF-Token' : $('meta[name="csrf-token"]').attr('content')
+            },
+            data : section1Data,
+            crossDomain : false
+        });
+
+        xhr.done(function(response){
+            toastr.success('data is saved');
+        });
+    });
+
+});
+
+
+
+/**
+         * 
+         * Quill editor initialization
+         */
+        var toolbarOptions = [
+            ['bold', 'italic', 'underline'],        // toggled buttons
+            
+            [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+        
+            [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+        
+            // [{ 'font': [] }],
+        
+            ['clean']                                         // remove formatting button
+        ];
+        
+        function initEditor(){
+            return new Quill('#editor-container', {
+                modules: { 
+                    toolbar: toolbarOptions,
+                        history: {
+                            delay: 2000,
+                            maxStack: 500,
+                            userOnly: true
+                        }
+                    },
+                theme: 'snow'
+                });    
+        }
+
+
+function getStory(quill){
+    var content = quill.getText();
+    var delta = JSON.stringify(quill.getContents());
+    var editorWindow = document.getElementById('editor-container').getElementsByClassName('ql-editor')[0];
+    var formattedContent = editorWindow.innerHTML.toString();
+
+    return{
+        content : content,
+        delta : delta,
+        formattedContent : formattedContent
+    }
+}
+
+$(document).ready(function(){
+        
+    var quill = initEditor();
+
+    var about_you;
+
+    var submit_button = $('#Submit_profile');
+    submit_button.on('click', function(){
+        about_you = getStory(quill);
+
+        var xhr = $.ajax('/test/section3',{
+            method : 'POST', 
+            headers : {
+                'CSRF-Token' : $('meta[name="csrf-token"]').attr('content')
+            },
+            data : about_you,
+            crossDomain : false
+        });
+
+        xhr.done(function(){
+            toastr.options = {
+                "closeButton": true,
+                "positionClass": "toast-top-full-width",
+                "preventDuplicates": true,
+            }
+
+            toastr.success('You have successfully created a Fantipper creator account!')
+        });
+    });
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

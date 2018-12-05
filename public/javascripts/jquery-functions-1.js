@@ -1,6 +1,6 @@
-/*
-    jquery functions to get the data from the index page in order to make the tipping 
-*/
+/**
+ * jquery functions to get the data from the index page in order to make the tipping 
+ */
 $(function () {
     $('#tipping-form').on('submit', function(event){
    

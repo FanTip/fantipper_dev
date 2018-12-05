@@ -38,9 +38,9 @@ fantipperApp.controller('usernameCtrl', function($scope){
   // console.log($scope.creator_username);
 });
 
-// Removes white spaces in the creatorProfileCreate file in order to generate the creator url
-fantipperApp.filter('usernameCreator', function(){
-  return function (value) {
-    return (!value) ? '' : value.replace(/ /g, '');
-  };
-});
+// // Removes white spaces in the creatorProfileCreate file in order to generate the creator url
+// fantipperApp.filter('usernameCreator', function(){
+//   return function (value) {
+//     return (!value) ? '' : value.replace(/ /g, '');
+//   };
+// });
