@@ -1,7 +1,8 @@
+<meta name="csrf-token" content="{{csrfToken}}"/>
+<script src="quill/quill.min.js"></script>
 <div class="container">
      {{!-- ng-controller="CreatorApplicationController as CAC" --}}
         
-
     <div ng-controller="CreatorApplicationController as CAC">
         <div class="col-lg-3">
 
@@ -9,10 +10,10 @@
         <div class="col-lg-9">
             <h4>Welcome! <br> Let's build your Creator page </h4>
                 <div class="" id="part_1" ng-model='part_1'>
-                    <form id="creator_profile_create-part_1" ng-show='part_1' >
+                    <form id="creator_profile_create-part_1" ng-show='part_1' name="form_section1" >
                         <div class="form-group">
                             <label for="creator_name_create">CREATOR NAME</label>
-                            <input type="text" name="creator_name_create" id="creator_name_create" ng-model = "creatorName" class="form-control form-control-lg">
+                            <input type="text" name="creator_name_create" id="creator_name_create" ng-model = "creatorName" class="form-control form-control-lg" value="{{CreatorUserName}}" required>
                         </div>
                         <div class="form-group">
                             <label for="url">URL</label> <br>
@@ -21,7 +22,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon3">fantipper.com/</span>
                                 </div>
-                                    <input type="text" id="staticURL" value="{[{creatorName | usernameCreator}]}" class="form-control form-control-lg" id="basic-url" readonly aria-describedby="basic-addon3" max ="10">
+                                    <input type="text" id="staticURL" value="{[{creatorName | usernameCreator}]}" class="form-control form-control-lg"  readonly aria-describedby="basic-addon3" max ="10">
                             </div>
                         </div>  
                         <div class="form-group">
@@ -32,7 +33,7 @@
                         
                         <div class="form-group" id="the-basics">
                             <label for="location">LOCATION</label>
-                            <input type="text" id="location_now" name="location" class="form-control form-control-lg" >
+                            <input type="text" id="location_now" name="location" class="form-control form-control-lg" ng-model = "location"  value="{{location}}">
                         
                         </div>
                         <div class="form-group">
@@ -109,117 +110,73 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#part_2" class="btn btn-primary" data-ng-click="showpart2()"> Next...</a>
+                        <a href="#part_2" class="btn btn-primary" id="section1" ng-disabled="CAC.checked" ng-model = 'buttonSection1' data-ng-click="showpart2()"> Next...</a>
                     </form>
                     
                 </div>  
                 <div id="part_2" ng-model='part_2'>
-                    <form id="creator_profile_create-part_2" class="md-form" ng-show='part_2' action="/upload" method="POST">
-                        <div class="form-group">
-                                <label for="profile_image">PROFILE IMAGE</label> <br>
-                                <small>This is the small creator image that appears in your pack down profile on the main page. This is what will grab peoples attention. Make an impact</small> <br>
-                            <br>
+                    <div ng-show="part_2">
+                        <label class="label" >
+                            <img src="../{{creatorTile}}" alt="Creator avatar" class="rounded" id="avatar">
+                            <input type="file" class="sr-only" name="image" id="input" accept="image/*">
+                        </label>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
                         </div>
-                        <div>
-                            <input type="hidden" id="_csrf" value="{{csrfToken}}">
-                            <style>
-                                canvas {
-                                    width: 500px;
-                                    height: 300px;
-                                    border: 1px solid #aaa;
-                                    cursor: default;
-                                }
-                                
-                            </style>
 
-                                <div>
-                                    <div>
-                                        <span>Choose file</span>
-                                        <input type="file" name="img_file" id="img_file">
+                        <div class="alert" role="alert"></div>
+                        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalLabel">Crop the Creator image</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
-                                    
+                                    <div class="modal-body">
+                                        <div class="img-container">
+                                            <img src="{{imagePath}}" id="image">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-primary" id="crop">Crop</button>
+                                    </div>
                                 </div>
-                                <div>
-                                    <a class="btn btn-primary" id="crop"> Crop Image</a>
-                                </div>
-
-                            <canvas id="canvas">
-
-                            </canvas>
-
-                            <div id="result">
-
                             </div>
-
-                            <form action="/upload/profileimage" method="POST" id="profileImageForm">
-                                <input type="hidden" name="fileName" id="fileName">
-                                <input type="hidden" name="croppedImage" id="croppedImage">
-                                <a class='btn btn-primary' id="uploadImage" style="{color:white}" disabled>Submit</a>
-                            </form>
-
                         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        {{!-- <div class="form-group">
-                            <label for="backgrundImageCanvas">BACKGROUND IMAGE</label> <br>
-                            
-                            <div id="backgrundImageCanvas" width="200" class="dropzone dz-clickable dz-default" height="100" style="border:1px solid #000000;">
-                            </div>
-                            <span class="preview"><img data-dz-thumbnail /></span>
-                            <input type="file" multiple="multiple" class="dz-hidden-input" style="visibility: hidden;position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;">
-                            <br>
-                        </div>
-                        <div class="form-group">
-                            <label for="ImageGallery">IMAGE GALLERY</label> <br>
-                            <small>Upload upto 12 images for your gallery</small>  <br>
-                            <div id="ImageGallery" width="200" class="dropzone dz-clickable dz-default" height="100" style="border:1px solid #000000;">
-                            </div>
-                            <input type="file" multiple="multiple" class="dz-hidden-input" style="visibility: hidden;position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;">
-                            
-                            <br>
-                        </div> --}}
-                        {{!-- <a href="#part_3" class="btn btn-primary" data-ng-click="showpart3()">Next</a> --}}
-                    </form>
-                        
+                        <a href="#part_3" class="btn btn-primary" id="section2" data-ng-click="showpart3()"> Next...</a>
+                        <a href="#part_1" class="btn btn-danger" id="section1" data-ng-click="backpart1()">Back...</a>
+                    </div> 
                 </div> 
+
                 <div id="part_3" ng-model='part_3'>
-                    <form id="creator_profile_create-part_3"  ng-show='part_3'>
+                    <div id="creator_profile_create-part_3"  ng-show='part_3'>
                         <div class="form-group">
-                        <label for="short_desc">ABOUT YOU</label>
- 
-                        <!-- Create the toolbar container -->
-                        <div id="toolbar">
-                        </div>
-                    
-                        <!-- Create the editor container -->
-                        <div id="editor-container">
-                            <p>Tell us little bit about you!</p>
-                        </div>
+                            <label for="short_desc">ABOUT YOU</label>
+    
+                            <!-- Create the toolbar container -->
+                            <div id="toolbar">
+                            </div>
                         
-                        <!-- Initialize Quill editor -->
-                        <style>
-                            #editor-container {
-                                                    height: 375px;
-                                                }
-                        </style>
-                        <script src="/javascripts/quill-settings/settings.js"></script>   
+                            <!-- Create the editor container -->
+                            <div id="editor-container">
+                                <p>Tell us little bit about you!</p>
+                            </div>
+                            
+                            <!-- Initialize Quill editor -->
+                            <style>
+                                #editor-container {
+                                                        height: 375px;
+                                                    }
+                            </style>
+                            <script src="/javascripts/quill-settings/settings.js"></script>   
+                        </div>
+                        <button class="btn" id="Submit_profile">Submit Creator Profile</button>
+                        <a href="#part_2" class="btn btn-danger" id="section2" data-ng-click="backpart2()">Back...</a>
                     </div>
-                    </form>
+                    
                 </div>
             <script src="/javascripts/cropper_settings.js"></script>
 

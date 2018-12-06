@@ -52,13 +52,11 @@ window.addEventListener('DOMContentLoaded', function(){
         }
     });
 
-        $modal.on('show.bs.modal', function(){
+        $modal.on('shown.bs.modal', function(){
             cropper = new Cropper(image, {
                 aspectRatio : 1,
-                viewMode : 3
+                viewMode : 3,
             });
-            console.log(cropper);
-
         }).on('hidden.bs.modal', function(){
             cropper.destroy();
             cropper = null;
@@ -72,8 +70,8 @@ window.addEventListener('DOMContentLoaded', function(){
 
             if(cropper){
                 canvas = cropper.getCroppedCanvas({
-                    width : 600,
-                    height : 600
+                    width : 160,
+                    height : 160,
                 });
                 initialAvatarURL = avatar.src;
                 avatar.src = canvas.toDataURL();
@@ -211,6 +209,7 @@ function getStory(quill){
     var content = quill.getText();
     var delta = JSON.stringify(quill.getContents());
     var editorWindow = document.getElementById('editor-container').getElementsByClassName('ql-editor')[0];
+
     var formattedContent = editorWindow.innerHTML.toString();
 
     return{
@@ -221,7 +220,10 @@ function getStory(quill){
 }
 
 $(document).ready(function(){
-        
+
+
+    
+
     var quill = initEditor();
 
     var about_you;
@@ -246,7 +248,9 @@ $(document).ready(function(){
                 "preventDuplicates": true,
             }
 
-            toastr.success('You have successfully created a Fantipper creator account!')
+            toastr.success('You have successfully created a Fantipper creator account!');
+            setTimeout( $(location).attr('href', '/creatorprofile/preview'), 9000);
+            
         });
     });
 

@@ -13,6 +13,18 @@ fantipperApp.controller('CreatorApplicationController', function($scope){
         $scope.part_2 = false;
     }
     
+    $scope.backpart1 = function(){
+        $scope.part_1 = true;
+        $scope.part_2 = false;
+        $scope.part_3 = false;
+    }
+
+    $scope.backpart2 = function(){
+        $scope.part_1 = false;
+        $scope.part_2 = true;
+        $scope.part_3 = false;
+    }
+
     /**
      * Checking the form for validation
      */

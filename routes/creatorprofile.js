@@ -13,6 +13,16 @@ var User = require('../models/user');
  * must be removed after 23/10/2018
  */
 
+function retriveUser(id){
+  User.findById(id, function(err, result){
+    if(err){
+      return err;
+    }
+    if(result){
+      return result;
+    }
+  })
+}
 
 var members = [{
   name: "Calvin Keast",
@@ -69,9 +79,25 @@ router.get('/',isLoggedIn, function(req, res, next) {
   res.render('creator/creatorindex', { title: 'Creator', csrfToken : req.csrfToken(), obj1 : members, obj2 : messages});
 });
 
+
+
+
 router.get('/preview', function(req, res, next){
-  res.render('creator/previewmode', { title: 'Creator Profile', csrfToken : req.csrfToken(), obj1 : members, obj2 : messages});
+  var userdata;
+  User.findById(req.user._id).exec(function(err, result){
+    if(err){
+      res.send(err);
+    }
+    res.render('creator/previewmode', { title: 'Creator Profile', csrfToken : req.csrfToken(), obj1 : members, obj2 : messages, userdata : result});
+  });
+  
 });
+
+
+
+
+
+
 
 router.post('/updatecreator',isLoggedIn, function(req, res, next){
   console.log(req.body);

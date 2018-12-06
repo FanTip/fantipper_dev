@@ -1,4 +1,13 @@
-<style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Cropper.js</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../dist/cropper.css">
+  <style>
     .label {
       cursor: pointer;
     }
@@ -47,7 +56,6 @@
       </div>
     </div>
   </div>
-  <input type="hidden" id="_csrf" value="{{csrfToken}}">
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.bundle.min.js"></script>
   <script src="../dist/cropper.js"></script>
@@ -111,7 +119,7 @@
           canvas.toBlob(function (blob) {
             var formData = new FormData();
             formData.append('avatar', blob, 'avatar.jpg');
-            $.ajax('/upload/profileimage', {
+            $.ajax('https://jsonplaceholder.typicode.com/posts', {
               method: 'POST',
               data: formData,
               processData: false,
@@ -146,3 +154,4 @@
     });
   </script>
 </body>
+</html>

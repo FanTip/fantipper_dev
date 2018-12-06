@@ -218,8 +218,12 @@
         background-image: url("/images/button-fantip.svg");
         height: 40px;
         width: 130px; }
-      .body-content .creator-lower .creator-become-a-fan a {
-        text-align: center; }
+      .body-content .creator-lower .creator-become-a-fan #tip-button {
+        text-align: center;
+        display: block;
+        margin: auto;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #e4e2e2; }
       .body-content .creator-lower .creator-become-a-fan h3 {
         text-transform: uppercase;
         font-size: 24px;

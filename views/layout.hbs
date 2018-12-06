@@ -7,7 +7,7 @@
       <link href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" rel="stylesheet"/>
 
       <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDDgPrFdc_506T2cZvbEa-Yw7Z87t1YM_Y&libraries=places&sensor=false"></script>
-      <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+      {{!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> --}}
 
 
 
@@ -29,7 +29,7 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
-      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+      {{!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> --}}
       
       {{!-- Toastr javascript --}}
       <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
@@ -38,7 +38,7 @@
 
       {{!-- Including Angular javascript --}}
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      {{!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> --}}
       <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular-route.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
 
@@ -57,8 +57,8 @@
       <script src="/javascripts/setting-1.js"></script>
       <script src="/javascripts/setting-2.js"></script>
 
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      {{!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script> --}}
+      {{!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> --}}
       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
@@ -76,7 +76,7 @@
       {{!-- Cropper JS integration --}}
       <link rel="stylesheet" href="/cropperjs/cropper.css">
       <script src="/cropperjs/cropper.js"></script>
-      <script src="/cropper/jquery-cropper.js"></script>
+      {{!-- <script src="/cropper/jquery-cropper.js"></script> --}}
 
 
       {{!-- Custom jQuery functions --}}
@@ -208,22 +208,14 @@
                               </button>
                         </div>
                         <div class="modal-body">
-                              <form action="/creatorprofile/create" method="POST">
+                              <form action="">
                                     <div class="form-group">
-                                          <label for="creator_name">Creator Name</label> <br>
-                                          <input type="text" id="creator_name" name="creator_name" class="form-control">
+                                          Creator profile will be created for {{email}}
                                     </div>
+                        
                                     <div class="form-group">
-                                          <label for="creator_email">Email</label> <br>
-                                          <input type="email" id="creator_email" name="creator_email" value="{{email}}"
-                                                readonly class="form-control">
+                                          <a href="/creator/application" class="btn btn-success">Proceed to Creator application</a>
                                     </div>
-                                    <div class="form-group">
-                                          <label for="creator_description">Description</label> <br>
-                                          <input type="text" id="creator_description" name="creator_description" class="form-control">
-                                    </div>
-                                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
-                                    <button type="submit" class="btn btn-success">Request Creator Profile</button>
                               </form>
                         </div>
                         <div class="modal-footer"></div>

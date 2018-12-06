@@ -300,8 +300,12 @@
                 width: 130px; 
 
             }
-            a{
+            #tip-button{
                 text-align: center;
+                display: block;
+                margin: auto;
+                padding-bottom: 10px;
+                border-bottom: 1px solid #e4e2e2;
             }
 
             h3{

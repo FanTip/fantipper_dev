@@ -3,7 +3,7 @@ var router = express.Router();
 var csrf = require('csurf');
 var csrfProtection = csrf();
 var User = require('../models/user');
-router.use(csrfProtection);
+// router.use(csrfProtection);
 
 /* GET home page. */
 router.get('/',isLoggedIn, function(req, res, next) {

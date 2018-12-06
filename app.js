@@ -28,7 +28,7 @@ var profileRouter = require('./routes/profile');
 var logoutRouter = require('./routes/logout');
 var exploreRouter = require('./routes/explore');
 var learnRouter = require('./routes/learn');
-var editImage = require('./routes/editImage');
+var uploadImage = require('./routes/uploadImage');
 var editFanProfile = require('./routes/editfanprofile');
 var creatorProfile = require('./routes/creatorprofile');
 var selectActiveCreator = require('./routes/selectactivecreator');
@@ -43,6 +43,12 @@ var googleRouter = require('./routes/google-login');
 var fanTipHistory = require('./routes/fantiphistory');
 var creatorTipHistory = require('./routes/creatortiphistory');
 
+// Test router for image upload
+
+var test = require('./routes/creatorAppComplete');
+
+// 
+
 var app = express();
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon', 'favicon.ico')));
 
@@ -55,6 +61,12 @@ app.set('view engine', 'hbs', exphbs({
   defaultLayout : 'layout',
   layoutsDir : 'views/profile'
 }));
+
+var someStr = 'He said "Hello, my name is Foo"';
+console.log(someStr.replace(/['"]+/g, ''));
+
+
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -72,21 +84,27 @@ app.use(passport.session());
 app.use(function(req, res, next){
   res.locals.login = req.isAuthenticated();
   if(req.isAuthenticated()){
+    
     res.locals.imagePath = req.user.imagepath;
     res.locals.email = req.user.email;
     res.locals.name = req.user.name;
     res.locals.description = req.user.description;
     res.locals.location = req.user.location;
     if(req.user.creator.isCreator){
+      var temp = req.user.creator.creatorAbout;
+      temp = temp.replace(/['"]+/g, '');
+      console.log(req.user.creator.creatorAbout);
+      console.log(temp);
       res.locals.isCreator = req.user.creator.isCreator;
       res.locals.CreatorName = req.user.creator.creatorName;
       res.locals.CreatorDescription = req.user.creator.creatorDesc;
       res.locals.CreatorUserName = req.user.creator.creatorNameuser;
       res.locals.CreatorURL = req.user.creator.creatorUrl;
-      res.locals.CreatorAbout = req.user.creator.creatorAbout;
+      res.locals.CreatorDesc = req.user.creator.creatorDesc;
+      res.locals.CreatorAbout = temp;
       res.locals.facebookID = req.user.facebookID;
       res.locals.creatorTile = req.user.creator.creatorTileImage;
-      res.locals.creatorBackground = req.user.creatorBackground;
+      res.locals.creatorBack = req.user.creator.creatorBack;
       res.locals.image1 = req.user.image1;
       res.locals.image2 = req.user.image2;
     }
@@ -124,7 +142,7 @@ app.use('/cropper', express.static(path.join(__dirname, 'node_modules/jquery-cro
 app.use('/cropperjs', express.static(path.join(__dirname, 'node_modules/cropperjs/dist')));
 
 app.use('/', indexRouter);
-app.use('/upload', editImage);
+app.use('/upload', uploadImage);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
@@ -149,6 +167,8 @@ app.use('/auth/google', googleRouter);
 app.use('/messages', messagRouter);
 app.use('/fantiphistory', fanTipHistory);
 app.use('/creatortiphistory', creatorTipHistory);
+
+app.use('/test', test);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
