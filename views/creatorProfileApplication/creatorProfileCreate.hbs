@@ -1,16 +1,19 @@
 <meta name="csrf-token" content="{{csrfToken}}"/>
 <script src="quill/quill.min.js"></script>
-<div class="container">
+<div class="container-fluid" id="application" style="background-color : #D6F8E8; padding-left : 10%; padding-right : 10%; height : 100%">
      {{!-- ng-controller="CreatorApplicationController as CAC" --}}
         
     <div ng-controller="CreatorApplicationController as CAC">
+    
+    <div class="row">
         <div class="col-lg-3">
-
+            nvkfvkdjfvnv
         </div>
         <div class="col-lg-9">
             <h4>Welcome! <br> Let's build your Creator page </h4>
                 <div class="" id="part_1" ng-model='part_1'>
-                    <form id="creator_profile_create-part_1" ng-show='part_1' name="form_section1" >
+                    {{!-- ng-show='part_1' --}}
+                    <form id="creator_profile_create-part_1"  name="form_section1" >
                         <div class="form-group">
                             <label for="creator_name_create">CREATOR NAME</label>
                             <input type="text" name="creator_name_create" id="creator_name_create" ng-model = "creatorName" class="form-control form-control-lg" value="{{CreatorUserName}}" required>
@@ -110,12 +113,13 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#part_2" class="btn btn-primary" id="section1" ng-disabled="CAC.checked" ng-model = 'buttonSection1' data-ng-click="showpart2()"> Next...</a>
+                        {{!-- <a href="#part_2" class="btn btn-primary" id="section1" ng-disabled="CAC.checked" ng-model = 'buttonSection1' data-ng-click="showpart2()"> Next...</a> --}}
                     </form>
                     
                 </div>  
                 <div id="part_2" ng-model='part_2'>
-                    <div ng-show="part_2">
+                    {{!-- ng-show="part_2" --}}
+                    <div>
                         <label class="label" >
                             <img src="../{{creatorTile}}" alt="Creator avatar" class="rounded" id="avatar">
                             <input type="file" class="sr-only" name="image" id="input" accept="image/*">
@@ -136,7 +140,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="img-container">
-                                            <img src="{{imagePath}}" id="image">
+                                            <img src="{{imagePath}}" id="image" height="600" width="600">
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -146,13 +150,49 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#part_3" class="btn btn-primary" id="section2" data-ng-click="showpart3()"> Next...</a>
-                        <a href="#part_1" class="btn btn-danger" id="section1" data-ng-click="backpart1()">Back...</a>
+                        {{!-- <a href="#part_3" class="btn btn-primary" id="section2" data-ng-click="showpart3()"> Next...</a>
+                        <a href="#part_1" class="btn btn-danger" id="section1" data-ng-click="backpart1()">Back...</a> --}}
+                    </div> 
+                    <div>
+                        {{!-- Implemeting background image --}}
+                        <label class="label" >
+                            <img src="../{{creatorBack}}" alt="background image" class="rounded" id="background" width="300" height="200">
+                            <input type="file" class="sr-only" name="image" id="background-input" accept="image/*">
+                        </label>
+                        <div class="background-progress">
+                            <div class="background-progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                        </div>
+
+                        <div class="background-alert" role="alert"></div>
+                        <div class="modal fade" id="background-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalLabel">Crop the Background image</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="img-container">
+                                            <img src="{{imagePath}}" id="background-image" height="600" width="600">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-primary" id="backcrop">Crop</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{!-- <a href="#part_3" class="btn btn-primary" id="section2" data-ng-click="showpart3()"> Next...</a>
+                        <a href="#part_1" class="btn btn-danger" id="section1" data-ng-click="backpart1()">Back...</a> --}}
                     </div> 
                 </div> 
 
                 <div id="part_3" ng-model='part_3'>
-                    <div id="creator_profile_create-part_3"  ng-show='part_3'>
+                    {{!-- ng-show='part_3' --}}
+                    <div id="creator_profile_create-part_3"  >
                         <div class="form-group">
                             <label for="short_desc">ABOUT YOU</label>
     
@@ -174,12 +214,14 @@
                             <script src="/javascripts/quill-settings/settings.js"></script>   
                         </div>
                         <button class="btn" id="Submit_profile">Submit Creator Profile</button>
-                        <a href="#part_2" class="btn btn-danger" id="section2" data-ng-click="backpart2()">Back...</a>
+                        {{!-- <a href="#part_2" class="btn btn-danger" id="section2" data-ng-click="backpart2()">Back...</a> --}}
                     </div>
                     
                 </div>
             <script src="/javascripts/cropper_settings.js"></script>
 
         </div>
+    </div>
+        
     </div>
 </div>

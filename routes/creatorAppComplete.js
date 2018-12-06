@@ -7,7 +7,28 @@ var xss = require('xss');
 
 
 /* GET home page. */
-router.post('/',function(req, res, next) {
+router.post('/profile',function(req, res, next) {
+  upload.uploadTile(req, res, function(err){
+
+    console.log(req.file);
+    if(!err){
+
+      var query = { email : req.user.email }
+      var update = { $set : { 'creator.creatorTileImage' : 'uploads/tileImages/' + req.user.email + '.jpg' } }
+      User.findOneAndUpdate(query, update).exec(function(err, doc){
+        if(err){
+          console.log(err);
+        }
+        console.log(doc);
+      });
+      return res.send({
+        success : true
+      });
+    }
+  });
+});
+
+router.post('/background',function(req, res, next) {
   upload.uploadTile(req, res, function(err){
 
     console.log(req.file);
