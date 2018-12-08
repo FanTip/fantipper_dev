@@ -133,6 +133,11 @@ window.addEventListener('DOMContentLoaded', function(){
 
 
 
+
+
+
+
+
 /**
  * Creator data save in section 1
  */
@@ -140,7 +145,7 @@ window.addEventListener('DOMContentLoaded', function(){
 $(document).ready(function(){
     
     var saveButton1 = $('#section1');
-
+    var vnkjfdnvkfdjvnfkvfnvkfdjvndvnfd;
     saveButton1.on('click', function(){
         var creatorname = $('#creator_name_create').val();
         var staticURL = $('#staticURL').val();
