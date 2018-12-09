@@ -10,7 +10,7 @@ window.addEventListener('DOMContentLoaded', function(){
  var backgroundInput = document.getElementById("background-input");
 
  var $backProgress = $('.background-progress');
- var $backProgressBar = $(".background-progress-bar");
+ var $backProgressBar = $("#background-progress-bar");
  var $backAlert = $('.background-alert');
  var $backModal = $('#background-modal');
 
