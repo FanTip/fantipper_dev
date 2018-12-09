@@ -1,6 +1,6 @@
 <div class="container-fluid body-content">
     <div class="row" id="rowOpacity">
-        <div class="creator-head text-center" style="background-image: url({{creatorBack}})">
+        <div class="creator-head text-center" style="background-image: url(../{{creatorBack}})">
             <div>
                 <img src="../{{creatorTile}}" class="img-circle" alt="{{creatorTile}}">
                 <h2>{{CreatorName}}</h2>
@@ -18,11 +18,11 @@
         </div>
     </div>
     <div class="creator-content container">
-        <div class="row">
+        <div class="row" style="margin:auto">
             <div class="col-md-7 creator-main">
                 <div id="about">
                     <h4>about</h4>
-                    {{{CreatorAbout}}}
+                    {{CreatorAbout}}
                 </div>
                 <div id="gallery">
                     <h4>Gallery</h4>

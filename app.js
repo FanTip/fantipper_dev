@@ -35,6 +35,7 @@ var selectActiveCreator = require('./routes/selectactivecreator');
 var tippingRouter = require('./routes/tippingRouter');
 var messagRouter = require('./routes/tipmessage');
 
+var profileEngineRouter = require('./routes/profileEngine')
 var CreatorApplication = require('./routes/creatorProfileCreate');
 
 var facebookRouter = require('./routes/facebook-login');
@@ -154,11 +155,13 @@ app.use('/editfanprofile', editFanProfile);
 app.use('/creatorprofile', creatorProfile);
 app.use('/selectactivecreator', selectActiveCreator);
 app.use('/tipping', tippingRouter);
+app.use('/profileengine', profileEngineRouter)
 
 app.use('/api/fantipper', apiRouter);
 app.use('/api/cities', searchCitiesRouter);
 
 app.use('/creator/application', CreatorApplication);
+
 
 // login with facebook and google plus
 app.use('/login/facebook', facebookRouter);

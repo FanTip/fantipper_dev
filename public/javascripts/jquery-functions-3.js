@@ -131,54 +131,6 @@ window.addEventListener('DOMContentLoaded', function(){
 
 
 
-
-
-
-
-
-
-
-/**
- * Creator data save in section 1
- */
-
-$(document).ready(function(){
-    
-    var saveButton1 = $('#section1');
-    var vnkjfdnvkfdjvnfkvfnvkfdjvndvnfd;
-    saveButton1.on('click', function(){
-        var creatorname = $('#creator_name_create').val();
-        var staticURL = $('#staticURL').val();
-        var short_desc = $('#short_desc').val();
-        var location_now = $('#location_now').val();
-
-        var section1Data = {
-            name : creatorname,
-            url : staticURL,
-            desc : short_desc,
-            username : staticURL,
-            location : location_now
-        }
-
-        console.log(section1Data);
-        var xhr = $.ajax('/test/section1',{
-            method : 'POST', 
-            headers : {
-                'CSRF-Token' : $('meta[name="csrf-token"]').attr('content')
-            },
-            data : section1Data,
-            crossDomain : false
-        });
-
-        xhr.done(function(response){
-            toastr.success('data is saved');
-        });
-    });
-
-});
-
-
-
 /**
          * 
          * Quill editor initialization
@@ -216,7 +168,9 @@ function getStory(quill){
     var delta = JSON.stringify(quill.getContents());
     var editorWindow = document.getElementById('editor-container').getElementsByClassName('ql-editor')[0];
 
-    var formattedContent = editorWindow.innerHTML.toString();
+    // var formattedContent = editorWindow.innerHTML.toString();
+
+    var formattedContent = quill.getText();
 
     return{
         content : content,
@@ -225,10 +179,7 @@ function getStory(quill){
     }
 }
 
-$(document).ready(function(){
-
-
-    
+$(document).ready(function() {
 
     var quill = initEditor();
 
@@ -236,14 +187,30 @@ $(document).ready(function(){
 
     var submit_button = $('#Submit_profile');
     submit_button.on('click', function(){
+        var creatorname = $('#creator_name_create').val();
+        var staticURL = $('#staticURL').val();
+        var short_desc = $('#short_desc').val();
+        var location_now = $('#location_now').val();
+
         about_you = getStory(quill);
 
-        var xhr = $.ajax('/test/section3',{
+        console.log(about_you);
+
+        var formdata = {
+            name : creatorname,
+            url : staticURL,
+            desc : short_desc,
+            username : staticURL,
+            location : location_now,
+            about : about_you.content
+        }
+
+        var xhr = $.ajax('/test/formsubmission',{
             method : 'POST', 
             headers : {
                 'CSRF-Token' : $('meta[name="csrf-token"]').attr('content')
             },
-            data : about_you,
+            data : formdata,
             crossDomain : false
         });
 

@@ -45,7 +45,6 @@ window.addEventListener('DOMContentLoaded', function(){
 
  $backModal.on('shown.bs.modal', function(){
      cropper = new Cropper(backgroundImage,{
-         aspectRatio : 1,
          viewMode : 1,
      });
  }).on('hidden.bs.modal', function(){
@@ -57,22 +56,22 @@ window.addEventListener('DOMContentLoaded', function(){
      var initialAvatarURL;
      var canvas;
 
-     $backModal.hide();
+     $backModal.modal('hide');
 
      if(cropper){
          canvas = cropper.getCroppedCanvas({
              width : 300,
              height : 200,
          });
-         initialAvatarURL = avatar.src;
-         avatar.src = canvas.toDataURL();
+         initialAvatarURL = background.src;
+         background.src = canvas.toDataURL();
          $backProgress.show();
          // $backAlert.removeClass()
          canvas.toBlob(function(blob){
              var formData = new FormData();
 
              formData.append('background', blob, 'background.jpg');
-             $.ajax('/test',{
+             $.ajax('/test/background',{
                  type : 'POST',
                  data : formData,
                  processData : false,
