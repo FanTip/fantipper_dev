@@ -64,7 +64,7 @@ $(function(){
         })
         xhr.done(function(response){
             $(location).attr('href', '/profile');
-            toastr.success('Logged in successfully!');
+            toastr.success('Signing up was sucessful!');
             console.log(response);
         }).fail(function(response){
             toastr.error(response);

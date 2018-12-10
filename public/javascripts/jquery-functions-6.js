@@ -1,9 +1,8 @@
+/**
+ * implementation for the background image upload functionality
+ * 
+ */
 window.addEventListener('DOMContentLoaded', function(){
-
-    /**
-  * 
-  * TODO : Implement the Background image and uploading multiple images
-  */
 
  var background = document.getElementById("background");
  var backgroundImage = document.getElementById("background-image");
@@ -109,7 +108,4 @@ window.addEventListener('DOMContentLoaded', function(){
      }
 
  });
-
-
-
 });

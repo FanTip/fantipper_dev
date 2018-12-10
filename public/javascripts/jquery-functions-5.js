@@ -1,4 +1,7 @@
-// Retrieving messages from the server
+/**
+ * Message retrieving from the server
+ *  TODO
+ */
 $(window).load(function(){
     var xhr = $.ajax({
         type : "GET",

@@ -4,9 +4,6 @@ window.addEventListener('DOMContentLoaded', function(){
 
     /**
      * Cropping image functions
-     * 
-     * 
-     * TODO : Implement the cropping for background image and allow users to upload multiple images in to their profile
      */
     var avatar = document.getElementById('avatar');
     var image = document.getElementById('image');
