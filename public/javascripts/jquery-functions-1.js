@@ -8,7 +8,8 @@ $(function () {
         var tipAmount = $('#tipamout').val();
         var csrf = $('#_csrf').val();
         var creatorEmail = $('#_creatorEmail').val();
-        console.log(creatorEmail);
+        var tipModal = $('#tipCreator');
+        var shareModal = $('#shareTip');
         var message = $('#message').val();
         var email = $('#email').val();
         var data = {
@@ -26,8 +27,10 @@ $(function () {
             
         });
         
-        xhr.done(function(response){
+        xhr.done(function(){
             toastr.success('Tipping Successful');
+            tipModal.modal('hide');
+            shareModal.modal('show');
 
         }).fail(function(){
             toastr.error('Tipping Failed');

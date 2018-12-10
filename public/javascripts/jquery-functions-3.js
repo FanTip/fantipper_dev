@@ -15,7 +15,6 @@ window.addEventListener('DOMContentLoaded', function(){
     var $modal = $('#modal');
 
     $progress.hide();
-    // input.hide();
 
     var cropper;
 
@@ -24,7 +23,6 @@ window.addEventListener('DOMContentLoaded', function(){
     input.addEventListener('change', function(e){
         var files = e.target.files;
         var done = function(url){
-            console.log(url);
             input.value = '';
             image.src = url;
             $alert.hide();
@@ -37,7 +35,6 @@ window.addEventListener('DOMContentLoaded', function(){
         if(files && files.length > 0){
             file = files[0];
             if(url) {
-                console.log(url);
                 done(URL.createObjectURL(file));
             } else if (FileReader) {
                 reader = new FileReader();

@@ -62,12 +62,11 @@ $(function(){
             data : data,
             url : '/signup'
         })
-        xhr.done(function(response){
+        xhr.done(function(){
             $(location).attr('href', '/profile');
             toastr.success('Signing up was sucessful!');
-            console.log(response);
         }).fail(function(response){
-            toastr.error(response);
+            toastr.error('Error occured during signin up');
             
         });
     });

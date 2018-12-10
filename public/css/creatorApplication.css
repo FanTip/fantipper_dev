@@ -1,0 +1,15 @@
+#part_2 {
+  text-align: center; }
+  #part_2 span {
+    color: #00d278; }
+    #part_2 span p {
+      font-family: 'Larsseit'; }
+  #part_2 #profileImage {
+    padding-top: 20px;
+    padding-bottom: 0px;
+    border-style: dotted;
+    border-color: #00d278; }
+  #part_2 #backgroundImage {
+    padding-top: 20px;
+    border-style: dotted;
+    border-color: #00d278; }
