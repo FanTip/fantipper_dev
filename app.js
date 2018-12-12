@@ -194,8 +194,8 @@ app.use(function(err, req, res, next) {
 
 
 
-// mongoose.connect(process.env.MONGODB_URI);
-mongoose.connect('mongodb://localhost:27017/fantipper');
+mongoose.connect(process.env.MONGODB_URI);
+// mongoose.connect('mongodb://localhost:27017/fantipper');
 let db = mongoose.connection;
 db.once('open', function(){
   console.log('Connection Successful');

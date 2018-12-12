@@ -1,14 +1,62 @@
-.liting{
+#listing{
+    min-height: 300px;
+    padding-bottom: 40px;
+}
+
+.listing{
     overflow: hidden;
     padding: 0;
     border: none;
     margin-bottom: 20px;
+    transition: all 200ms ease-out;
+
+    a{
+        color: #333;
+        outline: 0 !important;
+        text-decoration: none;
+    }
+    .btn-tip-listing{
+        background-image: url('/images/button-fantip.svg');
+        height: 40px;
+        width: 130px;   
+    }
+    // img{
+    //     // height: 188px;
+    // }
     .listing-content{
+        height: 242px;
+        padding: 19px;
+        border: 1px solid #ddd;
+        border-bottom-right-radius: 6px;
+        border-bottom-left-radius: 6px;
         .one-line{
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
             color: #d0d2d3;
+        }
+
+        .listing-location {
+            font-size: 12px;
+            color: #8c8c8c;
+            text-transform: uppercase;
+            font-family: 'Larsseit-Bold';
+        }
+
+        .listing-categories{
+            margin-top: 5px;
+            margin-bottom: 8px;
+            height: 26px;
+        }
+
+        .listing-short{
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 19px;
+            color: #8c8c8c;
+            overflow: hidden;
+            height: 38px;
+            position: relative;
         }
     }
 }

@@ -29,22 +29,27 @@
                   </ul>
     </nav>
     <div class="container">
-      <div ng-controller="myCtrl as m" class="row">
+      <div ng-controller="myCtrl as m" class="row" id="listing">
             <p ng-init = "users = {{objects}}" ></p>
             <div ng-repeat="user in users | filter:searchText" class="col-md-4 col-xs-6" >
 
               <div class="clearfix listing">
-                 <a href="">
-                    <img src="{[{user.creator.creatorTileImage}]}" class="card-img-top" alt="" height="188" width="358">
+                 
+                 <a href="{[{user.creator.creatorUrl}]}">
+                    <img src="{[{user.creator.creatorTileImage}]}" class="card-img-top" alt="" >
                  </a>
                  <div class="listing-content">
-                    <a href="">
-                       <h3 class="one-line">{[{user.creator.creatorName}]}</h3>
-                       <div class="listing-location one-line"></div>
+                    <a href="{[{user.creator.creatorUrl}]}">
+                       <h3 class="one-line" title="{[{user.creator.creatorName}]}">{[{user.creator.creatorName}]}</h3>
+                       <div class="listing-location one-line">{[{user.location}]}</div>
                        <div class="listing-categories one-line"></div>
-                       <div class="clearfix listing-short"></div>
+                       <div class="clearfix listing-short">{[{user.creator.creatorDesc}]}</div>
                        <hr>
-                       <div class="listing-tip-count pull-left"></div>
+                       <div class="listing-tip-count pull-left">
+                          <a id='tip-button'  class="btn-tip-listing" data-toggle="modal" data-target="#tipCreator" ng-click="edit(user)">
+                              <div class="btn-tip-listing" ></div>
+                           </a>
+                       </div>
                        <div class="pull-right"></div>
                     </a>
                  </div>
