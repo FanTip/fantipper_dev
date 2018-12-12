@@ -45,6 +45,8 @@ window.addEventListener('DOMContentLoaded', function(){
  $backModal.on('shown.bs.modal', function(){
      cropper = new Cropper(backgroundImage,{
          viewMode : 1,
+         checkCrossOrigin : false,
+         background : false,
      });
  }).on('hidden.bs.modal', function(){
      cropper.destroy();
@@ -59,8 +61,8 @@ window.addEventListener('DOMContentLoaded', function(){
 
      if(cropper){
          canvas = cropper.getCroppedCanvas({
-             width : 300,
-             height : 200,
+             width : 900,
+             height : 600,
          });
          initialAvatarURL = background.src;
          background.src = canvas.toDataURL();

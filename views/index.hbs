@@ -1,3 +1,4 @@
+<link rel="stylesheet" href='/css/tiplist.css'/>
 <div class="container-fluid" id="body">
   
     <div class="row">
@@ -30,22 +31,35 @@
     <div class="container">
       <div ng-controller="myCtrl as m" class="row">
             <p ng-init = "users = {{objects}}" ></p>
-            <div ng-repeat="user in users | filter:searchText" class="col-lg-4 col-md-3 col-sm-12 col-xs-12" >
-               <div class="panel panel-default" >
-                        <div class="panel-body">
-                        </div>
-                        <div class="panel-footer">
-                        </div>
-                     </div>
-               <div class="card" style="width:18rem; height:30rem" >
-                  <img src="{[{user.creator.creatorTileImage}]}" class="card-img-top" alt="">
+            <div ng-repeat="user in users | filter:searchText" class="col-md-4 col-xs-6" >
+
+              <div class="clearfix listing">
+                 <a href="">
+                    <img src="{[{user.creator.creatorTileImage}]}" class="card-img-top" alt="" height="188" width="358">
+                 </a>
+                 <div class="listing-content">
+                    <a href="">
+                       <h3 class="one-line">{[{user.creator.creatorName}]}</h3>
+                       <div class="listing-location one-line"></div>
+                       <div class="listing-categories one-line"></div>
+                       <div class="clearfix listing-short"></div>
+                       <hr>
+                       <div class="listing-tip-count pull-left"></div>
+                       <div class="pull-right"></div>
+                    </a>
+                 </div>
+                 
+              </div> 
+               {{!-- <div class="card" style="width:18rem; height:30rem" >
+                  <img src="{[{user.creator.creatorTileImage}]}" class="card-img-top" alt="" height="400" width="350">
                   <div class="card-body">
                      <h5 class="card-title">{[{user.creator.creatorName}]}</h5>
                      <p>{[{user.location}]}</p>
                      <p class="card-text text-truncate">{[{user.creator.creatorDesc}]}</p>
                      <button class="btn btn-primary" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#tipCreator" ng-click="edit(user)">Fantip</button>
                   </div>
-               </div>
+               </div> --}}
+
             </div>
 
             <div class="modal fade" id="tipCreator" tabindex="-1" role="dialog" aria-labelledby="tipCreatorLabel" aria-hidden="true">

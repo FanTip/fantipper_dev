@@ -1,0 +1,11 @@
+.liting {
+  overflow: hidden;
+  padding: 0;
+  border: none;
+  margin-bottom: 20px; }
+  .liting .listing-content .one-line {
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #d0d2d3; }
