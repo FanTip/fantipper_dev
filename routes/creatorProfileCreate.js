@@ -10,9 +10,4 @@ router.get('/', function(req, res, next) {
   res.render('creatorProfileApplication/creatorProfileCreate', { title: 'Let\'s get you signed up!' ,csrfToken : req.csrfToken()});
 });
 
-router.post('/', function(req, res, next){
-  console.log('send');
-  console.log('file',req.file);
-  console.log('files', req.files);
-});
 module.exports = router;

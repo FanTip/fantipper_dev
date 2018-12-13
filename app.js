@@ -63,11 +63,6 @@ app.set('view engine', 'hbs', exphbs({
   layoutsDir : 'views/profile'
 }));
 
-var someStr = 'He said "Hello, my name is Foo"';
-console.log(someStr.replace(/['"]+/g, ''));
-
-
-
 
 app.use(logger('dev'));
 app.use(express.json());

@@ -55,4 +55,35 @@ router.get('/', function(req, res, next) {
     });
 });
 
+
+router.get('/:url', function(req, res, next){
+    var userID = req.params.url;
+    console.log( 'id ',userID);
+    var searchQuery = {
+        'creator.creatorUrl' : userID
+    }
+    if(userID){
+        User.findOne(searchQuery).exec(function(err, doc){
+            console.log(doc);
+            if(doc){
+                res.locals.CreatorName = doc.creator.creatorName;
+                res.locals.CreatorDescription = doc.creator.creatorDesc;
+                res.locals.CreatorUserName = doc.creator.creatorNameuser;
+                res.locals.CreatorURL = doc.creator.creatorUrl;
+                res.locals.CreatorDesc = doc.creator.creatorDesc;
+                res.locals.CreatorAbout = doc.creator.creatorAbout;
+                res.locals.creatorTile = doc.creator.creatorTileImage;
+                res.locals.creatorBack = doc.creator.creatorBack;
+                res.render('creator/previewmode', { title: 'Creator Profile'});
+            }else{
+                next();
+            }
+            
+        });
+        
+    }
+    
+});
+
+
 module.exports = router;
