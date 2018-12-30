@@ -62,7 +62,7 @@ router.post('/formsubmission', function(req, res){
     "creator.isCreator" : true,
     "creator.creatorName" : req.body.name,
     "creator.creatorNameuser" : req.body.username,
-    "creator.creatorUrl" : "fantipper/" + req.body.url,
+    "creator.creatorUrl" :  req.body.url,
     "creator.creatorLocation" : req.body.location,
     "creator.creatorDesc" : req.body.desc,
     "creator.creatorAbout" : xss(req.body.about)
