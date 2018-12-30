@@ -155,7 +155,7 @@ app.use('/editfanprofile', editFanProfile);
 app.use('/creatorprofile', creatorProfile);
 app.use('/selectactivecreator', selectActiveCreator);
 app.use('/tipping', tippingRouter);
-app.use('/profileengine', profileEngineRouter)
+app.use('/fantipper', profileEngineRouter)
 
 app.use('/api/fantipper', apiRouter);
 app.use('/api/cities', searchCitiesRouter);
@@ -194,8 +194,8 @@ app.use(function(err, req, res, next) {
 
 
 
-mongoose.connect(process.env.MONGODB_URI);
-// mongoose.connect('mongodb://localhost:27017/fantipper');
+// mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect('mongodb://localhost:27017/fantipper');
 let db = mongoose.connection;
 db.once('open', function(){
   console.log('Connection Successful');
