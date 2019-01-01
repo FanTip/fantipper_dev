@@ -4,27 +4,7 @@ var router = express.Router();
 var tipper = require('../../models/tipper');
 var tippee = require('../../models/tippee');
 
-router.get('/:url', function(req, res){
-    var url = req.params.url;
-    res.render('./fanprofiles/fans');
-});
 
-router.get('/:email/:password', function(req, res){
-    console.log(req.params.email);
-    console.log(req.params.password);
-    user.findOne({email:req.params.email})
-    .exec(function(err, resUser){
-        if(err){
-            res.status(500).send(err);
-        }
-        
-        if(!resUser.validPassword(req.params.password)){
-            res.status(500).send('Invalid password!');
-        }else{
-            res.status(200).send(resUser);
-        }
-    });
-});
 
 router.get('/', function(req, res){
     user.find()
@@ -32,6 +12,26 @@ router.get('/', function(req, res){
         if(err){
             res.status(500).send(err);
         }else{
+            // var userData;
+            // console.log(resUser.length);
+            // for(i=0; i < resUser.length; i++){
+            //     // userData = [
+            //     //     name = resUser[i].name,
+            //     //     email = resUser[i].email,
+            //     //     creatorExists = resUser[i].creator.isCreator,
+            //     //     creatorName = resUser[i].creator.creatorName,
+            //     //     creatorEmail = resUser[i].creator.creatorEmail
+            //     // ];
+
+            //     userData.push({
+            //         name : resUser[i].name,
+            //         email : resUser[i].email,
+            //         creatorExists : resUser[i].creator.isCreator,
+            //         creatorName : resUser[i].creator.creatorName,
+            //         creatorEmail : resUser[i].creator.creatorEmail
+            //     })
+            // }
+            
             res.status(200).send(resUser);
         }
     });
@@ -58,6 +58,57 @@ router.post('/', function(req, res){
             }
         }
     );
+});
+
+router.get('/found/:username', function(req, res, next){
+    var searchQuery = {
+        'creator.creatorNameuser' : req.params.username
+    }
+    user.findOne(searchQuery).exec(function(err, result){
+        if(result){
+            res.status(200).send(result);
+        }else{
+            res.status(500).send('No creator found');
+        }
+    });
+    
+});
+
+router.get('/:email', function(req, res, next){
+    console.log(req.param.email);
+    var searchQuery = {
+        'email' : req.params.email
+    }
+    user.findOne(searchQuery).exec(function(err, result){
+        if(result){
+            res.status(200).send(result);
+        }else{
+            res.status(500).send('No username found');
+        }
+    });
+    
+});
+
+router.get('/:email/:password', function(req, res, next){
+    console.log(req.params.email);
+    console.log(req.params.password);
+
+    if(req.params.email && req.params.password){
+        user.findOne({email:req.params.email})
+        .exec(function(err, resUser){
+            if(err){
+                res.status(500).send(err);
+            }
+            
+            if(!resUser.validPassword(req.params.password)){
+                res.status(500).send('Invalid password!');
+            }else{
+                res.status(200).send(resUser);
+            }
+        });
+    }else{
+        next();
+    }
 });
 
 router.get('/tipper', function(req, res, next){

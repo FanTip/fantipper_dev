@@ -1,7 +1,18 @@
 
 
-fantipperApp.controller('CreatorApplicationController', function($scope){
+fantipperApp.controller('CreatorApplicationController', function($scope, $http){
     console.log('CAC');
+
+    if(($scope.creatorName)){
+        $http({
+            method : 'GET',
+            url : '/api/fantipper/found/jhbdjj'
+        }).then(function successCallback(response) {
+            console.log(response);
+        });
+    }
+    
+
     $scope.part_1 = true;
     $scope.showpart2 = function(){
         $scope.part_2 = true;
@@ -41,8 +52,16 @@ fantipperApp.controller('CreatorApplicationController', function($scope){
 });
 
 // Removes white spaces in the creatorProfileCreate file in order to generate the creator url
-fantipperApp.filter('usernameCreator', function(){
+fantipperApp.filter('usernameCreator', function($scope,$http){
+    
     return function (value) {
+        $http({
+            method : 'GET',
+            url : '/api/fantipper/found/'+ $scope.creatorName
+        }).then(function successCallback(response) {
+            console.log(response);
+        }, function errorCallback(response) {
+          });
       return (!value) ? '' : value.replace(/ /g, '');
     };
   });
