@@ -68,7 +68,7 @@ router.get('/found/:username', function(req, res, next){
         if(result){
             res.status(200).send(result);
         }else{
-            res.status(500).send('No creator found');
+            res.status(404).send('No creator found');
         }
     });
     
