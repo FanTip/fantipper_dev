@@ -104,6 +104,7 @@ app.use(function(req, res, next){
       res.locals.image1 = req.user.image1;
       res.locals.image2 = req.user.image2;
     }
+    res.locals.CardOption = req.user.card.isCard;
     if(req.user.card.isCard){
       res.locals.cardOptions = req.user.card.isCard;
       res.locals.cardName = req.user.card.cardName;
