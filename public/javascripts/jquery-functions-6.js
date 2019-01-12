@@ -17,29 +17,36 @@ window.addEventListener('DOMContentLoaded', function(){
 
  backgroundInput.addEventListener('change',function(e){
      var files = e.target.files;
-     var done = function(url){
-         backgroundInput.value = '';
-         backgroundImage.src = url;
-         $backAlert.hide();
-         $backModal.modal('show');
+     if(files[0].size > 1000000){
+        sizeCheck = true;
+        toastr.error('File too large.');
+        e.stopImmediatePropagation();
+     }else{
+        var done = function(url){
+            backgroundInput.value = '';
+            backgroundImage.src = url;
+            $backAlert.hide();
+            $backModal.modal('show');
+        }
+   
+        var reader;
+        var file;
+        var url;
+   
+        if(files && files.length > 0){
+            file = files[0];
+            if(url){
+                done(URL.createObjectURL(file));
+            }else if (FileReader){
+                reader = new FileReader();
+                reader.onload = function(e){
+                    done(reader.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
      }
-
-     var reader;
-     var file;
-     var url;
-
-     if(files && files.length > 0){
-         file = files[0];
-         if(url){
-             done(URL.createObjectURL(file));
-         }else if (FileReader){
-             reader = new FileReader();
-             reader.onload = function(e){
-                 done(reader.result);
-             };
-             reader.readAsDataURL(file);
-         }
-     }
+    
  });
 
  $backModal.on('shown.bs.modal', function(){

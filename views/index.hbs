@@ -22,12 +22,12 @@
       </div>
    </div>
    {{/if}}
-    <nav class="navbar navbar-expand-md navbar-light" data-spy="affix" data-offset-top="197"> 
+    {{!-- <nav class="navbar navbar-expand-md navbar-light" data-spy="affix" data-offset-top="197"> 
         <ul class="nav navbar-nav">
                         <li class="nav-item"><a class="nav-link" href="/explore">EXPLORE</a></li>
 				<li class="nav-item"><a class="nav-link" href="/learn">LEARN</a></li>
                   </ul>
-    </nav>
+    </nav> --}}
     <div class="container">
       <div ng-controller="myCtrl as m" class="row" id="listing">
             <p ng-init = "users = {{objects}}" ></p>
@@ -67,7 +67,162 @@
 
             </div>
 
+
+
+
             <div class="modal fade" id="tipCreator" tabindex="-1" role="dialog" aria-labelledby="tipCreatorLabel" aria-hidden="true">
+               <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h4 class="modal-title">Tip {[{header}]}</h4>
+                        <button class="close" ng-click="hideGuest();" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
+                     </div>
+                     <div class="modal-body">
+                        <form id="tipping-form">
+                           <div class="row">
+                              <div class="col-lg-3">
+                                 <img src="{[{image}]}" alt="" class="rounded-circle" height="100px" width="100px">
+                              </div>
+                              <div class="col-lg-9">
+                                 <div class="form-group">
+                                    <label for="tipamout">HOW MUCH WOULD YOU LIKE TO TIP?</label>
+                                    <div class="input-group">
+                                       <div class="input-group-prepend"><span class="input-group-text" style="{color: #00d278}">$</span></div>
+                                    <input type="text" name="tipamout"  id="tipamout" value="{[{tip}]}" class="form-control">
+                                    </div>
+                                    
+                                 </div>
+                                 <div class="form-group">
+                                    <div class="form-row">
+                                          <div class="col-xs-3">
+                                          <label class="radio-inline"><input ng-model="tip" type="radio" value="2" name="optradio">$2<span class="checkmark"></span></label>
+                                       </div>
+                                       <div class="col-xs-3">
+                                          <label class="radio-inline"><input ng-model="tip" type="radio" value="5" name="optradio">$5<span class="checkmark"></span></label>
+                                       </div>
+                                       <div class="col-xs-3">
+                                          <label class="radio-inline"><input ng-model="tip" type="radio" value="10" name="optradio">$10<span class="checkmark"></span></label>
+                                       </div>
+                                       <div class="col-xs-3">
+                                          <label class="radio-inline"><input ng-model="tip" type="radio" value="20" name="optradio">$20<span class="checkmark"></span></label>
+                                       </div>
+                                    </div>    
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="dropdown-divider"></div>
+                           <div class="row">
+                              <div class="col-lg-12">
+                                 <div class="form-group">
+                                    <textarea class="form-control" name="message" id="message" cols="30" rows="3" placeholder="Leave a message of support(optional)..."></textarea>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="dropdown-divider"></div>
+                           <div class="row">
+                              <div class="col-lg-12">
+                                 <h4>PAYMENT DETAILS</h4>
+                                 <div class="form-group">
+                                    <div class="radio">
+                                       <input type="radio" name="payment" id="paypal" value="payment"><label for="paypal"><i class="fab fa-paypal"></i>Paypal</label>
+                                    </div>
+                                    {{# if cardOptions}}
+                                       <div class="radio">
+                                          <input type="radio" name="payment" id="saved" value="payment"><label for="saved"><i class="far fa-credit-card"></i>Saved Credit Card <small>({{cardName}}/{{cardNumber}})</small> </label>
+                                       </div>
+                                    {{/if}}
+                                    
+                                    <div class="radio">
+                                       <input type="radio" name="payment" id="new" value="payment"><label for="new"><i class="far fa-credit-card"></i>Credit Card</label>
+                                    </div>
+                                 </div>
+                                 <div class="form-group">
+                                    <input type="text" name="nameoncard" id="nameoncard" placeholder="Name on card" class="form-control">
+                                 </div>
+                                 <div class="form-group">
+                                    <input type="text" name="cardnumber" id="cardnumber" placeholder="Card number" class="form-control">
+                                 </div>
+                                 <div class="form-group row">
+                                          <div class="col-md-4">
+                                             <input type="text" class="form-control" autocomplete="off" maxlength="3" pattern="\d{3}" title="Three digits at back of your card" required="" placeholder="CVC">
+                                          </div>
+                                          <div class="col-md-4">
+                                             <select class="form-control" name="cc_exp_mo" size="0">
+                                                <option value="00">MM</option>
+                                                <option value="01">01</option>
+                                                <option value="02">02</option>
+                                                <option value="03">03</option>
+                                                <option value="04">04</option>
+                                                <option value="05">05</option>
+                                                <option value="06">06</option>
+                                                <option value="07">07</option>
+                                                <option value="08">08</option>
+                                                <option value="09">09</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                             </select>
+                                          </div>
+                                          <div class="col-md-4">
+                                             <select class="form-control" name="cc_exp_yr" size="0">
+                                                <option value="yyyy">YYYY</option>
+                                                <option>2018</option>
+                                                <option>2019</option>
+                                                <option>2020</option>
+                                                <option>2021</option>
+                                                <option>2022</option>
+                                             </select>
+                                          </div>
+                                    </div>
+                              </div>
+                           </div>
+                           <h4>BILLING ADDRESS</h4>
+                           <div class="row">
+                              <div class="col-lg-12">
+                                 <div class="form-group">
+                                    <input type="text" class="form-control" id="address_1" placeholder="Address line 1">
+                                 </div>
+                                 <div class="form-group">
+                                    <input type="text" class="form-control" id="address_2" placeholder="Address line 2">
+                                 </div>
+                                 <div class="form-group row">
+                                    <div class="col-md-6">
+                                       <input type="text" class="form-control" id="city" placeholder="City">
+                                    </div>
+                                    <div class="col-md-6">
+                                       <input type="text" class="form-control" id="state" placeholder="State">
+                                    </div>
+                                 </div>
+                                 <div class="form-group row">
+                                    <div class="col-md-6">
+                                       <input type="text" class="form-control" id="country" placeholder="Country">
+                                    </div>
+                                    <div class="col-md-6">
+                                       <input type="text" class="form-control" id="postcode" placeholder="Postcode">
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="row">
+                              <div class="col-lg-12">
+                                 <div class="form-group">
+                                    <input type="hidden" name="_csrf" id="_csrf" value="{{csrfToken}}">
+                                    <input type="hidden" name="_creatorEmail" id="_creatorEmail"value="{[{creatorEmail}]}">
+                                    <button type="button" class="btn btn-primary btn-lg btn-block">SEND TIP!</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </form>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+
+
+
+            {{!-- <div class="modal fade" id="tipCreator" tabindex="-1" role="dialog" aria-labelledby="tipCreatorLabel" aria-hidden="true">
                <div class="modal-dialog" role="document">
                   <div class="modal-content">
                      <div class="modal-header">
@@ -200,7 +355,7 @@
                      </div>
                   </div>
                </div>
-            </div>
+            </div> --}}
 
 
             <div class="modal fade" id="shareTip" tabindex="-1" role="dialog">
