@@ -151,7 +151,7 @@ app.use('/editfanprofile', editFanProfile);
 app.use('/creatorprofile', creatorProfile);
 app.use('/selectactivecreator', selectActiveCreator);
 app.use('/tipping', tippingRouter);
-app.use('/profileengine', profileEngineRouter)
+app.use('/fantipper', profileEngineRouter)
 
 app.use('/api/fantipper', apiRouter);
 app.use('/api/cities', searchCitiesRouter);

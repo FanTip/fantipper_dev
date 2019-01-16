@@ -103,11 +103,13 @@
                             <div class="btn-tip-listing"></div>
                         </a>
                     </div>
-                    {{# if login}}
-                    <div class="col-lg-12">
-                        <a href="/creatorprofile" class="btn btn-danger"><i class="fas fa-edit"></i> Switch to developer mode</a>
-                    </div>
+                    {{# if creatorPreview}}
+                    {{else}}
+                        <div class="col-lg-12">
+                            <a href="/creatorprofile" class="btn btn-danger"><i class="fas fa-edit"></i> Switch to developer mode</a>
+                        </div>
                     {{/if}}
+                    
                 </div>
             </div>
         </div>

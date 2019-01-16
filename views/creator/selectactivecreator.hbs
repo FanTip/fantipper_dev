@@ -1,3 +1,4 @@
+<meta name="csrf-token" content="{{csrfToken}}"/>
 <div class="container">
     <input type="hidden" value="{{csrfToken}}">
     <div class="row">
@@ -79,6 +80,76 @@
                 </div>
                 {{/if}}
                 
+                <div class="form-group">
+                    
+                    <div id="profileImage">
+                        <label class="label" >
+                            <img src="../{{creatorTile}}" alt="Creator avatar" class="rounded" id="avatar">
+                            <input type="file" class="sr-only" name="image" id="input" accept="image/*">
+                        </label>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                        </div>
+
+                        <div class="alert" role="alert"></div>
+                        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalLabel">Crop the Creator image</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="img-container">
+                                            <img src="{{imagePath}}" id="image" height="600" width="600">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-primary" id="crop">Crop</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    
+
+                    <div id="backgroundImage">
+                        {{!-- Implemeting background image --}}
+                        <label class="label" >
+                            <img src="../{{creatorBack}}" alt="background image" class="rounded" id="background" width="300" height="200">
+                            <input type="file" class="sr-only" name="image" id="background-input" accept="image/*">
+                        </label>
+                        <div class="background-progress">
+                            <div id="background-progress-bar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                        </div>
+
+                        <div class="background-alert" role="alert"></div>
+                        <div class="modal fade" id="background-modal" tabindex="-1" role="dialog" aria-labelledby="background-modalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalLabel">Crop the Background image</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="img-container">
+                                            <img src="{{imagePath}}" id="background-image" height="600" width="600">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-primary" id="backcrop">Crop</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
                 
                 <div class="form-group">
                     <label for="categories">CATEGORIES</label>
@@ -155,6 +226,8 @@
                     </div>
                 </div>
                 
+
+
                 <input type="hidden" name="_csrf" value="{{csrfToken}}">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

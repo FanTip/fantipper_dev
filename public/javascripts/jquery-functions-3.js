@@ -13,7 +13,8 @@ window.addEventListener('DOMContentLoaded', function(){
     var $progressBar = $('.progress-bar');
     var $alert = $('.alert');
     var $modal = $('#modal');
-
+    
+    
     $progress.hide();
 
     var cropper;
@@ -22,30 +23,38 @@ window.addEventListener('DOMContentLoaded', function(){
 
     input.addEventListener('change', function(e){
         var files = e.target.files;
-        var done = function(url){
-            input.value = '';
-            image.src = url;
-            $alert.hide();
-            $modal.modal('show');
-        }
-        var reader;
-        var file;
-        var url;
-
-        if(files && files.length > 0){
-            file = files[0];
-            if(url) {
-                done(URL.createObjectURL(file));
-            } else if (FileReader) {
-                reader = new FileReader();
-                reader.onload = function(e) {
-                    done(reader.result);
-                };
-                reader.readAsDataURL(file);
+        if(files[0].size > 1000000){
+            sizeCheck = true;
+            toastr.error('File too large.');
+            e.stopImmediatePropagation();
+        }else{
+            var done = function(url){
+                input.value = '';
+                image.src = url;
+                $alert.hide();
+                $modal.modal('show');
+            }
+            var reader;
+            var file;
+            var url;
+            if(files && files.length > 0){
+               
+                file = files[0];
+                if(url) {
+                    done(URL.createObjectURL(file));
+                } else if (FileReader) {
+                    reader = new FileReader();
+                    reader.onload = function(e) {
+                        done(reader.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
             }
         }
+        
     });
 
+    
         $modal.on('shown.bs.modal', function(){
             cropper = new Cropper(image, {
                 aspectRatio : 1,
@@ -60,7 +69,7 @@ window.addEventListener('DOMContentLoaded', function(){
             var initialAvatarURL;
             var canvas;
 
-            $modal.hide();
+            $modal.modal('hide');
 
             if(cropper){
                 canvas = cropper.getCroppedCanvas({
