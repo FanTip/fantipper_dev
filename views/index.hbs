@@ -1,4 +1,6 @@
 <link rel="stylesheet" href='/css/tiplist.css'/>
+<script src="/javascripts/generic_javascript.js"></script>
+
 <div class="container-fluid" id="body">
   
     <div class="row">
@@ -79,7 +81,7 @@
                         </button>
                      </div>
                      <div class="modal-body">
-                        <form id="tipping-form">
+                        <form id="tipping-form" name = "tippingform">
                            <div class="row">
                               <div class="col-lg-3">
                                  <img src="{[{image}]}" alt="" class="rounded-circle" height="100px" width="100px">
@@ -89,7 +91,9 @@
                                     <label for="tipamout">HOW MUCH WOULD YOU LIKE TO TIP?</label>
                                     <div class="input-group">
                                        <div class="input-group-prepend"><span class="input-group-text" style="{color: #00d278}">$</span></div>
-                                    <input type="text" name="tipamout"  id="tipamout" value="{[{tip}]}" class="form-control">
+                                    {{!-- <input type="text" name="tipamout"  id="tipamout" value="{[{tip}]}" class="form-control"> --}}
+                                       <input type="text" name="tipamout"  id="tipamout" ng-model='tipValue' value="" class="form-control">
+                                       <span class="invalid" ng-show = 'tippingform.tipamout.$error.invalid'>Invalid tip value!</span>
                                     </div>
                                     
                                  </div>
@@ -148,35 +152,19 @@
                                              <input type="text" class="form-control" autocomplete="off" maxlength="3" pattern="\d{3}" title="Three digits at back of your card" required="" placeholder="CVC">
                                           </div>
                                           <div class="col-md-4">
-                                             <select class="form-control" name="cc_exp_mo" size="0">
-                                                <option value="00">MM</option>
-                                                <option value="01">01</option>
-                                                <option value="02">02</option>
-                                                <option value="03">03</option>
-                                                <option value="04">04</option>
-                                                <option value="05">05</option>
-                                                <option value="06">06</option>
-                                                <option value="07">07</option>
-                                                <option value="08">08</option>
-                                                <option value="09">09</option>
-                                                <option value="10">10</option>
-                                                <option value="11">11</option>
-                                                <option value="12">12</option>
+                                             <select class="form-control" ng-model='monthSelect' ng-options='month for month in months' name="cc_exp_mo" size="0">
+                                                <option value="">MM</option>
                                              </select>
                                           </div>
                                           <div class="col-md-4">
-                                             <select class="form-control" name="cc_exp_yr" size="0">
-                                                <option value="yyyy">YYYY</option>
-                                                <option>2018</option>
-                                                <option>2019</option>
-                                                <option>2020</option>
-                                                <option>2021</option>
-                                                <option>2022</option>
+                                             <select ng-model="yearSelect" ng-options="year for year in years" class="form-control" name="cc_exp_yr" id="cc_exp_yr" size="0">
+                                                <option value="">YYYY</option>
                                              </select>
                                           </div>
                                     </div>
                               </div>
                            </div>
+                           <div id="cardYear" ></div>
                            <h4>BILLING ADDRESS</h4>
                            <div class="row">
                               <div class="col-lg-12">

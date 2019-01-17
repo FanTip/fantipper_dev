@@ -10,25 +10,33 @@ fantipperApp.config(function($interpolateProvider) {
 
 fantipperApp.controller('myCtrl',function($scope, $parse, ) {
 
+  var year = new Date().getFullYear();
+  years = [];
+  for(var i = 0; i < 7; i++){
+    var temp = year + i;
+    years.push(temp);
+  }
+
+  var months    = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var monthsNum = ['01','02','03','04','05','06','07','08','09','10','11','12',];
+  var month = new Date().getMonth();
+  monthRange = [];
+  for(var i = 0; i < 12; i++){
+    monthRange.push(months[month + i] + '('+ monthsNum[i] + ')'); 
+  }
+
+  $scope.months = monthRange;
+  $scope.years = years;
+
   $scope.edit = function(user){
-    console.log(user);
     $scope.header = user.creator.creatorName;
-    
     $scope.image = user.creator.creatorTileImage;
     $scope.creatorEmail = user.creator.creatorEmail;
-    console.log($scope.header,$scope.image,$scope.creatorEmail);
-    console.log($scope.tip);
   }
 
-  console.log($scope.showForm);
+});
 
-  $scope.showGuest = function(){
-    $scope.showForm = true;
-  }
-
-  $scope.hideGuest = function(){
-    $scope.showForm = false;
-  }
+fantipperApp.directive('invalid', function(){
 
 });
 
