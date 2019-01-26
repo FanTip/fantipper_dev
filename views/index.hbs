@@ -55,18 +55,7 @@
                        <div class="pull-right"></div>
                     </a>
                  </div>
-                 
               </div> 
-               {{!-- <div class="card" style="width:18rem; height:30rem" >
-                  <img src="{[{user.creator.creatorTileImage}]}" class="card-img-top" alt="" height="400" width="350">
-                  <div class="card-body">
-                     <h5 class="card-title">{[{user.creator.creatorName}]}</h5>
-                     <p>{[{user.location}]}</p>
-                     <p class="card-text text-truncate">{[{user.creator.creatorDesc}]}</p>
-                     <button class="btn btn-primary" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#tipCreator" ng-click="edit(user)">Fantip</button>
-                  </div>
-               </div> --}}
-
             </div>
 
 
@@ -81,7 +70,7 @@
                         </button>
                      </div>
                      <div class="modal-body">
-                        <form id="tipping-form" name = "tippingform">
+                        <form id="tipping-form" name = "tippingForm" class="tipping-form">
                            <div class="row">
                               <div class="col-lg-3">
                                  <img src="{[{image}]}" alt="" class="rounded-circle" height="100px" width="100px">
@@ -92,24 +81,22 @@
                                     <div class="input-group">
                                        <div class="input-group-prepend"><span class="input-group-text" style="{color: #00d278}">$</span></div>
                                     {{!-- <input type="text" name="tipamout"  id="tipamout" value="{[{tip}]}" class="form-control"> --}}
-                                       <input type="text" name="tipamout"  id="tipamout" ng-model='tipValue' value="" class="form-control">
-                                       <span class="invalid" ng-show = 'tippingform.tipamout.$error.invalid'>Invalid tip value!</span>
+                                       <input type="text" name="tipamout"  id="tipamout" check-if-number ng-model='tipValue' value="" class="form-control" required>
                                     </div>
-                                    
                                  </div>
                                  <div class="form-group">
                                     <div class="form-row">
                                           <div class="col-xs-3">
-                                          <label class="radio-inline"><input ng-model="tip" type="radio" value="2" name="optradio">$2<span class="checkmark"></span></label>
+                                          <label class="radio-inline"><input ng-model="tipValue" type="radio" value="2" name="optradio">$2<span class="checkmark" checked = "checked"></span></label>
                                        </div>
                                        <div class="col-xs-3">
-                                          <label class="radio-inline"><input ng-model="tip" type="radio" value="5" name="optradio">$5<span class="checkmark"></span></label>
+                                          <label class="radio-inline"><input ng-model="tipValue" type="radio" value="5" name="optradio">$5<span class="checkmark"></span></label>
                                        </div>
                                        <div class="col-xs-3">
-                                          <label class="radio-inline"><input ng-model="tip" type="radio" value="10" name="optradio">$10<span class="checkmark"></span></label>
+                                          <label class="radio-inline"><input ng-model="tipValue" type="radio" value="10" name="optradio">$10<span class="checkmark"></span></label>
                                        </div>
                                        <div class="col-xs-3">
-                                          <label class="radio-inline"><input ng-model="tip" type="radio" value="20" name="optradio">$20<span class="checkmark"></span></label>
+                                          <label class="radio-inline"><input ng-model="tipValue" type="radio" value="20" name="optradio">$20<span class="checkmark"></span></label>
                                        </div>
                                     </div>    
                                  </div>
@@ -145,11 +132,11 @@
                                     <input type="text" name="nameoncard" id="nameoncard" placeholder="Name on card" class="form-control">
                                  </div>
                                  <div class="form-group">
-                                    <input type="text" name="cardnumber" id="cardnumber" placeholder="Card number" class="form-control">
+                                    <input type="text" name="cardnumber" check-if-cardnumber id="cardnumber" placeholder="Card number" class="form-control">
                                  </div>
                                  <div class="form-group row">
                                           <div class="col-md-4">
-                                             <input type="text" class="form-control" autocomplete="off" maxlength="3" pattern="\d{3}" title="Three digits at back of your card" required="" placeholder="CVC">
+                                             <input type="text" class="form-control" autocomplete="off" maxlength="3"  title="Three digits at back of your card" required="" check-if-number ng-model="cardNum" placeholder="CVC">
                                           </div>
                                           <div class="col-md-4">
                                              <select class="form-control" ng-model='monthSelect' ng-options='month for month in months' name="cc_exp_mo" size="0">
@@ -187,7 +174,7 @@
                                        <input type="text" class="form-control" id="country" placeholder="Country">
                                     </div>
                                     <div class="col-md-6">
-                                       <input type="text" class="form-control" id="postcode" placeholder="Postcode">
+                                       <input type="text" class="form-control" id="postcode" placeholder="Postcode" check-if-number>
                                     </div>
                                  </div>
                               </div>

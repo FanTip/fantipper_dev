@@ -9,7 +9,7 @@ fantipperApp.controller('CreatorApplicationController', function($scope, $http){
         // $scope.buttonSection1 = 
         this.checked = true;
      }else{
-         this.checked = false;
+        this.checked = false;
      }
 
 });

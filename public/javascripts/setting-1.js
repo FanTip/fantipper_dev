@@ -1,6 +1,8 @@
 
 
-var fantipperApp = angular.module('fantipperApp', ["ngRoute"]);
+var fantipperApp = angular.module('fantipperApp', ['ngRoute','MyDirectives']);
+
+angular.module('MyDirectives', []);
 
 fantipperApp.config(function($interpolateProvider) {
   $interpolateProvider.startSymbol('{[{');
@@ -36,8 +38,45 @@ fantipperApp.controller('myCtrl',function($scope, $parse, ) {
 
 });
 
-fantipperApp.directive('invalid', function(){
+angular.module('MyDirectives').directive('checkIfNumber', function(){
+  return {
+    require: 'ngModel',
+    link: function (scope, element, attr, ngModelCtrl) {
+        function fromUser(text) {
+            if (text) {
+                var transformedInput = text.replace(/[^0-9]/g, '');
 
+                if (transformedInput !== text) {
+                    ngModelCtrl.$setViewValue(transformedInput);
+                    ngModelCtrl.$render();
+                }
+                return transformedInput;
+            }
+            return undefined;
+        }            
+        ngModelCtrl.$parsers.push(fromUser);
+    }
+};
+});
+angular.module('MyDirectives').directive('checkIfCardumber', function(){
+  return {
+    require: 'ngModel',
+    link: function (scope, element, attr, ngModelCtrl) {
+        function fromUser(text) {
+            if (text) {
+                var transformedInput = text.replace(/[^0-9]/g, '');
+
+                if (transformedInput !== text) {
+                    ngModelCtrl.$setViewValue(transformedInput);
+                    ngModelCtrl.$render();
+                }
+                return transformedInput;
+            }
+            return undefined;
+        }            
+        ngModelCtrl.$parsers.push(fromUser);
+    }
+};
 });
 
 fantipperApp.controller('usernameCtrl', function($scope){
