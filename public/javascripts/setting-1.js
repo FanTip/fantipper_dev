@@ -11,8 +11,6 @@ fantipperApp.config(function($interpolateProvider) {
 
 
 fantipperApp.controller('myCtrl',function($scope, $parse, ) {
-  console.log($scope.tipValue);
-  // $scope.tipPreview = '$ ' + $scope.tipValue;
   var year = new Date().getFullYear();
   years = [];
   for(var i = 0; i < 7; i++){
