@@ -77,11 +77,11 @@
                               </div>
                               <div class="col-lg-9">
                                  <div class="form-group">
-                                    <label for="tipamout">HOW MUCH WOULD YOU LIKE TO TIP?</label>
+                                    <label for="tipamount">HOW MUCH WOULD YOU LIKE TO TIP?</label>
                                     <div class="input-group">
                                        <div class="input-group-prepend"><span class="input-group-text" style="{color: #00d278}">$</span></div>
-                                    {{!-- <input type="text" name="tipamout"  id="tipamout" value="{[{tip}]}" class="form-control"> --}}
-                                       <input type="text" name="tipamout"  id="tipamout" check-if-number ng-model='tipValue' value="" class="form-control" required>
+                                    {{!-- <input type="text" name="tipamount"  id="tipamount" value="{[{tip}]}" class="form-control"> --}}
+                                       <input type="text" name="tipamount"  id="tipamount" check-if-number ng-model='tipValue' value="" class="form-control" required>
                                     </div>
                                  </div>
                                  <div class="form-group">
@@ -129,14 +129,14 @@
                                     </div>
                                  </div>
                                  <div class="form-group">
-                                    <input type="text" name="nameoncard" id="nameoncard" placeholder="Name on card" class="form-control">
+                                    <input type="text" name="nameoncard" id="nameoncard" placeholder="Name on card" check-if-name ng-model='nameOnCard' class="form-control">
                                  </div>
                                  <div class="form-group">
-                                    <input type="text" name="cardnumber" check-if-cardnumber id="cardnumber" placeholder="Card number" class="form-control">
+                                    <input type="text" name="cardnumber" check-if-number ng-model="cardNumber" id="cardnumber" placeholder="Card number" class="form-control">
                                  </div>
                                  <div class="form-group row">
                                           <div class="col-md-4">
-                                             <input type="text" class="form-control" autocomplete="off" maxlength="3"  title="Three digits at back of your card" required="" check-if-number ng-model="cardNum" placeholder="CVC">
+                                             <input type="text" class="form-control" autocomplete="off" maxlength="3"  title="Three digits at back of your card" required="" check-if-number ng-model="cardCvv" placeholder="CVC">
                                           </div>
                                           <div class="col-md-4">
                                              <select class="form-control" ng-model='monthSelect' ng-options='month for month in months' name="cc_exp_mo" size="0">
@@ -174,7 +174,7 @@
                                        <input type="text" class="form-control" id="country" placeholder="Country">
                                     </div>
                                     <div class="col-md-6">
-                                       <input type="text" class="form-control" id="postcode" placeholder="Postcode" check-if-number>
+                                       <input type="text" class="form-control" id="postcode" ng-model='postCode' placeholder="Postcode" check-if-number>
                                     </div>
                                  </div>
                               </div>
@@ -184,7 +184,7 @@
                                  <div class="form-group">
                                     <input type="hidden" name="_csrf" id="_csrf" value="{{csrfToken}}">
                                     <input type="hidden" name="_creatorEmail" id="_creatorEmail"value="{[{creatorEmail}]}">
-                                    <button type="button" class="btn btn-primary btn-lg btn-block">SEND TIP!</button>
+                                    <button type="button" class="btn btn-primary btn-lg btn-block">SEND <span style="color : #fff" ng-show='tipValue'> $ {[{tipValue}]}</span> TIP!</button>
                                  </div>
                               </div>
                            </div>
@@ -196,8 +196,8 @@
 
 
 
-
-            {{!-- <div class="modal fade" id="tipCreator" tabindex="-1" role="dialog" aria-labelledby="tipCreatorLabel" aria-hidden="true">
+{{!-- 
+            <div class="modal fade" id="tipCreator" tabindex="-1" role="dialog" aria-labelledby="tipCreatorLabel" aria-hidden="true">
                <div class="modal-dialog" role="document">
                   <div class="modal-content">
                      <div class="modal-header">
@@ -215,10 +215,10 @@
                               </div>
                               <div class="col-lg-9">
                                  <div class="form-group">
-                                    <label for="tipamout">HOW MUCH WOULD YOU LIKE TO TIP?</label>
+                                    <label for="tipamount">HOW MUCH WOULD YOU LIKE TO TIP?</label>
                                     <div class="input-group">
                                        <div class="input-group-prepend"><span class="input-group-text" style="{color: #00d278}">$</span></div>
-                                    <input type="text" name="tipamout"  id="tipamout" value="{[{tip}]}" ng-model = "tipAmount" class="form-control">
+                                    <input type="text" name="tipamount"  id="tipamount" value="{[{tip}]}" ng-model = "tipAmount" class="form-control">
                                     </div>
                                     
                                  </div>
@@ -301,8 +301,8 @@
 
                      </div>
                   </div>
-               </div>
-            </div>
+               </div> --}}
+    </div>
 
 
 
@@ -327,8 +327,8 @@
 
 
 
-            {{!-- <div class="modal fade" id="tipCreator" tabindex="-1" role="dialog" aria-labelledby="tipCreatorLabel" aria-hidden="true">
-               <div class="modal-dialog" role="document">
+            {{!-- {{!-- <div class="modal fade" id="tipCreator" tabindex="-1" role="dialog" aria-labelledby="tipCreatorLabel" aria-hidden="true"> --}}
+               {{!-- <div class="modal-dialog" role="document">
                   <div class="modal-content">
                      <div class="modal-header">
                         <h4 class="modal-title">Fantip {[{header}]}</h4>
@@ -344,10 +344,10 @@
                               </div>
                               <div class="col-lg-9">
                                  <div class="form-group">
-                                    <label for="tipamout">HOW MUCH WOULD YOU LIKE TO TIP?</label>
+                                    <label for="tipamount">HOW MUCH WOULD YOU LIKE TO TIP?</label>
                                     <div class="input-group">
                                        <div class="input-group-prepend"><span class="input-group-text" style="{color: #00d278}">$</span></div>
-                                    <input type="text" name="tipamout"  id="tipamout" value="{[{tip}]}" class="form-control">
+                                    <input type="text" name="tipamount"  id="tipamount" value="{[{tip}]}" class="form-control">
                                     </div>
                                     
                                  </div>
