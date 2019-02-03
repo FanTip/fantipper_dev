@@ -33,6 +33,7 @@ fantipperApp.controller('myCtrl',function($scope, $parse, ) {
     $scope.header = user.creator.creatorName;
     $scope.image = user.creator.creatorTileImage;
     $scope.creatorEmail = user.creator.creatorEmail;
+    $scope.creatorDescription = user.creator.creatorDesc;
   }
 
 });

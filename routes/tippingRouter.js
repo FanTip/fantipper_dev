@@ -13,23 +13,13 @@ var message = require('../models/message');
 
 router.use(csrfProtection);
 
-router.post('/', function(req, res, next){
-    console.log('req.body', req.body);
-});
 
-router.get('/',function(req, res, next){
-    User.find(function(err, result){
-        res.send(result);
-    });
-});
-router.post('/', function(req, res, next){
-    console.log(req.body);
-});
-
+// sending a tip to the reciepient 
 router.post('/sendtip', function(req, res, next){
 
     console.log(req.body);
 
+    // if sender is logged in to the fantipper website
     if(res.locals.login){
         var tipperData = new tipper({
             tipperID : req.user._id,
@@ -83,7 +73,9 @@ router.post('/sendtip', function(req, res, next){
             
         });
 
-    }else{
+        
+    } else //if user is not logged in to the website
+    {
         User.findOne({'creator.creatorEmail':req.body._creatorEmail}).exec(function(err, creator){
             console.log(req.body);
             var tipeeData = new tippee({

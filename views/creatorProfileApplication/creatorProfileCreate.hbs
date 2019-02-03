@@ -16,7 +16,9 @@
                     <form id="creator_profile_create-part_1"  name="form_section1" >
                         <div class="form-group">
                             <label for="creator_name_create">CREATOR NAME</label>
-                            <input type="text" name="creator_name_create" id="creator_name_create" ng-model = "creatorName" check-username class="form-control form-control-lg" value="{{CreatorUserName}}" required>
+                            <input type="text" name="creator_name_create" id="creator_name_create" ng-model = "creatorName"  check-username class="form-control form-control-lg" value="{{CreatorUserName}}" required>
+                            <div ng-if="form_section1.$pending.usernameExists">checking....</div>
+                            <div ng-if="form_section1.$error.usernameExists">username exists already</div>
                         </div>
                         <div class="form-group">
                             <label for="url">URL</label> <br>

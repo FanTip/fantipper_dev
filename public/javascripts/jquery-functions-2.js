@@ -27,12 +27,10 @@ $(function(){
             $(location).attr('href', '/profile');
             
         }).fail(function(response){
-            console.log(response);
             toastr.error('Check your yousername/password again!');
         });
 
-        console.log(xhr);
-    });
+});
 
 
     /**

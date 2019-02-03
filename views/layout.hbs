@@ -21,6 +21,7 @@
       <link rel="stylesheet" href='/css/creatorApplication.css'>
       <link rel="stylesheet" href='/stylesheets/typeahead-styles.css' />
       <link rel="stylesheet" href='/css/tiplist.css'/>
+      <link rel="stylesheet" href='/css/tipsharemodal.css'/>
 
       {{!-- Toastr css --}}
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
@@ -78,8 +79,9 @@
       {{!-- Cropper JS integration --}}
       <link rel="stylesheet" href="/cropperjs/cropper.css">
       <script src="/cropperjs/cropper.js"></script>
-      {{!-- <script src="/cropper/jquery-cropper.js"></script> --}}
 
+      {{!-- Moments.js intergration --}}
+      <script src="/javascripts/library/moments.js"></script>
 
       {{!-- Custom jQuery functions --}}
       <script src="/javascripts/jquery-functions-1.js"></script>
@@ -165,7 +167,6 @@
                                     <hr>
 
                               </div>
-                              {{!-- action="/signup" method="post" --}}
                               <form class="" id="signup-form">
                                     <div class="form-group">
                                           <input name="name" type="text" id="name" placeholder="Name" class="form-control">
@@ -190,7 +191,7 @@
                               </form>
                         </div>
                         <div class="modal-footer">
-                              <p id="footer">By signing up, you agree to FanTipper's T&#38;C's and Privacy Policy</p>
+                              <p id="footer" class="text-center">By signing up, you agree to FanTipper's T&#38;C's and Privacy Policy</p>
                         </div>
                   </div>
             </div>
@@ -424,7 +425,10 @@
           <div class="col-md-3 mb-md-0 mb-3">
 
             
-
+                <!-- Copyright -->
+    
+    <div class="footer-copyright text-center py-3" id='footer_c'>:
+    </div>
           </div>
           <!-- Grid column -->
 

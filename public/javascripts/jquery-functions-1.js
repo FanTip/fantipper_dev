@@ -5,13 +5,27 @@ $(function () {
     $('#tipping-form').on('submit', function(event){
    
         event.preventDefault();
-        var tipAmount = $('#tipamout').val();
+        var tipAmount = $('#tipamount').val();
         var csrf = $('#_csrf').val();
         var creatorEmail = $('#_creatorEmail').val();
         var tipModal = $('#tipCreator');
         var shareModal = $('#shareTip');
-        var message = $('#message').val();
+        var message = $('#tipMessage').val();
         var email = $('#email').val();
+
+        var tippeename = $('#tippeename').val();
+        var description = $('#description').val();
+        var imgLocation = $('#imgLocation').val();
+
+        // collecting credit card details
+        var nameOnCard = $('#nameoncard').val();
+        var cardNumber = $('cardnumber').val();
+        var cvv = $('#cvv').val();
+        var expMonth = $('#expMonth').val();
+        var expYear = $('#expYear').val();
+
+        console.log(imgLocation);
+
         var data = {
             _tipamount : tipAmount,
             _creatorEmail : creatorEmail,
@@ -26,6 +40,8 @@ $(function () {
             data :  data,
             
         });
+
+
         
         xhr.done(function(){
             toastr.success('Tipping Successful');
@@ -34,6 +50,13 @@ $(function () {
 
         }).fail(function(){
             toastr.error('Tipping Failed');
+        });
+
+
+        shareModal.on('shown.bs.modal', function(){
+            $('#tippeeImgLocation').attr('src', imgLocation);
+            $('#tippeesName').text(tippeename);
+            $('#tippeesDesc').text(description);
         });
 
     });

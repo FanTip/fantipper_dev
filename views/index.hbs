@@ -80,7 +80,6 @@
                                     <label for="tipamount">HOW MUCH WOULD YOU LIKE TO TIP?</label>
                                     <div class="input-group">
                                        <div class="input-group-prepend"><span class="input-group-text" style="{color: #00d278}">$</span></div>
-                                    {{!-- <input type="text" name="tipamount"  id="tipamount" value="{[{tip}]}" class="form-control"> --}}
                                        <input type="text" name="tipamount"  id="tipamount" check-if-number ng-model='tipValue' value="" class="form-control" required>
                                     </div>
                                  </div>
@@ -106,7 +105,7 @@
                            <div class="row">
                               <div class="col-lg-12">
                                  <div class="form-group">
-                                    <textarea class="form-control" name="message" id="message" cols="30" rows="3" placeholder="Leave a message of support(optional)..."></textarea>
+                                    <textarea class="form-control" name="message" id="tipMessage" cols="30" rows="3" placeholder="Leave a message of support(optional)..."></textarea>
                                  </div>
                               </div>
                            </div>
@@ -136,15 +135,15 @@
                                  </div>
                                  <div class="form-group row">
                                           <div class="col-md-4">
-                                             <input type="text" class="form-control" autocomplete="off" maxlength="3"  title="Three digits at back of your card" required="" check-if-number ng-model="cardCvv" placeholder="CVC">
+                                             <input type="text" class="form-control" autocomplete="off" maxlength="3"  title="Three digits at back of your card" required="" check-if-number ng-model="cardCvv" id="cvv" placeholder="CVC">
                                           </div>
                                           <div class="col-md-4">
-                                             <select class="form-control" ng-model='monthSelect' ng-options='month for month in months' name="cc_exp_mo" size="0">
+                                             <select class="form-control" id="expMonth" ng-model='monthSelect' ng-options='month for month in months' name="cc_exp_mo" size="0">
                                                 <option value="">MM</option>
                                              </select>
                                           </div>
                                           <div class="col-md-4">
-                                             <select ng-model="yearSelect" ng-options="year for year in years" class="form-control" name="cc_exp_yr" id="cc_exp_yr" size="0">
+                                             <select ng-model="yearSelect" id="expYear" ng-options="year for year in years" class="form-control" name="cc_exp_yr" id="cc_exp_yr" size="0">
                                                 <option value="">YYYY</option>
                                              </select>
                                           </div>
@@ -183,8 +182,11 @@
                               <div class="col-lg-12">
                                  <div class="form-group">
                                     <input type="hidden" name="_csrf" id="_csrf" value="{{csrfToken}}">
-                                    <input type="hidden" name="_creatorEmail" id="_creatorEmail"value="{[{creatorEmail}]}">
-                                    <button type="button" class="btn btn-primary btn-lg btn-block">SEND <span style="color : #fff" ng-show='tipValue'> $ {[{tipValue}]}</span> TIP!</button>
+                                    <input type="hidden" name="_creatorEmail" id="_creatorEmail" value="{[{creatorEmail}]}">
+                                    <input type="hidden" id="tippeename" value="{[{header}]}">
+                                    <input type="hidden" id="description" value="{[{creatorDescription}]}">
+                                    <input type="hidden" id="imgLocation" value="{[{image}]}">
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block">SEND <span style="color : #fff" ng-show='tipValue'> $ {[{tipValue}]}</span> TIP!</button>
                                  </div>
                               </div>
                            </div>
@@ -193,298 +195,45 @@
                   </div>
                </div>
             </div>
-
-
-
-{{!-- 
-            <div class="modal fade" id="tipCreator" tabindex="-1" role="dialog" aria-labelledby="tipCreatorLabel" aria-hidden="true">
-               <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h4 class="modal-title">Fantip {[{header}]}</h4>
-                        <button class="close" ng-click="hideGuest();" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                        </button>
-                     </div>
-                     <div class="modal-body">
-                        <form id='tipping-form'>
-                           <input type="hidden" name="_csrf" id="_csrf" value="{{csrfToken}}">
-                           <div class="row">
-                              <div class="col-lg-3">
-                                 <img src="{[{image}]}" alt="" class="rounded-circle" height="100px" width="100px">
-                                 
-                              </div>
-                              <div class="col-lg-9">
-                                 <div class="form-group">
-                                    <label for="tipamount">HOW MUCH WOULD YOU LIKE TO TIP?</label>
-                                    <div class="input-group">
-                                       <div class="input-group-prepend"><span class="input-group-text" style="{color: #00d278}">$</span></div>
-                                    <input type="text" name="tipamount"  id="tipamount" value="{[{tip}]}" ng-model = "tipAmount" class="form-control">
-                                    </div>
-                                    
-                                 </div>
-                                 <div class="form-group">
-                                    <div class="form-row">
-                                          <div class="col-xs-3">
-                                       <label class="radio-inline"><input ng-model="tip" type="radio" value="2" name="optradio"><span class="checkmark">$2</span></label>
-                                    </div>
-                                    <div class="col-xs-3">
-                                       <label class="radio-inline"><input ng-model="tip" type="radio" value="5" name="optradio"><span class="checkmark">$5</span></label>
-                                    </div>
-                                    <div class="col-xs-3">
-                                       <label class="radio-inline"><input ng-model="tip" type="radio" value="10" name="optradio"><span class="checkmark">$10</span></label>
-                                    </div>
-                                    <div class="col-xs-3">
-                                       <label class="radio-inline"><input ng-model="tip" type="radio" value="20" name="optradio"><span class="checkmark">$20</span></label>
-                                    </div>
-                                 </div>    
-                                 </div>
-                              </div>
-                           </div>
-                              <div class="dropdown-divider"></div>
-                           
-                           <div class="row">
-                              <div class="col-lg-12">
-                                 <textarea class="form-control" name="message" id="message" cols="30" rows="3" placeholder="Leave a message of support(optional)..."></textarea>
-                              </div>
-                           </div>
-                              <div class="dropdown-divider"></div>
-
-                              <div class="row">
-                                 <div class="col-lg-12">
-                                    <h4>PAYMENT DETAILS</h4>
-                                    <div class="form-group">
-                                       <div class="form-row">
-                                          <div class="col-xs-12">
-                                             <div class="radio">
-                                                <label class='radio-inline'> <input type="radio" name="payment" id=""> <i class="fab fa-paypal"></i>Paypal </label>
-                                             </div>
-                                             {{# if CardOption}}
-                                                <div class="radio">
-                                                   <label class='radio-inline'> <input type="radio" name="payment" id=""> <span><i class="far fa-credit-card"></i>Saved card</span> <small>card ending {{cardNumber}}</small> </label>
-                                                </div>
-                                             {{/if}}
-                                             
-                                             <div class="radio">
-                                                <label class='radio-inline'> <input type="radio" name="payment" id=""> <i class="far fa-credit-card"></i>Credit Card </label>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div class="form-group">
-                                       <div class="form-row">
-                                          <input type="text" class="form-control" name="name_on_card" id="name_on_card" placeholder="Name on the card">
-                                       </div>
-                                    </div>
-                                    <div class="form-group">
-                                       <div class="form-row">
-                                          <input type="text" class="form-control" name="name_on_card" id="name_on_card" placeholder="Name on the card">
-                                       </div>
-                                    </div>
-                                    <div class="form-group">
-                                       <div class="col-xs-4 col-md-4">
-                                          <input type="text" class="form-group">
-                                       </div>
-                                       <div class="col-xs-4 col-md-4">
-                                          <input type="text" class="form-group">
-                                       </div>
-                                       <div class="col-xs-4 col-md-4">
-                                          <input type="text" class="form-group">
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-
-                           <button type="submit" id="send-tip" class="btn btn-primary">Send {[{tip}]} Tip</button>
-                        </form>
-                     </div>
-                     <divclass="modal-footer">
-
-                     </div>
-                  </div>
-               </div> --}}
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            {{!-- {{!-- <div class="modal fade" id="tipCreator" tabindex="-1" role="dialog" aria-labelledby="tipCreatorLabel" aria-hidden="true"> --}}
-               {{!-- <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                        <h4 class="modal-title">Fantip {[{header}]}</h4>
-                        <button class="close" ng-click="hideGuest();" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                        </button>
-                     </div>
-                     <div class="modal-body">
-                        <form id="tipping-form">
-                           <div class="row">
-                              <div class="col-lg-3">
-                                 <img src="{[{image}]}" alt="" class="rounded-circle" height="100px" width="100px">
-                                 
-                              </div>
-                              <div class="col-lg-9">
-                                 <div class="form-group">
-                                    <label for="tipamount">HOW MUCH WOULD YOU LIKE TO TIP?</label>
-                                    <div class="input-group">
-                                       <div class="input-group-prepend"><span class="input-group-text" style="{color: #00d278}">$</span></div>
-                                    <input type="text" name="tipamount"  id="tipamount" value="{[{tip}]}" class="form-control">
-                                    </div>
-                                    
-                                 </div>
-                                 <div class="form-group">
-                                    <div class="form-row">
-                                          <div class="col-xs-3">
-                                       <label class="radio-inline">2<input ng-model="tip" type="radio" value="2" name="optradio"><span class="checkmark"></span></label>
-                                    </div>
-                                    <div class="col-xs-3">
-                                       <label class="radio-inline">5<input ng-model="tip" type="radio" value="5" name="optradio"><span class="checkmark"></span></label>
-                                    </div>
-                                    <div class="col-xs-3">
-                                       <label class="radio-inline">10<input ng-model="tip" type="radio" value="10" name="optradio"><span class="checkmark"></span></label>
-                                    </div>
-                                    <div class="col-xs-3">
-                                       <label class="radio-inline">20<input ng-model="tip" type="radio" value="20" name="optradio"><span class="checkmark"></span></label>
-                                    </div>
-                                 </div>    
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="dropdown-divider"></div>
-                           <div class="row">
-                              {{# if login}}
-                              <div class="col-lg-2">
-                                 <div class="form-group">
-                                    <label for="">Tip as:</label>
-                                 </div>
-                              </div>
-                              <div class="col-lg-10">
-                                 <img src="{{imagePath}}" alt="..." class="rounded-circle" height="50px" width="50px">
-                                 <h4>{{name}}</h4>
-                              </div>
-                              <div class="form-group">
-                                 <textarea class="form-control" name="message" id="message" cols="30" rows="3" placeholder="Leave a message of support(optional)..."></textarea>
-                              </div>
-                              <div class="dropdown-divider"></div>
-                              <div class="col-lg-12 text-center">
-                                 <input type="hidden" name="_csrf" id="_csrf" value="{{csrfToken}}">
-                                 <input type="hidden" name="_creatorEmail" id="_creatorEmail" value="{[{creatorEmail}]}">
-                                 <button type="submit" class="btn btn-primary">Send Tip</button>
-                              </div>
-                              {{else}}
-                              <div class="col-lg-12">
-                                 <p class="text-center">Have a fantipper account? <a href=""  data-dismiss="modal" data-toggle="modal" data-target="#login">LOG IN</a> </p>
-                                 <p class="text-center">Or Are you new? <a href="" data-dismiss="modal" data-toggle="modal" data-target="#signup">SIGN UP</a></p>
-                              </div>
-                              <div class="col-lg-12 text-center" ng-model="showForm">
-                                 <a href="" data-ng-click="showGuest();" ng-show="!showForm" class="btn btn-primary text-center" >Tip as a guest</a>
-                                 <div ng-show="showForm">
-                                    <div class="form-group">
-                                       <textarea class="form-control" name="message" id="message" cols="30" rows="3" placeholder="Leave a message of support(optional)..."></textarea>
-                                    </div>
-                                    <div class="dropdown-divider"></div>
-                                    <div class="form-group">
-                                       <input type="text" name="nameoncard" id="nameoncard" placeholder="Name on card" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                       <input type="text" name="cardnumber" id="cardnumber" placeholder="Card number" class="form-control">
-                                    </div>
-                                    <div class="form-group row">
-                                          <div class="col-md-4">
-                                             <input type="text" class="form-control" autocomplete="off" maxlength="3" pattern="\d{3}" title="Three digits at back of your card" required="" placeholder="CVC">
-                                          </div>
-                                          <div class="col-md-4">
-                                             <select class="form-control" name="cc_exp_mo" size="0">
-                                                <option value="00">MM</option>
-                                                <option value="01">01</option>
-                                                <option value="02">02</option>
-                                                <option value="03">03</option>
-                                                <option value="04">04</option>
-                                                <option value="05">05</option>
-                                                <option value="06">06</option>
-                                                <option value="07">07</option>
-                                                <option value="08">08</option>
-                                                <option value="09">09</option>
-                                                <option value="10">10</option>
-                                                <option value="11">11</option>
-                                                <option value="12">12</option>
-                                             </select>
-                                          </div>
-                                          <div class="col-md-4">
-                                             <select class="form-control" name="cc_exp_yr" size="0">
-                                                <option value="yyyy">YYYY</option>
-                                                <option>2018</option>
-                                                <option>2019</option>
-                                                <option>2020</option>
-                                                <option>2021</option>
-                                                <option>2022</option>
-                                             </select>
-                                          </div>
-                                    </div>
-                                    <div class="form-group">
-                                       <input type="text" placeholder="Email" name="email" id="email" class="form-control">
-                                    </div>
-                                    <input type="hidden" name="_csrf" id="_csrf" value="{{csrfToken}}">
-                                    <input type="hidden" name="_creatorEmail" id="_creatorEmail"value="{[{creatorEmail}]}">
-                                    <button type="submit" id="send-tip" class="btn btn-primary">Send Tip</button>
-                                 </div>
-                              </div>
-                              {{/if}}
-                           </div>
-                           <div class="dropdown-divider"></div>
-                           <div class="row">
-                           </div>
-                        </form>
-                     </div>
-                  </div>
+    <div class="modal fade" id="shareTip" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="recieve-title">Tip Recieved!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+            <div class="row">
+               <div class="col-md-3">
+                  <img src="" alt="" class="rounded-circle" height="100px" width="100px" id="tippeeImgLocation">
                </div>
-            </div> --}}
 
-
-            <div class="modal fade" id="shareTip" tabindex="-1" role="dialog">
-               <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                     <h5 class="modal-title">Tip Recieved</h5>
-                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                     </button>
-                     </div>
-                     <div class="modal-body">
-                     <p>Modal body text goes here.</p>
-                     <img src="{[{image}]}" alt="" class="rounded-circle" height="100px" width="100px">
-                     </div>
-                     <div class="modal-footer">
-                     <button type="button" class="btn btn-primary">Save changes</button>
-                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                     </div>
-                  </div>
+               <div class="col-md-9">
+                  <q><span id="tippeesDesc"></span></q>
+               </div>
+            </div>
+            <hr>
+            <div class="row">
+               <div class="col-md-12">
+                  <p class="text-center" id="desc1">Your tip was successfully sent to <span id="tippeesName"></span>.</p>
+                  <p class="text-center" id="desc2">share your tip and share the love!</p>
                </div>
             </div>
 
-
+               <div class="form-group">
+                  <button class="btn btn-primary form-control" id="facebook"><i id="i" class="fab fa-facebook-f"></i>Share it on Facebook</button>
+                  <button class="btn btn-primary form-control" id="twittr"><i class="fab fa-twitter"></i>Tweet it!</button>
+               </div> 
+            </div>
+            {{!-- <div class="modal-footer"></div> --}}
+         </div>
+      </div>
    </div>
-    </div>
-   
+
 </div> 
 
     
