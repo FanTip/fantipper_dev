@@ -42,7 +42,7 @@
                 </li>
             </ul>
         </div>
-        <div class="col-lg-9">
+        <div class="col-lg-9"  ng-controller="myCtrl as m">
             <div class="row justify-content-center">
                 <div class="col-4 cont">
                     <img src="{{imagePath}}" alt="user profile picture" class="rounded-circle image" height="200px" width="200px">
@@ -71,8 +71,6 @@
                             {{/if}}
                             
                         </div>
-                        
-
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="email" name="email" class="form-control" id="email" value="{{email}}">

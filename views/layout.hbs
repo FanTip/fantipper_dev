@@ -23,7 +23,6 @@
       <link rel="stylesheet" href='/css/tiplist.css'/>
       <link rel="stylesheet" href='/css/tipsharemodal.css'/>
       <link rel="stylesheet" href='/css/tipmodal.css'/>
-
       {{!-- Toastr css --}}
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
@@ -83,6 +82,10 @@
 
       {{!-- Moments.js intergration --}}
       <script src="/javascripts/library/moments.js"></script>
+
+
+            <link rel="stylesheet" href='/css/navbar.css'/>
+
 
       {{!-- Custom jQuery functions --}}
       <script src="/javascripts/jquery-functions-1.js"></script>
@@ -226,7 +229,7 @@
       </div>
 
       {{!-- Modal for updating credit card information --}}
-      <div class="modal fade" id="updateCardOptions" tabindex="-1" role="dialog" aria-labelledby="updateCardOptionsLabel"
+      <div  ng-controller="myCtrl as m" class="modal fade" id="updateCardOptions" tabindex="-1" role="dialog" aria-labelledby="updateCardOptionsLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                   <div class="modal-content">
@@ -241,11 +244,11 @@
                                     <input type="hidden" name="_csrf" value="{{csrfToken}}">
                                     <div class="form-group">
                                           <label for="nameonthecard">Name on the card</label>
-                                          <input type="text" name="nameonthecard" id="nameonthecard" class="form-control" />
+                                          <input type="text" check-if-name name="nameonthecard" id="nameonthecard" class="form-control" />
                                     </div>
                                     <div class="form-group">
                                           <label for="cardnumber">Card number</label>
-                                          <input type="text" name="cardnumber" id="cardnumber" class="form-control">
+                                          <input type="text" check-if-number name="cardnumber" id="cardnumber" class="form-control">
                                     </div>
                                     <div class="form-group">
                                           <label for="expirydate">Expiry date</label>
@@ -302,8 +305,51 @@
                   </div>
             </div>
       </div>
+
+      {{!-- Test nav bar --}}
+
+      {{!-- <div class="navbar">
+      <a href="#home">Home</a>
+      <a href="#news">News</a>
+      <a href="#contact">Contact</a>
+      </div> --}}
+
+      <style>
+            {{!-- .navbar {
+            overflow: hidden;
+            background-color: #333;
+            position: fixed;
+            top: 0;
+            z-index: 1;
+            width: 100%;
+            }
+
+            .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            }
+
+            .navbar a:hover {
+            background: #ddd;
+            color: black;
+            } --}}
+
+            .main {
+            padding: 16px;
+            margin-top: 54px;
+            {{!-- height: 1500px; /* Used in this example to enable scrolling */ --}}
+            }
+      </style>
+
+
+
       {{!-- Navbar --}}
-      <nav class="navbar navbar-expand-md navbar-light" style="{position : fixed}">
+      <nav class="navbar navbar-expand-md navbar-light">
             <a class="navbar-brand" href="/"><img src="/images/logo/logo.png" alt=""></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                   <span class="navbar-toggler-icon"></span>
@@ -366,12 +412,15 @@
       </nav>
       {{!-- Rest of the page body goes here --}}
       {{!-- includes index.hbs --}}
-      {{{body}}}
+      <div class="main">
+            {{{body}}}
+      </div>
+      
 
 </body>
 
 <footer class="footer">
-      <div class="container">
+      <div class="container-fluid">
             <div class="row">
 
         <!-- Grid column -->
