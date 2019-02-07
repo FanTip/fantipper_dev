@@ -23,7 +23,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
     input.addEventListener('change', function(e){
         var files = e.target.files;
-        if(files[0].size > 1000000){
+        if(files[0].size > 10000000){
             sizeCheck = true;
             toastr.error('File too large.');
             e.stopImmediatePropagation();

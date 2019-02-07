@@ -19,16 +19,14 @@ fantipperApp.controller('myCtrl',function($scope, $parse, ) {
   }
 
   var months    = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  var monthsNum = ['01','02','03','04','05','06','07','08','09','10','11','12',];
-  var month = new Date().getMonth();
   monthRange = [];
   for(var i = 0; i < 12; i++){
-    monthRange.push(months[month + i] + '('+ monthsNum[i] + ')'); 
+    monthRange.push(months[i] + '('+ (i + 1) + ')'); 
   }
 
   $scope.months = monthRange;
   $scope.years = years;
-
+  
   $scope.edit = function(user){
     $scope.header = user.creator.creatorName;
     $scope.image = user.creator.creatorTileImage;

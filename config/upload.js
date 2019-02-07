@@ -32,7 +32,7 @@ const creatorBackgroundStorage = multer.diskStorage({
 //Multer configerations (File size and the callback functions)
 const upload = multer({
     storage : storage,
-    limits: {fileSize : 1000000},
+    limits: {fileSize : 10000000},
     fileFilter:function(req, filename, callback){
         checkFileType(filename, callback);
         console.log(filename);
@@ -41,7 +41,7 @@ const upload = multer({
 
 const uploadTile = multer({
     storage : creatorTileStorage,
-    limits : {fileSize : 1000000},
+    limits : {fileSize : 10000000},
     fileFilter:function(req, filename, callback){
         checkFileType(filename, callback);
     }
@@ -49,7 +49,7 @@ const uploadTile = multer({
 
 const uploadBackground = multer({
     storage : creatorBackgroundStorage,
-    limits : {fileSize : 1000000},
+    limits : {fileSize : 10000000},
     fileFilter:function(req, filename, callback){
         checkFileType(filename, callback);
     }
