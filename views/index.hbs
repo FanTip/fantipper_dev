@@ -126,17 +126,26 @@
                               <div class="col-lg-12">
                                  <h4>PAYMENT DETAILS</h4>
                                  <div class="form-group">
-                                    <div class="radio">
-                                       <input type="radio" name="payment" id="paypal" value="payment"><label for="paypal"><i class="fab fa-paypal"></i>Paypal</label>
+                                    <div class="radio" id="radio">
+                                       <label for="paypal">
+                                          <input type="radio" name="payment" id="paypal" value="payment"><i class="fab fa-paypal"></i>Paypal
+                                          <span class="checkmark"></span>
+                                       </label>
                                     </div>
                                     {{# if cardOptions}}
-                                       <div class="radio">
-                                          <input type="radio" name="payment" id="saved" value="payment"><label for="saved"><i class="far fa-credit-card"></i>Saved Credit Card <small>({{cardName}}/{{cardNumber}})</small> </label>
+                                       <div class="radio" id="radio">
+                                          <label for="saved">
+                                             <input type="radio" name="payment" id="saved" value="payment"><i class="far fa-credit-card"></i>Saved Credit Card <small>({{cardName}}/{{cardNumber}})</small> 
+                                             <span class="checkmark"></span>
+                                          </label>
                                        </div>
                                     {{/if}}
                                     
-                                    <div class="radio">
-                                       <input type="radio" name="payment" id="new" value="payment"><label for="new"><i class="far fa-credit-card"></i>Credit Card</label>
+                                    <div class="radio" id="radio">
+                                       <label for="new">
+                                          <input type="radio" name="payment" id="new" value="payment"><i class="far fa-credit-card"></i>Credit Card
+                                          <span class="checkmark"></span>
+                                       </label>
                                     </div>
                                  </div>
                                  <div class="form-group">
