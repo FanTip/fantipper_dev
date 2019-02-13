@@ -3,11 +3,13 @@
 }
 
 .navbar {
+    padding-bottom: 10px;
+    padding-top: 10px;
     // overflow: hidden;
     background-color: #fff;
     position: fixed;
     top: 0;
-    z-index: 1;
+    z-index: 200;
     width: 100%;
     border-bottom-width: 1px;
     border-bottom-color: #cfccd1;
