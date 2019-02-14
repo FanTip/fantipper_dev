@@ -1,6 +1,6 @@
 
 
-var fantipperApp = angular.module('fantipperApp', ['ngRoute','MyDirectives']);
+var fantipperApp = angular.module('fantipperApp', ['ngRoute']);
 
 angular.module('MyDirectives', []);
 
@@ -37,7 +37,7 @@ fantipperApp.controller('myCtrl',function($scope, $parse, ) {
 });
 
 
-angular.module('MyDirectives').directive('checkIfName', function(){
+fantipperApp.directive('checkIfName', function(){
   return {
     require: 'ngModel',
     link: function (scope, element, attr, ngModelCtrl) {
@@ -58,7 +58,7 @@ angular.module('MyDirectives').directive('checkIfName', function(){
 };
 });
 
-angular.module('MyDirectives').directive('checkIfNumber', function(){
+fantipperApp.directive('checkIfNumber', function(){
   return {
     require: 'ngModel',
     link: function (scope, element, attr, ngModelCtrl) {

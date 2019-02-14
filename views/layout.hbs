@@ -56,10 +56,7 @@
       {{!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropper/4.0.0/cropper.css">
       <script src="https://cdnjs.cloudflare.com/ajax/libs/cropper/4.0.0/cropper.css"></script> --}}
 
-      {{!-- Custom angularjs functions --}}
-      <script src="/javascripts/setting-1.js"></script>
-      <script src="/javascripts/setting-2.js"></script>
-
+    
       {{!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script> --}}
       {{!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> --}}
       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -95,6 +92,11 @@
       <script src="/javascripts/jquery-functions-5.js"></script>
       <script src="/javascripts/jquery-functions-6.js"></script>
       <script src="/javascripts/generic_javascript.js"></script>
+
+        {{!-- Custom angularjs functions --}}
+      <script src="/javascripts/setting-1.js"></script>
+      <script src="/javascripts/setting-2.js"></script>
+
 
 
 </head>
@@ -244,11 +246,11 @@
                                     <input type="hidden" name="_csrf" value="{{csrfToken}}">
                                     <div class="form-group">
                                           <label for="nameonthecard">Name on the card</label>
-                                          <input type="text" check-if-name name="nameonthecard" id="nameonthecard" class="form-control" />
+                                          <input type="text" check-if-name ng-model="nameOnCard" name="nameonthecard" id="nameonthecard" class="form-control" />
                                     </div>
                                     <div class="form-group">
                                           <label for="cardnumber">Card number</label>
-                                          <input type="text" check-if-number name="cardnumber" id="cardnumber" class="form-control">
+                                          <input type="text" check-if-number ng-model="checkIfNumber" name="cardnumber" id="cardnumber" class="form-control">
                                     </div>
                                     <div class="form-group">
                                           <label for="expirydate">Expiry date</label>

@@ -1,56 +1,57 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var session = require('express-session');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const session = require('express-session');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const flash = require('connect-flash');
 const validator = require('express-validator');
 const exphbs = require('express-handlebars');
-var favicon = require('serve-favicon');
-var dotenv = require('dotenv');
+const favicon = require('serve-favicon');
+const dotenv = require('dotenv');
 
 require('./config/passport');
 require('./config/facebook-login');
 require('./config/google-login');
 
-var apiRouter = require('./routes/api/fantipper');
-var searchCitiesRouter = require('./routes/api/search-cities');
+const apiRouter = require('./routes/api/fantipper');
+const searchCitiesRouter = require('./routes/api/search-cities');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var loginRouter = require('./routes/login');
-var signupRouter = require('./routes/signup');
-var profileRouter = require('./routes/profile');
-var logoutRouter = require('./routes/logout');
-var exploreRouter = require('./routes/explore');
-var learnRouter = require('./routes/learn');
-var uploadImage = require('./routes/uploadImage');
-var editFanProfile = require('./routes/editfanprofile');
-var creatorProfile = require('./routes/creatorprofile');
-var selectActiveCreator = require('./routes/selectactivecreator');
-var tippingRouter = require('./routes/tippingRouter');
-var messagRouter = require('./routes/tipmessage');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const loginRouter = require('./routes/login');
+const signupRouter = require('./routes/signup');
+const profileRouter = require('./routes/profile');
+const logoutRouter = require('./routes/logout');
+const exploreRouter = require('./routes/explore');
+const learnRouter = require('./routes/learn');
+const uploadImage = require('./routes/uploadImage');
+const editFanProfile = require('./routes/editfanprofile');
+const creatorProfile = require('./routes/creatorprofile');
+const selectActiveCreator = require('./routes/selectactivecreator');
+const tippingRouter = require('./routes/tippingRouter');
+const messagRouter = require('./routes/tipmessage');
 
-var profileEngineRouter = require('./routes/profileEngine')
-var CreatorApplication = require('./routes/creatorProfileCreate');
+const profileEngineRouter = require('./routes/profileEngine')
+const CreatorApplication = require('./routes/creatorProfileCreate');
 
-var facebookRouter = require('./routes/facebook-login');
-var googleRouter = require('./routes/google-login');
+const facebookRouter = require('./routes/facebook-login');
+const googleRouter = require('./routes/google-login');
 
-var fanTipHistory = require('./routes/fantiphistory');
-var creatorTipHistory = require('./routes/creatortiphistory');
+const fanTipHistory = require('./routes/fantiphistory');
+const creatorTipHistory = require('./routes/creatortiphistory');
 
+const stripeRouter  = require('./routes/api/stripe');
 // Test router for image upload
 
-var test = require('./routes/creatorAppComplete');
+const test = require('./routes/creatorAppComplete');
 
 // 
 
-var app = express();
+const app = express();
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon', 'favicon.ico')));
 
 dotenv.config()
@@ -167,6 +168,8 @@ app.use('/messages', messagRouter);
 app.use('/fantiphistory', fanTipHistory);
 app.use('/creatortiphistory', creatorTipHistory);
 
+app.use('/stripe', stripeRouter);
+
 app.use('/test', test);
 
 // catch 404 and forward to error handler
@@ -174,8 +177,6 @@ app.use(function(req, res, next) {
   // next(createError(404));
   res.render('pagenotfound');
 });
-
-
 
 // error handler
 app.use(function(err, req, res, next) {
