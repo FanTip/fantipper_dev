@@ -139,6 +139,8 @@ app.use('/dropzone', express.static(path.join(__dirname, 'node_modules/dropzone/
 app.use('/cropper', express.static(path.join(__dirname, 'node_modules/jquery-cropper/dist')));
 app.use('/cropperjs', express.static(path.join(__dirname, 'node_modules/cropperjs/dist')));
 
+app.use('/stripe', express.static(path.join(__dirname, 'node_modules/stripe/lib')))
+
 app.use('/', indexRouter);
 app.use('/upload', uploadImage);
 app.use('/users', usersRouter);
@@ -168,7 +170,7 @@ app.use('/messages', messagRouter);
 app.use('/fantiphistory', fanTipHistory);
 app.use('/creatortiphistory', creatorTipHistory);
 
-app.use('/stripe', stripeRouter);
+app.use('/payment', stripeRouter);
 
 app.use('/test', test);
 

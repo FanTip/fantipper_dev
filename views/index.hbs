@@ -1,3 +1,4 @@
+<meta name="csrf-token" content={{csrfToken}}>
 <link rel="stylesheet" href='/css/tiplist.css'/>
 <script src="/javascripts/generic_javascript.js"></script>
 
@@ -58,7 +59,6 @@
 
 
 
-
             <div class="modal fade" id="tipCreator" tabindex="-1" role="dialog" aria-labelledby="tipCreatorLabel" aria-hidden="true">
                <div class="modal-dialog" role="document">
                   <div class="modal-content">
@@ -68,6 +68,7 @@
                         </button>
                      </div>
                      <div class="modal-body">
+                        <script src="https://js.stripe.com/v3/"></script>
                         <form id="tipping-form" name = "tippingForm" class="tipping-form">
                            <div class="row">
                               <div class="col-lg-3">
@@ -146,7 +147,19 @@
                                        </label>
                                     </div>
                                  </div>
-                                 <div class="form-group">
+
+                                 
+                                 <div class="form-row">
+                                    <label for="card-element">
+                                       Debit or Credit card
+                                    </label>
+                                    <div id="card-element">
+
+                                    </div>
+                                    <div id="card-errors" role="alert"></div>
+                                 </div>
+
+                                 {{!-- <div class="form-group">
                                     <input type="text" name="nameoncard" id="nameoncard" placeholder="Name on card" check-if-name ng-model='nameOnCard' class="form-control">
                                  </div>
                                  <div class="form-group">
@@ -166,7 +179,7 @@
                                                 <option value="">YYYY</option>
                                              </select>
                                           </div>
-                                    </div>
+                                    </div> --}}
                               </div>
                            </div>
                            <div id="cardYear" ></div>

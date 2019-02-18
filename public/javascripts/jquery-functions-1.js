@@ -3,10 +3,41 @@
  */
 $(function () {
     $('#tipping-form').on('submit', function(event){
-   
+
         event.preventDefault();
+
+
+        var stripe = Stripe('pk_test_puuwTbVu3nSLRPLaOHboUXos');
+
+        var elements = stripe.elements();
+        
+        var style = {
+            base: {
+              // Add your base input styles here. For example:
+              fontSize: '16px',
+              color: "#32325d",
+            }
+          };
+          
+          // Create an instance of the card Element.
+          var card = elements.create('card', {style: style});
+          
+          // Add an instance of the card Element into the `card-element` <div>.
+          card.mount('#card-element');
+          card.addEventListener('change', function(event) {
+            var displayError = document.getElementById('card-errors');
+            if (event.error) {
+              displayError.textContent = event.error.message;
+            } else {
+              displayError.textContent = '';
+            }
+          });
+        
+        // Stripe public key 
+            let stripePubKey;
+
         var tipAmount = $('#tipamount').val();
-        var csrf = $('#_csrf').val();
+        var csrf = $('meta[name="csrf-token"]').attr('content');
         var creatorEmail = $('#_creatorEmail').val();
         var tipModal = $('#tipCreator');
         var shareModal = $('#shareTip');
@@ -24,40 +55,77 @@ $(function () {
         var expMonth = $('#expMonth').val();
         var expYear = $('#expYear').val();
 
-        console.log(imgLocation);
+        try{
+            // var stripeData = {
+            //     _tipamount : tipAmount,
+            //     _nameoncard : nameOnCard,
+            //     _cardnumber : cardNumber,
+            //     _cvv : cvv,
+            //     _expmonth : expMonth,
+            //     _expyear : expYear
+            // }
 
-        var data = {
-            _tipamount : tipAmount,
-            _creatorEmail : creatorEmail,
-            _message : message,
-            _csrf : csrf,
-            _email : email
-        }
-        var xhr = $.ajax({
-            type : 'POST',
-            url : '/tipping/sendtip',
-            crossDomain: false,
-            data :  data,
-            
-        });
+            // // requesting the Stripe public key from the server
+            // let getPayementIDPub = $.ajax({
+            //     type : 'GET',
+            //     url:'/payment/pub',
+            //     crossDomain : false,
+            //     success : function(id){
+            //         prepareStripeRequest(id);
+            //     }
+            // });
 
-
+            // // preparing the payment 
+            // function prepareStripeRequest(id){
+            //     var data = {
+            //         _tipamount : tipAmount,
+            //         _creatorEmail : creatorEmail,
+            //         _message : message,
+            //         _csrf : csrf,
+            //         _email : email,
+            //         _pubkey : id
+            //     }
+            //     var xhr = $.ajax({
+            //         type : 'POST',
+            //         url : '/payment',
+            //         crossDomain: false,
+            //         data :  data,
+            //     });
+    
+            //     var xhr = $.ajax({
+            //         type : 'POST',
+            //         url : '/tipping/sendtip',
+            //         crossDomain: false,
+            //         data :  data,
+                    
+            //     });
         
-        xhr.done(function(){
-            toastr.success('Tipping Successful');
-            tipModal.modal('hide');
-            shareModal.modal('show');
+                
+            //     xhr.done(function(){
+            //         toastr.success('Tipping Successful');
+            //         tipModal.modal('hide');
+            //         shareModal.modal('show');
+            //         $('#tipping-form').trigger('reset');
+            //     }).fail(function(){
+            //         toastr.error('Tipping Failed');
+            //     });
+        
+            //     var stripeHandler = StripeCheckout.configure({})
+        
+            //     shareModal.on('shown.bs.modal', function(){
+            //         $('#tippeeImgLocation').attr('src', imgLocation);
+            //         $('#tippeesName').text(tippeename);
+            //         $('#tippeesDesc').text(description);
+            //     });
+            // }
 
-        }).fail(function(){
-            toastr.error('Tipping Failed');
-        });
-
-
-        shareModal.on('shown.bs.modal', function(){
-            $('#tippeeImgLocation').attr('src', imgLocation);
-            $('#tippeesName').text(tippeename);
-            $('#tippeesDesc').text(description);
-        });
+        }catch(e){
+            if(e){
+                toastr.error(e)
+            }
+        }
+    
+        
 
     });
 
