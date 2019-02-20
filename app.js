@@ -12,6 +12,8 @@ const validator = require('express-validator');
 const exphbs = require('express-handlebars');
 const favicon = require('serve-favicon');
 const dotenv = require('dotenv');
+const stripe = require('stripe')('pk_test_puuwTbVu3nSLRPLaOHboUXos');
+
 
 require('./config/passport');
 require('./config/facebook-login');
