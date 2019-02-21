@@ -6,33 +6,16 @@ $(function () {
 
         event.preventDefault();
 
+        $.getScript("https://js.stripe.com/v3/", function(){
 
-        var stripe = Stripe('pk_test_puuwTbVu3nSLRPLaOHboUXos');
+          Stripe('pk_test_puuwTbVu3nSLRPLaOHboUXos');
 
-        var elements = stripe.elements();
-        
-        var style = {
-            base: {
-              // Add your base input styles here. For example:
-              fontSize: '16px',
-              color: "#32325d",
-            }
-          };
-          
-          // Create an instance of the card Element.
-          var card = elements.create('card', {style: style});
-          
-          // Add an instance of the card Element into the `card-element` <div>.
-          card.mount('#card-element');
-          card.addEventListener('change', function(event) {
-            var displayError = document.getElementById('card-errors');
-            if (event.error) {
-              displayError.textContent = event.error.message;
-            } else {
-              displayError.textContent = '';
-            }
-          });
-        
+          Stripe.card.createToken($('#tipping-form'), function(status, respond){
+            console.log(status);
+            console.log(respond);
+          }); 
+        });
+
         // Stripe public key 
             let stripePubKey;
 

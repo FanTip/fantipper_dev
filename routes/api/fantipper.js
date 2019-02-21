@@ -6,36 +6,18 @@ var tippee = require('../../models/tippee');
 
 
 
+
 router.get('/', function(req, res){
     user.find()
     .exec(function(err, resUser){
         if(err){
             res.status(500).send(err);
         }else{
-            // var userData;
-            // console.log(resUser.length);
-            // for(i=0; i < resUser.length; i++){
-            //     // userData = [
-            //     //     name = resUser[i].name,
-            //     //     email = resUser[i].email,
-            //     //     creatorExists = resUser[i].creator.isCreator,
-            //     //     creatorName = resUser[i].creator.creatorName,
-            //     //     creatorEmail = resUser[i].creator.creatorEmail
-            //     // ];
-
-            //     userData.push({
-            //         name : resUser[i].name,
-            //         email : resUser[i].email,
-            //         creatorExists : resUser[i].creator.isCreator,
-            //         creatorName : resUser[i].creator.creatorName,
-            //         creatorEmail : resUser[i].creator.creatorEmail
-            //     })
-            // }
-            
             res.status(200).send(resUser);
         }
     });
 });
+
 
 router.post('/', function(req, res){
     user.findOne({email : req.body.email}).exec(

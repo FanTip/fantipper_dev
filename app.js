@@ -158,7 +158,8 @@ app.use('/selectactivecreator', selectActiveCreator);
 app.use('/tipping', tippingRouter);
 app.use('/fantipper', profileEngineRouter)
 
-app.use('/api/fantipper', apiRouter);
+app.use('/api/fantipper', apiRouter); // https://fantipper.herokuapp.com/api/fantipper/
+
 app.use('/api/cities', searchCitiesRouter);
 
 app.use('/creator/application', CreatorApplication);

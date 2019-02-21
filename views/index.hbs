@@ -68,7 +68,8 @@
                         </button>
                      </div>
                      <div class="modal-body">
-                                                
+                        {{!-- Initializing the stripe.js library --}}
+                       <script src="http://js.stripe.com/v3/"></script>                         
                         <form id="tipping-form" name = "tippingForm" class="tipping-form">
                            <div class="row">
                               <div class="col-lg-3">
@@ -142,22 +143,53 @@
                                     
                                     <div class="radio" id="radio">
                                        <label for="new">
-                                          <input type="radio" name="payment" id="new" value="payment"><i class="far fa-credit-card"></i>Credit Card
+                                          <input type="radio" ng-model="credit-card" name="payment" id="new" value="payment"><i class="far fa-credit-card"></i>Credit Card
                                           <span class="checkmark"></span>
                                        </label>
                                     </div>
                                  </div>
 
                                  
-                                 <div class="form-row">
+                                 <div ng-show = "credit-card == payment" class="form-row">
                                     <label for="card-element">
-                                       Debit or Credit card
+                                       Credit or debit card
                                     </label>
                                     <div id="card-element">
-
+                                       <!-- A Stripe Element will be inserted here. -->
                                     </div>
+
+                                    <!-- Used to display form errors. -->
                                     <div id="card-errors" role="alert"></div>
                                  </div>
+                                 <style>
+                                    .StripeElement {
+                                 {{!-- box-sizing: border-box; --}}
+
+                                 height: 40px;
+                                 width : 100%;
+                                 padding: 10px 12px;
+
+                                 border: 1px solid transparent;
+                                 border-radius: 4px;
+                                 background-color: white;
+
+                                 box-shadow: 0 1px 3px 0 #e6ebf1;
+                                 -webkit-transition: box-shadow 150ms ease;
+                                 transition: box-shadow 150ms ease;
+                                 }
+
+                                 .StripeElement--focus {
+                                 box-shadow: 0 1px 3px 0 #cfd7df;
+                                 }
+
+                                 .StripeElement--invalid {
+                                 border-color: #fa755a;
+                                 }
+
+                                 .StripeElement--webkit-autofill {
+                                 background-color: #fefde5 !important;
+                                 }
+                                 </style>
 
                                  {{!-- <div class="form-group">
                                     <input type="text" name="nameoncard" id="nameoncard" placeholder="Name on card" check-if-name ng-model='nameOnCard' class="form-control">
@@ -223,6 +255,8 @@
                               </div>
                            </div>
                         </form>
+                        {{!-- Preparing the Stripe card element --}}
+                        <script src="/javascripts/cardprepare.js"></script>
                      </div>
                   </div>
                </div>
