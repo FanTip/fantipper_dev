@@ -143,7 +143,7 @@
                                     
                                     <div class="radio" id="radio">
                                        <label for="new">
-                                          <input type="radio" ng-model="credit-card" name="payment" id="new" value="payment"><i class="far fa-credit-card"></i>Credit Card
+                                          <input type="radio" name="payment" id="new" value="payment"><i class="far fa-credit-card"></i>Credit Card
                                           <span class="checkmark"></span>
                                        </label>
                                     </div>
@@ -257,6 +257,7 @@
                         </form>
                         {{!-- Preparing the Stripe card element --}}
                         <script src="/javascripts/cardprepare.js"></script>
+                        <script src="/javascripts/jquery-functions-1.js"></script>
                      </div>
                   </div>
                </div>
