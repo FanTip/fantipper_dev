@@ -126,12 +126,12 @@
                               <div class="col-lg-12">
                                  <h4>PAYMENT DETAILS</h4>
                                  <div class="form-group">
-                                    <div class="radio" id="radio">
+                                    {{!-- <div class="radio" id="radio">
                                        <label for="paypal">
                                           <input type="radio" name="payment" id="paypal" value="payment"><i class="fab fa-paypal"></i>Paypal
                                           <span class="checkmark"></span>
                                        </label>
-                                    </div>
+                                    </div> --}}
                                     {{# if cardOptions}}
                                        <div class="radio" id="radio">
                                           <label for="saved">
@@ -150,7 +150,7 @@
                                  </div>
 
                                  
-                                 <div class="form-row">
+                                 <div class="form-group">
                                     <label for="card-element">
                                        Credit or debit card
                                     </label>
@@ -214,8 +214,7 @@
                                     </div> --}}
                               </div>
                            </div>
-                           <div id="cardYear" ></div>
-                           <h4>BILLING ADDRESS</h4>
+                           {{!-- <h4>BILLING ADDRESS</h4>
                            <div class="row">
                               <div class="col-lg-12">
                                  <div class="form-group">
@@ -241,6 +240,9 @@
                                     </div>
                                  </div>
                               </div>
+                           </div> --}}
+                           <div class="form-group">
+                                 <input type="text" class="form-control" id="pay-email" placeholder="Enter Email">
                            </div>
                            <div class="row">
                               <div class="col-lg-12">
@@ -290,6 +292,11 @@
                   <p class="text-center" id="desc2">share your tip and share the love!</p>
                </div>
             </div>
+            <div class="row">
+               <div class="col-md-12">
+                  <a class="text-center" href="" id="receipt_link">View the receipt</a>
+               </div>
+            </div>
 
                <div class="form-group">
                   <button class="btn btn-primary form-control" id="facebook"><i id="i" class="fab fa-facebook-f"></i>Share it on Facebook</button>
@@ -297,6 +304,24 @@
                </div> 
             </div>
             {{!-- <div class="modal-footer"></div> --}}
+         </div>
+      </div>
+   </div>
+
+   <div class="modal fade" id="tipSuccess" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="recieve-title">Tip Recieved!</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+               <div class="tip_bill">
+
+               </div>
+            </div>
          </div>
       </div>
    </div>

@@ -16,42 +16,32 @@ var stripe = require("stripe")("sk_test_lzFXk4jctTfL15eqiv0l4hJD");
 router.use(csrfProtection);
 
 function amount(amount){
-    return parseFloat(amount).toFixed(3)*1000;
+    return parseFloat(amount).toFixed(3)*100;
+}
+
+function saveTip(charge, req, res){
+    console.log(charge);
+    res.status(200).send(charge);
 }
 
 // sending a tip to the reciepient 
 router.post('/sendtip', function(req, res, next){
 
     console.log(req.body);
-    console.log(req.body._stripeID)
-
-    console.log(parseFloat(req.body._amount).toFixed(3)*1000);
 
     const token = req.body._stripeID;
 
     stripe.customers.create({
-        // this email is creators email   need to change later on
         email : req.body._email,
         source : token
     })
     .then(customer => stripe.charges.create({
         amount : amount(req.body._amount),
         currency : 'aud',
-        customer : customer.id
+        customer : customer.id,
+        receipt_email : req.body._email
     }))
-    .then(charge => res.status(200).send('OK'));
-
-    // (async () => {
-    //     const charge = await stripe.charges.create({
-    //         amount : amount(req.body._amount),
-    //         currency : 'usd',
-    //         description : req.body._description,
-    //         source : token
-    //     });
-
-    //     console.log(charge);
-    // });
-    
+    .then(charge => saveTip(charge, req, res));
 
     // if sender is logged in to the fantipper website
     // if(res.locals.login){
