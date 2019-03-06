@@ -43,7 +43,7 @@ router.post('/create',isLoggedIn, function(req, res, next){
         { $set:{'creator.isCreator' : true,
         'creator.creatorName': req.body.creator_name,
         'creator.creatorDesc': req.body.creator_description,
-        'creator.creatorEmail' : req.body.creator_email,
+        'creator.creatorEmail' : req.user.email,
         'creator.UserName' : req.body.creator_name
       }
         }

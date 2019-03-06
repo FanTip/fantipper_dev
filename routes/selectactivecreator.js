@@ -8,7 +8,7 @@ router.use(csrfProtection);
 
 /* GET home page. */
 router.get('/', isLoggedIn, function(req, res, next) {
-  res.render('creator/selectactivecreator', { title: 'Express', csrfToken : req.csrfToken() });
+  res.render('creator/selectactivecreator', { title: 'Edit', csrfToken : req.csrfToken() });
 });
 
 router.post('/', function(req, res, next){
@@ -19,7 +19,9 @@ router.post('/', function(req, res, next){
       $set:{
       'creator.creatorName' : req.body.fullname,
       'creator.creatorDesc' : req.body.shortdesc,
-      'creator.creatorNameuser' : req.body.username
+      'creator.creatorNameuser' : req.body.username,
+      'creator.creatorEmail' : req.user.email,
+
       }
     }
   ).exec(function(err, result){
