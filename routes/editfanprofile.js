@@ -11,7 +11,6 @@ router.get('/',isLoggedIn, function(req, res, next) {
 });
 
 router.post('/', function(req, res, next){
-  console.log(req.body);
   var query = {
     email : req.body.email,
     name : req.body.name,
@@ -46,7 +45,6 @@ router.post('/delete', isLoggedIn, function(req, res, next){
 });
 
 router.post('/updatecard', isLoggedIn, function(req, res, next){
-  console.log(req.body);
   User.findByIdAndUpdate(req.user._id,{
     $set:{'card.isCard' : true,
     'card.cardName': req.body.nameonthecard,
@@ -76,7 +74,6 @@ router.post('/deletecard', isLoggedIn, function(req, res, next){
       res.send(err);
     }
     if(result){
-      console.log(result);
       res.redirect('/editfanprofile');
     }
   });

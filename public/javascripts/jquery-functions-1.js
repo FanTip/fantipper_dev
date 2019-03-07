@@ -4,6 +4,7 @@
 
 var stripe = Stripe('pk_test_puuwTbVu3nSLRPLaOHboUXos');
 
+
 // Create an instance of Elements.
 var elements = stripe.elements();
 
@@ -48,6 +49,7 @@ card.addEventListener('change', function(event) {
 const tippingForm = $('#tipping-form');
 
 function submitForm(token){
+
     var tipAmount = $('#tipamount').val();
     var csrf = $('meta[name="csrf-token"]').attr('content');
     var creatorEmail = $('#_creatorEmail').val();
@@ -56,16 +58,14 @@ function submitForm(token){
     var shareModal = $('#shareTip');
     var successModal = $('#tipSuccess');
 
+    let receiverImage = $('#receiver_image').attr('src');
+
     var tipBill = $('#tip_bill');
 
-    var message = $('#tipMessage').val();
     var payEmail = $('#pay-email').val();
 
-    var tippeename = $('#tippeename').val();
     var description = $('#description').val();
-    var imgLocation = $('#imgLocation').val();
 
-    var hiddenInput = $('#secretKey').val();
 
     var data = {
         _stripeID : token.id,
@@ -84,14 +84,11 @@ function submitForm(token){
         data : data
     });
 
-
     xhr.done((Response)=>{
-        console.log(Response.receipt_url);
+        tippingForm.trigger('reset');
         tipModal.modal('hide');
-        shareModal.modal('show', function(){
-          console.log('gere');
-          
-        });
+        shareModal.modal('show');
+        $('#tippeeImgLocation').attr('src', receiverImage)
         $('#receipt_link').attr('href', Response.receipt_url);
         // tipBill.append(Response.receipt_url)
     });
@@ -119,13 +116,11 @@ function stripeTokenHandler(token) {
   tippingForm.appendChild(hiddenInput);
 
   // Submit the form
-//   tippingForm.submit();
     submitForm();
 }
 
 tippingForm.on('submit', function(event){
     event.preventDefault();
-    console.log('rrrr');
     prepareCard();
 });
   

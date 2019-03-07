@@ -4,9 +4,6 @@ var router = express.Router();
 var tipper = require('../../models/tipper');
 var tippee = require('../../models/tippee');
 
-
-
-
 router.get('/', function(req, res){
     user.find()
     .exec(function(err, resUser){

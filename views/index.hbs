@@ -1,6 +1,7 @@
 <meta name="csrf-token" content={{csrfToken}}>
 <link rel="stylesheet" href='/css/tiplist.css'/>
 <script src="/javascripts/generic_javascript.js"></script>
+<script src="https://unpkg.com/popmotion/dist/popmotion.global.min.js"></script>
 
 <div class="container-fluid" id="body">
   
@@ -73,7 +74,7 @@
                         <form id="tipping-form" name = "tippingForm" class="tipping-form">
                            <div class="row">
                               <div class="col-lg-3">
-                                 <img src="{[{image}]}" alt="" class="rounded-circle" height="100px" width="100px">
+                                 <img src="{[{image}]}" alt="" class="rounded-circle" height="100px" width="100px" id = "receiver_image">
                               </div>
                               <div class="col-lg-9">
                                  <div class="form-group">
@@ -143,7 +144,7 @@
                                     
                                     <div class="radio" id="radio">
                                        <label for="new">
-                                          <input type="radio" name="payment" id="new" value="payment"><i class="far fa-credit-card"></i>Credit Card
+                                          <input type="radio" name="payment" id="new" value="payment" {{# if login}} checked {{/if}}><i class="far fa-credit-card"></i>Credit Card
                                           <span class="checkmark"></span>
                                        </label>
                                     </div>
@@ -280,9 +281,8 @@
                <div class="col-md-3">
                   <img src="" alt="" class="rounded-circle" height="100px" width="100px" id="tippeeImgLocation">
                </div>
-
                <div class="col-md-9">
-                  <q><span id="tippeesDesc"></span></q>
+                  <q><span id="tippeesDesc">Thank you for your support!</span></q>
                </div>
             </div>
             <hr>
@@ -290,14 +290,9 @@
                <div class="col-md-12">
                   <p class="text-center" id="desc1">Your tip was successfully sent to <span id="tippeesName"></span>.</p>
                   <p class="text-center" id="desc2">share your tip and share the love!</p>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-md-12">
                   <a class="text-center" href="" id="receipt_link">View the receipt</a>
                </div>
             </div>
-
                <div class="form-group">
                   <button class="btn btn-primary form-control" id="facebook"><i id="i" class="fab fa-facebook-f"></i>Share it on Facebook</button>
                   <button class="btn btn-primary form-control" id="twittr"><i class="fab fa-twitter"></i>Tweet it!</button>

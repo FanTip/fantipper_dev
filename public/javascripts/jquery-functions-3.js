@@ -5,38 +5,38 @@ window.addEventListener('DOMContentLoaded', function(){
     /**
      * Cropping image functions
      */
-    var avatar = document.getElementById('avatar');
-    var image = document.getElementById('image');
-    var input = document.getElementById('input');
+    let avatar = document.getElementById('avatar');
+    let image = document.getElementById('image');
+    let input = document.getElementById('input');
 
-    var $progress = $('.progress');
-    var $progressBar = $('.progress-bar');
-    var $alert = $('.alert');
-    var $modal = $('#modal');
+    let $progress = $('.progress');
+    let $progressBar = $('.progress-bar');
+    let $alert = $('.alert');
+    let $modal = $('#modal');
     
     
     $progress.hide();
 
-    var cropper;
+    let cropper;
 
     $('[data-toggle = "tooltip"]').tooltip();
 
     input.addEventListener('change', function(e){
-        var files = e.target.files;
+        let files = e.target.files;
         if(files[0].size > 10000000){
             sizeCheck = true;
             toastr.error('File too large.');
             e.stopImmediatePropagation();
         }else{
-            var done = function(url){
+            let done = function(url){
                 input.value = '';
                 image.src = url;
                 $alert.hide();
                 $modal.modal('show');
             }
-            var reader;
-            var file;
-            var url;
+            let reader;
+            let file;
+            let url;
             if(files && files.length > 0){
                
                 file = files[0];
@@ -66,8 +66,8 @@ window.addEventListener('DOMContentLoaded', function(){
         });
 
         document.getElementById('crop').addEventListener('click', function(){
-            var initialAvatarURL;
-            var canvas;
+            let initialAvatarURL;
+            let canvas;
 
             $modal.modal('hide');
 
@@ -81,7 +81,7 @@ window.addEventListener('DOMContentLoaded', function(){
                 $progress.show();
                 $alert.removeClass('alert-success alert-warning');
                 canvas.toBlob(function(blob){
-                    var formData = new FormData();  
+                    let formData = new FormData();  
 
                     formData.append('avatar', blob, 'avatar.jpg');
 
@@ -95,11 +95,11 @@ window.addEventListener('DOMContentLoaded', function(){
                         },
 
                         xhr: function(){
-                            var xhr = new XMLHttpRequest();
+                            let xhr = new XMLHttpRequest();
 
                             xhr.upload.onprogress = function(e){
-                                var precent = '0';
-                                var precentage = '0%';
+                                let precent = '0';
+                                let precentage = '0%';
 
                                 if(e.lengthComputable){
                                     precent = Math.round((e.loaded / e.total) * 100);
@@ -138,7 +138,7 @@ window.addEventListener('DOMContentLoaded', function(){
          * 
          * Quill editor initialization
          */
-        var toolbarOptions = [
+        let toolbarOptions = [
             ['bold', 'italic', 'underline'],        // toggled buttons
             
             [{ 'header': 1 }, { 'header': 2 }],               // custom button values
@@ -166,14 +166,14 @@ window.addEventListener('DOMContentLoaded', function(){
         }
 
 
-function getStory(quill){
-    var content = quill.getText();
-    var delta = JSON.stringify(quill.getContents());
-    var editorWindow = document.getElementById('editor-container').getElementsByClassName('ql-editor')[0];
+function getAboutYou(quill){
+    let content = quill.getText();
+    let delta = JSON.stringify(quill.getContents());
+    let editorWindow = document.getElementById('editor-container').getElementsByClassName('ql-editor')[0];
 
-    // var formattedContent = editorWindow.innerHTML.toString();
+    // let formattedContent = editorWindow.innerHTML.toString();
 
-    var formattedContent = quill.getText();
+    let formattedContent = quill.getText();
 
     return{
         content : content,
@@ -184,22 +184,21 @@ function getStory(quill){
 
 $(document).ready(function() {
 
-    var quill = initEditor();
+    let quill = initEditor();
 
-    var about_you;
+    let about_you;
 
-    var submit_button = $('#Submit_profile');
+    let submit_button = $('#Submit_profile');
+    
     submit_button.on('click', function(){
-        var creatorname = $('#creator_name_create').val();
-        var staticURL = $('#staticURL').val();
-        var short_desc = $('#short_desc').val();
-        var location_now = $('#location_now').val();
+        let creatorname = $('#creator_name_create').val();
+        let staticURL = $('#staticURL').val();
+        let short_desc = $('#short_desc').val();
+        let location_now = $('#location_now').val();
 
-        about_you = getStory(quill);
+        about_you = getAboutYou(quill);
 
-        console.log(about_you);
-
-        var formdata = {
+        let formdata = {
             name : creatorname,
             url : staticURL,
             desc : short_desc,
@@ -208,7 +207,7 @@ $(document).ready(function() {
             about : about_you.content
         }
 
-        var xhr = $.ajax('/test/formsubmission',{
+        let xhr = $.ajax('/test/formsubmission',{
             method : 'POST', 
             headers : {
                 'CSRF-Token' : $('meta[name="csrf-token"]').attr('content')

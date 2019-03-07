@@ -12,6 +12,14 @@
     font-family: 'Larsseit-Bold'; }
   #shareTip .modal-body #desc2 {
     font-family: 'Larsseit-Thin'; }
+  #shareTip .modal-body #tippeesDesc {
+    font-family: 'Larsseit-Bold';
+    color: #00d278;
+    text-align: center; }
+  #shareTip .modal-body q {
+    font-family: 'Larsseit-Bold';
+    font-size: 1.8em;
+    color: #00d278; }
   #shareTip .modal-body #facebook {
     margin-bottom: 10px;
     background-color: #3B5998;
