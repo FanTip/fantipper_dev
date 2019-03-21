@@ -195,8 +195,23 @@ $(document).ready(function() {
         let staticURL = $('#staticURL').val();
         let short_desc = $('#short_desc').val();
         let location_now = $('#location_now').val();
+        let tagArray = [];
+        // let tags = $('#option').val().toArray();
+
+        let tags = $(':checkbox:checked')
+            .map(function(){
+                // tagArray.push(this.value);
+                return this.value;
+            })
+            .get();
+
+        for(const tag of tags){
+            tagArray.push(tag);
+        };
 
         about_you = getAboutYou(quill);
+        
+        console.log(typeof tagArray);
 
         let formdata = {
             name : creatorname,
@@ -204,7 +219,8 @@ $(document).ready(function() {
             desc : short_desc,
             username : staticURL,
             location : location_now,
-            about : about_you.content
+            about : about_you.content,
+            tags : JSON.stringify(tagArray)
         }
 
         let xhr = $.ajax('/test/formsubmission',{

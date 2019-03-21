@@ -44,7 +44,7 @@ var personSchema = new Schema({
         creatorUrl : {type : String, required : true},
         creatorDesc : {type : String},
         creatorLocation : {type : String, required : true},
-        creatorCategories :[],
+        creatorCategories :[{type : String}],
         creatorTileImage : {type : String},
         creatorBack : {type : String},
         creatorThumbnail : {type : String},

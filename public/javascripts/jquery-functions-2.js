@@ -5,6 +5,9 @@
  */
 
 $(function(){
+    $('#signup').on('show.bs.modal', function(event){
+        
+    });
     $('#login-form').on('submit', function(event){
         event.preventDefault();
         var csrf = $('#_csrf').val();
@@ -26,6 +29,7 @@ $(function(){
             toastr.success('Logged in successfully!');
             $(location).attr('href', '/profile');
             
+            
         }).fail(function(response){
             toastr.error('Check your yousername/password again!');
         });
@@ -41,17 +45,16 @@ $(function(){
 
     $('#signup-form').on('submit', function(event){
         event.preventDefault();
-        console.log('dhdd');
         var csrf = $('#_csrf').val();
         var name = $('#name').val();
         var email = $('#signup_email').val();
-        var password = $('#signup_password').val();
+        // var password = $('#signup_password').val();
         var _location = $('#location').val();
         var data = {
             _csrf : csrf,
             name : name,
             email : email,
-            password : password,
+            // password : password,
             location : _location
         }
         var xhr = $.ajax({
@@ -60,9 +63,21 @@ $(function(){
             data : data,
             url : '/signup'
         })
-        xhr.done(function(){
-            $(location).attr('href', '/profile');
-            toastr.success('Signing up was sucessful!');
+        xhr.done(function(doc){
+            // $(location).attr('href', '/profile');
+            // toastr.success('Signing up was sucessful!');
+            $('#signup').modal('hide');
+
+            Swal.fire({
+                type: 'success',
+                title: 'Your email (' + doc.email + ') has been saved! We will notify you as soon as we go live!',
+                showConfirmButton: true,
+                confirmButtonColor: '#00d278',
+                confirmButtonText: 'Thanks!',
+                // timer: 1500
+            });
+           
+            
         }).fail(function(response){
             toastr.error('Error occured during signin up');
             

@@ -16,24 +16,19 @@ router.use(csrfProtection);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    console.log('index: ', req.user);
     var username;
     var imagepath;
     if(req.user != undefined){
-        console.log('name: ', req.user);
         username = req.user.name;
         imagepath = req.user.imagepath;
     }
     var objs = [];
-    console.log(res.locals.CreatorUserName);
-    
 
     User.find({'creator.isCreator' : true}).exec(function(err, docs){
         if(err){
             console.log(err);
         }
         if(docs){
-            console.log(docs.length);
             for (i = 0; i < docs.length; i++) {
                 objs.push(docs[i]);
            }
@@ -56,32 +51,31 @@ router.get('/', function(req, res, next) {
 });
 
 
-router.get('/:url', function(req, res, next){
-    var userID = req.params.url;
-    console.log( 'id ',userID);
-    var searchQuery = {
-        'creator.creatorUrl' : userID
+router.get('/:url', async function(req, res, next){
+    try{
+        var userID = req.params.url;
+        var searchQuery = {
+            'creator.creatorUrl' : userID
+        }
+        if(userID){
+            const doc = await User.findOne(searchQuery).exec();
+            const tags = JSON.parse(doc.creator.creatorCategories);
+            res.locals.CreatorName = doc.creator.creatorName;
+            res.locals.CreatorDescription = doc.creator.creatorDesc;
+            res.locals.CreatorUserName = doc.creator.creatorNameuser;
+            res.locals.CreatorURL = doc.creator.creatorUrl;
+            res.locals.CreatorDesc = doc.creator.creatorDesc;
+            res.locals.CreatorAbout = doc.creator.creatorAbout;
+            res.locals.creatorTile = doc.creator.creatorTileImage;
+            res.locals.creatorBack = doc.creator.creatorBack;
+            res.locals.tags = tags
+            res.render('creator/previewmode', { title: 'Creator Profile'});
+        }
+    }catch(e){
+        console.error(e);
+        res.render('creator/previewmode', { title: 'No user found'});
     }
-    if(userID){
-        User.findOne(searchQuery).exec(function(err, doc){
-            console.log(doc);
-            if(doc){
-                res.locals.CreatorName = doc.creator.creatorName;
-                res.locals.CreatorDescription = doc.creator.creatorDesc;
-                res.locals.CreatorUserName = doc.creator.creatorNameuser;
-                res.locals.CreatorURL = doc.creator.creatorUrl;
-                res.locals.CreatorDesc = doc.creator.creatorDesc;
-                res.locals.CreatorAbout = doc.creator.creatorAbout;
-                res.locals.creatorTile = doc.creator.creatorTileImage;
-                res.locals.creatorBack = doc.creator.creatorBack;
-                res.render('creator/previewmode', { title: 'Creator Profile'});
-            }else{
-                next();
-            }
-            
-        });
-        
-    }
+    
     
 });
 

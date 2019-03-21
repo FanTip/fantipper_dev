@@ -36,8 +36,6 @@ const creatorProfile = require('./routes/creatorprofile');
 const selectActiveCreator = require('./routes/selectactivecreator');
 const tippingRouter = require('./routes/tippingRouter');
 const messagRouter = require('./routes/tipmessage');
-
-const profileEngineRouter = require('./routes/profileEngine')
 const CreatorApplication = require('./routes/creatorProfileCreate');
 
 const facebookRouter = require('./routes/facebook-login');
@@ -92,8 +90,6 @@ app.use(function(req, res, next){
     if(req.user.creator.isCreator){
       var temp = req.user.creator.creatorAbout;
       temp = temp.replace(/['"]+/g, '');
-      console.log(req.user.creator.creatorAbout);
-      console.log(temp);
       res.locals.isCreator = req.user.creator.isCreator;
       res.locals.CreatorName = req.user.creator.creatorName;
       res.locals.CreatorDescription = req.user.creator.creatorDesc;
@@ -156,7 +152,6 @@ app.use('/editfanprofile', editFanProfile);
 app.use('/creatorprofile', creatorProfile);
 app.use('/selectactivecreator', selectActiveCreator);
 app.use('/tipping', tippingRouter);
-app.use('/fantipper', profileEngineRouter)
 
 app.use('/api/fantipper', apiRouter); // https://fantipper.herokuapp.com/api/fantipper/
 

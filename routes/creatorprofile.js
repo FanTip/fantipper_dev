@@ -15,9 +15,14 @@ router.get('/',isLoggedIn, function(req, res, next) {
 });
 
 
-router.get('/preview', function(req, res, next){
-  res.render('creator/previewmode', { title: 'Creator Profile', csrfToken : req.csrfToken()});
-  
+router.get('/preview', async function(req, res, next){
+  try{
+    let creator = await User.findById(req.user._id).exec();
+    const tags = JSON.parse(creator.creator.creatorCategories);
+    res.render('creator/previewmode', { title: 'Creator Profile', csrfToken : req.csrfToken(), tags : tags});
+  }catch(e){
+    console.error(e);
+  }
 });
 
 router.post('/updatecreator',isLoggedIn, function(req, res, next){
@@ -52,7 +57,6 @@ router.post('/create',isLoggedIn, function(req, res, next){
         exec(function(err, result){
         console.log(err);
         if(result){
-          console.log('updated');
           // res.status(200).send(result);
           res.redirect('/selectactivecreator');
         }

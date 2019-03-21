@@ -80,7 +80,7 @@
       {{!-- Moments.js intergration --}}
       <script src="/javascripts/library/moments.js"></script>
 
-
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
             <link rel="stylesheet" href='/css/navbar.css'/>
 
 
@@ -168,11 +168,10 @@
                         </div>
                         <div class="modal-body">
                               <h5 class="text-center">Join FanTipper now and start supporting your favourite creators.</h5>
-                              <p class="text-center">Already have an account?<a href="" data-toggle="modal" data-target="#login"
-                                          data-dismiss="modal"> Log In!</a></p>
-                              <p class="text-center" id="beta">During our beta phase we are accepting creators by
-                                    invites only. Get involved by requesting an invite</p>
-                              <div class="form-group">
+                              {{!-- <p class="text-center">Already have an account?<a href="" data-toggle="modal" data-target="#login"
+                                          data-dismiss="modal"> Log In!</a></p> --}}
+                              <p class="text-center" id="beta">During our development phase we are accepting requsts to become a Fantipper. Get involved by signin up now!</p>
+                              {{!-- <div class="form-group">
                                     <hr>
                                     <button type="button" class="btn form-control" id="facebook-button-signup" name="button"><i
                                                 id="i" class="fab fa-facebook-f"></i>SIGN UP WITH FACEBOOK</button>
@@ -180,7 +179,7 @@
                                           name="button"><i id="i" class="fab fa-google"></i>SIGN UP WITH GOOGLE</button>
                                     <hr>
 
-                              </div>
+                              </div> --}}
                               <form class="" id="signup-form">
                                     <div class="form-group">
                                           <input name="name" type="text" id="name" placeholder="Name" class="form-control">
@@ -188,14 +187,14 @@
                                     <div class="form-group">
                                           <input name="email" type="email" id="signup_email" placeholder="Email" class="form-control">
                                     </div>
-                                    <div class="form-group">
+                                    {{!-- <div class="form-group">
                                           <input name="password" type="password" id="signup_password" placeholder="Password"
                                                 class="form-control">
                                     </div>
                                     <div class="form-group">
                                           <input name="confirmpassword" type="password" id="confirmpassword"
                                                 placeholder="Confirm Password" class="form-control">
-                                    </div>
+                                    </div> --}}
                                     <div class="form-group">
                                           <input name="location" type="text" id="location" placeholder="Location" class="form-control">
                                     </div>
@@ -406,9 +405,9 @@
                   </ul>
                   {{else}}
                   <ul class="nav navbar-nav  ml-auto">
-                        <li class="nav-item navbar-right">
+                        {{!-- <li class="nav-item navbar-right">
                               <a href="" class="btn float-sm-right" data-toggle="modal" data-target="#login">LOG IN</a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item navbar-right">
                               <a href="" class="btn btn-success float-sm-right signup" data-toggle="modal" data-target="#signup">SIGN
                                     UP</a>

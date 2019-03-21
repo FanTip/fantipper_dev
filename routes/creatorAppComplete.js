@@ -17,7 +17,6 @@ router.post('/profile',function(req, res, next) {
         if(err){
           console.log(err);
         }
-        console.log(doc);
       });
       return res.send({
         success : true
@@ -50,6 +49,8 @@ router.post('/formsubmission', async function(req, res){
       email : req.user.email
     }
   
+    console.log(req.body.tags)
+
     var saveQuery = { $set : {
       "creator.isCreator" : true,
       "creator.creatorName" : req.body.name,
@@ -58,7 +59,8 @@ router.post('/formsubmission', async function(req, res){
       "creator.creatorLocation" : req.body.location,
       "creator.creatorDesc" : req.body.desc,
       "creator.creatorEmail" : req.user.email,
-      "creator.creatorAbout" : xss(req.body.about)
+      "creator.creatorAbout" : xss(req.body.about),
+      "creator.creatorCategories" : req.body.tags
     }} 
   
     const createUser = User.findOneAndUpdate(searchQuery, saveQuery).exec();
