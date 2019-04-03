@@ -43,6 +43,8 @@ $(function () {
    * 
    */
 
+
+
   $('#signup-form').on('submit', function (event) {
     event.preventDefault();
     var csrf = $('#_csrf').val();
@@ -66,7 +68,9 @@ $(function () {
     xhr.done(function (doc) {
       // $(location).attr('href', '/profile');
       // toastr.success('Signing up was sucessful!');
-      $('#signup').modal('hide');
+     
+      $('#signup-form').trigger('reset');
+      // $('#signup').modal('hide');
 
       Swal.fire({
         type: 'success',
