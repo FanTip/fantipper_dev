@@ -2,7 +2,10 @@
 
 /* Css for signup modal on the layout.hbs */
 
-
+.drab-data { 
+    font-family: 'Larsseit';
+    font-size: 20px;
+}
 
 
 #signup h4 {
