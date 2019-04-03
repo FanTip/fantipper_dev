@@ -4,30 +4,30 @@ var fantipperApp = angular.module('fantipperApp', ['ngRoute']);
 
 angular.module('MyDirectives', []);
 
-fantipperApp.config(function($interpolateProvider) {
+fantipperApp.config(function ($interpolateProvider) {
   $interpolateProvider.startSymbol('{[{');
   $interpolateProvider.endSymbol('}]}');
 });
 
 
-fantipperApp.controller('myCtrl',function($scope, $parse, ) {
+fantipperApp.controller('myCtrl', function ($scope, $parse, ) {
   var year = new Date().getFullYear();
   years = [];
-  for(var i = 0; i < 7; i++){
+  for (var i = 0; i < 7; i++) {
     var temp = year + i;
     years.push(temp);
   }
 
-  var months    = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   monthRange = [];
-  for(var i = 0; i < 12; i++){
-    monthRange.push(months[i] + '('+ (i + 1) + ')'); 
+  for (var i = 0; i < 12; i++) {
+    monthRange.push(months[i] + '(' + (i + 1) + ')');
   }
 
   $scope.months = monthRange;
   $scope.years = years;
-  
-  $scope.edit = function(user){
+
+  $scope.edit = function (user) {
     $scope.header = user.creator.creatorName;
     $scope.image = user.creator.creatorTileImage;
     $scope.creatorEmail = user.creator.creatorEmail;
@@ -58,29 +58,29 @@ fantipperApp.controller('myCtrl',function($scope, $parse, ) {
 // };
 // });
 
-fantipperApp.directive('checkIfNumber', function(){
+fantipperApp.directive('checkIfNumber', function () {
   return {
     require: 'ngModel',
     link: function (scope, element, attr, ngModelCtrl) {
-        function fromUser(text) {
-            if (text) {
-                var transformedInput = text.replace(/[^0-9]/g, '');
+      function fromUser(text) {
+        if (text) {
+          var transformedInput = text.replace(/[^0-9]/g, '');
 
-                if (transformedInput !== text) {
-                    ngModelCtrl.$setViewValue(transformedInput);
-                    ngModelCtrl.$render();
-                }
-                return transformedInput;
-            }
-            return undefined;
-        }            
-        ngModelCtrl.$parsers.push(fromUser);
+          if (transformedInput !== text) {
+            ngModelCtrl.$setViewValue(transformedInput);
+            ngModelCtrl.$render();
+          }
+          return transformedInput;
+        }
+        return undefined;
+      }
+      ngModelCtrl.$parsers.push(fromUser);
     }
-};
+  };
 });
 
 
-fantipperApp.controller('usernameCtrl', function($scope){
+fantipperApp.controller('usernameCtrl', function ($scope) {
   var getUsername = document.getElementById('username').value;
   console.log(getUsername);
   // console.log($scope.creator_username);

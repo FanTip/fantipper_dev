@@ -1,60 +1,62 @@
 <div class="container">
-    <div class="row" style="margin-top:1%;">
-        <div class="col-sm-3" style="border-right : 1px double gray">
-            <ul class="list-group">
-                <li class="list-group">
-                    <span> <a href="/profile"> <img src="{{imagePath}}" alt="..." class="rounded-circle" height="50px" width="50px"></a>
-                    <a href="/editImage" class="glyphicon glyphicon-pencil"></a></span>
-                    {{name}}
-                </li>
-                <li class="list-group">
-                    <a href="/editfanprofile"><i class="fas fa-edit"></i>Edit Profile</a>
-                </li>
-                <li class="list-group">
-                    <a href="/notifications"><i class="fas fa-envelope"></i>Notifications</a>
-                </li>
-                <li class="list-group">
-                    <a href=""><i class="fas fa-certificate"></i>Offers</a>
-                </li>
-                <li class="list-group">
-                    <a href="/messages"><i class="fas fa-comments"></i>Messages</a>
-                </li>
-                <li class="list-group">
-                    <a href="/fantiphistory" id="tiphistory"><i class="fas fa-book"></i>Tip History</a>
-                </li>
-                <li class="list-group">
-                    <a href=""><i class="fas fa-money-check-alt"></i>Account Balance</a>
-                </li>
-                <li class="list-group">
-                    <a href=""><i class="fas fa-users"></i>Groups</a>
-                </li>
-                <div class="dropdown-divider"></div>
-                <li class="list-group">
-                    {{#if isCreator}}
-                        <a href="/creatorprofile">Go to Creator Profile</a>
-                        {{else}}
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCreatorProfile" >Add Creators Profile</button>
-                    {{/if}}
-                </li>
-            </ul>
-        </div>
-
-        <div class="col-sm-9 " id="messageBody">
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Content</th>
-                        <th scope="col">From</th>
-                        <th scope="col">Date</th>
-                    </tr>
-                    <tbody>
-                        <tr id="messagesTableBody">
-
-                        </tr>
-                    </tbody>
-                </thead>
-            </table>
-        </div>
+  <div class="row" style="margin-top:1%;">
+    <div class="col-sm-3" style="border-right : 1px double gray">
+      <ul class="list-group">
+        <li class="list-group">
+          <span> <a href="/profile"> <img src="{{imagePath}}" alt="..." class="rounded-circle" height="50px"
+                width="50px"></a>
+            <a href="/editImage" class="glyphicon glyphicon-pencil"></a></span>
+          {{name}}
+        </li>
+        <li class="list-group">
+          <a href="/editfanprofile"><i class="fas fa-edit"></i>Edit Profile</a>
+        </li>
+        <li class="list-group">
+          <a href="/notifications"><i class="fas fa-envelope"></i>Notifications</a>
+        </li>
+        <li class="list-group">
+          <a href=""><i class="fas fa-certificate"></i>Offers</a>
+        </li>
+        <li class="list-group">
+          <a href="/messages"><i class="fas fa-comments"></i>Messages</a>
+        </li>
+        <li class="list-group">
+          <a href="/fantiphistory" id="tiphistory"><i class="fas fa-book"></i>Tip History</a>
+        </li>
+        <li class="list-group">
+          <a href=""><i class="fas fa-money-check-alt"></i>Account Balance</a>
+        </li>
+        <li class="list-group">
+          <a href=""><i class="fas fa-users"></i>Groups</a>
+        </li>
+        <div class="dropdown-divider"></div>
+        <li class="list-group">
+          {{#if isCreator}}
+          <a href="/creatorprofile">Go to Creator Profile</a>
+          {{else}}
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCreatorProfile">Add
+            Creators Profile</button>
+          {{/if}}
+        </li>
+      </ul>
     </div>
+
+    <div class="col-sm-9 " id="messageBody">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Content</th>
+            <th scope="col">From</th>
+            <th scope="col">Date</th>
+          </tr>
+        <tbody>
+          <tr id="messagesTableBody">
+
+          </tr>
+        </tbody>
+        </thead>
+      </table>
+    </div>
+  </div>
 </div>

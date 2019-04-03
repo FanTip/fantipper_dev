@@ -7,74 +7,76 @@ var xss = require('xss');
 
 
 /* GET home page. */
-router.post('/profile',function(req, res, next) {
-  upload.uploadTile(req, res, function(err){
-    if(!err){
+router.post('/profile', function (req, res, next) {
+  upload.uploadTile(req, res, function (err) {
+    if (!err) {
 
-      var query = { email : req.user.email }
-      var update = { $set : { 'creator.creatorTileImage' : 'uploads/tileImages/' + req.user.email + '.jpg' } }
-      User.findOneAndUpdate(query, update).exec(function(err, doc){
-        if(err){
+      var query = { email: req.user.email }
+      var update = { $set: { 'creator.creatorTileImage': 'uploads/tileImages/' + req.user.email + '.jpg' } }
+      User.findOneAndUpdate(query, update).exec(function (err, doc) {
+        if (err) {
           console.log(err);
         }
       });
       return res.send({
-        success : true
+        success: true
       });
     }
   });
 });
 
-router.post('/background',function(req, res, next) {
-  try{
-    upload.uploadBackground(req, res, function(err){
-      if(!err){
-  
-        var query = { email : req.user.email }
-        var update = { $set : { 'creator.creatorBack' : 'uploads/backgroundImages/' + req.user.email + '.jpg' } }
+router.post('/background', function (req, res, next) {
+  try {
+    upload.uploadBackground(req, res, function (err) {
+      if (!err) {
+
+        var query = { email: req.user.email }
+        var update = { $set: { 'creator.creatorBack': 'uploads/backgroundImages/' + req.user.email + '.jpg' } }
         const uploadImage = User.findOneAndUpdate(query, update).exec();
-        if(uploadImage) return res.send({success : true});
+        if (uploadImage) return res.send({ success: true });
       }
     });
 
-  }catch(e){
+  } catch (e) {
     console.error(e)
   }
 });
 
-router.post('/formsubmission', async function(req, res){
+router.post('/formsubmission', async function (req, res) {
 
-  try{
+  try {
     var searchQuery = {
-      email : req.user.email
+      email: req.user.email
     }
-  
+
     console.log(req.body.tags)
 
-    var saveQuery = { $set : {
-      "creator.isCreator" : true,
-      "creator.creatorName" : req.body.name,
-      "creator.creatorNameuser" : req.body.username,
-      "creator.creatorUrl" :  req.body.url,
-      "creator.creatorLocation" : req.body.location,
-      "creator.creatorDesc" : req.body.desc,
-      "creator.creatorEmail" : req.user.email,
-      "creator.creatorAbout" : xss(req.body.about),
-      "creator.creatorCategories" : req.body.tags
-    }} 
-  
-    const createUser = User.findOneAndUpdate(searchQuery, saveQuery).exec();
-
-    if(createUser){
-      res.send({success : true});
+    var saveQuery = {
+      $set: {
+        "creator.isCreator": true,
+        "creator.creatorName": req.body.name,
+        "creator.creatorNameuser": req.body.username,
+        "creator.creatorUrl": req.body.url,
+        "creator.creatorLocation": req.body.location,
+        "creator.creatorDesc": req.body.desc,
+        "creator.creatorEmail": req.user.email,
+        "creator.creatorAbout": xss(req.body.about),
+        "creator.creatorCategories": req.body.tags
+      }
     }
 
-  }catch(e){
+    const createUser = User.findOneAndUpdate(searchQuery, saveQuery).exec();
+
+    if (createUser) {
+      res.send({ success: true });
+    }
+
+  } catch (e) {
     console.error(e);
   }
 
 
-  
+
 
 });
 

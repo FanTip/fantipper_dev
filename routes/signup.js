@@ -23,18 +23,18 @@ router.use(csrfProtection);
 //   }
 // );
 
-router.post('/', async function(req, res){
-  try{
+router.post('/', async function (req, res) {
+  try {
     let userData = {
-      name : req.body.name,
-      email : req.body.email,
-      location : req.body.location
+      name: req.body.name,
+      email: req.body.email,
+      location: req.body.location
     }
 
     let newUser = await Collect.create(userData);
-  
+
     res.status(200).json(newUser);
-  }catch(e){
+  } catch (e) {
 
   }
 });
@@ -42,16 +42,16 @@ router.post('/', async function(req, res){
 
 module.exports = router;
 
-function isLoggedIn(req, res, next){
-  if(req.isAuthenticated()){
-      return next();
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
   }
   res.redirect('/');
 }
 // check if the user is logged in or not
-function notLoggedIn(req, res, next){
-  if(!req.isAuthenticated()){
-      return next();
+function notLoggedIn(req, res, next) {
+  if (!req.isAuthenticated()) {
+    return next();
   }
   res.redirect('/signup');
 }

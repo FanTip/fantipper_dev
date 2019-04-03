@@ -1,11 +1,11 @@
 // Autocomplete the location
-$(document).ready(function(){
+$(document).ready(function () {
   var cities_au = new Bloodhound({
-    datumTokenizer : Bloodhound.tokenizers.whitespace,
-    queryTokenizer : Bloodhound.tokenizers.whitespace,
-    remote : {
-      url : '/api/cities/search?city=%CITY',
-      wildcard : '%CITY'
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    remote: {
+      url: '/api/cities/search?city=%CITY',
+      wildcard: '%CITY'
     }
   });
 
@@ -19,16 +19,16 @@ $(document).ready(function(){
       minLength: 1,
     },
     {
-      displayKey : 'value',
+      displayKey: 'value',
       source: cities_au.ttAdapter(),
-      display : function (item){
+      display: function (item) {
         return item.city + "," + item.admin + "," + item.country;
       },
-      templates : {
-        notFound : function(){
+      templates: {
+        notFound: function () {
           return '<p">Your location is not available</p>'
         },
-        pending : function(){
+        pending: function () {
           return '<p>Loading...</p>'
         }
       }
@@ -43,16 +43,16 @@ $(document).ready(function(){
       minLength: 1,
     },
     {
-      displayKey : 'value',
+      displayKey: 'value',
       source: cities_au.ttAdapter(),
-      display : function (item){
+      display: function (item) {
         return item.city + "," + item.admin + "," + item.country;
       },
-      templates : {
-        notFound : function(){
+      templates: {
+        notFound: function () {
           return '<p">Your location is not available</p>'
         },
-        pending : function(){
+        pending: function () {
           return '<p>Loading...</p>'
         }
       }
@@ -61,9 +61,9 @@ $(document).ready(function(){
   );
 
 });
-  
-  
-    
+
+
+
 
 
 

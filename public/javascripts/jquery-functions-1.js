@@ -28,16 +28,16 @@ var style = {
 
 // Create an instance of the card Element.
 var card = elements.create('card',
-{
-  hidePostalCode : true,
-  style: style
-});
+  {
+    hidePostalCode: true,
+    style: style
+  });
 
 // Add an instance of the card Element into the `card-element` <div>.
 card.mount('#card-element');
 
 // Handle real-time validation errors from the card Element.
-card.addEventListener('change', function(event) {
+card.addEventListener('change', function (event) {
   var displayError = document.getElementById('card-errors');
   if (event.error) {
     displayError.textContent = event.error.message;
@@ -48,61 +48,61 @@ card.addEventListener('change', function(event) {
 
 const tippingForm = $('#tipping-form');
 
-function submitForm(token){
+function submitForm(token) {
 
-    var tipAmount = $('#tipamount').val();
-    var csrf = $('meta[name="csrf-token"]').attr('content');
-    var creatorEmail = $('#_creatorEmail').val();
+  var tipAmount = $('#tipamount').val();
+  var csrf = $('meta[name="csrf-token"]').attr('content');
+  var creatorEmail = $('#_creatorEmail').val();
 
-    var tipModal = $('#tipCreator');
-    var shareModal = $('#shareTip');
-    var successModal = $('#tipSuccess');
+  var tipModal = $('#tipCreator');
+  var shareModal = $('#shareTip');
+  var successModal = $('#tipSuccess');
 
-    let receiverImage = $('#receiver_image').attr('src');
+  let receiverImage = $('#receiver_image').attr('src');
 
-    var tipBill = $('#tip_bill');
+  var tipBill = $('#tip_bill');
 
-    var payEmail = $('#pay-email').val();
+  var payEmail = $('#pay-email').val();
 
-    var description = $('#description').val();
+  var description = $('#description').val();
 
 
-    var data = {
-        _stripeID : token.id,
-        _csrf : csrf,
-        _amount : tipAmount,
-        _description : description,
-        _email : payEmail,
-        _creatorEmail : creatorEmail,
+  var data = {
+    _stripeID: token.id,
+    _csrf: csrf,
+    _amount: tipAmount,
+    _description: description,
+    _email: payEmail,
+    _creatorEmail: creatorEmail,
 
-    }
+  }
 
-    var xhr = $.ajax({
-        method : 'POST',
-        url : '/tipping/sendtip',
-        crossDomain : false,
-        data : data
-    });
+  var xhr = $.ajax({
+    method: 'POST',
+    url: '/tipping/sendtip',
+    crossDomain: false,
+    data: data
+  });
 
-    xhr.done((Response)=>{
-        tippingForm.trigger('reset');
-        tipModal.modal('hide');
-        shareModal.modal('show');
-        $('#tippeeImgLocation').attr('src', receiverImage)
-        $('#receipt_link').attr('href', Response.receipt_url);
-        // tipBill.append(Response.receipt_url)
-    });
+  xhr.done((Response) => {
+    tippingForm.trigger('reset');
+    tipModal.modal('hide');
+    shareModal.modal('show');
+    $('#tippeeImgLocation').attr('src', receiverImage)
+    $('#receipt_link').attr('href', Response.receipt_url);
+    // tipBill.append(Response.receipt_url)
+  });
 }
 
-function prepareCard(){
-    stripe.createToken(card).then(function(result){
-        if(result.error){
-            var errorElement = document.getElementById('card-errors');
-            errorElement.textContent = result.error.message;
-        }else{
-            submitForm(result.token);
-        }
-    });
+function prepareCard() {
+  stripe.createToken(card).then(function (result) {
+    if (result.error) {
+      var errorElement = document.getElementById('card-errors');
+      errorElement.textContent = result.error.message;
+    } else {
+      submitForm(result.token);
+    }
+  });
 }
 
 // / // Submit the form with the token ID.
@@ -116,14 +116,14 @@ function stripeTokenHandler(token) {
   tippingForm.appendChild(hiddenInput);
 
   // Submit the form
-    submitForm();
+  submitForm();
 }
 
-tippingForm.on('submit', function(event){
-    event.preventDefault();
-    prepareCard();
+tippingForm.on('submit', function (event) {
+  event.preventDefault();
+  prepareCard();
 });
-  
+
 
 
  // $('#tippeeTable').ready(function(){
@@ -137,7 +137,7 @@ tippingForm.on('submit', function(event){
     //         url : '/api/fantipper/tippee',
     //         crossDomain : false
     //     });
-        
+
     //     xhr.done(function(response){
     //     });
 

@@ -5,8 +5,8 @@ var csrfProtection = csrf();
 router.use(csrfProtection);
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('explore', { title: 'Explore',csrfToken : req.csrfToken() });
+router.get('/', function (req, res, next) {
+  res.render('explore', { title: 'Explore', csrfToken: req.csrfToken() });
 });
 
 module.exports = router;
