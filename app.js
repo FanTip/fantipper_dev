@@ -197,7 +197,6 @@ var db = mongoose.connection;
 db.once('open', function () {
   console.log('Connection Successful');
   // app.listen();
-  console.log(app.listen())
 });
 
 
