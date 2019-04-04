@@ -1,3 +1,23 @@
+
+$('#imageVideo').click(function(){
+  $('#myModal').modal('show');
+  $('#player').play();
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
  * jquery functions to get the data from the index page in order to make the tipping 
  */
