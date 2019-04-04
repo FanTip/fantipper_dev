@@ -74,7 +74,7 @@ $(function () {
 
       Swal.fire({
         type: 'success',
-        title: 'Your email (' + doc.email + ') has been saved! We will notify you as soon as we go live!',
+        title: 'Thanks for taking a small step to be a part of a bigger community!',
         showConfirmButton: true,
         confirmButtonColor: '#00d278',
         confirmButtonText: 'Thanks!',
