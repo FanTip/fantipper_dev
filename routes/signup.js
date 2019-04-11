@@ -40,6 +40,8 @@ router.post('/', async function (req, res) {
     //   name: req.body.name
     // }).exec();
 
+    console.log('dcdcds');
+
 
       exists = await Collect.findOne({
         email : req.body.email,
