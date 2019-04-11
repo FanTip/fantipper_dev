@@ -9,6 +9,35 @@ html, body {
     background-color: inherit;
 }
 
+
+.modal-header-1 .close {
+    padding: 1rem;
+    margin: -1rem -1rem -1rem auto;
+    color: #f5f5f5;
+    font-size: 40px;
+}
+/* button.close {
+    padding: 0;
+    background-color: transparent;
+    border: 0px;
+    -webkit-appearance: button;
+    font-size: 40px;
+    color: white;
+} */
+
+.modal-header-1 {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 0px solid #e9ecef;
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem;
+}
+
 footer{
     /* margin-top: 9%; */
 
