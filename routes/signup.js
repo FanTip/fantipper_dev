@@ -35,17 +35,16 @@ router.post('/', async function (req, res) {
     let exists;
 
     
-    exists = await Collect.findOne({
-      email: req.body.email,
-      name: req.body.name
-    }).exec();
+    // exists = await Collect.findOne({
+    //   email: req.body.email,
+    //   name: req.body.name
+    // }).exec();
 
 
-    if(_.isEmpty(exists)){
       exists = await Collect.findOne({
         email : req.body.email,
       }).exec();
-    }
+    
     
 
     console.log(exists)
