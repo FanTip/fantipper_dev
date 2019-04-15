@@ -1,16 +1,8 @@
 
-$('#imageVideo').click(function(){
+$('#imageVideo').click(function () {
   $('#myModal').modal('show');
   $('#player').play();
 })
-
-
-
-
-
-
-
-
 
 
 
@@ -144,24 +136,3 @@ tippingForm.on('submit', function (event) {
   prepareCard();
 });
 
-
-
- // $('#tippeeTable').ready(function(){
-    //     var xhr = $.ajax({
-    //         type : 'GET',
-    //         url : '/api/fantipper/tipper',
-    //         crossDomain : false
-    //     });
-    //     var xhr1 = $.ajax({
-    //         type : 'GET',
-    //         url : '/api/fantipper/tippee',
-    //         crossDomain : false
-    //     });
-
-    //     xhr.done(function(response){
-    //     });
-
-    //     xhr1.done(function(response){
-    //     });
-
-    // });
