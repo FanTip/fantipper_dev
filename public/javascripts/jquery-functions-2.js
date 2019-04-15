@@ -43,6 +43,12 @@ $(function () {
    * 
    */
 
+  $('#myModal').on('hidden.bs.modal', function () {
+    console.log('vbhfbhd');
+    let src = "https://player.vimeo.com/video/148051964";
+    let iframe = $('.embed-responsive-item');
+    iframe.attr('src', src);
+  })
 
 
   $('#signup-form').on('submit', function (event) {
@@ -59,33 +65,57 @@ $(function () {
       // password : password,
       location: _location
     }
-    var xhr = $.ajax({
-      type: 'POST',
-      crossDomain: false,
-      data: data,
-      url: '/signup'
-    })
-    xhr.done(function (doc) {
-      // $(location).attr('href', '/profile');
-      // toastr.success('Signing up was sucessful!');
-     
-      $('#signup-form').trigger('reset');
-      // $('#signup').modal('hide');
 
+    if (name === '' || email === ' ') {
       Swal.fire({
-        type: 'success',
-        title: 'Thanks for taking a small step to be a part of a bigger community!',
-        showConfirmButton: true,
-        confirmButtonColor: '#00d278',
-        confirmButtonText: 'Thanks!',
-        // timer: 1500
+        type: 'error',
+        title: 'Oops...',
+        text: 'You have to enter your email and your name!',
+      })
+    } else {
+      var xhr = $.ajax({
+        type: 'POST',
+        crossDomain: false,
+        data: data,
+        url: '/signup'
+      })
+      xhr.done(function (doc) {
+        // $(location).attr('href', '/profile');
+        // toastr.success('Signing up was sucessful!');
+        console.log(doc);
+
+        $('#signup-form').trigger('reset');
+        // $('#signup').modal('hide');
+
+        if(doc.state){
+          Swal.fire({
+            type: 'success',
+            title: 'Email found! ' + '\n Email : ' + doc.data.email + '\n You are already in our mailing list',
+            showConfirmButton: true,
+            confirmButtonColor: '#00d278',
+            confirmButtonText: 'Thanks!',
+            // timer: 1500
+          });
+        }else{
+          Swal.fire({
+            type: 'success',
+            title: 'Thanks for taking a small step to be a part of a bigger community!',
+            showConfirmButton: true,
+            confirmButtonColor: '#00d278',
+            confirmButtonText: 'Thanks!',
+            // timer: 1500
+          });
+        }
+        
+
+
+      }).fail(function (response) {
+        toastr.error('Error occured during signin up');
+
       });
+    }
 
 
-    }).fail(function (response) {
-      toastr.error('Error occured during signin up');
-
-    });
   });
 
 

@@ -3,6 +3,7 @@ var router = express.Router();
 var csrf = require('csurf');
 var csrfProtection = csrf();
 var passport = require('passport');
+var _ = require('lodash')
 
 let Collect = require('../models/userCollect');
 
@@ -31,9 +32,36 @@ router.post('/', async function (req, res) {
       location: req.body.location
     }
 
-    let newUser = await Collect.create(userData);
+    let exists;
 
-    res.status(200).json(newUser);
+    
+    // exists = await Collect.findOne({
+    //   email: req.body.email,
+    //   name: req.body.name
+    // }).exec();
+
+    console.log('dcdcds');
+
+
+      exists = await Collect.findOne({
+        email : req.body.email,
+      }).exec();
+    
+    
+
+    console.log(exists)
+    let newUser;
+
+    if (_.isEmpty(exists)) {
+      newUser = await Collect.create(userData);
+    }
+
+    let serverRes = {
+      data: newUser || exists,
+      state: exists ? true : false
+    }
+
+    res.status(200).json(serverRes);
   } catch (e) {
 
   }

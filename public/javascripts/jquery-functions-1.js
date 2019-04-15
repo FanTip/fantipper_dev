@@ -1,7 +1,6 @@
 
 $('#imageVideo').click(function () {
   $('#myModal').modal('show');
-  $('#player').play();
 })
 
 
