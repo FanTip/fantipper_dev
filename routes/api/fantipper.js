@@ -4,7 +4,7 @@ var router = express.Router();
 var tipper = require('../../models/tipper');
 var tippee = require('../../models/tippee');
 
-router.get('/', async function (req, res) {
+router.get('/:email', async function (req, res) {
   try {
     let users = await user.find({}).exec()
     userlib = [];
@@ -16,8 +16,12 @@ router.get('/', async function (req, res) {
       }
       userlib.push(data)
     }
-
-    res.status(200).send(userlib);
+    if(req.params.email == 'ash@fantipper.com' || req.params.email == 'nick@fantipper.com'){
+      res.status(200).send(userlib);
+    }else{
+      res.status(401).json("Unauthorized!")
+    }
+    
   }
   catch (e) {
     console.log(e);
