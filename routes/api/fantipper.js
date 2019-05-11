@@ -4,17 +4,25 @@ var router = express.Router();
 var tipper = require('../../models/tipper');
 var tippee = require('../../models/tippee');
 
-router.get('/', function (req, res) {
-  user.find()
-    .exec(function (err, resUser) {
-      if (err) {
-        res.status(500).send(err);
-      } else {
-        res.status(200).send(resUser);
+router.get('/', async function (req, res) {
+  try {
+    let users = await user.find({}).exec()
+    userlib = [];
+    for (usr of users) {
+      let data = {
+        name: usr.name,
+        email: usr.email,
+        id: usr._id
       }
-    });
-});
+      userlib.push(data)
+    }
 
+    res.status(200).send(userlib);
+  }
+  catch (e) {
+    console.log(e);
+  }
+});
 
 router.post('/', function (req, res) {
   user.findOne({ email: req.body.email }).exec(
@@ -106,6 +114,7 @@ router.get('/tippee', function () {
     }
   });
 });
+
 
 
 module.exports = router;

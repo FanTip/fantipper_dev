@@ -58,5 +58,8 @@
     "typeahead": "^0.2.2",
     "typeahead.js": "^0.11.1",
     "xss": "^1.0.3"
+  },
+  "devDependencies": {
+    "nodemailer": "^6.1.1"
   }
 }
