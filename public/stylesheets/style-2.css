@@ -44,8 +44,9 @@ footer{
     padding-left: 100px;
     background-color: #414042;
     font-family: 'Larsseit';
-    position: relative;
+    position: absolute;
     bottom: 0;
+    widows: 100%;
 }
 
 #mainpage-btn{

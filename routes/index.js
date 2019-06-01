@@ -54,6 +54,15 @@ router.get('/', function (req, res, next) {
 router.get('/:url', async function (req, res, next) {
   try {
     var userID = req.params.url;
+    
+    if(userID === "explore"){
+      res.render('explore', {title : 'Explore Fantipper'});
+    }
+    
+    if(userID === 'learn'){
+      res.render('learn', {title: 'Learn about Fantipper'});
+    }
+
     var searchQuery = {
       'creator.creatorUrl': userID
     }
