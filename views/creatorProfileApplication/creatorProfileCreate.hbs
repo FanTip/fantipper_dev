@@ -123,7 +123,12 @@
                     {{!-- ng-show="part_2" --}}
                     <div id="profileImage">
                         <label class="label" >
-                            <img src="../{{creatorTile}}" alt="Creator avatar" class="rounded" id="avatar">
+
+                            {{#if creatorTile}}
+                                <img src="../{{creatorTile}}" alt="Creator avatar" class="rounded" id="avatar">
+                            {{else}}
+                                <img src="/images/upload_icon.png" alt="Creator avatar" class="rounded" id="avatar" height="600" width="600">
+                            {{/if}}
                             <input type="file" class="sr-only" name="image" id="input" accept="image/*">
                         </label>
                         <div class="progress">
