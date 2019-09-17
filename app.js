@@ -46,7 +46,7 @@ const googleRouter = require('./routes/google-login');
 const fanTipHistory = require('./routes/fantiphistory');
 const creatorTipHistory = require('./routes/creatortiphistory');
 
-const stripeRouter  = require('./routes/api/stripe');
+const stripeRouter = require('./routes/api/stripe');
 // Test router for image upload
 
 const test = require('./routes/creatorAppComplete');
@@ -62,8 +62,8 @@ dotenv.config()
 app.set('views', path.join(__dirname, 'views'));
 // app.engine('.hbs', exphbs({defaultLayout: 'layout'}));
 app.set('view engine', 'hbs', exphbs({
-  defaultLayout : 'layout',
-  layoutsDir : 'views/profile'
+    defaultLayout: 'layout',
+    layoutsDir: 'views/profile'
 }));
 
 
@@ -75,52 +75,50 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(validator());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({secret:'fantipper', resave:false, saveUninitialized: false}));
+app.use(session({ secret: 'fantipper', resave: false, saveUninitialized: false }));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(function(req, res, next){
-  res.locals.login = req.isAuthenticated();
-  if(req.isAuthenticated()){
-    
-    res.locals.imagePath = req.user.imagepath;
-    res.locals.email = req.user.email;
-    res.locals.name = req.user.name;
-    res.locals.description = req.user.description;
-    res.locals.location = req.user.location;
-    if(req.user.creator.isCreator){
-      var temp = req.user.creator.creatorAbout;
-      temp = temp.replace(/['"]+/g, '');
-      console.log(req.user.creator.creatorAbout);
-      console.log(temp);
-      res.locals.isCreator = req.user.creator.isCreator;
-      res.locals.CreatorName = req.user.creator.creatorName;
-      res.locals.CreatorDescription = req.user.creator.creatorDesc;
-      res.locals.CreatorUserName = req.user.creator.creatorNameuser;
-      res.locals.CreatorURL = req.user.creator.creatorUrl;
-      res.locals.CreatorDesc = req.user.creator.creatorDesc;
-      res.locals.CreatorAbout = temp;
-      res.locals.facebookID = req.user.facebookID;
-      res.locals.creatorTile = req.user.creator.creatorTileImage;
-      res.locals.creatorBack = req.user.creator.creatorBack;
-      res.locals.image1 = req.user.image1;
-      res.locals.image2 = req.user.image2;
+app.use(function(req, res, next) {
+    res.locals.login = req.isAuthenticated();
+    if (req.isAuthenticated()) {
+
+        res.locals.imagePath = req.user.imagepath;
+        res.locals.email = req.user.email;
+        res.locals.name = req.user.name;
+        res.locals.description = req.user.description;
+        res.locals.location = req.user.location;
+        if (req.user.creator.isCreator) {
+            var temp = req.user.creator.creatorAbout;
+            temp = temp.replace(/['"]+/g, '');
+            res.locals.isCreator = req.user.creator.isCreator;
+            res.locals.CreatorName = req.user.creator.creatorName;
+            res.locals.CreatorDescription = req.user.creator.creatorDesc;
+            res.locals.CreatorUserName = req.user.creator.creatorNameuser;
+            res.locals.CreatorURL = req.user.creator.creatorUrl;
+            res.locals.CreatorDesc = req.user.creator.creatorDesc;
+            res.locals.CreatorAbout = temp;
+            res.locals.facebookID = req.user.facebookID;
+            res.locals.creatorTile = req.user.creator.creatorTileImage;
+            res.locals.creatorBack = req.user.creator.creatorBack;
+            res.locals.image1 = req.user.image1;
+            res.locals.image2 = req.user.image2;
+        }
+        res.locals.CardOption = req.user.card.isCard;
+        if (req.user.card.isCard) {
+            res.locals.cardOptions = req.user.card.isCard;
+            res.locals.cardName = req.user.card.cardName;
+            res.locals.cardNumber = req.user.card.cardNumber;
+            res.locals.cardExp = req.user.card.cardExpNum;
+            res.locals.cardCVV = req.user.card.cvvNum;
+        }
     }
-    res.locals.CardOption = req.user.card.isCard;
-    if(req.user.card.isCard){
-      res.locals.cardOptions = req.user.card.isCard;
-      res.locals.cardName = req.user.card.cardName;
-      res.locals.cardNumber = req.user.card.cardNumber;
-      res.locals.cardExp = req.user.card.cardExpNum;
-      res.locals.cardCVV = req.user.card.cvvNum;
-    }
-  }
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', '*');
-  res.setHeader('Access-Control-Allow-Headers', 'api-key,content-type, Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  next();
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'api-key,content-type, Authorization');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
 });
 
 
@@ -130,7 +128,7 @@ app.use('/quill', express.static(path.join(__dirname, 'node_modules/quill/dist')
 
 // Path to typeahead and bloodhound tokenizer
 app.use('/typeahead', express.static(path.join(__dirname, 'node_modules/typeahead.js/dist')));
-app.use('/bloodhound', express.static(path.join(__dirname,'node_modules/bloodhound/index.js')));
+app.use('/bloodhound', express.static(path.join(__dirname, 'node_modules/bloodhound/index.js')));
 
 
 app.use('/socket', express.static(path.join(__dirname, 'node_modules/socket.io/lib')));
@@ -179,28 +177,28 @@ app.use('/test', test);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  // next(createError(404));
-  res.render('pagenotfound');
+    // next(createError(404));
+    res.render('pagenotfound');
 });
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 
 
-mongoose.connect(process.env.MONGODB_URI);
-// mongoose.connect('mongodb://localhost:27017/fantipper');
+// mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect('mongodb://localhost:27017/fantipper');
 var db = mongoose.connection;
-db.once('open', function(){
-  console.log('Connection Successful');
+db.once('open', function() {
+    console.log('Connection Successful');
 });
 
 
