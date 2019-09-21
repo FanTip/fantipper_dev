@@ -35,7 +35,6 @@ router.post('/create',isLoggedIn, function(req, res, next){
       var errors = [];
       req.validationErrors().forEach(function(err){
         errors.push(err.msg);
-        console.log(err.msg);
       });
      }
       User.findByIdAndUpdate(
