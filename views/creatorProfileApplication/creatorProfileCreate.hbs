@@ -125,9 +125,9 @@
                         <label class="label" >
 
                             {{#if creatorTile}}
-                                <img src="../{{creatorTile}}" alt="Creator avatar" class="rounded" id="avatar">
+                                <img src="../{{creatorTile}}" alt="Creator avatar" class="rounded" id="avatar" height="500" width="500">
                             {{else}}
-                                <img src="/images/upload_icon.png" alt="Creator avatar" class="rounded" id="avatar" height="600" width="600">
+                                <img src="/images/upload1.png" alt="Creator avatar" id="avatar" height="100" width="100">
                             {{/if}}
                             <input type="file" class="sr-only" name="image" id="input" accept="image/*">
                         </label>
@@ -163,7 +163,11 @@
                     <div id="backgroundImage">
                         {{!-- Implemeting background image --}}
                         <label class="label" >
-                            <img src="../{{creatorBack}}" alt="background image" class="rounded" id="background" width="300" height="200">
+                            {{#if creatorBack}}
+                                <img src="../{{creatorBack}}" alt="background image" class="rounded" id="background" width="300" height="200">
+                            {{else}}
+                                <img src="/images/upload1.png"alt="background image" class="rounded" id="background"  height="100" width="100">
+                            {{/if}}
                             <input type="file" class="sr-only" name="image" id="background-input" accept="image/*">
                         </label>
                         <div class="background-progress">
