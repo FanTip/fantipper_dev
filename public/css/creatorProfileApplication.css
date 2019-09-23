@@ -1,5 +1,8 @@
-.container-fluid {
+#application {
   padding-top: 6%; }
+
+.container-fluid {
+  padding-top: 3%; }
 
 .footer .container-fluid {
   margin-top: 0; }
