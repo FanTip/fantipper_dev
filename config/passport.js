@@ -53,8 +53,6 @@ passport.use('local.signup', new LocalStrategy({
         newUser.creator.creatorEmail = 'None Provided';
         newUser.creator.creatorTileImage = '/images/example.jpg';
         newUser.card.isCard = false;
-
-        console.log('nme::',req.param('name'));
         newUser.save(function(err, result){
             if(err){
                 return done(err);

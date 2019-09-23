@@ -51,7 +51,6 @@ router.post('/create',isLoggedIn, function(req, res, next){
         exec(function(err, result){
         console.log(err);
         if(result){
-          console.log('updated');
           // res.status(200).send(result);
           res.redirect('/selectactivecreator');
         }

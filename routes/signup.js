@@ -6,9 +6,7 @@ var passport = require('passport');
 
 router.use(csrfProtection);
 
-router.use('/', notLoggedIn, function(req, res, next){
-  console.log('var: ', req.session.errors);
-  
+router.use('/', notLoggedIn, function(req, res, next){  
   next();
 });
 
@@ -21,8 +19,6 @@ router.post('/', passport.authenticate('local.signup', {failWithError : true, fa
     return res.json('/profile');
   },
   function(err, req, res, next){
-    console.log('err', err);
-    console.log(req.flash.error);
     if(req.xhr){return json(req.session.errors);}
     return res.redirect('/');
   }

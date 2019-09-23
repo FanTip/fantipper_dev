@@ -53,7 +53,6 @@ router.post('/', function(req, res, next){
 });
 
 router.post('/creatorprofileimage', fileUpload.single('avatar') ,function(req, res){
-    console.log(req.file);
 });
 
 

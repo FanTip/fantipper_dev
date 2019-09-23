@@ -56,7 +56,6 @@ router.post('/updatecard', isLoggedIn, function(req, res, next){
       res.send(err);
     }
     if(result){
-      console.log(result);
       res.redirect('/editfanprofile');
     }
   });
@@ -85,13 +84,11 @@ router.post('/changepassword', isLoggedIn, function(req, res, next){
     var query = {
       password : newEncryptedPassword
     }
-    console.log(query);
     User.findByIdAndUpdate(req.user._id, query,{new: true}, function(err, result){
       if(err){
         console.log(err);
         res.send(err);
       }
-      console.log(result);
       res.redirect('/editfanprofile');
     });
   }
