@@ -82,8 +82,6 @@ fantipperApp.directive('checkIfNumber', function(){
 
 fantipperApp.controller('usernameCtrl', function($scope){
   var getUsername = document.getElementById('username').value;
-  console.log(getUsername);
-  // console.log($scope.creator_username);
 });
 
 // // Removes white spaces in the creatorProfileCreate file in order to generate the creator url

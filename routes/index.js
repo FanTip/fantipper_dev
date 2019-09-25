@@ -16,24 +16,19 @@ router.use(csrfProtection);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    console.log('index: ', req.user);
     var username;
     var imagepath;
     if(req.user != undefined){
-        console.log('name: ', req.user);
         username = req.user.name;
         imagepath = req.user.imagepath;
     }
-    var objs = [];
-    console.log(res.locals.CreatorUserName);
-    
+    var objs = [];    
 
     User.find({'creator.isCreator' : true}).exec(function(err, docs){
         if(err){
             console.log(err);
         }
         if(docs){
-            console.log(docs.length);
             for (i = 0; i < docs.length; i++) {
                 objs.push(docs[i]);
            }
@@ -49,7 +44,6 @@ router.get('/', function(req, res, next) {
         io.on('connection', function(socket){
             socket.emit('news',{hello : 'world'});
             socket.on('on other event', function(data){
-                console.log(data)
             });
         });
     });
@@ -58,13 +52,11 @@ router.get('/', function(req, res, next) {
 
 router.get('/:url', function(req, res, next){
     var userID = req.params.url;
-    console.log( 'id ',userID);
     var searchQuery = {
         'creator.creatorUrl' : userID
     }
     if(userID){
         User.findOne(searchQuery).exec(function(err, doc){
-            console.log(doc);
             if(doc){
                 res.locals.CreatorName = doc.creator.creatorName;
                 res.locals.CreatorDescription = doc.creator.creatorDesc;

@@ -59,7 +59,6 @@ window.addEventListener('DOMContentLoaded', function () {
         canvas.toBlob(function (blob) {
           var formData = new FormData();
           formData.append('avatar', blob, 'avatar.jpg');
-          console.log(formData);
           $.ajax('/creator/application', {
             method: 'POST',
             data: formData,

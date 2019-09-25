@@ -1,7 +1,11 @@
 // // Implemetations for the creatorProfileCreate
 
+
+
 window.addEventListener('DOMContentLoaded', function(){
 
+    $('[data-toggle="tooltip"]').tooltip();   
+    
     /**
      * Cropping image functions
      */
@@ -18,8 +22,6 @@ window.addEventListener('DOMContentLoaded', function(){
     $progress.hide();
 
     let cropper;
-
-    $('[data-toggle = "tooltip"]').tooltip();
 
     input.addEventListener('change', function(e){
         let files = e.target.files;

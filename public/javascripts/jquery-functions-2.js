@@ -15,7 +15,6 @@ $(function(){
             email : email,
             password : password
         }
-        console.log(data);
         var xhr = $.ajax({
             type : 'POST',
             crossDomain : false,
@@ -41,7 +40,6 @@ $(function(){
 
     $('#signup-form').on('submit', function(event){
         event.preventDefault();
-        console.log('dhdd');
         var csrf = $('#_csrf').val();
         var name = $('#name').val();
         var email = $('#signup_email').val();

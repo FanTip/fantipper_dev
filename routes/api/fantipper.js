@@ -54,7 +54,6 @@ router.get('/found/:username', function(req, res, next){
 });
 
 router.get('/:email', function(req, res, next){
-    console.log(req.param.email);
     var searchQuery = {
         'email' : req.params.email
     }
@@ -69,9 +68,6 @@ router.get('/:email', function(req, res, next){
 });
 
 router.get('/:email/:password', function(req, res, next){
-    console.log(req.params.email);
-    console.log(req.params.password);
-
     if(req.params.email && req.params.password){
         user.findOne({email:req.params.email})
         .exec(function(err, resUser){
@@ -101,7 +97,6 @@ router.get('/tipper', function(req, res, next){
 router.get('/tippee', function(){
     tippee.find({tipeeID : req.user._id}).populate('tipeeID').exec(function(err, tippee){
         if(req.xhr){
-            console.log('req',req.xhr);
             res.status(200).send(tippee);;
         }
     });

@@ -12,7 +12,6 @@ router.get('/', isLoggedIn, function(req, res, next) {
 });
 
 router.post('/', function(req, res, next){
-  console.log(req.body);
   User.findByIdAndUpdate(
     req.user._id,
     {

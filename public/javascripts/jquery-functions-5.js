@@ -19,7 +19,6 @@ $(window).load(function(){
 
         });
         for(i=0; i<response.length; i++) {
-            console.log(response)
             var row = $('<tr>').text( (i + 1) + response[i].content + response[i].messageFrom + response[i].sentDate);
             tableBody.append(row);
         }

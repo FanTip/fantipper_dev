@@ -17,7 +17,6 @@ router.post('/profile',function(req, res, next) {
         if(err){
           console.log(err);
         }
-        console.log(doc);
       });
       return res.send({
         success : true

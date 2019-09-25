@@ -10,7 +10,6 @@ passport.use('google', new googleStrategy({
     profileFields : ['emails','picture.type(large)','name']
 },
     function(accessToken, refreshToken, profile, done){
-        console.log(profile);
         User.findOne({'googleID' : profile.id}, function(err, user){
             if(err){
               return done(err);
@@ -18,7 +17,6 @@ passport.use('google', new googleStrategy({
             if(user){
               return done(null, user);
             }else{
-                console.log(profile);
               var NewUser = new User();
               NewUser._id = new mongoose.Types.ObjectId();
               NewUser.googleID = profile.id;
