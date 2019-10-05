@@ -53,6 +53,8 @@ const test = require('./routes/creatorAppComplete');
 
 // 
 
+const categories_api = require('./routes/api/get_set_categories');
+
 const app = express();
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon', 'favicon.ico')));
 
@@ -69,7 +71,7 @@ app.set('view engine', 'hbs', exphbs({
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(validator());
@@ -104,6 +106,7 @@ app.use(function(req, res, next) {
             res.locals.creatorBack = req.user.creator.creatorBack;
             res.locals.image1 = req.user.image1;
             res.locals.image2 = req.user.image2;
+            // req.locals.categories = req.user.creator.creatorCategories;
         }
         res.locals.CardOption = req.user.card.isCard;
         if (req.user.card.isCard) {
@@ -159,6 +162,8 @@ app.use('/fantipper', profileEngineRouter)
 app.use('/api/fantipper', apiRouter); // https://fantipper.herokuapp.com/api/fantipper/
 
 app.use('/api/cities', searchCitiesRouter);
+
+app.use('/api/categories', categories_api);
 
 app.use('/creator/application', CreatorApplication);
 

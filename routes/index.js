@@ -51,6 +51,7 @@ router.get('/', function(req, res, next) {
 
 
 router.get('/:url', function(req, res, next){
+    
     var userID = req.params.url;
     var searchQuery = {
         'creator.creatorUrl' : userID
@@ -66,7 +67,9 @@ router.get('/:url', function(req, res, next){
                 res.locals.CreatorAbout = doc.creator.creatorAbout;
                 res.locals.creatorTile = doc.creator.creatorTileImage;
                 res.locals.creatorBack = doc.creator.creatorBack;
-                res.render('creator/previewmode', { title: 'Creator Profile'});
+                res.locals.creatorCategories = doc.creator.creatorCategories;
+                
+                res.render('creator/previewmode', { title: 'Creator Profile', categories : res.locals.creatorCategories});
             }else{
                 next();
             }

@@ -15,11 +15,7 @@ router.get('/', function(req, res, next){
           res.render('creator/creatortiphistory',{tippeedata : JSON.stringify(tippee) , tipperdata : JSON.stringify(tipper)});
         });
       });
-    
-      
-
-    //   res.render('fan/fantiphistory',{tippeedata : tippee , tipperdata : tipper});    
-    
+        
     console.log('tips:', tips);
 
 });
