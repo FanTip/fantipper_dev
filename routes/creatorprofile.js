@@ -1,26 +1,32 @@
-var express = require('express');
-var router = express.Router();
-var csrf = require('csurf');
-var mongoose = require('mongoose');
-var csrfProtection = csrf();
-var passport = require('passport');
-
+let express = require('express');
+let router = express.Router();
+let csrf = require('csurf');
+let mongoose = require('mongoose');
+let csrfProtection = csrf();
+let passport = require('passport');
 router.use(csrfProtection);
 var User = require('../models/user');
 
 
 /* GET home page. */
-router.get('/',isLoggedIn, function(req, res, next) {
-  res.render('creator/creatorindex', { title: 'Creator', csrfToken : req.csrfToken()});
+router.get('/', isLoggedIn,async function(req, res, next) {
+  let user = await User.findById(req.user._id).exec();
+   
+  let categories = user.creator.creatorCategories;
+  res.render('creator/creatorindex', { title: 'Creator', csrfToken : req.csrfToken(), categories : categories});
 });
 
 
-router.get('/preview', function(req, res, next){
-  res.render('creator/previewmode', { title: 'Creator Profile', csrfToken : req.csrfToken()});
+router.get('/preview', isLoggedIn, async function(req, res, next){
+  
+  let user = await User.findById(req.user._id).exec();
+   
+  let categories = user.creator.creatorCategories;
+  res.render('creator/previewmode', { title: 'Creator Profile', csrfToken : req.csrfToken(), categories : categories});
   
 });
 
-router.post('/updatecreator',isLoggedIn, function(req, res, next){
+router.post('/updatecreator', isLoggedIn, function(req, res, next){
   User.findByIdAndUpdate(req.user._id,{
     $set:{'creator.creatorCategories' : req.body.name}
   }).exec(function(err, result){
@@ -28,7 +34,7 @@ router.post('/updatecreator',isLoggedIn, function(req, res, next){
   });
 });
 
-router.post('/create',isLoggedIn, function(req, res, next){
+router.post('/create', isLoggedIn, function(req, res, next){
      req.checkBody('creator_name', 'Invalid Creator name').notEmpty();
      req.checkBody('creator_email', 'Invalid Email address').notEmpty().isEmail();
      if(req.validationErrors()){

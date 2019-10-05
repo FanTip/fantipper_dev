@@ -6,8 +6,11 @@
                 <h2>{{CreatorName}}</h2>
                 <h4>{{location}}</h4>
                 <h3>
-                    <span class="category-token">Design</span>
-                    <span class="category-token">Design</span>
+                    {{#each categories}}
+                    <span class="category-token">{{this}}</span>
+                    {{/each}}
+                    {{!-- <span class="category-token">Design</span>
+                    <span class="category-token">Design</span> --}}
                 </h3>
                 <div class="creator-share">
                     <button id="share-facebook"><i class="fab fa-facebook-f"></i>Share</button>

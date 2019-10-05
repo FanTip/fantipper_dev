@@ -7,10 +7,9 @@ var xss = require('xss');
 
 
 /* GET home page. */
-router.post('/profile',function(req, res, next) {
+router.post('/profile', isLoggedIn, function(req, res, next) {
   upload.uploadTile(req, res, function(err){
     if(!err){
-
       var query = { email : req.user.email }
       var update = { $set : { 'creator.creatorTileImage' : 'uploads/tileImages/' + req.user.email + '.jpg' } }
       User.findOneAndUpdate(query, update).exec(function(err, doc){
@@ -25,7 +24,7 @@ router.post('/profile',function(req, res, next) {
   });
 });
 
-router.post('/background',function(req, res, next) {
+router.post('/background', isLoggedIn, function(req, res, next) {
   try{
     upload.uploadBackground(req, res, function(err){
       if(!err){
@@ -57,7 +56,8 @@ router.post('/formsubmission', async function(req, res){
       "creator.creatorLocation" : req.body.location,
       "creator.creatorDesc" : req.body.desc,
       "creator.creatorEmail" : req.user.email,
-      "creator.creatorAbout" : xss(req.body.about)
+      "creator.creatorAbout" : xss(req.body.about),
+      "creator.creatorCategories" : req.body.categories
     }} 
   
     const createUser = User.findOneAndUpdate(searchQuery, saveQuery).exec();
@@ -69,14 +69,13 @@ router.post('/formsubmission', async function(req, res){
   }catch(e){
     console.error(e);
   }
-
-
   
-
 });
 
-
-
-
-
 module.exports = router;
+function isLoggedIn(req, res, next){
+  if(req.isAuthenticated()){
+      return next();
+  }
+  res.redirect('/');
+}

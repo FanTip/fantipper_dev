@@ -184,6 +184,7 @@ function getAboutYou(quill){
     }
 }
 
+
 $(document).ready(function() {
 
     let quill = initEditor();
@@ -200,13 +201,21 @@ $(document).ready(function() {
 
         about_you = getAboutYou(quill);
 
+        var categories = [{}];
+
+        $(":checkbox:checked").each(function(){
+            categories.push($(this).val());
+        });
+
+
         let formdata = {
             name : creatorname,
             url : staticURL,
             desc : short_desc,
             username : staticURL,
             location : location_now,
-            about : about_you.content
+            about : about_you.content,
+            categories :categories 
         }
 
         let xhr = $.ajax('/test/formsubmission',{
