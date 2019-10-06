@@ -109,7 +109,7 @@ window.addEventListener('DOMContentLoaded', function() {
                     },
                     error: function() {
                         avatar.src = initialAvatarURL;
-                        toastr.error('nope');
+                        toastr.error('Problem uploading Background image');
                     },
                     complete: function() {
                         $backProgress.hide();
