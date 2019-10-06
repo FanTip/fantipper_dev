@@ -13,23 +13,34 @@ router.get('/', isLoggedIn, async function(req, res, next) {
   res.render('creator/selectactivecreator', { title: 'Edit', csrfToken : req.csrfToken(), categories : categories });
 });
 
-router.post('/', function(req, res, next){
-  User.findByIdAndUpdate(
-    req.user._id,
-    {
-      $set:{
-      'creator.creatorName' : req.body.fullname,
-      'creator.creatorDesc' : req.body.shortdesc,
-      'creator.creatorNameuser' : req.body.username,
-      'creator.creatorEmail' : req.user.email,
+router.post('/', isLoggedIn, async function(req, res, next){
+  let status;
+  let response;
+  try{
+    console.log(req.body);
+    let user = await User.findByIdAndUpdate(
+      req.user._id,
+      {
+        $set:{
+        'creator.creatorName' : req.data.fullname,
+        'creator.creatorDesc' : req.data.shortdesc,
+        'creator.creatorNameuser' : req.data.username,
+        'creator.creatorEmail' : req.user.email,
+        }
       }
-    }
-  ).exec(function(err, result){
-    if(err){
-      console.log(err);
-    }
-  });
-  res.redirect('/selectactivecreator');
+    ).exec();
+
+      status = 200;
+      response = user;
+  }
+  catch(e)
+  {
+    status = 500;
+    response = "Error occured while updating";
+  }
+  console.log(status);
+  res.status(status).json(response);
+  
 });
 
 router.post('/delete', isLoggedIn, function(req, res, next){
