@@ -2,10 +2,10 @@
 
 
 
-window.addEventListener('DOMContentLoaded', function(){
+window.addEventListener('DOMContentLoaded', function() {
 
-    $('[data-toggle="tooltip"]').tooltip();   
-    
+    $('[data-toggle="tooltip"]').tooltip();
+
     /**
      * Cropping image functions
      */
@@ -17,20 +17,20 @@ window.addEventListener('DOMContentLoaded', function(){
     let $progressBar = $('.progress-bar');
     let $alert = $('.alert');
     let $modal = $('#modal');
-    
-    
+
+
     $progress.hide();
 
     let cropper;
 
-    input.addEventListener('change', function(e){
+    input.addEventListener('change', function(e) {
         let files = e.target.files;
-        if(files[0].size > 10000000){
+        if (files[0].size > 10000000) {
             sizeCheck = true;
             toastr.error('File too large.');
             e.stopImmediatePropagation();
-        }else{
-            let done = function(url){
+        } else {
+            let done = function(url) {
                 input.value = '';
                 image.src = url;
                 $alert.hide();
@@ -39,10 +39,10 @@ window.addEventListener('DOMContentLoaded', function(){
             let reader;
             let file;
             let url;
-            if(files && files.length > 0){
-               
+            if (files && files.length > 0) {
+
                 file = files[0];
-                if(url) {
+                if (url) {
                     done(URL.createObjectURL(file));
                 } else if (FileReader) {
                     reader = new FileReader();
@@ -53,134 +53,132 @@ window.addEventListener('DOMContentLoaded', function(){
                 }
             }
         }
-        
+
     });
 
-    
-        $modal.on('shown.bs.modal', function(){
-            cropper = new Cropper(image, {
-                aspectRatio : 1,
-                viewMode : 1,
+
+    $modal.on('shown.bs.modal', function() {
+        cropper = new Cropper(image, {
+            aspectRatio: 1,
+            viewMode: 1,
+        });
+    }).on('hidden.bs.modal', function() {
+        cropper.destroy();
+        cropper = null;
+    });
+
+    document.getElementById('crop').addEventListener('click', function() {
+        let initialAvatarURL;
+        let canvas;
+
+        $modal.modal('hide');
+
+        if (cropper) {
+            canvas = cropper.getCroppedCanvas({
+                width: 200,
+                height: 200,
             });
-        }).on('hidden.bs.modal', function(){
-            cropper.destroy();
-            cropper = null;
-        });
+            initialAvatarURL = avatar.src;
+            avatar.src = canvas.toDataURL();
+            $progress.show();
+            $alert.removeClass('alert-success alert-warning');
+            canvas.toBlob(function(blob) {
+                let formData = new FormData();
 
-        document.getElementById('crop').addEventListener('click', function(){
-            let initialAvatarURL;
-            let canvas;
+                formData.append('avatar', blob, 'avatar.jpg');
 
-            $modal.modal('hide');
-
-            if(cropper){
-                canvas = cropper.getCroppedCanvas({
-                    width : 200,
-                    height : 200,
-                });
-                initialAvatarURL = avatar.src;
-                avatar.src = canvas.toDataURL();
-                $progress.show();
-                $alert.removeClass('alert-success alert-warning');
-                canvas.toBlob(function(blob){
-                    let formData = new FormData();  
-
-                    formData.append('avatar', blob, 'avatar.jpg');
-
-                    $.ajax('/test/profile',{
-                        type: "POST",
-                        data: formData,
-                        processData : false,
-                        contentType : false,
-                        headers : {
-                            'CSRF-Token' : $('meta[name="csrf-token"]').attr('content')
-                        },
-
-                        xhr: function(){
-                            let xhr = new XMLHttpRequest();
-
-                            xhr.upload.onprogress = function(e){
-                                let precent = '0';
-                                let precentage = '0%';
-
-                                if(e.lengthComputable){
-                                    precent = Math.round((e.loaded / e.total) * 100);
-                                    precentage = precent + '%';
-                                    $progressBar.width(precentage).attr('aria-valuenow', precent).text(precentage);
-                                }
-                            };
-                            return xhr;
-                        },
-                        success : function(){
-                            toastr.success('Upload Complete');
-                        },
-                        error : function(){
-                            avatar.src = initialAvatarURL;
-                            toastr.error('Upload Error');
-                        },
-                        complete : function(){
-                            $progress.hide();
-                        }
-
-                    });
-                });
-            }
-        });
-/**
- * End of cropping images for Creator profile image
- */
-
- 
-
-}); 
-
-
-
-/**
-         * 
-         * Quill editor initialization
-         */
-        let toolbarOptions = [
-            ['bold', 'italic', 'underline'],        // toggled buttons
-            
-            [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-        
-            [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-        
-            // [{ 'font': [] }],
-        
-            ['clean']                                         // remove formatting button
-        ];
-        
-        function initEditor(){
-            return new Quill('#editor-container', {
-                modules: { 
-                    toolbar: toolbarOptions,
-                        history: {
-                            delay: 2000,
-                            maxStack: 500,
-                            userOnly: true
-                        }
+                $.ajax('/test/profile', {
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    headers: {
+                        'CSRF-Token': $('meta[name="csrf-token"]').attr('content')
                     },
-                theme: 'snow'
-                });    
+
+                    xhr: function() {
+                        let xhr = new XMLHttpRequest();
+
+                        xhr.upload.onprogress = function(e) {
+                            let precent = '0';
+                            let precentage = '0%';
+
+                            if (e.lengthComputable) {
+                                precent = Math.round((e.loaded / e.total) * 100);
+                                precentage = precent + '%';
+                                $progressBar.width(precentage).attr('aria-valuenow', precent).text(precentage);
+                            }
+                        };
+                        return xhr;
+                    },
+                    success: function() {
+                        toastr.success('Upload Complete');
+                    },
+                    error: function() {
+                        avatar.src = initialAvatarURL;
+                        toastr.error('Upload Error');
+                    },
+                    complete: function() {
+                        $progress.hide();
+                    }
+
+                });
+            });
         }
+    });
+    /**
+     * End of cropping images for Creator profile image
+     */
 
 
-function getAboutYou(quill){
+
+});
+
+
+
+/**
+ * 
+ * Quill editor initialization
+ */
+let toolbarOptions = [
+    ['bold', 'italic', 'underline'], // toggled buttons
+
+    [{ 'header': 1 }, { 'header': 2 }], // custom button values
+    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+
+    [{ 'size': ['small', false, 'large', 'huge'] }], // custom dropdown
+
+    // [{ 'font': [] }],
+
+    ['clean'] // remove formatting button
+];
+
+function initEditor() {
+    return new Quill('#editor-container', {
+        modules: {
+            toolbar: toolbarOptions,
+            history: {
+                delay: 2000,
+                maxStack: 500,
+                userOnly: true
+            }
+        },
+        theme: 'snow'
+    });
+}
+
+
+function getAboutYou(quill) {
     let content = quill.getText();
     let delta = JSON.stringify(quill.getContents());
     let editorWindow = document.getElementById('editor-container').getElementsByClassName('ql-editor')[0];
 
-    // let formattedContent = editorWindow.innerHTML.toString();
-
     let formattedContent = quill.getText();
 
-    return{
-        content : content,
-        delta : delta,
-        formattedContent : formattedContent
+    return {
+        content: content,
+        delta: delta,
+        formattedContent: formattedContent
     }
 }
 
@@ -192,8 +190,8 @@ $(document).ready(function() {
     let about_you;
 
     let submit_button = $('#Submit_profile');
-    
-    submit_button.on('click', function(){
+
+    submit_button.on('click', function() {
         let creatorname = $('#creator_name_create').val();
         let staticURL = $('#staticURL').val();
         let short_desc = $('#short_desc').val();
@@ -203,31 +201,31 @@ $(document).ready(function() {
 
         var categories = [{}];
 
-        $(":checkbox:checked").each(function(){
+        $(":checkbox:checked").each(function() {
             categories.push($(this).val());
         });
 
 
         let formdata = {
-            name : creatorname,
-            url : staticURL,
-            desc : short_desc,
-            username : staticURL,
-            location : location_now,
-            about : about_you.content,
-            categories :categories 
+            name: creatorname,
+            url: staticURL,
+            desc: short_desc,
+            username: staticURL,
+            location: location_now,
+            about: about_you.content,
+            categories: categories
         }
 
-        let xhr = $.ajax('/test/formsubmission',{
-            method : 'POST', 
-            headers : {
-                'CSRF-Token' : $('meta[name="csrf-token"]').attr('content')
+        let xhr = $.ajax('/test/formsubmission', {
+            method: 'POST',
+            headers: {
+                'CSRF-Token': $('meta[name="csrf-token"]').attr('content')
             },
-            data : formdata,
-            crossDomain : false
+            data: formdata,
+            crossDomain: false
         });
 
-        xhr.done(function(){
+        xhr.done(function() {
             toastr.options = {
                 "closeButton": true,
                 "positionClass": "toast-top-full-width",
@@ -235,64 +233,9 @@ $(document).ready(function() {
             }
 
             toastr.success('You have successfully created a Fantipper creator account!');
-            setTimeout( $(location).attr('href', '/creatorprofile/preview'), 9000);
-            
+            setTimeout($(location).attr('href', '/creatorprofile/preview'), 9000);
+
         });
     });
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

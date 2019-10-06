@@ -81,7 +81,7 @@
                 {{/if}}
                 
                 <div class="form-group">
-                    
+                    <h5>Change Profile image</h5>
                     <div id="profileImage">
                         <label class="label" >
                             <img src="../{{creatorTile}}" alt="Creator avatar" class="rounded" id="avatar">
@@ -114,8 +114,9 @@
                             </div>
                         </div>
                     </div> 
+                    <br>                    
                     
-
+                    <h5>Change Background image</h5>
                     <div id="backgroundImage">
                         {{!-- Implemeting background image --}}
                         <label class="label" >
@@ -231,11 +232,12 @@
 
 
                 <input type="hidden" name="_csrf" value="{{csrfToken}}">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button class="btn btn-primary" id="submit_creator_edit">Submit</button>
             </form>
         </div>
     </div>
     <script src="/javascripts/creator_edit_categories.js"></script>
+    <script src="/javascripts/creator_edit_submit.js"></script>
 </div>
 
 <div class="modal fade" id="deleteAccount" tabindex="-1" role="dialog" aria-labelledby="deleteAccountLabel" aria-hidden="true">
