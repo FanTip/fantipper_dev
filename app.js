@@ -203,8 +203,8 @@ app.use(function(err, req, res, next) {
 
 
 
-// mongoose.connect(process.env.MONGODB_URI,{useNewUrlParser : true});
-mongoose.connect('mongodb://localhost:27017/fantipper',{useNewUrlParser : true});
+mongoose.connect(process.env.MONGODB_URI,{useNewUrlParser : true});
+// mongoose.connect('mongodb://localhost:27017/fantipper',{useNewUrlParser : true});
 var db = mongoose.connection;
 db.once('open', function() {
     console.log('Connection Successful');
