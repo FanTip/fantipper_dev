@@ -53,6 +53,7 @@ function submitForm(token){
     var tipAmount = $('#tipamount').val();
     var csrf = $('meta[name="csrf-token"]').attr('content');
     var creatorEmail = $('#_creatorEmail').val();
+    var receiver_id = $("#user_id").val();
 
     var tipModal = $('#tipCreator');
     var shareModal = $('#shareTip');
@@ -64,7 +65,7 @@ function submitForm(token){
 
     var payEmail = $('#pay-email').val();
 
-    var description = $('#description').val();
+    var description = $('#tipMessage').val();
 
 
     var data = {
@@ -74,7 +75,7 @@ function submitForm(token){
         _description : description,
         _email : payEmail,
         _creatorEmail : creatorEmail,
-
+        _receiver_id : receiver_id
     }
 
     var xhr = $.ajax({
@@ -83,7 +84,7 @@ function submitForm(token){
         crossDomain : false,
         data : data
     });
-
+    
     xhr.done((Response)=>{
         tippingForm.trigger('reset');
         tipModal.modal('hide');

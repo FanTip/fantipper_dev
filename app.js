@@ -54,6 +54,8 @@ const test = require('./routes/creatorAppComplete');
 // 
 
 const categories_api = require('./routes/api/get_set_categories');
+const fetch_tips_api = require('./routes/api/get_tips');
+const fetch_fan_creator_messages = require('./routes/api/get_messages');
 
 const app = express();
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon', 'favicon.ico')));
@@ -164,6 +166,8 @@ app.use('/api/fantipper', apiRouter); // https://fantipper.herokuapp.com/api/fan
 app.use('/api/cities', searchCitiesRouter);
 
 app.use('/api/categories', categories_api);
+app.use('/api/fetch_tips_api', fetch_tips_api);
+app.use('/api/fancreatemsg', fetch_fan_creator_messages);
 
 app.use('/creator/application', CreatorApplication);
 
@@ -199,8 +203,8 @@ app.use(function(err, req, res, next) {
 
 
 
-mongoose.connect(process.env.MONGODB_URI);
-// mongoose.connect('mongodb://localhost:27017/fantipper');
+// mongoose.connect(process.env.MONGODB_URI,{useNewUrlParser : true});
+mongoose.connect('mongodb://localhost:27017/fantipper',{useNewUrlParser : true});
 var db = mongoose.connection;
 db.once('open', function() {
     console.log('Connection Successful');
