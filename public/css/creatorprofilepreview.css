@@ -1,0 +1,235 @@
+.body-content {
+  padding-left: 15px;
+  padding-right: 15px; }
+  .body-content .text-center {
+    text-align: center; }
+  .body-content .creator-head {
+    height: 100%;
+    background: no-repeat center center;
+    background-size: cover;
+    color: #fff;
+    height: 576px;
+    width: 100%;
+    padding-top: 118px;
+    position: relative;
+    /* Center and scale the image nicely */ }
+    .body-content .creator-head img {
+      width: 170px;
+      height: 170px; }
+    .body-content .creator-head .img-circle {
+      border-radius: 50%; }
+    .body-content .creator-head h2 {
+      font-family: 'Larsseit-Bold';
+      font-size: 40px;
+      margin-top: 34px; }
+    .body-content .creator-head h4 {
+      text-transform: uppercase;
+      font-family: 'Larsseit-Bold';
+      font-size: 12px;
+      color: #999;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+      margin-top: 20px; }
+    .body-content .creator-head h3 {
+      text-transform: uppercase;
+      font-size: 12px;
+      margin-top: 0px;
+      letter-spacing: 1px; }
+    .body-content .creator-head .category-token {
+      border: 1px solid #d0d2d3;
+      border-radius: 5px;
+      padding: 2px;
+      color: #d0d2d3;
+      font-size: 11px;
+      font-family: 'Larsseit-Bold';
+      line-height: 26px;
+      text-transform: uppercase;
+      letter-spacing: .5px; }
+    .body-content .creator-head .creator-share {
+      font-size: 13px;
+      margin-top: 70px; }
+      .body-content .creator-head .creator-share #share-facebook {
+        border-radius: 5px;
+        -webkit-transition: all 200ms ease-out;
+        -o-transition: all 200ms ease-out;
+        transition: all 200ms ease-out;
+        font-family: 'Larsseit-Bold';
+        background-color: #355f9f; }
+      .body-content .creator-head .creator-share #share-twitter {
+        border-radius: 5px;
+        background-color: #2ba9e1;
+        -webkit-transition: all 200ms ease-out;
+        -o-transition: all 200ms ease-out;
+        transition: all 200ms ease-out;
+        font-family: 'Larsseit-Bold'; }
+      .body-content .creator-head .creator-share #share-url {
+        border-radius: 5px;
+        color: #666;
+        background-color: #ccc;
+        -webkit-transition: all 200ms ease-out;
+        -o-transition: all 200ms ease-out;
+        transition: all 200ms ease-out;
+        font-family: 'Larsseit-Bold'; }
+    .body-content .creator-head .creator-share > button {
+      color: #fff;
+      margin: 2px;
+      border: none;
+      padding-left: 10px;
+      padding-right: 10px;
+      height: 32px; }
+  .body-content .creator-content {
+    margin-top: 30px; }
+    .body-content .creator-content .creator-main #about {
+      border-bottom: 1px solid #e4e2e2;
+      margin-bottom: 20px; }
+      .body-content .creator-content .creator-main #about h4 {
+        color: #00d278;
+        text-transform: uppercase;
+        font-family: 'Larsseit-Medium';
+        font-size: 14px; }
+    .body-content .creator-content .creator-main #gallery {
+      border-bottom: 1px solid #e4e2e2;
+      margin-bottom: 20px; }
+      .body-content .creator-content .creator-main #gallery h4 {
+        color: #00d278;
+        text-transform: uppercase;
+        font-family: 'Larsseit-Medium';
+        font-size: 14px; }
+    .body-content .creator-content .creator-main #members {
+      border-bottom: 1px solid #e4e2e2;
+      margin-bottom: 20px; }
+      .body-content .creator-content .creator-main #members h4 {
+        color: #00d278;
+        text-transform: uppercase;
+        font-family: 'Larsseit-Medium';
+        font-size: 14px; }
+    .body-content .creator-content .creator-sidebar {
+      border-left: 1px solid #e4e2e2; }
+      .body-content .creator-content .creator-sidebar .btn-tip-listing {
+        background-image: url("/images/button-fantip.svg");
+        height: 40px;
+        width: 130px; }
+      .body-content .creator-content .creator-sidebar .creator-tips-total h5 {
+        color: #8c8c8c;
+        font-size: 14px;
+        font-family: 'Larsseit-Bold';
+        text-transform: uppercase;
+        margin-bottom: 5px;
+        letter-spacing: 1px; }
+      .body-content .creator-content .creator-sidebar .creator-tips-total .total {
+        color: #333;
+        font-size: 40px;
+        font-family: 'Larsseit-Bold';
+        margin-bottom: 18px;
+        line-height: 40px; }
+      .body-content .creator-content .creator-sidebar .creator-tips-total .target-text {
+        word-break: break-all;
+        color: #00d178;
+        font-size: 25px;
+        font-family: 'Larsseit-Bold';
+        line-height: 30px; }
+      .body-content .creator-content .creator-sidebar #creatorFans .top-fan-list h3 {
+        text-transform: uppercase;
+        font-size: 14px;
+        color: #00d278;
+        font-family: 'Larsseit-Bold';
+        margin-bottom: 20px;
+        margin-top: 0;
+        margin-right: 10px;
+        letter-spacing: 1px; }
+      .body-content .creator-content .creator-sidebar #creatorFans .top-fan-list ul {
+        padding-left: 0;
+        height: 216px;
+        overflow: hidden; }
+        .body-content .creator-content .creator-sidebar #creatorFans .top-fan-list ul li {
+          position: relative;
+          display: block;
+          padding: 0;
+          margin-bottom: 2px;
+          background-color: #f5f5f5;
+          height: 70px;
+          border: none; }
+  .body-content .creator-lower {
+    background-color: #f5f5f5;
+    padding-top: 65px;
+    margin-top: 60px;
+    padding-bottom: 60px; }
+    .body-content .creator-lower .recent-comments h3 {
+      text-transform: uppercase;
+      font-size: 14px;
+      color: #00d278;
+      font-family: 'Larsseit-Bold';
+      margin-bottom: 20px;
+      margin-top: 0;
+      letter-spacing: 1px; }
+    .body-content .creator-lower .recent-comments ul {
+      padding-left: 0;
+      overflow: hidden; }
+    .body-content .creator-lower .recent-comments li {
+      position: relative;
+      display: block;
+      padding: 0;
+      margin-bottom: 15px;
+      background-color: #f5f5f5;
+      border: none; }
+    .body-content .creator-lower .recent-comments img {
+      width: 70px;
+      height: 70px;
+      float: left;
+      clear: both;
+      margin-right: 16px; }
+    .body-content .creator-lower .recent-comments .comment {
+      background-color: #fff;
+      min-height: 70px;
+      margin-left: 82px;
+      font-size: 14px;
+      color: #333;
+      padding: 20px; }
+      .body-content .creator-lower .recent-comments .comment small {
+        font-size: 14px;
+        color: #999; }
+    .body-content .creator-lower .creator-sidebar .fans {
+      clear: both; }
+      .body-content .creator-lower .creator-sidebar .fans h3 {
+        text-transform: uppercase;
+        font-size: 14px;
+        color: #00d278;
+        font-family: 'Larsseit-Bold';
+        margin-bottom: 20px;
+        margin-top: 0;
+        letter-spacing: 1px; }
+      .body-content .creator-lower .creator-sidebar .fans .pull-left {
+        float: left !important;
+        color: #00d278; }
+      .body-content .creator-lower .creator-sidebar .fans .pull-right {
+        float: right !important;
+        color: #00d278; }
+      .body-content .creator-lower .creator-sidebar .fans .fan-list {
+        list-style: none;
+        padding-left: 0px; }
+        .body-content .creator-lower .creator-sidebar .fans .fan-list li {
+          display: inline-block;
+          margin-bottom: 3px; }
+          .body-content .creator-lower .creator-sidebar .fans .fan-list li img {
+            width: 64px;
+            height: 64px; }
+    .body-content .creator-lower .creator-become-a-fan {
+      text-align: center; }
+      .body-content .creator-lower .creator-become-a-fan .btn-tip-listing {
+        background-image: url("/images/button-fantip.svg");
+        height: 40px;
+        width: 130px; }
+      .body-content .creator-lower .creator-become-a-fan #tip-button {
+        text-align: center;
+        display: block;
+        margin: auto;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #e4e2e2; }
+      .body-content .creator-lower .creator-become-a-fan h3 {
+        text-transform: uppercase;
+        font-size: 24px;
+        color: #00d278;
+        font-family: 'Larsseit-Bold';
+        margin-bottom: 20px;
+        margin-top: 0;
+        letter-spacing: 1px; }

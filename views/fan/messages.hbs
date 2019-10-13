@@ -1,4 +1,5 @@
 <div class="container">
+    <link rel="stylesheet" href='/css/userProfileMessages.css'/>
     <div class="row" style="margin-top:1%;">
         <div class="col-sm-3" style="border-right : 1px double gray">
             <ul class="list-group">
@@ -33,27 +34,15 @@
                     {{#if isCreator}}
                         <a href="/creatorprofile">Go to Creator Profile</a>
                         {{else}}
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCreatorProfile" >Add Creators Profile</button>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createCreatorProfile" >Become a Creator</button>
                     {{/if}}
                 </li>
             </ul>
         </div>
-        <div ng-controller = 'messagingController as msgCtrl' class="col-sm-9"> 
-            <p ng-init = "msgs = {{messages}}"></p>
-            <div ng-repeat = "msg in msgs">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="col-lg-9">
-                           <h4>{[{msg.content}]}</h4> 
-                        </div>
-                        <div class="col-lg-3">
-                            <a href="" class="btn btn-primary">Reply</a>
-                        </div>
-                        
-                    </div>
-                </div>
-                
-            </div>
+
+        <div class="col-sm-9 " id="messageBody">
+            <h4>Tip Messages</h4>
+            <div id="fan_message_base"></div>
         </div>
     </div>
 </div>

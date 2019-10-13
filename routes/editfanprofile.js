@@ -3,7 +3,7 @@ var router = express.Router();
 var csrf = require('csurf');
 var csrfProtection = csrf();
 var User = require('../models/user');
-router.use(csrfProtection);
+// router.use(csrfProtection);
 
 /* GET home page. */
 router.get('/',isLoggedIn, function(req, res, next) {
@@ -11,7 +11,6 @@ router.get('/',isLoggedIn, function(req, res, next) {
 });
 
 router.post('/', function(req, res, next){
-  console.log(req.body);
   var query = {
     email : req.body.email,
     name : req.body.name,
@@ -32,7 +31,7 @@ router.post('/', function(req, res, next){
   });
 });
 
-// Delete the account 
+// Delete the account
 router.post('/delete', isLoggedIn, function(req, res, next){
   User.findByIdAndRemove(req.user._id, function(err){
     if(err){
@@ -41,12 +40,11 @@ router.post('/delete', isLoggedIn, function(req, res, next){
     req.logout();
     req.session.destroy();
     res.redirect('/');
-    
+
   });
 });
 
 router.post('/updatecard', isLoggedIn, function(req, res, next){
-  console.log(req.body);
   User.findByIdAndUpdate(req.user._id,{
     $set:{'card.isCard' : true,
     'card.cardName': req.body.nameonthecard,
@@ -58,7 +56,6 @@ router.post('/updatecard', isLoggedIn, function(req, res, next){
       res.send(err);
     }
     if(result){
-      console.log(result);
       res.redirect('/editfanprofile');
     }
   });
@@ -76,7 +73,6 @@ router.post('/deletecard', isLoggedIn, function(req, res, next){
       res.send(err);
     }
     if(result){
-      console.log(result);
       res.redirect('/editfanprofile');
     }
   });
@@ -88,13 +84,11 @@ router.post('/changepassword', isLoggedIn, function(req, res, next){
     var query = {
       password : newEncryptedPassword
     }
-    console.log(query);
     User.findByIdAndUpdate(req.user._id, query,{new: true}, function(err, result){
       if(err){
         console.log(err);
         res.send(err);
       }
-      console.log(result);
       res.redirect('/editfanprofile');
     });
   }

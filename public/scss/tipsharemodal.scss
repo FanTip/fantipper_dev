@@ -1,0 +1,40 @@
+#shareTip{
+    h5{
+        color: #00d178;
+        font-family: 'Larsseit-Medium';
+    }
+    #tippeesDesc{
+        font-size: 1em;
+        font-family: 'Larsseit-Bold';
+    }
+    .modal-body{
+        #desc1{
+            font-family: 'Larsseit-Bold';
+        }
+        #desc2{
+            font-family: 'Larsseit-Thin';
+        }
+        #tippeesDesc{
+            font-family: 'Larsseit-Bold';
+            color: #00d278;      
+            text-align: center;
+        }
+
+        q{
+            font-family: 'Larsseit-Bold';
+            font-size: 1.8em;
+            color: #00d278;
+        }
+
+        #facebook{
+            margin-bottom: 10px;
+            background-color: #3B5998;
+            color: #e4e2e2;
+        }
+        #twittr{
+            background-color: #1DA1F2;
+        }   
+
+        background-color: #f2f2f2 ;
+    }
+}

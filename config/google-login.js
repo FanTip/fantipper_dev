@@ -6,11 +6,10 @@ var mongoose = require('mongoose');
 passport.use('google', new googleStrategy({
     clientID : '358968116641-0jnhgv8m97h4dj5kheijj3stt2tf3ohc.apps.googleusercontent.com',
     clientSecret : 'Zq0fvZOOTIlNAXJsQpc6xz_x',
-    callbackURL: 'http://localhost:3000/auth/google/callback',
+    callbackURL: 'https://fantipper.herokuapp.com/auth/google/callback' || 'http://localhost:3000/auth/google/callback' ,
     profileFields : ['emails','picture.type(large)','name']
 },
     function(accessToken, refreshToken, profile, done){
-        console.log(profile);
         User.findOne({'googleID' : profile.id}, function(err, user){
             if(err){
               return done(err);
@@ -18,7 +17,6 @@ passport.use('google', new googleStrategy({
             if(user){
               return done(null, user);
             }else{
-                console.log(profile);
               var NewUser = new User();
               NewUser._id = new mongoose.Types.ObjectId();
               NewUser.googleID = profile.id;

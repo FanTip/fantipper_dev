@@ -1,5 +1,5 @@
 // Autocomplete the location
-$(function(){
+$(document).ready(function(){
   var cities_au = new Bloodhound({
     datumTokenizer : Bloodhound.tokenizers.whitespace,
     queryTokenizer : Bloodhound.tokenizers.whitespace,
@@ -59,9 +59,11 @@ $(function(){
 
     }
   );
-    
-  });
 
+});
+  
+  
+    
 
 
 

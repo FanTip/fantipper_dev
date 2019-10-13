@@ -1,12 +1,50 @@
 /* General CSS configurations of the main elements */
-body {
+
+html, body {
+    width : 100%;
     padding-top: 0px;
-    /* padding-left: 50px;
-    padding-right: 50px; */
     font: 14px;
     -webkit-font-smoothing : antialiased;
     font-family: 'Larsseit';
+    background-color: inherit;
 }
+
+#message_base{
+    height: 150px;
+    overflow-y: auto;
+}
+
+#fan_message_base {
+    height: 100%;
+    overflow-y: auto;
+}
+
+footer{
+    /* margin-top: 9%; */
+
+    margin-bottom: 0px;
+    padding-left: 100px;
+    background-color: #414042;
+    font-family: 'Larsseit';
+    position: relative;
+    bottom: 0;
+}
+
+footer h5{
+    letter-spacing: 2px;
+    color: #7f7e80;
+}
+
+footer a{
+    color: #7f7e80;
+}
+
+footer a:hover{
+    text-decoration: none;
+    color: #00D278;
+}
+
+
 input[type=text]:focus {
     outline: none;
     box-shadow: 1px 1px #00d278 !important;
@@ -52,103 +90,17 @@ h1, h2, h3, h4, h5, p{
     margin-right: 20px;
 }
 
-/* nav{
-    overflow: hidden;
-    position: fixed;
-    top: 0;
-    width: 100%;
-
-} */
-
 .container{
     margin-left: 0px;
     margin-right: 0px;
     padding: 0px;
 }
 
-#editfanptofile input[type=text]:focus {
-    outline: none;
-    background-color: #00D278;
-    color: azure;
-    box-shadow: 1px 1px #00d278 !important;
-    border:1px solid #00d278 !important;
-}
-#editfanptofile input[type=email]:focus {
-    outline: none;
-    background-color: #00D278;
-    color: azure;
-    box-shadow: 1px 1px #00d278 !important;
-    border:1px solid #00d278 !important;
-}
-#editfanptofile select:focus {
-    outline: none;
-    background-color: #00D278;
-    color: azure;
-    box-shadow: 1px 1px #00d278 !important;
-    border:1px solid #00d278 !important;
-}
 
 .gallery{
     margin-top: 10px;
     margin-bottom: 10px;
   }
-
-.nav-link{
-    color: #fff;
-}
-
-.navbar-nav .link:hover{
-    border-bottom: #00D278 solid;
-}
-.navbar-nav .nav-item a:hover{
-    color: #00D278;
-}
-
-.navbar-nav .nav-item a{
-    letter-spacing: 1pt;
-    color: #414042;
-    font-family: 'Larsseit-Bold';
-}
-
-.dropdown-menu .dropdown-item a{
-    color: #414042;
-}
-
-.dropdown-menu .dropdown-item a:hover{
-    color: #00D278;
-    text-decoration: none;
-}
-
-.navbar-nav .nav-item .signup{
-    letter-spacing: 1pt;
-    color: #fff;
-    font-family: 'Larsseit-Bold';
-}
-
-.navbar-nav .nav-item .signup:hover{
-    letter-spacing: 1pt;
-    color: #fff;
-    font-family: 'Larsseit-Bold';
-}
-
-.navbar-nav .nav-item a:hover{
-    letter-spacing: 1pt;
-    color: #00D278;
-}
-
-
-.affix {
-    top: 0;
-    width: 100%;
-    z-index: 9999 !important;
-}
-
-.affix + .container-fluid {
-    padding-top: 70px;
-}
-
-
-
 
 /* Profile image effects */
 
@@ -188,8 +140,7 @@ h1, h2, h3, h4, h5, p{
 
 
 .col-lg-12 .responsive-video{
-    padding-left: 30px;
-    padding-right: 30px;
+   
 }
 
 nav{

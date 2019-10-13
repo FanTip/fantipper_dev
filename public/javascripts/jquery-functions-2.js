@@ -1,9 +1,12 @@
+/**
+ * JQuery implementation to call login functions in passport
+ * Ajax object is used to pass the authentication
+ * 
+ */
+
 $(function(){
-    // JQuery implementation to call login functions in passport
-    // Ajax object is used to pass the authentication 
     $('#login-form').on('submit', function(event){
         event.preventDefault();
-        console.log('came here');
         var csrf = $('#_csrf').val();
         var email = $('#email').val();
         var password = $('#password').val();
@@ -12,7 +15,6 @@ $(function(){
             email : email,
             password : password
         }
-        console.log(data);
         var xhr = $.ajax({
             type : 'POST',
             crossDomain : false,
@@ -24,19 +26,20 @@ $(function(){
             $(location).attr('href', '/profile');
             
         }).fail(function(response){
-            console.log(response);
             toastr.error('Check your yousername/password again!');
         });
 
-        console.log(xhr);
-    });
+});
 
 
-    // JQuery implementation to call the signup functions in the passport
-    // Ajax object is used to pass the authentication 
+    /**
+     * JQuery implementation to call the signup functions in the passport
+     * Ajax object is used to pass the authentication 
+     * 
+     */
+
     $('#signup-form').on('submit', function(event){
         event.preventDefault();
-        console.log('dhdd');
         var csrf = $('#_csrf').val();
         var name = $('#name').val();
         var email = $('#signup_email').val();
@@ -55,12 +58,11 @@ $(function(){
             data : data,
             url : '/signup'
         })
-        xhr.done(function(response){
+        xhr.done(function(){
             $(location).attr('href', '/profile');
-            toastr.success('Logged in successfully!');
-            console.log(response);
+            toastr.success('Signing up was sucessful!');
         }).fail(function(response){
-            toastr.error(response);
+            toastr.error('Error occured during signin up');
             
         });
     });

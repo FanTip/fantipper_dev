@@ -1,0 +1,49 @@
+#listing {
+  min-height: 300px;
+  padding-bottom: 40px; }
+
+.listing {
+  overflow: hidden;
+  padding: 0;
+  border: none;
+  margin-bottom: 20px;
+  -webkit-transition: all 200ms ease-out;
+  -o-transition: all 200ms ease-out;
+  transition: all 200ms ease-out; }
+  .listing a {
+    color: #333;
+    outline: 0 !important;
+    text-decoration: none; }
+  .listing .btn-tip-listing {
+    background-image: url("/images/button-fantip.svg");
+    height: 40px;
+    width: 130px; }
+  .listing .listing-content {
+    height: 242px;
+    padding: 19px;
+    border: 1px solid #ddd;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px; }
+    .listing .listing-content .one-line {
+      overflow: hidden;
+      -o-text-overflow: ellipsis;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: #d0d2d3; }
+    .listing .listing-content .listing-location {
+      font-size: 12px;
+      color: #8c8c8c;
+      text-transform: uppercase;
+      font-family: 'Larsseit-Bold'; }
+    .listing .listing-content .listing-categories {
+      margin-top: 5px;
+      margin-bottom: 8px;
+      height: 26px; }
+    .listing .listing-content .listing-short {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 19px;
+      color: #8c8c8c;
+      overflow: hidden;
+      height: 38px;
+      position: relative; }

@@ -1,6 +1,7 @@
 var express = require('express');
 const multer = require('multer');
 const path = require('path');
+var fs = require('fs');
 var csrf = require('csurf');
 var csrfProtection = csrf();
 
@@ -17,14 +18,21 @@ const storage = multer.diskStorage({
 const creatorTileStorage = multer.diskStorage({
     destination : './public/uploads/tileImages',
     filename : function(req, filename, callback){
-        callback(null, filename.filename + '-' + req.user.email + path.extname(filename.originalname));
+        callback(null, req.user.email + path.extname(filename.originalname));
+    }
+});
+
+const creatorBackgroundStorage = multer.diskStorage({
+    destination : './public/uploads/backgroundImages',
+    filename : function(req, filename, callback){
+        callback(null, req.user.email + path.extname(filename.originalname));
     }
 });
 
 //Multer configerations (File size and the callback functions)
 const upload = multer({
     storage : storage,
-    limits: {fileSize : 1000000},
+    limits: {fileSize : 10000000},
     fileFilter:function(req, filename, callback){
         checkFileType(filename, callback);
         console.log(filename);
@@ -33,12 +41,19 @@ const upload = multer({
 
 const uploadTile = multer({
     storage : creatorTileStorage,
-    limits : {fileSize : 1000000},
+    limits : {fileSize : 10000000},
     fileFilter:function(req, filename, callback){
         checkFileType(filename, callback);
     }
-}).single('tileImage');
+}).any();
 
+const uploadBackground = multer({
+    storage : creatorBackgroundStorage,
+    limits : {fileSize : 10000000},
+    fileFilter:function(req, filename, callback){
+        checkFileType(filename, callback);
+    }
+}).any();
 
 //storing the csrf token in the session cookie
 csrf({cookie:true});
@@ -55,5 +70,7 @@ function checkFileType(filename, callback){
 }
 
 module.exports = {
-    upload
+    upload,
+    uploadTile,
+    uploadBackground
 }

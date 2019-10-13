@@ -1,12 +1,12 @@
-.profile-background{
+/* .profile-background{
     height: 50%;
     
-    /* Center and scale the image nicely */
+    Center and scale the image nicely
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-}
-#snackbar {
+} */
+/* #snackbar {
     visibility: hidden;
     min-width: 250px;
     margin-left: -125px;
@@ -46,4 +46,4 @@
 @keyframes fadeout {
     from {bottom: 30px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
-}
+} */

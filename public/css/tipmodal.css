@@ -1,0 +1,53 @@
+#tipCreator .modal-body {
+  background-color: #f2f2f2; }
+
+#tipCreator #radio {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 14pt;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+  #tipCreator #radio input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0; }
+  #tipCreator #radio .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #cac7c7;
+    border-radius: 50%; }
+  #tipCreator #radio .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none; }
+  #tipCreator #radio input:checked ~ .checkmark:after {
+    display: block; }
+  #tipCreator #radio input:checked ~ .checkmark {
+    background-color: #00d178; }
+  #tipCreator #radio .checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white; }
+
+#tipCreator #radio:hover input ~ .checkmark {
+  background-color: #ccc; }
+
+#tipCreator #sendTipButton {
+  background-color: #00d178;
+  color: #f2f2f2;
+  font-family: 'Larsseit';
+  font-size: 12pt;
+  letter-spacing: 2px; }

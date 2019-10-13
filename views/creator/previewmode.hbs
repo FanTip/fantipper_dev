@@ -1,0 +1,114 @@
+<div class="container-fluid body-content">
+    <div class="row" id="rowOpacity">
+        <div class="creator-head text-center" style="background-image: url(../{{creatorBack}});">
+            <div>
+                <img src="../{{creatorTile}}" class="img-circle" alt="{{creatorTile}}">
+                <h2>{{CreatorName}}</h2>
+                <h4>{{location}}</h4>
+                <h3>
+                    {{#each categories}}
+                    <span class="category-token">{{this}}</span>
+                    {{/each}}
+                </h3>
+                <div class="creator-share">
+                    <button id="share-facebook"><i class="fab fa-facebook-f"></i>Share</button>
+                    <button id="share-twitter"><i class="fab fa-twitter"></i>Tweet</button>
+                    <button id="share-url"><i class="fas fa-paperclip"></i>{{CreatorURL}}</button>
+                </div>
+            </div> 
+        </div>
+    </div>
+    <div class="creator-content container">
+        <div class="row" style="margin:auto">
+            <div class="col-md-7 creator-main">
+                <div id="about">
+                    <h4>about</h4>
+                    {{CreatorAbout}}
+                    <input type="hidden" id="creatorUrl" value="{{creatorurl}}">
+                </div>
+                <div id="gallery">
+                    <h4>Gallery</h4>
+                </div>
+                <div id="members">
+                    <h4>Members</h4>
+                </div>
+            </div>
+            <div class="col-md-5 creator-sidebar" >
+                <a href="/tips">
+                    <div class="btn-tip-listing"></div>
+                </a>
+                <div class="creator-tips-total" style="margin:auto">
+                    <h5>Tips</h5>
+                    <p class="total" id="total_tips"></p>
+                    <h5>$</h5>
+                    <p class="total" id="total_amount"></p>
+                    <div>
+                        <p class="target-text">{{CreatorDesc}}</p>
+                    </div>
+                    
+                </div>
+                <div id="creatorFans">
+                    <div class="top-fan-list scrollable">
+                        <h3><i class="fa fa-heart"></i>Top fans</h3>
+                        <ul>
+                            <li>
+                                <img src="" alt="">
+                                <div class="vertical-align">
+                                    <p class="top-fan-list-name"></p>
+                                    <p class="top-fan-list-tip"></p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row creator-lower">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 recent-comments" id="CreatorRecentComments">
+                    <h3> <i class="fa fa-comment"></i><span id="total_messages"></span> messages</h3>
+                    <div id="message_base"></div>
+                </div>
+                <div class="col-md-5 creator-sidebar">
+                    <div class="fans scrollable">
+                        <div class="row">
+                            <h3> <i class="fa fa-users"></i> 0 Fans </h3>
+                            <div class="pull-left scroll-up"> <i class="fa fa-angle-up"></i></div>
+                            <div class="pull-right scroll-down"> <i class="fa fa-angle-down"></i> </div>
+                        </div>
+                            
+                        <ul class="fan-list"> 
+                            <li>
+                                
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-12 creator-become-a-fan ">
+                <hr>
+                <h3>become a fan of {{CreatorName}} and leave a message of support!</h3>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <a id='tip-button' href="/tips" class="btn-tip-listing">
+                            <div class="btn-tip-listing"></div>
+                        </a>
+                    </div>
+                    {{# if creatorPreview}}
+                    {{else}}
+                        <div class="col-lg-12">
+                            <a href="/creatorprofile" class="btn btn-danger"><i class="fas fa-edit"></i> Switch to developer mode</a>
+                        </div>
+                    {{/if}}
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

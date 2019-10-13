@@ -1,0 +1,34 @@
+body {
+  background-color: #D6F8E8;
+  height: 100%; }
+
+.container-fluid {
+  padding-top: 20px; }
+
+#Submit_profile {
+  margin-bottom: 50px; }
+
+footer {
+  margin-bottom: 0px;
+  padding-left: 100px;
+  background-color: #414042;
+  font-family: 'Larsseit';
+  position: relative;
+  bottom: 0; }
+
+#part_2 {
+  text-align: center; }
+  #part_2 span {
+    color: #00d278; }
+    #part_2 span p {
+      font-family: 'Larsseit'; }
+  #part_2 #profileImage {
+    padding-top: 20px;
+    padding-bottom: 0px;
+    border-style: dotted;
+    border-color: #00d278; }
+  #part_2 #backgroundImage {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-style: dotted;
+    border-color: #00d278; }

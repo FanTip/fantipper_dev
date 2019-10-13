@@ -1,121 +1,61 @@
-var express = require('express');
-var router = express.Router();
-var empty = require('is-empty');
-var fs = require('fs');
-var csrf = require('csurf');
-var csrfProtection = csrf();
-var passport = require('passport');
-var User = require('../models/user');
-var toastr = require('toastr');
-var tipper = require('../models/tipper');
-var tippee = require('../models/tippee');
-var message = require('../models/message');
+let express = require('express');
+let router = express.Router();
+let csrf = require('csurf');
+let csrfProtection = csrf();
+let _ = require('lodash');
+let Tipper = require('../models/tipper');
+let Tippee = require('../models/tippee');
+
+let mongoose = require('mongoose');
+
+let tips = require('../models/tips');
+
+let stripe = require("stripe")("sk_test_lzFXk4jctTfL15eqiv0l4hJD");
 
 router.use(csrfProtection);
 
-router.post('/', function(req, res, next){
-    console.log('req.body', req.body);
-});
+function amount(amount){
+    return parseFloat(amount).toFixed(3)*100;
+}
 
-router.get('/',function(req, res, next){
-    User.find(function(err, result){
-        res.send(result);
-    });
-});
-router.post('/', function(req, res, next){
-    console.log(req.body);
-});
-
-router.post('/sendtip', function(req, res, next){
-
+async function saveTip(charge, req, res){
     
-
-    if(res.locals.login){
-        var tipperData = new tipper({
-            tipperID : req.user._id,
-            tipAmount : req.body._tipamount,
-            tipTo : req.body._creatorEmail,
-            tipDate : Date.now()
-        });
-        
-        var tipMessage = new message({
-            messageFrom : req.user.email,
-            content : req.body._message,
-            sentDate : Date.now(),
-            isRead : false,
-            reply : {
-                replyFrom : null,
-                replyDate : null,
-                replyContent : null 
-            }
-        });
-
-        console.log(tipperData);
-        tipperData.save(function(err){
-            if(err){
-                console.log(err);
-            }else{
-                tipMessage.save(function(err){
-                    console.log(err);
-                });
-            }
-            User.findOne({'creator.creatorEmail':req.body._creatorEmail}).exec(function(err, creator){
-                var tippeeData = new tippee({
-                    tipeeID : creator._id,
-                    tipAmount : req.body._tipamount,
-                    tipFrom : req.body._creatorEmail,
-                    tipDate : Date.now(),
-                });
-                tippeeData.save(function(err){
-                    if(err){
-                        console.log(err);
-                    }else{
-                        res.status(200).send('done');
-                    }
-                });
-            });
-            
-        });
-
-    }else{
-        User.findOne({'creator.creatorEmail':req.body._creatorEmail}).exec(function(err, creator){
-            console.log(creator._id);
-            var tipeeData = new tippee({
-                tipeeID : creator._id,
-                tipAmount : req.body._tipamount,
-                tipFrom : req.body._email,
-                tipMessage : req.body._message,
-                tipDate : Date.now(),
-            });
-
-            var tipMessage = new message({
-                messageFrom : req.body._email,
-                content : req.body._message,
-                sentDate : Date.now(),
-                isRead : false,
-                reply : {
-                    replyFrom : null,
-                    replyDate : null,
-                    replyContent : null
-                }
-            });
-            console.log(tipeeData);
-            tipeeData.save(function(err){
-                if(err){ res.status(500).send(err);}
-                else{
-                    tipMessage.save(function(err){
-                        if(err){
-                            console.log(err);
-                        }
-                    });
-                    res.status(200).send('done');
-                }
-                
-            });
-        });
-        
-        console.log(req.body);
+    let loggedIn = req.isAuthenticated() ? req.user._id : 0;
+    let tip = {
+        id :  mongoose.Types.ObjectId(req.body._receiver_id),
+        amount : charge.amount,
+        creator_email : req.body._creatorEmail, 
+        pay_email : req.body._email,
+        date : new Date(),
+        loggedIn : mongoose.Types.ObjectId(loggedIn),
+        tipmessage : req.body._description ? req.body._description : ""
     }
+
+    let tipCreated = await tips.create(tip);
+
+    res.status(200).send(charge);
+}
+    
+// sending a tip to the reciepient 
+router.post('/sendtip', async function(req, res, next){
+    try{
+        const token = req.body._stripeID;
+        stripe.customers.create({
+            email : req.body._email,
+            source : token
+        })
+        .then(customer => stripe.charges.create({
+            amount : amount(req.body._amount),
+            currency : 'aud',
+            customer : customer.id,
+            receipt_email : req.body._email
+        }))
+        .then(charge => saveTip(charge, req, res));
+    }
+    catch(e){
+        console.error(e);
+    }
+    
 });
 
 

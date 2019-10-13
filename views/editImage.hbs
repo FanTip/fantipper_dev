@@ -5,7 +5,7 @@
         <div class="col-mg-12">
             {{file}}
             <br>
-           <form action="/editImage?_csrf={{csrfToken}}" method="POST" enctype="multipart/form-data">
+           <form action="/upload?_csrf={{csrfToken}}" method="POST" enctype="multipart/form-data">
                 <div class="btn grey">
                     <span>File</span>
                     <input type="file" class="form-control-file" name="profileImage"/>
@@ -19,3 +19,4 @@
     </div>
     </div>
 </div>
+{{!-- ?_csrf={{csrfToken}} --}}

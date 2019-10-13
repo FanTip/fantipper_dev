@@ -1,4 +1,5 @@
 <div class="container" id="editfanptofile">
+    <link rel="stylesheet" href='/css/userProfileEdit.css'/>
     <div class="row" style="margin-top:1%;">
         <div class="col-lg-3" style="border-right : 1px double gray">
             <ul class="list-group">
@@ -33,7 +34,7 @@
                     {{#if isCreator}}
                         <a href="/creatorprofile">Go to Creator Profile</a>
                         {{else}}
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCreatorProfile" >Add Creators Profile</button>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createCreatorProfile" >Become a Creator</button>
                     {{/if}}
                 </li>
                 <div class="dropdown-divider"></div>
@@ -42,13 +43,13 @@
                 </li>
             </ul>
         </div>
-        <div class="col-lg-9">
+        <div class="col-lg-9"  ng-controller="myCtrl as m">
             <div class="row justify-content-center">
                 <div class="col-4 cont">
                     <img src="{{imagePath}}" alt="user profile picture" class="rounded-circle image" height="200px" width="200px">
                     <div class="middle">
                         {{!-- <i class="fas fa-upload"></i> --}}
-                        <a href="/editImage" class="btn btn-light">Change</a>
+                        <a href="/upload" class="btn btn-light">Change</a>
                     </div>
                 </div>
             </div>
@@ -66,13 +67,11 @@
                             {{else}}
                             <div class="form-group col-md-3">
                                 <label for=""> </label>
-                                <button type="button" class="btn btn-primary float-sm-right form-control" data-toggle="modal" data-target="#changePassword">Change Password</button>
+                                <button type="button" class="btn btn-success float-sm-right form-control" data-toggle="modal" data-target="#changePassword">Change Password</button>
                             </div>
                             {{/if}}
                             
                         </div>
-                        
-
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="email" name="email" class="form-control" id="email" value="{{email}}">
@@ -117,7 +116,7 @@
                         </div>
                             <div class="dropdown-divider"></div>
                             <input type="hidden" name="_csrf" value="{{csrfToken}}">
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-success">Update</button>
                     </form>
                 </div>
             </div>
@@ -138,7 +137,7 @@
                         <form action="/editfanprofile/delete" method="POST">
                             <input type="hidden" name="_csrf" value="{{csrfToken}}">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">No, Go back!</button>
-                            <button type="submit" class="btn btn-primary">I'm pretty sure!</button>
+                            <button type="submit" class="btn btn-success">I'm pretty sure!</button>
                         </form>
                         
                     </div>
@@ -171,7 +170,7 @@
                                             <input type="password" name="confirmpassword" id="confirmpassword" class="form-control">
                                         </div>
                                         <input type="hidden" name="_csrf" value="{{csrfToken}}">
-                                        <button type="submit" class="btn btn-primary">Update</button>
+                                        <button type="submit" class="btn btn-success">Update</button>
                                         <button type="reset" class="btn btn-danger"  data-dismiss="modal">Cancel</button>
                                     </form>
                                 </div>
@@ -191,8 +190,6 @@
         var app = angular.module('myApp', []);
         app.controller('mycontroller', function($scope){
             $scope.text = "dsds" ;
-            console.log($scope);
         })
-        console.log('edit');
     </script>
 </div>

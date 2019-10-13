@@ -1,18 +1,29 @@
+// Uploading profile images
 var express = require('express');
 var router = express.Router();
 const upload = require('../config/upload');
-var csrf = require('csurf');
-var csrfProtection = csrf();
-router.use(csrfProtection);
-var newModel = require('../models/user');
+// var csrf = require('csurf');
+// var csrfProtection = csrf();
 
+var multer = require('multer');
+var fileUpload = multer({
+    dest : "up/"
+})
+var fs = require('fs');
+var formidable = require('formidable');
+var readChunk = require('read-chunk');
+var fileType = require('file-type');
+
+
+
+var newModel = require('../models/user');
+// router.use(csrfProtection);
 /* GET users listing. */
-router.get('/',isLoggedIn, function(req, res, next) {
-    console.log('req: ', req.user);
+router.get('/', function(req, res, next) {
     res.render('editImage', {csrfToken : req.csrfToken()});
 });
 
-router.post('/',isLoggedIn, function(req, res, next){
+router.post('/', function(req, res, next){
     upload.upload(req, res, function(err){
         if(err){
             res.render('editImage', {message : err, csrfToken : req.csrfToken()});
@@ -40,16 +51,25 @@ router.post('/',isLoggedIn, function(req, res, next){
         }
     });
 });
+
+router.post('/creatorprofileimage', fileUpload.single('avatar') ,function(req, res){
+});
+
+
+
+
+
+
 module.exports = router;
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    res.redirect('/');
-}
-function notLoggedIn(req, res, next){
-    if(!req.isAuthenticated()){
-        return next();
-    }
-    res.redirect('/signup');
-  }
+// function isLoggedIn(req, res, next){
+//     if(req.isAuthenticated()){
+//         return next();
+//     }
+//     res.redirect('/');
+// }
+// function notLoggedIn(req, res, next){
+//     if(!req.isAuthenticated()){
+//         return next();
+//     }
+//     res.redirect('/signup');
+//   }

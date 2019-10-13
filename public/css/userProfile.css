@@ -1,0 +1,9 @@
+body {
+  height: 100%; }
+
+.container-fluid {
+  padding-top: 20px; }
+
+.main {
+  margin-top: 100px;
+  margin-bottom: 100px; }

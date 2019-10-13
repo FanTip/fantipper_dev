@@ -46,7 +46,7 @@ var personSchema = new Schema({
         creatorLocation : {type : String, required : true},
         creatorCategories :[],
         creatorTileImage : {type : String},
-        creatorBackgroundImage : {type : String},
+        creatorBack : {type : String},
         creatorThumbnail : {type : String},
         creatorAbout : {type : String}
     },
