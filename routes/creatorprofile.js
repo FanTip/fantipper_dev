@@ -11,18 +11,19 @@ var User = require('../models/user');
 /* GET home page. */
 router.get('/', isLoggedIn,async function(req, res, next) {
   let user = await User.findById(req.user._id).exec();
-   
+  let creatorurl = user.creator.creatorUrl;
+
   let categories = user.creator.creatorCategories;
-  res.render('creator/creatorindex', { title: 'Creator', csrfToken : req.csrfToken(), categories : categories});
+  res.render('creator/creatorindex', { title: 'Creator', csrfToken : req.csrfToken(), categories : categories, creatorurl : creatorurl});
 });
 
 
 router.get('/preview', isLoggedIn, async function(req, res, next){
   
   let user = await User.findById(req.user._id).exec();
-   
+  let creatorurl = user.creator.creatorUrl;
   let categories = user.creator.creatorCategories;
-  res.render('creator/previewmode', { title: 'Creator Profile', csrfToken : req.csrfToken(), categories : categories});
+  res.render('creator/previewmode', { title: 'Creator Profile', csrfToken : req.csrfToken(), categories : categories, creatorurl : creatorurl});
   
 });
 

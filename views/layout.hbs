@@ -99,6 +99,9 @@
       <script src="/javascripts/jquery-functions-5.js"></script>
       <script src="/javascripts/jquery-functions-6.js"></script>
       <script src="/javascripts/generic_javascript.js"></script>
+      <script src="/javascripts/tip_handler.js"></script>
+      <script src="/javascripts/message_handler.js"></script>
+      <script src="/javascripts/fan_message_handler.js"></script>
       {{!-- <script src="/stripe/stripe.js"></script> --}}
 
         {{!-- Custom angularjs functions --}}
@@ -316,48 +319,6 @@
             </div>
       </div>
 
-      {{!-- Test nav bar --}}
-
-      {{!-- <div class="navbar">
-      <a href="#home">Home</a>
-      <a href="#news">News</a>
-      <a href="#contact">Contact</a>
-      </div> --}}
-
-      <style>
-            {{!-- .navbar {
-            overflow: hidden;
-            background-color: #333;
-            position: fixed;
-            top: 0;
-            z-index: 1;
-            width: 100%;
-            }
-
-            .navbar a {
-            float: left;
-            display: block;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-            }
-
-            .navbar a:hover {
-            background: #ddd;
-            color: black;
-            } --}}
-
-            .main {
-            {{!-- padding: 16px; --}}
-            margin-top: 50px;
-            {{!-- height: 1500px; /* Used in this example to enable scrolling */ --}}
-            }
-      </style>
-
-
-
       {{!-- Navbar --}}
       <nav class="navbar navbar-expand-md navbar-light">
             <a class="navbar-brand" href="/"><img src="/images/logo/logo.png" alt=""></a>
@@ -425,17 +386,13 @@
       <div class="main">
             {{{body}}}
       </div>
-      
-
 </body>
 
 <footer class="footer">
       <div class="container-fluid">
-            <div class="row">
-
+        <div class="row">
         <!-- Grid column -->
         <div class="col-md-6 mt-md-0 mt-3">
-
             <h5 class="text-uppercase">Sitemap</h5>  
             <ul class="list-unstyled">
               <li>
@@ -451,18 +408,13 @@
                 <a href="#!">Privacy Policy</a>
               </li>
             </ul>
-          
         </div>
         <!-- Grid column -->
-
         <hr class="clearfix w-100 d-md-none pb-3">
-
         <!-- Grid column -->
-        <div class="col-md-3 mb-md-0 mb-3">
-
+          <div class="col-md-3 mb-md-0 mb-3">
             <!-- Links -->
             <h5 class="text-uppercase">Connect</h5>
-
             <ul class="list-unstyled">
               <li>
                 <a href="#!">info@fantipper.com</a>
@@ -477,108 +429,18 @@
                 <a href="#!"><i class="fab fa-instagram"></i></a>
               </li>
             </ul>
-
           </div>
           <!-- Grid column -->
 
           <!-- Grid column -->
           <div class="col-md-3 mb-md-0 mb-3">
-
-            
-                <!-- Copyright -->
-    
-    <div class="footer-copyright text-center py-3" id='footer_c'>:
-    </div>
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3" id='footer_c'>:
+            </div>
           </div>
           <!-- Grid column -->
-
       </div>
       <!-- Grid row -->
-
     </div>
-      </div>
 </footer>
-<!-- Footer -->
-{{!-- <footer class="page-footer font-small blue pt-4">
-
-    <!-- Footer Links -->
-    <div class="container-fluid text-center text-md-left">
-
-      <!-- Grid row -->
-      <div class="row">
-
-        <!-- Grid column -->
-        <div class="col-md-6 mt-md-0 mt-3">
-
-            <h5 class="text-uppercase">Sitemap</h5>  
-            <ul class="list-unstyled">
-              <li>
-                <a href="#!">Explore</a>
-              </li>
-              <li>
-                <a href="#!">Learn</a>
-              </li>
-              <li>
-                <a href="#!">Terms of Use</a>
-              </li>
-              <li>
-                <a href="#!">Privacy Policy</a>
-              </li>
-            </ul>
-          
-        </div>
-        <!-- Grid column -->
-
-        <hr class="clearfix w-100 d-md-none pb-3">
-
-        <!-- Grid column -->
-        <div class="col-md-3 mb-md-0 mb-3">
-
-            <!-- Links -->
-            <h5 class="text-uppercase">Connect</h5>
-
-            <ul class="list-unstyled">
-              <li>
-                <a href="#!">info@fantipper.com</a>
-              </li>
-              <li>
-                <a href="#!"><i class="fab fa-facebook-f"></i></a>
-              </li>
-              <li>
-                <a href="#!"><i class="fab fa-twitter"></i></a>
-              </li>
-              <li>
-                <a href="#!"><i class="fab fa-instagram"></i></a>
-              </li>
-            </ul>
-
-          </div>
-          <!-- Grid column -->
-
-          <!-- Grid column -->
-          <div class="col-md-3 mb-md-0 mb-3">
-
-            
-
-          </div>
-          <!-- Grid column -->
-
-      </div>
-      <!-- Grid row -->
-
-    </div>
-    <!-- Footer Links -->
-
-    <!-- Copyright -->
-    
-    <div class="footer-copyright text-center py-3" id='footer_c'>:
-    </div>
-    <script>
-      
-    </script>
-    <!-- Copyright -->
-
-  </footer>
-  <!-- Footer --> --}}
-
 </html>

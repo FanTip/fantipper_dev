@@ -9,8 +9,6 @@
                     {{#each categories}}
                     <span class="category-token">{{this}}</span>
                     {{/each}}
-                    {{!-- <span class="category-token">Design</span>
-                    <span class="category-token">Design</span> --}}
                 </h3>
                 <div class="creator-share">
                     <button id="share-facebook"><i class="fab fa-facebook-f"></i>Share</button>
@@ -26,6 +24,7 @@
                 <div id="about">
                     <h4>about</h4>
                     {{CreatorAbout}}
+                    <input type="hidden" id="creatorUrl" value="{{creatorurl}}">
                 </div>
                 <div id="gallery">
                     <h4>Gallery</h4>
@@ -40,9 +39,9 @@
                 </a>
                 <div class="creator-tips-total" style="margin:auto">
                     <h5>Tips</h5>
-                    <p class="total">0</p>
+                    <p class="total" id="total_tips"></p>
                     <h5>$</h5>
-                    <p class="total">0</p>
+                    <p class="total" id="total_amount"></p>
                     <div>
                         <p class="target-text">{{CreatorDesc}}</p>
                     </div>
@@ -69,16 +68,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-7 recent-comments" id="CreatorRecentComments">
-                    <h3> <i class="fa fa-comment"></i>0 messages</h3>
-                    <ul>
-                        <li>
-                            <img src="" alt="">
-                                <div class="comment">
-                                    <p></p>
-                                    <small></small>
-                                </div>
-                        </li>
-                    </ul>
+                    <h3> <i class="fa fa-comment"></i><span id="total_messages"></span> messages</h3>
+                    <div id="message_base"></div>
                 </div>
                 <div class="col-md-5 creator-sidebar">
                     <div class="fans scrollable">

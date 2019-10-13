@@ -9,6 +9,16 @@ html, body {
     background-color: inherit;
 }
 
+#message_base{
+    height: 150px;
+    overflow-y: auto;
+}
+
+#fan_message_base {
+    height: 100%;
+    overflow-y: auto;
+}
+
 footer{
     /* margin-top: 9%; */
 
