@@ -29,7 +29,6 @@ $(document).ready(function(){
             // msg_base.append('<p>Message: </p> <p>' + response[i].tipmessage + '<br>');
         }
         
-        console.log(response);
     });
 
 });

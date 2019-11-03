@@ -1,11 +1,12 @@
 <div class="container">
+    <link rel="stylesheet" href='/css/creatorprofileindex.css'/>
     <input type="hidden" value="{{csrfToken}}">
-    <div class="row">
+    <div class="row" id="profile_nav">
         <div class="col-lg-3" style="border-right : 1px double gray">
-            <h2>Creator Profile</h2>
             <ul class="list-group">
                 <li class="list-group">
-                    <span> <a href="/creatorprofile"> <img src="{{imagePath}}" alt="..." class="rounded-circle" height="50px" width="50px"></a>
+                    <span> <a href="/creatorprofile"> <img src="{{creatorTile}}" alt="..." class="rounded-circle" height="50px" width="50px"></a>
+                    <p>{{CreatorName}}</p>
                 </li>
                 <li class="list-group">
                     <a href="/creatorprofile/preview"><i class="fas fa-desktop"></i>Preview creator page</a>
@@ -40,6 +41,7 @@
 
         </div>
         <div class="col-lg-9">
+            <h2>Creator Profile</h2>
             <div class="container-fluid body-content">
                 <div class="row" id="rowOpacity">
                     <div class="creator-head text-center" style="background-image: url({{creatorBack}})">
