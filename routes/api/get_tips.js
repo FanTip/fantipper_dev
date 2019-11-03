@@ -24,7 +24,11 @@ router.get('/:url/:isMessages', async function(req, res) {
             let messages =[];
             for(let i = 0; i < tips.length; i++)
             {
-                messages.push(tips[i].tipmessage);
+                if(tips[i].tipmessage.length > 0)
+                {
+                    messages.push(tips[i].tipmessage);
+                }
+                
             }
             response = {
                 num_of_messages : messages.length,
