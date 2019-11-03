@@ -44,22 +44,31 @@
             <h2>Creator Profile</h2>
             <div class="container-fluid body-content">
                 <div class="row" id="rowOpacity">
-                    <div class="creator-head text-center" style="background-image: url({{creatorBack}})">
-                        <div>
-                            <img src="../{{creatorTile}}" class="img-circle" alt="{{creatorTile}}">
-                            <h2>{{CreatorName}}</h2>
-                            <h4>{{location}}</h4>
-                            <h3>
-                                {{#each categories}}
+                    <div class="creator-head text-center" style="background-image: url(../{{creatorBack}});">
+                        <div style="
+                background-color: rgba(30, 30, 30, 0.5);
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            ">
+                            <div style="padding-top: 100px;">
+                                <img src="../{{creatorTile}}" class="img-circle" alt="{{creatorTile}}">
+                                <h2>{{CreatorName}}</h2>
+                                <h4>{{location}}</h4>
+                                <h3>
+                                    {{#each categories}}
                                     <span class="category-token">{{this}}</span>
-                                {{/each}}
-                            </h3>
-                            <div class="creator-share">
-                                <button id="share-facebook"><i class="fab fa-facebook-f"></i>Share</button>
-                                <button id="share-twitter"><i class="fab fa-twitter"></i>Tweet</button>
-                                <button id="share-url"><i class="fas fa-paperclip"></i>{{CreatorURL}}</button>
-                            </div>
-                        </div> 
+                                    {{/each}}
+                                </h3>
+                                <div class="creator-share">
+                                    <button id="share-facebook"><i class="fab fa-facebook-f"></i>Share</button>
+                                    <button id="share-twitter"><i class="fab fa-twitter"></i>Tweet</button>
+                                    <button id="share-url"><i class="fas fa-paperclip"></i>{{CreatorURL}}</button>
+                                </div>
+                            </div> 
+                        </div>
                     </div>
                 </div>
 
