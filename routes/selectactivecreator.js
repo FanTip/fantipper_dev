@@ -24,6 +24,7 @@ router.post('/', isLoggedIn, async function(req, res, next) {
                 'creator.creatorNameuser': req.body.username,
                 'creator.creatorCategories': req.body.categories,
                 'creator.creatorAbout': req.body.maintext,
+                'creator.creatorLocation': req.body.location, 
             }
         ).exec();
         status = 200;
@@ -32,7 +33,7 @@ router.post('/', isLoggedIn, async function(req, res, next) {
         status = 500;
         response = "Error occured while updating";
     }
-    console.log(status);
+
     res.status(status).json(response);
 
 });
@@ -44,7 +45,8 @@ router.post('/delete', isLoggedIn, function(req, res, next) {
             'creator.isCreator': false,
             'creator.creatorName': "",
             'creator.creatorDesc': "",
-            'creator.creatorEmail': ""
+            'creator.creatorEmail': "",
+            'creator.creatorLocation': ""
         }
     }).exec(function(err) {
         if (err) {
