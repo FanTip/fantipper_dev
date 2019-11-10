@@ -336,13 +336,40 @@
                               <div class="btn-group"><button class="btn messages"><i class="fas fa-envelope"></i></button></div>
                               <div class="btn-group"><button class="btn offers"><i class="fas fa-certificate"></i></button></div>
                         </li>
-                        <img src="{{imagePath}}" alt="..." class="rounded-circle" height="50px" width="50px"
+                        <li class="nav-item">
+                              <img src="{{imagePath}}" alt="..." class="rounded-circle" height="50px" width="50px"
+                                    data-toggle="dropdown">
+                              <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                    <li class="dropdown-item">
+                                          <p class="dropdown-item disabled" style="margin-bottom:0;">Logged in as <strong>{{name}}</strong></p>
+                                    </li>
+                                    <div class="dropdown-divider"></div>
+                                    <li class="dropdown-item"><a href="/fantiphistory"> <i class="fas fa-book"></i> &#160;
+                                                Tip History</a></li>
+                                    <li class="dropdown-item"><a href="/profile"><i class="fas fa-user-alt"></i> &#160; Fan
+                                                Profile</a></li>
+                                    {{#if isCreator}}
+                                    <div class="dropdown-divider"></div>
+                                    <li class="dropdown-item"> <a href="/creatorprofile"> <i class="fas fa-user-circle"></i>
+                                                &#160; Creator Profile</a></li>
+                                    {{else}}
+                                    <div class="dropdown-divider"></div>
+                                    <li class="dropdown-item"><a href="#" data-toggle="modal" data-target="#createCreatorProfile">
+                                                <i class="fas fa-plus-circle"></i> &#160; Become Creator</a></li>
+                                    {{/if}}
+                                    <div class="dropdown-divider"></div>
+                                    <li class="dropdown-item"><a href="/logout"> <i class="fas fa-sign-out-alt"></i> &#160;
+                                                Logout</a></li>
+                              </ul>
+                        </li>
+                        {{!-- <img src="{{imagePath}}" alt="..." class="rounded-circle" height="50px" width="50px"
                               data-toggle="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a> --}}
                         <li class="nav-item navbar-right">
                               <a href="#search" class="btn" data-toggle="collapse" style="margin-left:1%;"><i class="fas fa-search"></i></a>
                         </li>
-                        <ul class="dropdown-menu">
+                        {{!-- <ul class="dropdown-menu">
                               <li class="dropdown-item">
                                     <p class="dropdown-item disabled">Logged in as <strong>{{name}}</strong></p>
                               </li>
@@ -363,7 +390,7 @@
                               <div class="dropdown-divider"></div>
                               <li class="dropdown-item"><a href="/logout"> <i class="fas fa-sign-out-alt"></i> &#160;
                                           Logout</a></li>
-                        </ul>
+                        </ul> --}}
                   </ul>
                   {{else}}
                   <ul class="nav navbar-nav  ml-auto">
