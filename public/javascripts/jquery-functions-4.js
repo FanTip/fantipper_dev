@@ -1,6 +1,5 @@
 // Autocomplete the location
 $(document).ready(function(){
-  console.log("bloodhound");
   var cities_au = new Bloodhound({
     datumTokenizer : Bloodhound.tokenizers.whitespace,
     queryTokenizer : Bloodhound.tokenizers.whitespace,
@@ -23,7 +22,7 @@ $(document).ready(function(){
       displayKey : 'value',
       source: cities_au.ttAdapter(),
       display : function (item){
-        return item.city + "," + item.admin + "," + item.country;
+        return item.city + ", " + item.admin + ", " + item.country;
       },
       templates : {
         notFound : function(){
@@ -33,7 +32,6 @@ $(document).ready(function(){
           return '<p>Loading...</p>'
         }
       }
-
     }
   );
 
@@ -47,7 +45,7 @@ $(document).ready(function(){
       displayKey : 'value',
       source: cities_au.ttAdapter(),
       display : function (item){
-        return item.city + "," + item.admin + "," + item.country;
+        return item.city + ", " + item.admin + ", " + item.country;
       },
       templates : {
         notFound : function(){
@@ -57,7 +55,6 @@ $(document).ready(function(){
           return '<p>Loading...</p>'
         }
       }
-
     }
   );
 
