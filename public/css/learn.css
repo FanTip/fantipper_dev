@@ -1,0 +1,15 @@
+p {
+  word-wrap: break-word;
+  font-size: 14px;
+  font-family: 'Larsseit'; }
+
+h3 {
+  color: #00D278;
+  font-size: 16px;
+  font-family: 'Larsseit-Bold'; }
+
+.img-venn {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%; }
