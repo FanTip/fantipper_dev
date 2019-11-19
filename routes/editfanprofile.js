@@ -11,10 +11,12 @@ router.get('/',isLoggedIn, function(req, res, next) {
 });
 
 router.post('/', function(req, res, next){
+  console.log(req.body);
   var query = {
     email : req.body.email,
     name : req.body.name,
     description : req.body.description,
+    location : req.body.location,
     $set : {
       'card.cardName': req.body.nameonthecard,
       'card.cardNumber': req.body.cardnumber,

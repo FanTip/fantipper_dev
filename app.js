@@ -20,7 +20,9 @@ require('./config/facebook-login');
 require('./config/google-login');
 
 const apiRouter = require('./routes/api/fantipper');
+
 const searchCitiesRouter = require('./routes/api/search-cities');
+const searchUsernamesRouter = require('./routes/api/search_usernames');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -103,6 +105,7 @@ app.use(function(req, res, next) {
             res.locals.CreatorURL = req.user.creator.creatorUrl;
             res.locals.CreatorDesc = req.user.creator.creatorDesc;
             res.locals.CreatorAbout = temp;
+            res.locals.CreatorLocation = req.user.creator.creatorLocation;
             res.locals.facebookID = req.user.facebookID;
             res.locals.creatorTile = req.user.creator.creatorTileImage;
             res.locals.creatorBack = req.user.creator.creatorBack;
@@ -164,6 +167,8 @@ app.use('/fantipper', profileEngineRouter)
 app.use('/api/fantipper', apiRouter); // https://fantipper.herokuapp.com/api/fantipper/
 
 app.use('/api/cities', searchCitiesRouter);
+app.use('/api/username', searchUsernamesRouter);
+
 
 app.use('/api/categories', categories_api);
 app.use('/api/fetch_tips_api', fetch_tips_api);

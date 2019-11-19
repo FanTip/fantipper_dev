@@ -31,6 +31,7 @@ window.addEventListener('DOMContentLoaded', function() {
             e.stopImmediatePropagation();
         } else {
             let done = function(url) {
+                $modal.modal({backdrop : 'static', keyboard:false});
                 input.value = '';
                 image.src = url;
                 $alert.hide();
@@ -56,16 +57,20 @@ window.addEventListener('DOMContentLoaded', function() {
 
     });
 
-
+    // $modal.modal({backdrop : 'static', keyboard:false});
     $modal.on('shown.bs.modal', function() {
         cropper = new Cropper(image, {
             aspectRatio: 1,
             viewMode: 1,
-        });
-    }).on('hidden.bs.modal', function() {
+        }),
+    {backdrop : 'static', keyboard:false}
+    });
+    // $modal.modal({backdrop : 'static', keyboard:false});
+    $modal.on('hidden.bs.modal', function() {
         cropper.destroy();
         cropper = null;
     });
+    
 
     document.getElementById('crop').addEventListener('click', function() {
         let initialAvatarURL;

@@ -12,6 +12,7 @@ $(document).ready(function() {
         let user_name = $("#username").val();
         let short_desc = $("#shortdesc").val();
         let main_text = $("#maintext").val();
+        let creator_location = $('#location_now').val();
 
         $(":checkbox:checked").each(function() {
             categories.push($(this).val());
@@ -22,7 +23,8 @@ $(document).ready(function() {
             username: user_name,
             shortdesc: short_desc,
             maintext: main_text,
-            categories: categories
+            categories: categories,
+            location : creator_location
         };
 
         let xhr = $.ajax({

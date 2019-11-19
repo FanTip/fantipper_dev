@@ -1,12 +1,15 @@
 <meta name="csrf-token" content="{{csrfToken}}"/>
 <div class="container">
+    <link rel="stylesheet" href='/css/creatorprofileindex.css'/>
+    <link rel="stylesheet" href='/css/userProfileEdit.css'/>
+    <script src="/javascripts/username_finder.js"></script>
     <input type="hidden" value="{{csrfToken}}">
-    <div class="row">
+    <div class="row"  id="profile_nav">
         <div class="col-lg-3" style="border-right : 1px double gray">
-            <h2>Creator Profile</h2>
             <ul class="list-group">
                 <li class="list-group">
-                    <span> <a href="/creatorprofile"> <img src="{{imagePath}}" alt="..." class="rounded-circle" height="50px" width="50px"></a>
+                    <span> <a href="/creatorprofile"> <img src="{{creatorTile}}" alt="..." class="rounded-circle" height="50px" width="50px"></a>
+                    <p>{{CreatorName}}</p>
                 </li>
                 <li class="list-group">
                     <a href="/creatorprofile/preview"><i class="fas fa-desktop"></i>Preview creator page</a>
@@ -44,6 +47,7 @@
             
         </div>
         <div class="col-lg-9" ng-controller = "usernameCtrl"  >
+            <h3>Edit Creator Profile</h3>
             <form action="/selectactivecreator" method="POST" ng-init="creator_username = {{CreatorUserName}}">
                 <div class="form-group" ng-model = "creator_username">
                     <label for="fullname">Full Name</label>
@@ -60,6 +64,10 @@
                 <div class="form-group">
                     <label for="maintext">Main Text</label>
                     <input type="text" id="maintext" name="maintext" class="form-control" value="{{CreatorAbout}}">
+                </div>
+                <div class="form-group">
+                        <label for="location">Creator Location</label>
+                        <input type="text" id="location_now" name="location" class="form-control form-control"   value="{{CreatorLocation}}">
                 </div>
                 <div class="form-group">Pictures</div>
                 
@@ -82,9 +90,9 @@
                 
                 <div class="form-group">
                     <h5>Change Profile image</h5>
-                    <div id="profileImage">
+                    <div id="profileImage cont">
                         <label class="label" >
-                            <img src="../{{creatorTile}}" alt="Creator avatar" class="rounded" id="avatar">
+                            <img src="../{{creatorTile}}" alt="Creator avatar" class="rounded image" id="avatar">
                             <input type="file" class="sr-only" name="image" id="input" accept="image/*">
                         </label>
                         <div class="progress">
