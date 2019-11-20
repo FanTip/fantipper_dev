@@ -67,6 +67,7 @@ router.get('/:url', function(req, res, next){
                     res.locals.creatorTile = doc.creator.creatorTileImage;
                     res.locals.creatorBack = doc.creator.creatorBack;
                     res.locals.creatorCategories = doc.creator.creatorCategories;
+                    res.locals.CreatorLocation = doc.creator.creatorLocation;
                     
                     res.render('creator/previewmode', { title: 'Creator Profile', categories : res.locals.creatorCategories, creatorurl : userID});
                 }else{
