@@ -11,24 +11,24 @@
                 <li class="list-group">
                     <a href="/editfanprofile"><i class="fas fa-edit"></i>Edit Profile</a>
                 </li>
-                <li class="list-group">
+                {{!-- <li class="list-group">
                     <a href="/notifications"><i class="fas fa-envelope"></i>Notifications</a>
                 </li>
                 <li class="list-group">
                     <a href=""><i class="fas fa-certificate"></i>Offers</a>
-                </li>
+                </li> --}}
                 <li class="list-group">
                     <a href="/messages"><i class="fas fa-comments"></i>Messages</a>
                 </li>
                 <li class="list-group">
                     <a href="/fantiphistory" id="tiphistory"><i class="fas fa-book"></i>Tip History</a>
                 </li>
-                <li class="list-group">
+                {{!-- <li class="list-group">
                     <a href=""><i class="fas fa-money-check-alt"></i>Account Balance</a>
                 </li>
                 <li class="list-group">
                     <a href=""><i class="fas fa-users"></i>Groups</a>
-                </li>
+                </li> --}}
                 <div class="dropdown-divider"></div>
                 <li class="list-group">
                     {{#if isCreator}}
@@ -46,10 +46,95 @@
         <div class="col-lg-9"  ng-controller="myCtrl as m">
             <div class="row justify-content-center">
                 <div class="col-4 cont">
-                    <img src="{{imagePath}}" alt="user profile picture" class="rounded-circle image" height="200px" width="200px">
+                    <img src="{{imagePath}}" alt="user profile picture" class="rounded-circle image" height="200px" width="200px"  id="avatar">
+                    <input type="file" class="sr-only" name="image" id="input" accept="image/*">
+
                     <div class="middle">
                         {{!-- <i class="fas fa-upload"></i> --}}
-                        <a href="/upload" class="btn btn-light">Change</a>
+                        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#imageEditModal">Change</button>
+                    </div>
+                </div>
+                <div class="modal fade" id="imageEditModal" tabindex="-1" role="dialog" aria-labelledby="imageEditModal" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-mg-12">
+                                            {{file}}
+                                            <br>
+                                        <form action="/upload?_csrf={{csrfToken}}" method="POST" enctype="multipart/form-data">
+                                                <div class="btn grey">
+                                                    <span>File</span>
+                                                    <input type="file" class="form-control-file" name="profileImage"/>
+                                                </div>
+                                                <button type="submit" class="btn">Submit</button>
+                                            </form>
+                                            
+                                            <a href="/profile" class="btn btn-primary">Back</a>
+                                        </div>
+                                            <img src="{{file}}" alt="">
+                                    </div>
+
+
+
+                                <div id="profileImage cont">
+                                <label class="label" >
+                                    {{!-- <img src="../{{creatorTile}}" alt="Creator avatar" class="rounded image" id="avatar"> --}}
+                                    {{!-- <input type="file" class="sr-only" name="image" id="input" accept="image/*"> --}}
+                                </label>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                                </div>
+
+                                <div class="alert" role="alert"></div>
+                                <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalLabel">Crop the Creator image</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="img-container">
+                                                    <img src="{{imagePath}}" id="image" height="600" width="600">
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                <button type="button" class="btn btn-primary" id="crop">Crop</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -186,10 +271,7 @@
                         </div>
                     </div>
 
-
-
-        
-    
+    <script src="/javascripts/fan_image_edit.js"></script>
     <script>
         var app = angular.module('myApp', []);
         app.controller('mycontroller', function($scope){

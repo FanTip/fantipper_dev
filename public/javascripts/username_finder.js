@@ -23,7 +23,11 @@ $(document).ready(function(){
         displayKey : 'value',
         source: cities_au.ttAdapter(),
         display : function (item){
-          return 'Username is already used!';
+          console.log(item);
+          if(item){
+            return 'Username is already used!';
+          }
+          
         },
         templates : {
           notFound : function(){
