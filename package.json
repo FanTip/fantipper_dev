@@ -6,7 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "angular": "^1.7.3",
+    "angular": "^1.7.9",
     "async": "^2.6.1",
     "base64-img": "^1.0.4",
     "bcrypt-nodejs": "0.0.3",
