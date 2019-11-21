@@ -1,8 +1,11 @@
 <meta name="csrf-token" content="{{csrfToken}}"/>
+<link rel="stylesheet" href='/css/creatorProfileApplication.css'/>
 <script src="quill/quill.min.js"></script>
-<div class="container-fluid" id="application" style="background-color : #D6F8E8; padding-left : 10%; padding-right : 10%; height : 100%">
+<script src="/javascripts/quill-settings/settings.js"></script>   
+<script src="/javascripts/cropper_settings.js"></script>
+
+<div class="container-fluid" id="application">
      {{!-- ng-controller="CreatorApplicationController as CAC" --}}
-    <link rel="stylesheet" href='/css/creatorProfileApplication.css'/>
     <div ng-controller="CreatorApplicationController as CAC">
     
     <div class="row" id="application_row">
@@ -221,23 +224,12 @@
                                 <p>Tell us little bit about you!</p>
                             </div>
                             
-                            <!-- Initialize Quill editor -->
-                            <style>
-                                #editor-container {
-                                                        height: 375px;
-                                                    }
-                            </style>
-                            <script src="/javascripts/quill-settings/settings.js"></script>   
                         </div>
                         <button class="btn" id="Submit_profile">Submit Creator Profile</button>
                         {{!-- <a href="#part_2" class="btn btn-danger" id="section2" data-ng-click="backpart2()">Back...</a> --}}
                     </div>
-                    
                 </div>
-            <script src="/javascripts/cropper_settings.js"></script>
-
+            </div>
         </div>
-    </div>
-        
     </div>
 </div>

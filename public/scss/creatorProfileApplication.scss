@@ -1,9 +1,30 @@
 #application {
     padding-top: 6%;
+    background-color: #D6F8E8;
+    padding-left: 10%;
+    padding-right: 10%;
+    height : 100%;
 }
 
 .container-fluid {
-    padding-top: 3%;
+    margin-top: 6%;
+}
+
+@media screen and (max-width:330px) {
+    .container-fluid { 
+        margin-top: 6%;
+    }
+    #application {
+        padding-top: 6%;
+    }
+}
+
+// .container-fluid {
+//     padding-top: 3%;
+// }
+
+#editor-container { // Initialize Quill editor
+    height: 375px;
 }
 
 .footer {
