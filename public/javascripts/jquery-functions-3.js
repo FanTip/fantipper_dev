@@ -31,7 +31,7 @@ window.addEventListener('DOMContentLoaded', function() {
             e.stopImmediatePropagation();
         } else {
             let done = function(url) {
-                $modal.modal({backdrop : 'static', keyboard:false});
+                $modal.modal({ backdrop: 'static', keyboard: false });
                 input.value = '';
                 image.src = url;
                 $alert.hide();
@@ -62,15 +62,14 @@ window.addEventListener('DOMContentLoaded', function() {
         cropper = new Cropper(image, {
             aspectRatio: 1,
             viewMode: 1,
-        }),
-    {backdrop : 'static', keyboard:false}
+        }), { backdrop: 'static', keyboard: false }
     });
     // $modal.modal({backdrop : 'static', keyboard:false});
     $modal.on('hidden.bs.modal', function() {
         cropper.destroy();
         cropper = null;
     });
-    
+
 
     document.getElementById('crop').addEventListener('click', function() {
         let initialAvatarURL;
