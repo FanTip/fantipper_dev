@@ -2,118 +2,119 @@
 <html ng-app='fantipperApp' style="min-height : 100%" lang="en">
 
 <head>
-      <title>{{title}}</title>
-      
-      <link href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" rel="stylesheet"/>
+  <title>{{title}}</title>
 
-      <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDDgPrFdc_506T2cZvbEa-Yw7Z87t1YM_Y&libraries=places&sensor=false"></script>
-      {{!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> --}}
+  <link href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" rel="stylesheet" />
 
-
-
-      {{!-- Custom style sheets --}}
-      <link rel='stylesheet' href='/stylesheets/style-1.css' />
-      <link rel='stylesheet' href='/stylesheets/style-2.css' />
-      <link rel='stylesheet' href='/stylesheets/style-3.css' />
-      <link rel='stylesheet' href='/stylesheets/style-4.css' />
-      <link rel="stylesheet" href='/css/creatorprofile.css' />
-      <link rel="stylesheet" href='/css/creatorprofilepreview.css'/>
-      <link rel="stylesheet" href='/css/creatorApplication.css'>
-      <link rel="stylesheet" href='/stylesheets/typeahead-styles.css' />
-      <link rel="stylesheet" href='/css/tiplist.css'/>
-      <link rel="stylesheet" href='/css/tipsharemodal.css'/>
-      <link rel="stylesheet" href='/css/tipmodal.css'/>
-      {{!-- Toastr css --}}
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-
-      {{!-- Bootstrap css --}}
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-
-      {{!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> --}}
-      
-      {{!-- Toastr javascript --}}
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-      <script src="https://cdn.rawgit.com/download/glyphicons/0.1.0/glyphicons.js"></script>
+  <script type="text/javascript"
+    src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDDgPrFdc_506T2cZvbEa-Yw7Z87t1YM_Y&libraries=places&sensor=false"></script>
+  {{!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> --}}
 
 
-      {{!-- Including Angular javascript --}}
-      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-      {{!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> --}}
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular-route.js"></script>
-      {{!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script> --}}
 
-      <script src="/javascripts/library/typeahead.js" ></script>
+  {{!-- Custom style sheets --}}
+  <link rel='stylesheet' href='/stylesheets/style-1.css' />
+  <link rel='stylesheet' href='/stylesheets/style-2.css' />
+  <link rel='stylesheet' href='/stylesheets/style-3.css' />
+  <link rel='stylesheet' href='/stylesheets/style-4.css' />
+  <link rel="stylesheet" href='/css/creatorprofile.css' />
+  <link rel="stylesheet" href='/css/creatorprofilepreview.css' />
+  <link rel="stylesheet" href='/css/creatorApplication.css'>
+  <link rel="stylesheet" href='/stylesheets/typeahead-styles.css' />
+  <link rel="stylesheet" href='/css/tiplist.css' />
+  <link rel="stylesheet" href='/css/tipsharemodal.css' />
+  <link rel="stylesheet" href='/css/tipmodal.css' />
+  {{!-- Toastr css --}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
-      {{!--Quill text editor --}}
-      <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
-      <!-- Include the Quill library -->
-      <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
+  {{!-- Bootstrap css --}}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
-      
-      {{!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropper/4.0.0/cropper.css">
+  {{!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> --}}
+
+  {{!-- Toastr javascript --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+  <script src="https://cdn.rawgit.com/download/glyphicons/0.1.0/glyphicons.js"></script>
+
+
+  {{!-- Including Angular javascript --}}
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  {{!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular-route.js"></script>
+  {{!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script> --}}
+
+  <script src="/javascripts/library/typeahead.js"></script>
+
+  {{!--Quill text editor --}}
+  <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
+  <!-- Include the Quill library -->
+  <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
+
+
+  {{!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropper/4.0.0/cropper.css">
       <script src="https://cdnjs.cloudflare.com/ajax/libs/cropper/4.0.0/cropper.css"></script> --}}
 
-    
-      {{!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script> --}}
-      {{!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> --}}
-      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  {{!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script> --}}
+  {{!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> --}}
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
-      {{!-- Typeahead intergration Bloodhound intergration--}}
-      <script src="/typeahead/typeahead.jquery.min.js"></script>
-      <script src="/typeahead/bloodhound.min.js"></script>
+  {{!-- Typeahead intergration Bloodhound intergration--}}
+  <script src="/typeahead/typeahead.jquery.min.js"></script>
+  <script src="/typeahead/bloodhound.min.js"></script>
 
-      {{!-- Dropzone config
+  {{!-- Dropzone config
       <link rel="stylesheet" href="/dropzone/dropzone.css">
       <script src="/dropzone/dropzone.js"></script> --}}
 
-      {{!--Socket.io implementation  --}}
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
+  {{!--Socket.io implementation  --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
 
-      {{!-- Cropper JS integration --}}
-      <link rel="stylesheet" href="/cropperjs/cropper.css">
-      <script src="/cropperjs/cropper.js"></script>
+  {{!-- Cropper JS integration --}}
+  <link rel="stylesheet" href="/cropperjs/cropper.css">
+  <script src="/cropperjs/cropper.js"></script>
 
-      {{!-- Moments.js intergration --}}
-      <script src="/javascripts/library/moments.js"></script>
-
-
-            <link rel="stylesheet" href='/css/navbar.css'/>
+  {{!-- Moments.js intergration --}}
+  <script src="/javascripts/library/moments.js"></script>
 
 
+  <link rel="stylesheet" href='/css/navbar.css' />
 
-                        {{!-- <script src="https://js.stripe.com/v3/"></script>
+
+
+  {{!-- <script src="https://js.stripe.com/v3/"></script>
                         <script src="https://checkout.stripe.com/checkout.js"></script> --}}
 
-                        {{!-- <script src="/javascripts/jquery-functions-1.js"></script> --}}
+  {{!-- <script src="/javascripts/jquery-functions-1.js"></script> --}}
 
-      <script src="https://js.stripe.com/v3/"></script>
-      {{!-- Custom jQuery functions --}}
-      {{!-- <script src="/javascripts/jquery-functions-1.js"></script> --}}
-      <script src="/javascripts/jquery-functions-2.js"></script>
-      <script src="/javascripts/jquery-functions-3.js"></script>
-      <script src="/javascripts/jquery-functions-4.js"></script>
-      <script src="/javascripts/jquery-functions-5.js"></script>
-      <script src="/javascripts/jquery-functions-6.js"></script>
-      <script src="/javascripts/generic_javascript.js"></script>
-      <script src="/javascripts/tip_handler.js"></script>
-      <script src="/javascripts/message_handler.js"></script>
-      <script src="/javascripts/fan_message_handler.js"></script>
-      {{!-- <script src="/stripe/stripe.js"></script> --}}
+  <script src="https://js.stripe.com/v3/"></script>
+  {{!-- Custom jQuery functions --}}
+  {{!-- <script src="/javascripts/jquery-functions-1.js"></script> --}}
+  <script src="/javascripts/jquery-functions-2.js"></script>
+  <script src="/javascripts/jquery-functions-3.js"></script>
+  <script src="/javascripts/jquery-functions-4.js"></script>
+  <script src="/javascripts/jquery-functions-5.js"></script>
+  <script src="/javascripts/jquery-functions-6.js"></script>
+  <script src="/javascripts/generic_javascript.js"></script>
+  <script src="/javascripts/tip_handler.js"></script>
+  <script src="/javascripts/message_handler.js"></script>
+  <script src="/javascripts/fan_message_handler.js"></script>
+  {{!-- <script src="/stripe/stripe.js"></script> --}}
 
-        {{!-- Custom angularjs functions --}}
-      <script src="/javascripts/setting-1.js"></script>
-      <script src="/javascripts/setting-2.js"></script>
+  {{!-- Custom angularjs functions --}}
+  <script src="/javascripts/setting-1.js"></script>
+  <script src="/javascripts/setting-2.js"></script>
 
-      {{!-- <script src="https://checkout.stripe.com/checkout.js"></script> --}}
+  {{!-- <script src="https://checkout.stripe.com/checkout.js"></script> --}}
 
 </head>
 
 <body>
-      <!--[if lt IE 9]>
+  <!--[if lt IE 9]>
       <script src="js/html5shiv.js"></script>
       <script src="js/respond.min.js"></script>
       <![endif]-->
@@ -121,255 +122,254 @@
 
 
 
-      {{!-- Modal for the login --}}
-      <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="LoginLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                        <div class="modal-header">
-                              <h4 class="modal-title">Log In</h4>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                          aria-hidden="true">&times;</span></button>
-                        </div>
-                        <div class="modal-body">
-                              <p>Don't have a FanTipper account? <a href="" data-toggle="modal" data-target="#signup"
-                                          data-dismiss="modal">Sign Up!</a></p>
-                              <div class="form-group">
-                                    <button type="button" id="facebook-button-login" class="btn form-control" name="button"><i
-                                                id="i" class="fab fa-facebook-f"></i>LOGIN WITH FACEBOOK</button>
-                                    <button type="button" class="btn btn-danger form-control" id="google-button-login"
-                                          name="button"><i id="i" class="fab fa-google"></i>LOGIN UP WITH GOOGLE</button>
-                                    <p id="or"><span>OR</span></p>
-                              </div>
-                              <form id="login-form" class="">
-                                    <div class="form-group">
-                                          <input name="email" type="email" id="email" placeholder="Email" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                          <input name="password" type="password" id="password" placeholder="Password"
-                                                class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                          <label id="checkbox"><input type="checkbox" value="">Remember me?</label>
-                                          <a href="#" id="forgot-password" class="float-right">Forgot password?</a>
-                                    </div>
-                                    <input type="hidden" name="_csrf" id="_csrf" value="{{csrfToken}}">
-                                    <button type="submit" class="btn btn-success form-control" name="button">Login</button>
-                              </form>
-                        </div>
-                  </div>
+  {{!-- Modal for the login --}}
+  <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="LoginLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Log In</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <p>Don't have a FanTipper account? <a href="" data-toggle="modal" data-target="#signup"
+              data-dismiss="modal">Sign Up!</a></p>
+          <div class="form-group">
+            <button type="button" id="facebook-button-login" class="btn form-control" name="button"><i id="i"
+                class="fab fa-facebook-f"></i>LOGIN WITH FACEBOOK</button>
+            <button type="button" class="btn btn-danger form-control" id="google-button-login" name="button"><i id="i"
+                class="fab fa-google"></i>LOGIN UP WITH GOOGLE</button>
+            <p id="or"><span>OR</span></p>
+          </div>
+          <form id="login-form" class="">
+            <div class="form-group">
+              <input name="email" type="email" id="email" placeholder="Email" class="form-control">
             </div>
-      </div>
-
-      {{!-- Modal for the signup --}}
-      <div class="modal fade" id="signup" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                        <div class="modal-header">
-                              <h4 class="modal-title">Sign up</h4>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                          aria-hidden="true">&times;</span></button>
-                        </div>
-                        <div class="modal-body">
-                              <h5 class="text-center">Join FanTipper now and start supporting your favourite creators.</h5>
-                              <p class="text-center">Already have an account?<a href="" data-toggle="modal" data-target="#login"
-                                          data-dismiss="modal"> Log In!</a></p>
-                              <p class="text-center" id="beta">During our beta phase we are accepting creators by
-                                    invites only. Get involved by requesting an invite</p>
-                              <div class="form-group">
-                                    <hr>
-                                    <button type="button" class="btn form-control" id="facebook-button-signup" name="button"><i
-                                                id="i" class="fab fa-facebook-f"></i>SIGN UP WITH FACEBOOK</button>
-                                    <button type="button" class="btn btn-danger form-control" id="google-button-signup"
-                                          name="button"><i id="i" class="fab fa-google"></i>SIGN UP WITH GOOGLE</button>
-                                    <hr>
-
-                              </div>
-                              <form class="" id="signup-form">
-                                    <div class="form-group">
-                                          <input name="name" type="text" id="name" placeholder="Name" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                          <input name="email" type="email" id="signup_email" placeholder="Email" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                          <input name="password" type="password" id="signup_password" placeholder="Password"
-                                                class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                          <input name="confirmpassword" type="password" id="confirmpassword"
-                                                placeholder="Confirm Password" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                          <input name="location" type="text" id="location" placeholder="Location" class="form-control">
-                                    </div>
-                                    <input type="hidden" name="_csrf" id="_csrf" value="{{csrfToken}}">
-                                    <button type="submit" class="btn btn-success form-control" id="signup-button" name="button">SIGN
-                                          UP</button>
-                              </form>
-                        </div>
-                        <div class="modal-footer">
-                              <p id="footer" class="text-center">By signing up, you agree to FanTipper's T&#38;C's and Privacy Policy</p>
-                        </div>
-                  </div>
+            <div class="form-group">
+              <input name="password" type="password" id="password" placeholder="Password" class="form-control">
             </div>
-      </div>
-
-      {{!-- Modal for the creators account --}}
-      <div class="modal fade" id="createCreatorProfile" tabindex="-1" role="dialog" aria-labelledby="createCreatorProfileLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                        <div class="modal-header">
-                              <h4 class="modal-title">Creating a Creators Profile!</h4>
-                              <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                                          aria-hidden="true">&times;</span>
-                              </button>
-                        </div>
-                        <div class="modal-body">
-                              <form action="">
-                                    <div class="form-group">
-                                          Creator profile will be created for {{email}}
-                                    </div>
-                        
-                                    <div class="form-group">
-                                          <a href="/creator/application" class="btn btn-success">Proceed to Creator application</a>
-                                    </div>
-                              </form>
-                        </div>
-                        <div class="modal-footer"></div>
-                  </div>
+            <div class="form-group">
+              <label id="checkbox"><input type="checkbox" value="">Remember me?</label>
+              <a href="#" id="forgot-password" class="float-right">Forgot password?</a>
             </div>
+            <input type="hidden" name="_csrf" id="_csrf" value="{{csrfToken}}">
+            <button type="submit" class="btn btn-success form-control" name="button">Login</button>
+          </form>
+        </div>
       </div>
+    </div>
+  </div>
 
-      {{!-- Modal for updating credit card information --}}
-      <div  ng-controller="myCtrl as m" class="modal fade" id="updateCardOptions" tabindex="-1" role="dialog" aria-labelledby="updateCardOptionsLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                        <form action="/editfanprofile/updatecard" method="POST">
-                              <div class="modal-header">
-                                    <h3>Add Your Card</h3>
-                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                          <span aria-hidden="true">&times;</span>
-                                    </button>
-                              </div>
-                              <div class="modal-body">
-                                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
-                                    <div class="form-group">
-                                          <label for="nameonthecard">Name on the card</label>
-                                          <input type="text" check-if-name ng-model="nameOnCard" name="nameonthecard" id="nameonthecard" class="form-control" />
-                                    </div>
-                                    <div class="form-group">
-                                          <label for="cardnumber">Card number</label>
-                                          <input type="text" check-if-number ng-model="checkIfNumber" name="cardnumber" id="cardnumber" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                          <label for="expirydate">Expiry date</label>
-                                          <input type="text" name="expirydate" id="expirydate" class="form-control"
-                                                ng-model="data">
-                                    </div>
-                                    <div class="form-group">
-                                          <label for="cvv">CVV number</label>
-                                          <input type="text" name="cvv" id="cvv" class="form-control">
-                                    </div>
-                              </div>
-                              <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">Add your card</button>
-                              </div>
-                  </div>
-                  </form>
+  {{!-- Modal for the signup --}}
+  <div class="modal fade" id="signup" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Sign up</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <h5 class="text-center">Join FanTipper now and start supporting your favourite creators.</h5>
+          <p class="text-center">Already have an account?<a href="" data-toggle="modal" data-target="#login"
+              data-dismiss="modal"> Log In!</a></p>
+          <p class="text-center" id="beta">During our beta phase we are accepting creators by
+            invites only. Get involved by requesting an invite</p>
+          <div class="form-group">
+            <hr>
+            <button type="button" class="btn form-control" id="facebook-button-signup" name="button"><i id="i"
+                class="fab fa-facebook-f"></i>SIGN UP WITH FACEBOOK</button>
+            <button type="button" class="btn btn-danger form-control" id="google-button-signup" name="button"><i id="i"
+                class="fab fa-google"></i>SIGN UP WITH GOOGLE</button>
+            <hr>
+
+          </div>
+          <form class="" id="signup-form">
+            <div class="form-group">
+              <input name="name" type="text" id="name" placeholder="Name" class="form-control">
             </div>
-      </div>
-
-      {{!-- Modal for deleting credit card information --}}
-      <div class="modal fade" id="deleteCard" tabindex="-1" role="dialog" aria-labelledby="deleteCardLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                        <div class="modal-header">
-                              <h4 class="modal-title">Do you really wish to remove your card details?</h4>
-                              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                              </button>
-                        </div>
-                        <div class="modal-footer">
-                              <form action="/editfanprofile/deletecard" method="POST">
-                                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal"
-                                          data-target="#updateCardOptions">Add a new card</button>
-                                    <button type="submit" class="btn btn-danger">Delete Card</button>
-                              </form>
-                        </div>
-                  </div>
+            <div class="form-group">
+              <input name="email" type="email" id="signup_email" placeholder="Email" class="form-control">
             </div>
-      </div>
-
-      <div class="collapse" id="search">
-            <div class="row">
-                  <div class="col-lg-12">
-                        <div class="input-group">
-                              <input type="text" name="search" id="search" placeholder="Type to search Fan Tipper ..."
-                                    class="form-control" class="close">
-                              <span class="input-group-btn">
-                                    <button class="close" type="button" data-dismiss="collapse" aria-label="Close">
-                                          <span aria-hidden="true">&times;</span>
-                                    </button>
-                              </span>
-                        </div>
-                  </div>
+            <div class="form-group">
+              <input name="password" type="password" id="signup_password" placeholder="Password" class="form-control">
             </div>
+            <div class="form-group">
+              <input name="confirmpassword" type="password" id="confirmpassword" placeholder="Confirm Password"
+                class="form-control">
+            </div>
+            <div class="form-group">
+              <input name="location" type="text" id="location" placeholder="Location" class="form-control">
+            </div>
+            <input type="hidden" name="_csrf" id="_csrf" value="{{csrfToken}}">
+            <button type="submit" class="btn btn-success form-control" id="signup-button" name="button">SIGN
+              UP</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <p id="footer" class="text-center">By signing up, you agree to FanTipper's T&#38;C's and Privacy Policy</p>
+        </div>
       </div>
+    </div>
+  </div>
 
-      {{!-- Navbar --}}
-      <nav class="navbar navbar-expand-md navbar-light">
-            <a class="navbar-brand" href="/"><img src="/images/logo/logo.png" alt=""></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-                  <span class="navbar-toggler-icon"></span>
+  {{!-- Modal for the creators account --}}
+  <div class="modal fade" id="createCreatorProfile" tabindex="-1" role="dialog"
+    aria-labelledby="createCreatorProfileLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Creating a Creators Profile!</h4>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="">
+            <div class="form-group">
+              Creator profile will be created for {{email}}
+            </div>
+
+            <div class="form-group">
+              <a href="/creator/application" class="btn btn-success">Proceed to Creator application</a>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer"></div>
+      </div>
+    </div>
+  </div>
+
+  {{!-- Modal for updating credit card information --}}
+  <div ng-controller="myCtrl as m" class="modal fade" id="updateCardOptions" tabindex="-1" role="dialog"
+    aria-labelledby="updateCardOptionsLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <form action="/editfanprofile/updatecard" method="POST">
+          <div class="modal-header">
+            <h3>Add Your Card</h3>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
             </button>
-            <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                  <ul class="nav navbar-nav">
-                        <li class="nav-item link"><a class="nav-link" href="/explore">EXPLORE</a></li>
-                        <li class="nav-item link"><a class="nav-link" href="/learn">LEARN</a></li>
-                  </ul>
-                  {{#if login}}
-                  <ul class="nav navbar-nav  ml-auto">
-                        <li class="nav-item notifications">
-                              <div class="btn-group"><button class="btn messages"><i class="fas fa-envelope"></i></button></div>
-                              <div class="btn-group"><button class="btn offers"><i class="fas fa-certificate"></i></button></div>
-                        </li>
-                        <li class="nav-item">
-                              <img src="{{imagePath}}" alt="..." class="rounded-circle" height="50px" width="50px"
-                                    data-toggle="dropdown">
-                              <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-                              <ul class="dropdown-menu">
-                                    <li class="dropdown-item">
-                                          <p class="dropdown-item disabled" style="margin-bottom:0;">Logged in as <strong>{{name}}</strong></p>
-                                    </li>
-                                    <div class="dropdown-divider"></div>
-                                    <li class="dropdown-item"><a href="/fantiphistory"> <i class="fas fa-book"></i> &#160;
-                                                Tip History</a></li>
-                                    <li class="dropdown-item"><a href="/profile"><i class="fas fa-user-alt"></i> &#160; Fan
-                                                Profile</a></li>
-                                    {{#if isCreator}}
-                                    <div class="dropdown-divider"></div>
-                                    <li class="dropdown-item"> <a href="/creatorprofile"> <i class="fas fa-user-circle"></i>
-                                                &#160; Creator Profile</a></li>
-                                    {{else}}
-                                    <div class="dropdown-divider"></div>
-                                    <li class="dropdown-item"><a href="#" data-toggle="modal" data-target="#createCreatorProfile">
-                                                <i class="fas fa-plus-circle"></i> &#160; Become Creator</a></li>
-                                    {{/if}}
-                                    <div class="dropdown-divider"></div>
-                                    <li class="dropdown-item"><a href="/logout"> <i class="fas fa-sign-out-alt"></i> &#160;
-                                                Logout</a></li>
-                              </ul>
-                        </li>
-                        {{!-- <img src="{{imagePath}}" alt="..." class="rounded-circle" height="50px" width="50px"
+          </div>
+          <div class="modal-body">
+            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+            <div class="form-group">
+              <label for="nameonthecard">Name on the card</label>
+              <input type="text" check-if-name ng-model="nameOnCard" name="nameonthecard" id="nameonthecard"
+                class="form-control" />
+            </div>
+            <div class="form-group">
+              <label for="cardnumber">Card number</label>
+              <input type="text" check-if-number ng-model="checkIfNumber" name="cardnumber" id="cardnumber"
+                class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="expirydate">Expiry date</label>
+              <input type="text" name="expirydate" id="expirydate" class="form-control" ng-model="data">
+            </div>
+            <div class="form-group">
+              <label for="cvv">CVV number</label>
+              <input type="text" name="cvv" id="cvv" class="form-control">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Add your card</button>
+          </div>
+      </div>
+      </form>
+    </div>
+  </div>
+
+  {{!-- Modal for deleting credit card information --}}
+  <div class="modal fade" id="deleteCard" tabindex="-1" role="dialog" aria-labelledby="deleteCardLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Do you really wish to remove your card details?</h4>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <form action="/editfanprofile/deletecard" method="POST">
+            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal"
+              data-target="#updateCardOptions">Add a new card</button>
+            <button type="submit" class="btn btn-danger">Delete Card</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="collapse" id="search">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="input-group">
+          <input type="text" name="search" id="search" placeholder="Type to search Fan Tipper ..." class="form-control"
+            class="close">
+          <span class="input-group-btn">
+            <button class="close" type="button" data-dismiss="collapse" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{!-- Navbar --}}
+  <nav class="navbar navbar-expand-md navbar-light">
+    <a class="navbar-brand" href="/"><img src="/images/logo/logo.png" alt=""></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="nav navbar-nav">
+        <li class="nav-item link"><a class="nav-link" href="/explore">EXPLORE</a></li>
+        <li class="nav-item link"><a class="nav-link" href="/learn">LEARN</a></li>
+      </ul>
+      {{#if login}}
+      <ul class="nav navbar-nav  ml-auto">
+        <li class="nav-item notifications">
+          <div class="btn-group"><button class="btn messages"><i class="fas fa-envelope"></i></button></div>
+          <div class="btn-group"><button class="btn offers"><i class="fas fa-certificate"></i></button></div>
+        </li>
+        <li class="nav-item">
+          <img src="{{imagePath}}" alt="..." class="rounded-circle" height="50px" width="50px" data-toggle="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li class="dropdown-item">
+              <p class="dropdown-item disabled" style="margin-bottom:0;">Logged in as <strong>{{name}}</strong></p>
+            </li>
+            <div class="dropdown-divider"></div>
+            <li class="dropdown-item"><a href="/fantiphistory"> <i class="fas fa-book"></i> &#160;
+                Tip History</a></li>
+            <li class="dropdown-item"><a href="/profile"><i class="fas fa-user-alt"></i> &#160; Fan
+                Profile</a></li>
+            {{#if isCreator}}
+            <div class="dropdown-divider"></div>
+            <li class="dropdown-item"> <a href="/creatorprofile"> <i class="fas fa-user-circle"></i>
+                &#160; Creator Profile</a></li>
+            {{else}}
+            <div class="dropdown-divider"></div>
+            <li class="dropdown-item"><a href="#" data-toggle="modal" data-target="#createCreatorProfile">
+                <i class="fas fa-plus-circle"></i> &#160; Become Creator</a></li>
+            {{/if}}
+            <div class="dropdown-divider"></div>
+            <li class="dropdown-item"><a href="/logout"> <i class="fas fa-sign-out-alt"></i> &#160;
+                Logout</a></li>
+          </ul>
+        </li>
+        {{!-- <img src="{{imagePath}}" alt="..." class="rounded-circle" height="50px" width="50px"
                               data-toggle="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a> --}}
-                        <li class="nav-item navbar-right">
-                              <a href="#search" class="btn" data-toggle="collapse" style="margin-left:1%;"><i class="fas fa-search"></i></a>
-                        </li>
-                        {{!-- <ul class="dropdown-menu">
+        <li class="nav-item navbar-right">
+          <a href="#search" class="btn" data-toggle="collapse" style="margin-left:1%;"><i class="fas fa-search"></i></a>
+        </li>
+        {{!-- <ul class="dropdown-menu">
                               <li class="dropdown-item">
                                     <p class="dropdown-item disabled">Logged in as <strong>{{name}}</strong></p>
                               </li>
@@ -391,83 +391,84 @@
                               <li class="dropdown-item"><a href="/logout"> <i class="fas fa-sign-out-alt"></i> &#160;
                                           Logout</a></li>
                         </ul> --}}
-                  </ul>
-                  {{else}}
-                  <ul class="nav navbar-nav  ml-auto">
-                        <li class="nav-item navbar-right">
-                              <a href="" class="btn float-sm-right" data-toggle="modal" data-target="#login">LOG IN</a>
-                        </li>
-                        <li class="nav-item navbar-right">
-                              <a href="" class="btn btn-success float-sm-right signup" data-toggle="modal" data-target="#signup">SIGN
-                                    UP</a>
-                        </li>
-                        <li class="nav-item navbar-right">
-                              <a href="#search" class="btn" data-toggle="collapse" style="margin-left:1%;"><i class="fas fa-search"></i></a>
-                        </li>
-                  </ul>
-                  {{/if}}
-            </div>
-      </nav>
-      {{!-- Rest of the page body goes here --}}
-      {{!-- includes index.hbs --}}
-      <div class="main">
-            {{{body}}}
-      </div>
+      </ul>
+      {{else}}
+      <ul class="nav navbar-nav  ml-auto">
+        <li class="nav-item navbar-right">
+          <a href="" class="btn float-sm-right" data-toggle="modal" data-target="#login">LOG IN</a>
+        </li>
+        <li class="nav-item navbar-right">
+          <a href="" class="btn btn-success float-sm-right signup" data-toggle="modal" data-target="#signup">SIGN
+            UP</a>
+        </li>
+        <li class="nav-item navbar-right">
+          <a href="#search" class="btn" data-toggle="collapse" style="margin-left:1%;"><i class="fas fa-search"></i></a>
+        </li>
+      </ul>
+      {{/if}}
+    </div>
+  </nav>
+  {{!-- Rest of the page body goes here --}}
+  {{!-- includes index.hbs --}}
+  <div class="main">
+    {{{body}}}
+  </div>
 </body>
 
 <footer class="footer">
-      <div class="container-fluid">
-        <div class="row">
-        <!-- Grid column -->
-        <div class="col-md-6 mt-md-0 mt-3">
-            <h5 class="text-uppercase">Sitemap</h5>  
-            <ul class="list-unstyled">
-              <li>
-                <a href="#!">Explore</a>
-              </li>
-              <li>
-                <a href="#!">Learn</a>
-              </li>
-              <li>
-                <a href="#!">Terms of Use</a>
-              </li>
-              <li>
-                <a href="#!">Privacy Policy</a>
-              </li>
-            </ul>
-        </div>
-        <!-- Grid column -->
-        <hr class="clearfix w-100 d-md-none pb-3">
-        <!-- Grid column -->
-          <div class="col-md-3 mb-md-0 mb-3">
-            <!-- Links -->
-            <h5 class="text-uppercase">Connect</h5>
-            <ul class="list-unstyled">
-              <li>
-                <a href="#!">info@fantipper.com</a>
-              </li>
-              <li>
-                <a href="#!"><i class="fab fa-facebook-f"></i></a>
-              </li>
-              <li>
-                <a href="#!"><i class="fab fa-twitter"></i></a>
-              </li>
-              <li>
-                <a href="#!"><i class="fab fa-instagram"></i></a>
-              </li>
-            </ul>
-          </div>
-          <!-- Grid column -->
-
-          <!-- Grid column -->
-          <div class="col-md-3 mb-md-0 mb-3">
-            <!-- Copyright -->
-            <div class="footer-copyright text-center py-3" id='footer_c'>:
-            </div>
-          </div>
-          <!-- Grid column -->
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Grid column -->
+      <div class="col-md-6 mt-md-0 mt-3">
+        <h5 class="text-uppercase">Sitemap</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">Explore</a>
+          </li>
+          <li>
+            <a href="#!">Learn</a>
+          </li>
+          <li>
+            <a href="#!">Terms of Use</a>
+          </li>
+          <li>
+            <a href="#!">Privacy Policy</a>
+          </li>
+        </ul>
       </div>
-      <!-- Grid row -->
+      <!-- Grid column -->
+      <hr class="clearfix w-100 d-md-none pb-3">
+      <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+        <!-- Links -->
+        <h5 class="text-uppercase">Connect</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">info@fantipper.com</a>
+          </li>
+          <li>
+            <a href="#!"><i class="fab fa-facebook-f"></i></a>
+          </li>
+          <li>
+            <a href="#!"><i class="fab fa-twitter"></i></a>
+          </li>
+          <li>
+            <a href="#!"><i class="fab fa-instagram"></i></a>
+          </li>
+        </ul>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3" id='footer_c'>:
+        </div>
+      </div>
+      <!-- Grid column -->
     </div>
+    <!-- Grid row -->
+  </div>
 </footer>
+
 </html>

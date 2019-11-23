@@ -1,19 +1,18 @@
-$(document).ready(function(){
+$(document).ready(function() {
 
     let xhr = $.ajax({
-        url : `/api/fancreatemsg/getfan`,
-        method : 'GET',
-        crossDomain : false,
+        url: `/api/fancreatemsg/getfan`,
+        method: 'GET',
+        crossDomain: false,
         headers: {
             'CSRF-Token': $('meta[name="csrf-token"]').attr('content')
         },
     });
 
-    xhr.done(function(response){
+    xhr.done(function(response) {
         let msg_base = $('#fan_message_base');
 
-        for(let i = 0; i < response.length; i++)
-        {
+        for (let i = 0; i < response.length; i++) {
             let card = $('<div class="card" style="width: 100%;">');
             let card_body = $('<div class="card-body" style="padding: 0.5rem;">');
             let card_content = $('<p class="card-text">');
@@ -26,9 +25,9 @@ $(document).ready(function(){
             card_body.append(card_content);
             card.append(card_body);
             msg_base.append(card)
-            // msg_base.append('<p>Message: </p> <p>' + response[i].tipmessage + '<br>');
+                // msg_base.append('<p>Message: </p> <p>' + response[i].tipmessage + '<br>');
         }
-        
+
     });
 
 });

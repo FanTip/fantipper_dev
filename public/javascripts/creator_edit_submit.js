@@ -24,7 +24,7 @@ $(document).ready(function() {
             shortdesc: short_desc,
             maintext: main_text,
             categories: categories,
-            location : creator_location
+            location: creator_location
         };
 
         let xhr = $.ajax({
