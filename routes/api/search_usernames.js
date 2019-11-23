@@ -7,11 +7,12 @@ const User = require('../../models/user');
 
 
 var fuseOptions = {
+    caseSensitive: true,
     shouldSort: true,
     tokenize: true,
     matchAllTokens: true,
     includeScore: true,
-    threshold: 0.3,
+    threshold: 0.8,
     location: 0,
     distance: 50,
     maxPatternLength: 32,
@@ -23,24 +24,26 @@ var fuseOptions = {
 
 router.get('/search', async function(req, res){
 
-    let users = await User.find({}).exec();
-    let users_list = [];
+    try{
+        let users = await User.find({}).exec();
+        let users_list = [];
+        
+        for(i = 0; i < users.length; i++)
+        {
+            let user_name = {"username" : users[i].creator.creatorNameuser};
+            users_list.push(user_name);
+        }
+        console.log(req.query);
+        var fuseSearch = new fuse(users_list, fuseOptions);
+        if (!req.query.username){
+            return res.status(400).send('Not found');
+        }
+
+        var matches = fuseSearch.search(req.query.username.trim());
+        res.status(200).json(true);
+    }
+    catch(e){}
     
-    for(i = 0; i < users.length; i++)
-    {
-        let user_name = {"username" : users[i].creator.creatorNameuser};
-        users_list.push(user_name);
-    }
-
-    var fuseSearch = new fuse(users_list, fuseOptions);
-    if (!req.query.city){
-        return res.status(400).send('Not found');
-    }
-
-    var matches = fuseSearch.search(req.query.city.trim());
-    res.status(200).json(matches.map(match => {
-        return match.item;
-    }))
 });
 
 module.exports = router;

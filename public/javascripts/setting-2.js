@@ -1,16 +1,16 @@
 // this is a testing angularjs file
 
-fantipperApp.controller('CreatorApplicationController', function($scope, $http){
+fantipperApp.controller('CreatorApplicationController', function($scope, $http) {
 
     /**
      * Checking the form for validation
      */
-     if(($scope.creatorName != undefined ) && ($scope.textModel != undefined ) && ($scope.location != undefined)){
+    if (($scope.creatorName != undefined) && ($scope.textModel != undefined) && ($scope.location != undefined)) {
         // $scope.buttonSection1 = 
         this.checked = true;
-     }else{
+    } else {
         this.checked = false;
-     }
+    }
 
 });
 
@@ -59,8 +59,8 @@ fantipperApp.controller('CreatorApplicationController', function($scope, $http){
 
 // Removes white spaces in the creatorProfileCreate file in order to generate the creator url
 // Checks if the username is taken or not
-fantipperApp.filter('usernameCreator', function(){
-    return function (value) {        
-      return (!value) ? '' : value.replace(/ /g, '');
+fantipperApp.filter('usernameCreator', function() {
+    return function(value) {
+        return (!value) ? '' : value.replace(/ /g, '');
     };
-  });
+});
