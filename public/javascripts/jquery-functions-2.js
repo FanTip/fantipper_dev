@@ -4,32 +4,32 @@
  * 
  */
 
-$(function(){
-    $('#login-form').on('submit', function(event){
+$(function() {
+    $('#login-form').on('submit', function(event) {
         event.preventDefault();
         var csrf = $('#_csrf').val();
         var email = $('#email').val();
         var password = $('#password').val();
         var data = {
-            _csrf : csrf,
-            email : email,
-            password : password
+            _csrf: csrf,
+            email: email,
+            password: password
         }
         var xhr = $.ajax({
-            type : 'POST',
-            crossDomain : false,
-            data : data,
-            url : '/login'
+            type: 'POST',
+            crossDomain: false,
+            data: data,
+            url: '/login'
         });
-        xhr.done(function(response){
+        xhr.done(function(response) {
             toastr.success('Logged in successfully!');
             $(location).attr('href', '/profile');
-            
-        }).fail(function(response){
+
+        }).fail(function(response) {
             toastr.error('Check your yousername/password again!');
         });
 
-});
+    });
 
 
     /**
@@ -38,7 +38,7 @@ $(function(){
      * 
      */
 
-    $('#signup-form').on('submit', function(event){
+    $('#signup-form').on('submit', function(event) {
         event.preventDefault();
         var csrf = $('#_csrf').val();
         var name = $('#name').val();
@@ -46,41 +46,41 @@ $(function(){
         var password = $('#signup_password').val();
         var _location = $('#location').val();
         var data = {
-            _csrf : csrf,
-            name : name,
-            email : email,
-            password : password,
-            location : _location
+            _csrf: csrf,
+            name: name,
+            email: email,
+            password: password,
+            location: _location
         }
         var xhr = $.ajax({
-            type : 'POST',
-            crossDomain : false,
-            data : data,
-            url : '/signup'
+            type: 'POST',
+            crossDomain: false,
+            data: data,
+            url: '/signup'
         })
-        xhr.done(function(){
+        xhr.done(function() {
             $(location).attr('href', '/profile');
             toastr.success('Signing up was sucessful!');
-        }).fail(function(response){
+        }).fail(function(response) {
             toastr.error('Error occured during signin up');
-            
+
         });
     });
 
 
-    $('#facebook-button-login').click(function(){
+    $('#facebook-button-login').click(function() {
         $(location).attr('href', '/login/facebook');
     });
 
-    $('#facebook-button-signup').click(function(){
+    $('#facebook-button-signup').click(function() {
         $(location).attr('href', '/login/facebook');
     });
 
-    $('#google-button-signup').click(function(){
+    $('#google-button-signup').click(function() {
         $(location).attr('href', '/auth/google');
     });
 
-    $('#google-button-login').click(function(){
+    $('#google-button-login').click(function() {
         $(location).attr('href', '/auth/google');
     });
 });

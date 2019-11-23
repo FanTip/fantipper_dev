@@ -26,7 +26,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 backgroundInput.value = '';
                 backgroundImage.src = url;
                 $backAlert.hide();
-                $backModal.modal({backdrop : 'static', keyboard:false});
+                $backModal.modal({ backdrop: 'static', keyboard: false });
                 $backModal.modal('show');
             }
 
@@ -52,7 +52,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
     $backModal.on('shown.bs.modal', function() {
         cropper = new Cropper(backgroundImage, {
-            aspectRatio: 16/9,
+            aspectRatio: 16 / 9,
             viewMode: 1,
             checkCrossOrigin: false,
             background: false,

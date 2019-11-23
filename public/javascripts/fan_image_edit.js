@@ -1,19 +1,21 @@
 window.addEventListener('DOMContentLoaded', function() {
 
     $('[data-toggle="tooltip"]').tooltip();
-
     /**
      * Cropping image functions
      */
-    let avatar = document.getElementById('avatar');
+    let avatar = document.getElementById('fan-avatar');
     let image = document.getElementById('image');
-    let input = document.getElementById('input');
+    let input = document.getElementById('fan-input');
 
     let $progress = $('.progress');
     let $progressBar = $('.progress-bar');
     let $alert = $('.alert');
     let $modal = $('#modal');
 
+    let csrf_field = document.getElementById('csrf_field');
+
+    console.log(csrf_field.value);
 
     $progress.hide();
 
@@ -27,7 +29,7 @@ window.addEventListener('DOMContentLoaded', function() {
             e.stopImmediatePropagation();
         } else {
             let done = function(url) {
-                $modal.modal({backdrop : 'static', keyboard:false});
+                $modal.modal({ backdrop: 'static', keyboard: false });
                 input.value = '';
                 image.src = url;
                 $alert.hide();
@@ -58,15 +60,14 @@ window.addEventListener('DOMContentLoaded', function() {
         cropper = new Cropper(image, {
             aspectRatio: 1,
             viewMode: 1,
-        }),
-    {backdrop : 'static', keyboard:false}
+        }), { backdrop: 'static', keyboard: false }
     });
     // $modal.modal({backdrop : 'static', keyboard:false});
     $modal.on('hidden.bs.modal', function() {
         cropper.destroy();
         cropper = null;
     });
-    
+
 
     document.getElementById('crop').addEventListener('click', function() {
         let initialAvatarURL;
@@ -88,29 +89,13 @@ window.addEventListener('DOMContentLoaded', function() {
 
                 formData.append('avatar', blob, 'avatar.jpg');
 
-                $.ajax('/test/profile', {
+                $.ajax('/upload', {
                     type: "POST",
                     data: formData,
                     processData: false,
                     contentType: false,
                     headers: {
-                        'CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-                    },
-
-                    xhr: function() {
-                        let xhr = new XMLHttpRequest();
-
-                        xhr.upload.onprogress = function(e) {
-                            let precent = '0';
-                            let precentage = '0%';
-
-                            if (e.lengthComputable) {
-                                precent = Math.round((e.loaded / e.total) * 100);
-                                precentage = precent + '%';
-                                $progressBar.width(precentage).attr('aria-valuenow', precent).text(precentage);
-                            }
-                        };
-                        return xhr;
+                        'CSRF-Token': csrf_field.value
                     },
                     success: function() {
                         toastr.success('Upload Complete');
@@ -130,7 +115,4 @@ window.addEventListener('DOMContentLoaded', function() {
     /**
      * End of cropping images for Creator profile image
      */
-
-
-
 });
