@@ -1,25 +1,47 @@
-// #video {
-//     width:90%;
-//     height:270;
-// }
-#listing{
-    min-height: 300px;
+.container-fluid {
+    margin-top: 6%;
+}
+
+#listing {
+    min-height: 200px;
     padding-bottom: 40px;
 }
 
-.listing{
+#wrapper {
+    width:97%;
+    max-width:1200px;
+    padding:20px 0;
+    margin:auto;
+    min-height: 100%;
+}
+
+#wrapper iframe {
+    display:block;
+    width:100%;
+    margin:auto;
+    height: 500px;
+}
+
+@media screen and (max-width:330px) {
+    #wrapper { 
+        width:auto; 
+    } 
+}
+
+.listing {
     overflow: hidden;
     padding: 0;
     border: none;
     margin-bottom: 20px;
     transition: all 200ms ease-out;
 
-    a{
+    a {
         color: #333;
         outline: 0 !important;
         text-decoration: none;
     }
-    .btn-tip-listing{
+
+    .btn-tip-listing {
         background-image: url('/images/button-fantip.svg');
         height: 40px;
         width: 130px;   
@@ -27,13 +49,14 @@
     // img{
     //     // height: 188px;
     // }
-    .listing-content{
+    .listing-content {
         height: 242px;
         padding: 19px;
         border: 1px solid #ddd;
         border-bottom-right-radius: 6px;
         border-bottom-left-radius: 6px;
-        .one-line{
+
+        .one-line {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -47,13 +70,13 @@
             font-family: 'Larsseit-Bold';
         }
 
-        .listing-categories{
+        .listing-categories {
             margin-top: 5px;
             margin-bottom: 8px;
             height: 26px;
         }
 
-        .listing-short{
+        .listing-short {
             font-size: 14px;
             font-weight: 400;
             line-height: 19px;

@@ -9,7 +9,7 @@ html, body {
     background-color: inherit;
 }
 
-#message_base{
+#message_base {
     height: 150px;
     overflow-y: auto;
 }
@@ -19,27 +19,36 @@ html, body {
     overflow-y: auto;
 }
 
-footer{
+footer {
     /* margin-top: 9%; */
-
     margin-bottom: 0px;
-    padding-left: 100px;
+    /* padding-left: 100px; */
     background-color: #414042;
     font-family: 'Larsseit';
     position: relative;
     bottom: 0;
 }
+.footer-copyright {
+    /* background-color: #000; */
+}
 
-footer h5{
+@media only screen and (max-width:330px) {
+    footer { 
+        justify-content: space-evenly;
+        /* padding-left: 80px; */
+    }
+}
+
+footer h5 {
     letter-spacing: 2px;
     color: #7f7e80;
 }
 
-footer a{
+footer a {
     color: #7f7e80;
 }
 
-footer a:hover{
+footer a:hover {
     text-decoration: none;
     color: #00D278;
 }
@@ -71,46 +80,44 @@ textarea:focus {
     border:1px solid #00d278 !important;
 }
 
-h1, h2, h3, h4, h5, p{
+h1, h2, h3, h4, h5, p {
     font-family: 'Larsseit';
 }
 
-.notifications{
+.notifications {
     margin: 10px 10px 10px 10px;
 }
 
-.notifications .messages .fa-envelope{
+.notifications .messages .fa-envelope {
     margin-left: 10px;
 }
-.notifications .offers .fa-certificate{
+.notifications .offers .fa-certificate {
     margin-left: 10px;
 }
 
-#i{
+#i {
     margin-right: 20px;
 }
 
-.container{
+.container {
     margin-left: 0px;
     margin-right: 0px;
     padding: 0px;
 }
 
-
-.gallery{
+.gallery {
     margin-top: 10px;
     margin-bottom: 10px;
   }
 
 /* Profile image effects */
-
-.image{
+.image {
     opacity: 1;
     transition: .5s ease;
     backface-visibility: hidden;
 }
 
-.middle{
+.middle {
     transition: .5s ease;
     opacity: 0;
     position: absolute;
@@ -121,40 +128,39 @@ h1, h2, h3, h4, h5, p{
     text-align: center;
 }   
 
-.cont:hover .image{
+.cont:hover .image {
     opacity: 0.3;
 }
 
-.cont:hover .middle{
+.cont:hover .middle {
     opacity: 1;
 }
 
 /* Profile image effects ends */
-
-
-.main-text{
+.main-text {
     padding-top: 50px;
     padding-right: 20%;
     padding-left: 20%;
 }
 
-
-.col-lg-12 .responsive-video{
+.col-lg-12 .responsive-video {
    
 }
 
-nav{
+nav {
     font-family: 'Larsseit';
     color: #414042;
-    
 }
-.nav-link{
+
+.nav-link {
     color: #414042;
 }
-span{
+
+span {
     color: #414042;
 }
-i{
+
+i {
     padding-right: 10px;
 }
 
@@ -163,7 +169,7 @@ a:hover {
     color: #414042;
 }
 
-a:active{
+a:active {
     text-decoration: none;
     color: #414042;
 }
@@ -178,23 +184,23 @@ a:active{
     right: 0px;
   }
 
-.icon-bar{
+.icon-bar {
     background-color: black;
 }
 
-.body-text{
+.body-text {
     font-family: 'Larsseit-Bold';
 }
 
-.btn-primary{
+.btn-primary {
     font-family: 'Larsseit';
 }
 
-.btn-success{
+.btn-success {
     font-family: 'Larsseit';
 }
 
-.btn-light{
+.btn-light {
     font-family: 'Larsseit';
 }
 
@@ -202,14 +208,10 @@ a:active{
     border-radius: 25px;
 }
 
-.nav-item .glyphicon{
+.nav-item .glyphicon {
 }
 
-.nav-item .badge{
+.nav-item .badge {
     position: absolute;
-    
     font-family: 'Larsseit-Thin'
 }
-
-
-
