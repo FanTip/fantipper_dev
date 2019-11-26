@@ -22,11 +22,14 @@ html, body {
 footer {
     /* margin-top: 9%; */
     margin-bottom: 0px;
-    padding-left: 100px;
+    /* padding-left: 100px; */
     background-color: #414042;
     font-family: 'Larsseit';
     position: relative;
     bottom: 0;
+}
+.footer-copyright {
+    /* background-color: #000; */
 }
 
 @media only screen and (max-width:330px) {
