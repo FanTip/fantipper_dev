@@ -18,14 +18,14 @@
           {{!-- ng-show='part_1' --}}
           <form id="creator_profile_create-part_1" name="form_section1">
             <div class="form-group">
-              <label for="creator_name_create">CREATOR NAME</label>
+              <label id="label_name" for="creator_name_create">CREATOR NAME</label>
               <input type="text" name="creator_name_create" id="creator_name_create" check-if-name
                 ng-model="creatorName" class="form-control form-control-lg" required>
               {{!-- <div ng-if="form_section1.$pending.usernameExists">checking....</div>
                             <div ng-if="form_section1.$error.usernameExists">username exists already</div> --}}
             </div>
             <div class="form-group">
-              <label for="url">URL</label> <br>
+              <label id="label_name" for="url">URL</label> <br>
               <small>Direct link to your profile. Generated automatically from your creator name</small>
               <div class="input-group mb-3" ng-model="staticURL">
                 <div class="input-group-prepend">
@@ -36,23 +36,20 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="short_desc">SHORT DESCRIPTION</label>
+              <label id="label_name" for="short_desc">SHORT DESCRIPTION</label>
               <textarea class="form-control form-control-lg" placeholder="Describe what you do in 140 characters...."
                 id="short_desc" rows="3" ng-model="textModel" ng-disabled="textModel.length == 140;"></textarea>
               <small ng-class="{'color-green' : textModel.length < 100}">{[{ 140 - textModel.length}]}</small>
             </div>
 
             <div class="form-group" id="the-basics">
-              <label for="location">LOCATION</label>
+              <label id="label_name" for="location">LOCATION</label>
               <input type="text" id="location_now" name="location" class="form-control form-control-lg"
                 ng-model="location" value="{{location}}">
 
             </div>
             <div class="form-group">
-              <div class="test">
-
-              </div>
-              <label for="categories">CATEGORIES</label>
+              <label id="label_name" for="categories" id="label_name">CATEGORIES</label>
               <div class="row">
                 <div class="col-sm-4">
                   <div class="checkbox">
@@ -141,7 +138,7 @@
         </div>
         <div id="part_2" ng-model='part_2'>
           {{!-- ng-show="part_2" --}}
-          <h4>Upload Profile Image:</h4>
+          <h4 id="label_name">Upload Profile Image:</h4>
           <div id="profileImage">
             <label class="label">
 
@@ -183,7 +180,7 @@
             {{!-- <a href="#part_3" class="btn btn-primary" id="section2" data-ng-click="showpart3()"> Next...</a>
                         <a href="#part_1" class="btn btn-danger" id="section1" data-ng-click="backpart1()">Back...</a> --}}
           </div>
-          <h4>Upload Background Image:</h4>
+          <h4 id="label_name">Upload Background Image:</h4>
           <div id="backgroundImage">
             {{!-- Implemeting background image --}}
             <label class="label">
@@ -200,12 +197,34 @@
               <div id="background-progress-bar" class="progress-bar progress-bar-striped progress-bar-animated"
                 role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
             </div>
-
-                <div id="part_3" ng-model='part_3'>
+            <div class="background-alert" role="alert"></div>
+                        <div class="modal fade" id="background-modal" tabindex="-1" role="dialog" aria-labelledby="background-modalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalLabel">Crop the Background image</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="img-container">
+                                            <img src="{{imagePath}}" id="background-image" height="600" width="600">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-primary" id="backcrop">Crop</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        </div>
+        <div id="part_3" ng-model='part_3'>
                     {{!-- ng-show='part_3' --}}
                     <div id="creator_profile_create-part_3"  >
                         <div class="form-group">
-                            <label for="short_desc">ABOUT YOU</label>
+                            <label for="short_desc" id="label_name">ABOUT YOU</label>
     
                             <!-- Create the toolbar container -->
                             <div id="toolbar">
@@ -222,7 +241,6 @@
                     </div>
                 </div>
             </div>
-        </div>
         <script src="/javascripts/cropper_settings.js"></script>
 
       </div>
