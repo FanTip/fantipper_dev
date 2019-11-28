@@ -1,25 +1,31 @@
 /* Font family configurations */
-@font-face{
+
+@font-face {
     font-family: 'Larsseit-Bold';
     src: url('fonts/Larsseit-Bold.ttf');
 }
-@font-face{
+
+@font-face {
     font-family: 'Larsseit-ExtraBold';
     src: url('fonts/Larsseit-ExtraBold.otf');
 }
-@font-face{
+
+@font-face {
     font-family: 'Larsseit-Light';
     src: url('fonts/Larsseit-Light.otf');
 }
-@font-face{
+
+@font-face {
     font-family: 'Larsseit-Medium';
     src: url('fonts/Larsseit-Medium.otf');
 }
-@font-face{
+
+@font-face {
     font-family: 'Larsseit-Thin';
     src: url('fonts/Larsseit-Thin.otf');
 }
-@font-face{
+
+@font-face {
     font-family: 'Larsseit';
     src: url('fonts/Larsseit.otf');
 }
