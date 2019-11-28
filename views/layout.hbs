@@ -3,14 +3,10 @@
 
 <head>
   <title>{{title}}</title>
-
   <link href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" rel="stylesheet" />
-
   <script type="text/javascript"
     src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDDgPrFdc_506T2cZvbEa-Yw7Z87t1YM_Y&libraries=places&sensor=false"></script>
   {{!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> --}}
-
-
 
   {{!-- Custom style sheets --}}
   <link rel='stylesheet' href='/stylesheets/style-1.css' />
@@ -39,7 +35,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
   <script src="https://cdn.rawgit.com/download/glyphicons/0.1.0/glyphicons.js"></script>
 
-
   {{!-- Including Angular javascript --}}
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
   {{!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> --}}
@@ -53,15 +48,12 @@
   <!-- Include the Quill library -->
   <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
 
-
   {{!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropper/4.0.0/cropper.css">
       <script src="https://cdnjs.cloudflare.com/ajax/libs/cropper/4.0.0/cropper.css"></script> --}}
-
 
   {{!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script> --}}
   {{!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> --}}
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
 
   {{!-- Typeahead intergration Bloodhound intergration--}}
   <script src="/typeahead/typeahead.jquery.min.js"></script>
@@ -81,10 +73,7 @@
   {{!-- Moments.js intergration --}}
   <script src="/javascripts/library/moments.js"></script>
 
-
   <link rel="stylesheet" href='/css/navbar.css' />
-
-
 
   {{!-- <script src="https://js.stripe.com/v3/"></script>
                         <script src="https://checkout.stripe.com/checkout.js"></script> --}}
@@ -108,19 +97,15 @@
   {{!-- Custom angularjs functions --}}
   <script src="/javascripts/setting-1.js"></script>
   <script src="/javascripts/setting-2.js"></script>
-
   {{!-- <script src="https://checkout.stripe.com/checkout.js"></script> --}}
-
 </head>
 
 <body>
+  <div class="main-container">
   <!--[if lt IE 9]>
       <script src="js/html5shiv.js"></script>
       <script src="js/respond.min.js"></script>
       <![endif]-->
-
-
-
 
   {{!-- Modal for the login --}}
   <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="LoginLabel" aria-hidden="true">
@@ -370,27 +355,27 @@
           <a href="#search" class="btn" data-toggle="collapse" style="margin-left:1%;"><i class="fas fa-search"></i></a>
         </li>
         {{!-- <ul class="dropdown-menu">
-                              <li class="dropdown-item">
-                                    <p class="dropdown-item disabled">Logged in as <strong>{{name}}</strong></p>
-                              </li>
-                              <div class="dropdown-divider"></div>
-                              <li class="dropdown-item"><a href="/fantiphistory"> <i class="fas fa-book"></i> &#160;
-                                          Tip History</a></li>
-                              <li class="dropdown-item"><a href="/profile"><i class="fas fa-user-alt"></i> &#160; Your
-                                          Profile</a></li>
-                              {{#if isCreator}}
-                              <div class="dropdown-divider"></div>
-                              <li class="dropdown-item"> <a href="/creatorprofile"> <i class="fas fa-user-circle"></i>
-                                          &#160; Creator Profile</a></li>
-                              {{else}}
-                              <div class="dropdown-divider"></div>
-                              <li class="dropdown-item"><a href="#" data-toggle="modal" data-target="#createCreatorProfile">
-                                          <i class="fas fa-plus-circle"></i> &#160; Become Creator</a></li>
-                              {{/if}}
-                              <div class="dropdown-divider"></div>
-                              <li class="dropdown-item"><a href="/logout"> <i class="fas fa-sign-out-alt"></i> &#160;
-                                          Logout</a></li>
-                        </ul> --}}
+          <li class="dropdown-item">
+                <p class="dropdown-item disabled">Logged in as <strong>{{name}}</strong></p>
+          </li>
+          <div class="dropdown-divider"></div>
+          <li class="dropdown-item"><a href="/fantiphistory"> <i class="fas fa-book"></i> &#160;
+                      Tip History</a></li>
+          <li class="dropdown-item"><a href="/profile"><i class="fas fa-user-alt"></i> &#160; Your
+                      Profile</a></li>
+          {{#if isCreator}}
+          <div class="dropdown-divider"></div>
+          <li class="dropdown-item"> <a href="/creatorprofile"> <i class="fas fa-user-circle"></i>
+                      &#160; Creator Profile</a></li>
+          {{else}}
+          <div class="dropdown-divider"></div>
+          <li class="dropdown-item"><a href="#" data-toggle="modal" data-target="#createCreatorProfile">
+                      <i class="fas fa-plus-circle"></i> &#160; Become Creator</a></li>
+          {{/if}}
+          <div class="dropdown-divider"></div>
+          <li class="dropdown-item"><a href="/logout"> <i class="fas fa-sign-out-alt"></i> &#160;
+                      Logout</a></li>
+    </ul> --}}
       </ul>
       {{else}}
       <ul class="nav navbar-nav  ml-auto">
@@ -434,16 +419,8 @@
             <a href="#!">Privacy Policy</a>
           </li>
         </ul>
-      </div>
-    <!-- Grid column -->
-     {{!-- <div class="col-md-6 mt-md-0 mt-3"> --}}
-      
-    <!-- Grid column -->
-    {{!-- <hr class="clearfix w-100 d-md-none pb-3"> --}}
-    <!-- Grid column -->
+      </div> <!-- Site map col -->
       <div class="col">
-      {{!-- <div class="col-md-3 mb-md-0 mb-3"> --}}
-        <!-- Links -->
         <h5 class="text-uppercase">Connect</h5>
         <ul class="list-unstyled">
           <li>
@@ -459,23 +436,14 @@
             <a href="https://www.instagram.com/fantipper/"><i class="fab fa-instagram"></i>fantipper</a>
           </li>
         </ul>
-      {{!-- </div> --}}
-      <!-- Grid column -->
-      </div> <!-- col -->
-  {{!-- </div> --}}
+      </div> <!-- Social media col -->
     </div>
 
     <div class="row justify-content-center"> 
-      <!-- Grid column -->
-      {{!-- <div class="col-md-3 mb-md-0 mb-3"> --}}
-        <!-- Copyright -->
-        <div class="footer-copyright text-center py-3" id='footer_c'>:
-        </div>
-      {{!-- </div> --}}
-      <!-- Grid column -->
-    </div> <!-- Row -->
-    <!-- Grid row -->
-  {{!-- </div> <!-- Footer Container --> --}}
+      <div class="footer-copyright text-center py-3" id='footer_c'>:
+      </div>
+    </div> <!-- Copyright Row -->
   </div>
 </footer>
+</div>
 </html>

@@ -1,8 +1,6 @@
 /* General CSS configurations of the main elements */
 
 html {
-    position: relative;
-    min-height: 100%;
 }
 
 html, body {
@@ -11,15 +9,28 @@ html, body {
     font: 14px;
     -webkit-font-smoothing : antialiased;
     font-family: 'Larsseit';
-    background-color: inherit;
+    background-color: yellowgreen;
+    /* position: relative; */
     position: relative;
+
+    min-height: 100%;
+
 }
+/* .main-container {
+    min-height: 100vh;
+    background-color: yellowgreen;
+
+    overflow: hidden;
+    display: block;
+    position: relative;
+    padding-bottom: 260px;
+} */
 
 body {
-    /* padding-bottom: 400px; */
     /* margin: 0 0 100px; */
 
 }
+
 #message_base {
     height: 150px;
     overflow-y: auto;
@@ -34,7 +45,7 @@ footer {
     /* margin-top: 9%; */
     /* position: fixed; */
     position: absolute;
-    /* height: 400px; */
+    /* height: 260px; */
     width: 100%;
     overflow: hidden;
 
