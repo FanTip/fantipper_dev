@@ -9,12 +9,12 @@ html, body {
     font: 14px;
     -webkit-font-smoothing : antialiased;
     font-family: 'Larsseit';
-    background-color: yellowgreen;
+    /* FIXME: set the bg as white for the time being */
+    /* background-color: yellowgreen; */
+    background-color: white;
     /* position: relative; */
     position: relative;
-
     min-height: 100%;
-
 }
 /* .main-container {
     min-height: 100vh;
