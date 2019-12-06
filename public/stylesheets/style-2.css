@@ -191,9 +191,14 @@ i {
     padding-right: 10px;
 }
 
+/* FIXME: find a and give it a green color */
+/* a {
+    color: #00D278;
+} */
+
 a:hover {
     text-decoration: none;
-    color: #414042;
+    color: #00D278;
 }
 
 a:active {
