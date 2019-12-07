@@ -1,12 +1,34 @@
 /* General CSS configurations of the main elements */
 
+html {
+}
+
 html, body {
     width : 100%;
     padding-top: 0px;
     font: 14px;
     -webkit-font-smoothing : antialiased;
     font-family: 'Larsseit';
-    background-color: inherit;
+    /* FIXME: set the bg as white for the time being */
+    /* background-color: yellowgreen; */
+    background-color: white;
+    /* position: relative; */
+    position: relative;
+    min-height: 100%;
+}
+/* .main-container {
+    min-height: 100vh;
+    background-color: yellowgreen;
+
+    overflow: hidden;
+    display: block;
+    position: relative;
+    padding-bottom: 260px;
+} */
+
+body {
+    /* margin: 0 0 100px; */
+
 }
 
 #message_base {
@@ -21,15 +43,18 @@ html, body {
 
 footer {
     /* margin-top: 9%; */
-    margin-bottom: 0px;
+    /* position: fixed; */
+    position: absolute;
+    /* height: 260px; */
+    width: 100%;
+    overflow: hidden;
+
+    /* margin-bottom: 0px; */
     /* padding-left: 100px; */
     background-color: #414042;
     font-family: 'Larsseit';
-    position: relative;
+    /* position: relative; */
     bottom: 0;
-}
-.footer-copyright {
-    /* background-color: #000; */
 }
 
 @media only screen and (max-width:330px) {
@@ -53,7 +78,6 @@ footer a:hover {
     color: #00D278;
 }
 
-
 input[type=text]:focus {
     outline: none;
     box-shadow: 1px 1px #00d278 !important;
@@ -69,11 +93,13 @@ input[type=password]:focus {
     box-shadow: 1px 1px #00d278 !important;
     border:1px solid #00d278 !important;
 }
+
 select:focus {
     outline: none;
     box-shadow: 1px 1px #00d278 !important;
     border:1px solid #00d278 !important;
 }
+
 textarea:focus {
     outline: none;
     box-shadow: 1px 1px #00d278 !important;
@@ -91,6 +117,7 @@ h1, h2, h3, h4, h5, p {
 .notifications .messages .fa-envelope {
     margin-left: 10px;
 }
+
 .notifications .offers .fa-certificate {
     margin-left: 10px;
 }
@@ -164,9 +191,14 @@ i {
     padding-right: 10px;
 }
 
+/* FIXME: find a and give it a green color */
+/* a {
+    color: #00D278;
+} */
+
 a:hover {
     text-decoration: none;
-    color: #414042;
+    color: #00D278;
 }
 
 a:active {
@@ -213,5 +245,5 @@ a:active {
 
 .nav-item .badge {
     position: absolute;
-    font-family: 'Larsseit-Thin'
+    font-family: 'Larsseit-Thin';
 }
