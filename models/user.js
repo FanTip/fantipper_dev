@@ -31,10 +31,7 @@ var personSchema = new Schema({
 
     card:{
         isCard : {type : Boolean},
-        cardName:{type:String},
-        cardNumber:{type : String},
-        cardExpNum : {type : String},
-        cvvNum : {type :String},
+        cardDetails : {type : Object}
     },
     creator : {
         isCreator : {type : Boolean, required : true},

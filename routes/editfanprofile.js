@@ -11,7 +11,6 @@ router.get('/',isLoggedIn, function(req, res, next) {
 });
 
 router.post('/', function(req, res, next){
-  console.log(req.body);
   var query = {
     email : req.body.email,
     name : req.body.name,
