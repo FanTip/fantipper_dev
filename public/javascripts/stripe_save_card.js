@@ -45,24 +45,6 @@ $(document).ready(function () {
 });
 
 
-function createCustomer(email) {
-  let xhr = $.ajax('/payment/create-customer', {
-    type: 'POST',
-    data: email,
-    crossDomain: false,
-    headers: {
-      'CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-    },
-  });
-
-  xhr.fail(function (response) {
-    toastr.error(response.responseText);
-  })
-
-}
-
-
-
 function createCardtoSave(card, stripe) {
   let user;
   let xhr = $.ajax('/payment/user', {
@@ -151,7 +133,11 @@ let stripeElements = function (publicKey, setupIntent) {
     let email = document.getElementById("email").value;
 
     createCardtoSave(card, stripe);
-    createCustomer(email);
+
+
+    console.log(card);
+
+
 
 
     stripe
@@ -172,6 +158,7 @@ let stripeElements = function (publicKey, setupIntent) {
           // The PaymentMethod was successfully setup
           // Be sure to attach the PaymentMethod to a Customer as shown by
           // the server webhook in this sample
+          console.log(result);
           orderComplete(stripe, setupIntent.client_secret);
         }
       });

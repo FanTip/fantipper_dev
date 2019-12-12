@@ -20,22 +20,25 @@ router.get('/pub', function (req, res) {
 });
 
 router.post('/intents', async function (req, res) {
-  res.send(await stripe.setupIntents.create());
-});
-
-router.post('/create-customer', async function (req, res) {
   try {
+    let user = await User.findById(req.user._id).exec();
     let customer = await stripe.customers.create({
-      description: "Customer " + req.body.data,
+      email: user.email,
+      description: "Customer " + user.email,
     });
 
     let customer_query = {
       customer_id: customer.id
     }
 
+    // console.log(customer);
     await User.findByIdAndUpdate(req.user._id, customer_query).exec();
 
-    res.status(200).json({});
+    let intent = await stripe.setupIntents.create({
+      customer: customer.id
+    });
+
+    res.status(200).send(intent);
   } catch (e) {
     res.status(500).send(e);
   }
@@ -59,7 +62,7 @@ router.post('/save-card-credentials', async function (req, res) {
 
     await User.findByIdAndUpdate(req.user._id, query).exec();
     let updated_user = await User.findById(req.user._id).exec();
-    console.log(updated_user);
+    // console.log(updated_user);
 
 
     res.status(200).json({});
@@ -86,7 +89,9 @@ router.post('/save-card-element', async function (req, res) {
     }
     await User.findByIdAndUpdate(req.user._id, query).exec();
     let updated = await User.findById(req.user._id).exec();
-
+    let intent = await stripe.setupIntents.create({
+      customer: updated.customer_id
+    });
 
 
     res.status(200).send(updated);
@@ -109,21 +114,26 @@ router.get('/saved-card', async function (req, res) {
 
 router.get('/update_intents', async function (req, res) {
   try {
-    let user = await User.findById(req.user._id).exec();
-    const customer = await stripe.customers.create({
-      payment_method: user.card.payment_credentials.payment_method,
-    });
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: 1099,
-      currency: 'aud',
-      customer: user.customer_id,
-      payment_method: user.card.payment_credentials.payment_method,
-      off_session: true,
-      confirm: true,
-    });
-    console.log(paymentIntent);
+    // let user = await User.findById(req.user._id).exec();
+    
+    // const paymentMethod = await stripe.paymentMethods.attach(
+    //   user.card.payment_credentials.payment_method, {
+    //     customer: user.customer_id,
+    //   }
+    // );
+
+    // const paymentIntent = await stripe.paymentIntents.create({
+    //   amount: 1099,
+    //   currency: 'aud',
+    //   customer: user.customer_id,
+    //   payment_method: user.card.payment_credentials.payment_method,
+    //   off_session: true,
+    //   confirm: true,
+    // });
+    // console.log(paymentIntent);
+
   } catch (e) {
-    console.log(e)
+    // console.log(e)
   }
 
 
