@@ -40,6 +40,7 @@ async function saveTip(charge, req, res){
 router.post('/sendtip', async function(req, res, next){
     try{
         const token = req.body._stripeID;
+        console.log(token);
         stripe.customers.create({
             email : req.body._email,
             source : token

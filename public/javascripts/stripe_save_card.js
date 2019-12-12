@@ -16,6 +16,8 @@ function show_saved_card(details) {
   card_content.append('Card Type : ' + details.card_credentials.card.brand + '<br>');
   card_content.append('Exp Date : ' + details.card_credentials.card.exp_month + '/' + details.card_credentials.card.exp_year + '<br>');
 
+  let delete_card_button = $('<div class="float-right"> <button class="btn btn-info">Delete Card</button></div><br>')
+  card_content.append(delete_card_button);
   card_body.append(card_content);
   card.append(card_body);
   card_append_base.append(card);
@@ -117,7 +119,7 @@ let stripeElements = function (publicKey, setupIntent) {
     base: {
       fontSize: "16px",
       color: "#32325d",
-      fontFamily: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif",
+      fontFamily: '"Larsseit", Helvetica, sans-serif',
       fontSmoothing: "antialiased",
       "::placeholder": {
         color: "rgba(0,0,0,0.4)"

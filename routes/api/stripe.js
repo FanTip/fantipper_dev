@@ -58,7 +58,9 @@ router.post('/save-card-credentials', async function (req, res) {
     };
 
     await User.findByIdAndUpdate(req.user._id, query).exec();
-    console.log(card);
+    let updated_user = await User.findById(req.user._id).exec();
+    console.log(updated_user);
+
 
     res.status(200).json({});
   } catch (e) {
@@ -84,6 +86,9 @@ router.post('/save-card-element', async function (req, res) {
     }
     await User.findByIdAndUpdate(req.user._id, query).exec();
     let updated = await User.findById(req.user._id).exec();
+
+
+
     res.status(200).send(updated);
   } catch (e) {
     res.status(500).send(e);
@@ -102,12 +107,37 @@ router.get('/saved-card', async function (req, res) {
   }
 });
 
-router.post('/', function (req, res) {
-  const customer = stripe.customers.create({
-    email: req.body.email,
-  });
+router.get('/update_intents', async function (req, res) {
+  try {
+    let user = await User.findById(req.user._id).exec();
+    const customer = await stripe.customers.create({
+      payment_method: user.card.payment_credentials.payment_method,
+    });
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: 1099,
+      currency: 'aud',
+      customer: user.customer_id,
+      payment_method: user.card.payment_credentials.payment_method,
+      off_session: true,
+      confirm: true,
+    });
+    console.log(paymentIntent);
+  } catch (e) {
+    console.log(e)
+  }
 
-  res.send(customer);
+
+
+  // const paymentMethod = await stripe.paymentMethods.attach(
+  //   user.card.payment_credentials.payment_method,
+  //   {
+  //     customer: user.customer_id,
+  //   }
+  // );
+  // console.log(user);
+
+
+  // res.send(paymentMethod);
 });
 
 
