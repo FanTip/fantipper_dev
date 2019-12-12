@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app='fantipperApp' style="min-height : 100%" lang="en">
+<html ng-app='fantipperApp' lang="en">
 
 <head>
   <title>{{title}}</title>
@@ -102,309 +102,310 @@
 
 <body>
   <div class="main-container">
+
   <!--[if lt IE 9]>
       <script src="js/html5shiv.js"></script>
       <script src="js/respond.min.js"></script>
       <![endif]-->
 
-  {{!-- Modal for the login --}}
-  <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="LoginLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Log In</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-              aria-hidden="true">&times;</span></button>
-        </div>
-        <div class="modal-body">
-          <p>Don't have a FanTipper account? <a href="" data-toggle="modal" data-target="#signup"
-              data-dismiss="modal">Sign Up!</a></p>
-          <div class="form-group">
-            <button type="button" id="facebook-button-login" class="btn form-control" name="button"><i id="i"
-                class="fab fa-facebook-f"></i>LOGIN WITH FACEBOOK</button>
-            <button type="button" class="btn btn-danger form-control" id="google-button-login" name="button"><i id="i"
-                class="fab fa-google"></i>LOGIN UP WITH GOOGLE</button>
-            <p id="or"><span>OR</span></p>
+    {{!-- Modal for the login --}}
+    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="LoginLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Log In</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
           </div>
-          <form id="login-form" class="">
+          <div class="modal-body">
+            <p>Don't have a FanTipper account? <a href="" data-toggle="modal" data-target="#signup"
+                data-dismiss="modal">Sign Up!</a></p>
             <div class="form-group">
-              <input name="email" type="email" id="email" placeholder="Email" class="form-control">
+              <button type="button" id="facebook-button-login" class="btn form-control" name="button"><i id="i"
+                  class="fab fa-facebook-f"></i>LOGIN WITH FACEBOOK</button>
+              <button type="button" class="btn btn-danger form-control" id="google-button-login" name="button"><i id="i"
+                  class="fab fa-google"></i>LOGIN UP WITH GOOGLE</button>
+              <p id="or"><span>OR</span></p>
             </div>
-            <div class="form-group">
-              <input name="password" type="password" id="password" placeholder="Password" class="form-control">
-            </div>
-            <div class="form-group">
-              <label id="checkbox"><input type="checkbox" value="">Remember me?</label>
-              <a href="#" id="forgot-password" class="float-right">Forgot password?</a>
-            </div>
-            <input type="hidden" name="_csrf" id="_csrf" value="{{csrfToken}}">
-            <button type="submit" class="btn btn-success form-control" name="button">Login</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  {{!-- Modal for the signup --}}
-  <div class="modal fade" id="signup" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Sign up</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-              aria-hidden="true">&times;</span></button>
-        </div>
-        <div class="modal-body">
-          <h5 class="text-center">Join FanTipper now and start supporting your favourite creators.</h5>
-          <p class="text-center">Already have an account?<a href="" data-toggle="modal" data-target="#login"
-              data-dismiss="modal"> Log In!</a></p>
-          <p class="text-center" id="beta">During our beta phase we are accepting creators by
-            invites only. Get involved by requesting an invite</p>
-          <div class="form-group">
-            <hr>
-            <button type="button" class="btn form-control" id="facebook-button-signup" name="button"><i id="i"
-                class="fab fa-facebook-f"></i>SIGN UP WITH FACEBOOK</button>
-            <button type="button" class="btn btn-danger form-control" id="google-button-signup" name="button"><i id="i"
-                class="fab fa-google"></i>SIGN UP WITH GOOGLE</button>
-            <hr>
-
+            <form id="login-form" class="">
+              <div class="form-group">
+                <input name="email" type="email" id="email" placeholder="Email" class="form-control">
+              </div>
+              <div class="form-group">
+                <input name="password" type="password" id="password" placeholder="Password" class="form-control">
+              </div>
+              <div class="form-group">
+                <label id="checkbox"><input type="checkbox" value="">Remember me?</label>
+                <a href="#" id="forgot-password" class="float-right">Forgot password?</a>
+              </div>
+              <input type="hidden" name="_csrf" id="_csrf" value="{{csrfToken}}">
+              <button type="submit" class="btn btn-success form-control" name="button">Login</button>
+            </form>
           </div>
-          <form class="" id="signup-form">
-            <div class="form-group">
-              <input name="name" type="text" id="name" placeholder="Name" class="form-control">
-            </div>
-            <div class="form-group">
-              <input name="email" type="email" id="signup_email" placeholder="Email" class="form-control">
-            </div>
-            <div class="form-group">
-              <input name="password" type="password" id="signup_password" placeholder="Password" class="form-control">
-            </div>
-            <div class="form-group">
-              <input name="confirmpassword" type="password" id="confirmpassword" placeholder="Confirm Password"
-                class="form-control">
-            </div>
-            <div class="form-group">
-              <input name="location" type="text" id="location" placeholder="Location" class="form-control">
-            </div>
-            <input type="hidden" name="_csrf" id="_csrf" value="{{csrfToken}}">
-            <button type="submit" class="btn btn-success form-control" id="signup-button" name="button">SIGN
-              UP</button>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <p id="footer" class="text-center">By signing up, you agree to FanTipper's T&#38;C's and Privacy Policy</p>
         </div>
       </div>
-    </div>
-  </div>
+    </div> <!-- End of Modal for the login -->
 
-  {{!-- Modal for the creators account --}}
-  <div class="modal fade" id="createCreatorProfile" tabindex="-1" role="dialog"
-    aria-labelledby="createCreatorProfileLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Creating a Creators Profile!</h4>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-              aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form action="">
+    {{!-- Modal for the signup --}}
+    <div class="modal fade" id="signup" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Sign up</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+            <h5 class="text-center">Join FanTipper now and start supporting your favourite creators.</h5>
+            <p class="text-center">Already have an account?<a href="" data-toggle="modal" data-target="#login"
+                data-dismiss="modal"> Log In!</a></p>
+            <p class="text-center" id="beta">During our beta phase we are accepting creators by
+              invites only. Get involved by requesting an invite</p>
             <div class="form-group">
-              Creator profile will be created for {{email}}
+              <hr>
+              <button type="button" class="btn form-control" id="facebook-button-signup" name="button"><i id="i"
+                  class="fab fa-facebook-f"></i>SIGN UP WITH FACEBOOK</button>
+              <button type="button" class="btn btn-danger form-control" id="google-button-signup" name="button"><i id="i"
+                  class="fab fa-google"></i>SIGN UP WITH GOOGLE</button>
+              <hr>
+
             </div>
-
-            <div class="form-group">
-              <a href="/creator/application" class="btn btn-success">Proceed to Creator application</a>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer"></div>
-      </div>
-    </div>
-  </div>
-
-  
-
-  {{!-- Modal for deleting credit card information --}}
-  <div class="modal fade" id="deleteCard" tabindex="-1" role="dialog" aria-labelledby="deleteCardLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Do you really wish to remove your card details?</h4>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-footer">
-          <form action="/editfanprofile/deletecard" method="POST">
-            <input type="hidden" name="_csrf" value="{{csrfToken}}">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal"
-              data-target="#updateCardOptions">Add a new card</button>
-            <button type="submit" class="btn btn-danger">Delete Card</button>
-          </form>
+            <form class="" id="signup-form">
+              <div class="form-group">
+                <input name="name" type="text" id="name" placeholder="Name" class="form-control">
+              </div>
+              <div class="form-group">
+                <input name="email" type="email" id="signup_email" placeholder="Email" class="form-control">
+              </div>
+              <div class="form-group">
+                <input name="password" type="password" id="signup_password" placeholder="Password" class="form-control">
+              </div>
+              <div class="form-group">
+                <input name="confirmpassword" type="password" id="confirmpassword" placeholder="Confirm Password"
+                  class="form-control">
+              </div>
+              <div class="form-group">
+                <input name="location" type="text" id="location" placeholder="Location" class="form-control">
+              </div>
+              <input type="hidden" name="_csrf" id="_csrf" value="{{csrfToken}}">
+              <button type="submit" class="btn btn-success form-control" id="signup-button" name="button">SIGN
+                UP</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <p id="footer" class="text-center">By signing up, you agree to FanTipper's T&#38;C's and Privacy Policy</p>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+    </div> <!-- End of Modal for the signup -->
 
-  <div class="collapse" id="search">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="input-group">
-          <input type="text" name="search" id="search" placeholder="Type to search Fan Tipper ..." class="form-control"
-            class="close">
-          <span class="input-group-btn">
-            <button class="close" type="button" data-dismiss="collapse" aria-label="Close">
+    {{!-- Modal for the creators account --}}
+    <div class="modal fade" id="createCreatorProfile" tabindex="-1" role="dialog"
+      aria-labelledby="createCreatorProfileLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Creating a Creators Profile!</h4>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="">
+              <div class="form-group">
+                Creator profile will be created for {{email}}
+              </div>
+              <div class="form-group">
+                <a href="/creator/application" class="btn btn-success">Proceed to Creator application</a>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer"></div>
+        </div>
+      </div>
+    </div> <!-- End of Modal for the creators account -->
+
+    {{!-- Modal for deleting credit card information --}}
+    <div class="modal fade" id="deleteCard" tabindex="-1" role="dialog" aria-labelledby="deleteCardLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Do you really wish to remove your card details?</h4>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-          </span>
+          </div>
+          <div class="modal-footer">
+            <form action="/editfanprofile/deletecard" method="POST">
+              <input type="hidden" name="_csrf" value="{{csrfToken}}">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal"
+                data-target="#updateCardOptions">Add a new card</button>
+              <button type="submit" class="btn btn-danger">Delete Card</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div> <!-- End of Modal for deleting credit card information -->
+
+    <div class="collapse" id="search">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="input-group">
+            <input type="text" name="search" id="search" placeholder="Type to search Fan Tipper ..." class="form-control"
+              class="close">
+            <span class="input-group-btn">
+              <button class="close" type="button" data-dismiss="collapse" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  {{!-- Navbar --}}
-  <nav class="navbar navbar-expand-md navbar-light">
-    <a class="navbar-brand" href="/"><img src="/images/logo/logo.png" alt=""></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="collapsibleNavbar">
-      <ul class="nav navbar-nav">
-        <li class="nav-item link"><a class="nav-link" href="/explore">EXPLORE</a></li>
-        <li class="nav-item link"><a class="nav-link" href="/learn">LEARN</a></li>
-      </ul>
-      {{#if login}}
-      <ul class="nav navbar-nav  ml-auto">
-        <li class="nav-item notifications">
-          <div class="btn-group"><button class="btn messages"><i class="fas fa-envelope"></i></button></div>
-          <div class="btn-group"><button class="btn offers"><i class="fas fa-certificate"></i></button></div>
-        </li>
-        <li class="nav-item">
-          <img src="{{imagePath}}" alt="..." class="rounded-circle" height="50px" width="50px" data-toggle="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-          <ul class="dropdown-menu">
+    {{!-- Navbar --}}
+    <nav class="navbar navbar-expand-md navbar-light">
+      <a class="navbar-brand" href="/"><img src="/images/logo/logo.png" alt=""></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="nav navbar-nav">
+          <li class="nav-item link"><a class="nav-link" href="/explore">EXPLORE</a></li>
+          <li class="nav-item link"><a class="nav-link" href="/learn">LEARN</a></li>
+        </ul>
+        {{#if login}}
+        <ul class="nav navbar-nav  ml-auto">
+          <li class="nav-item notifications">
+            <div class="btn-group"><button class="btn messages"><i class="fas fa-envelope"></i></button></div>
+            <div class="btn-group"><button class="btn offers"><i class="fas fa-certificate"></i></button></div>
+          </li>
+          <li class="nav-item">
+            <img src="{{imagePath}}" alt="..." class="rounded-circle" height="50px" width="50px" data-toggle="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item">
+                <p class="dropdown-item disabled" style="margin-bottom:0;">Logged in as <strong>{{name}}</strong></p>
+              </li>
+              <div class="dropdown-divider"></div>
+              <li class="dropdown-item"><a href="/fantiphistory"> <i class="fas fa-book"></i> &#160;
+                  Tip History</a></li>
+              <li class="dropdown-item"><a href="/profile"><i class="fas fa-user-alt"></i> &#160; Fan
+                  Profile</a></li>
+              {{#if isCreator}}
+              <div class="dropdown-divider"></div>
+              <li class="dropdown-item"> <a href="/creatorprofile"> <i class="fas fa-user-circle"></i>
+                  &#160; Creator Profile</a></li>
+              {{else}}
+              <div class="dropdown-divider"></div>
+              <li class="dropdown-item"><a href="#" data-toggle="modal" data-target="#createCreatorProfile">
+                  <i class="fas fa-plus-circle"></i> &#160; Become Creator</a></li>
+              {{/if}}
+              <div class="dropdown-divider"></div>
+              <li class="dropdown-item"><a href="/logout"> <i class="fas fa-sign-out-alt"></i> &#160;
+                  Logout</a></li>
+            </ul>
+          </li>
+          {{!-- <img src="{{imagePath}}" alt="..." class="rounded-circle" height="50px" width="50px"
+                                data-toggle="dropdown">
+                          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a> --}}
+          <li class="nav-item navbar-right">
+            <a href="#search" class="btn" data-toggle="collapse" style="margin-left:1%;"><i class="fas fa-search"></i></a>
+          </li>
+          {{!-- <ul class="dropdown-menu">
             <li class="dropdown-item">
-              <p class="dropdown-item disabled" style="margin-bottom:0;">Logged in as <strong>{{name}}</strong></p>
+                  <p class="dropdown-item disabled">Logged in as <strong>{{name}}</strong></p>
             </li>
             <div class="dropdown-divider"></div>
             <li class="dropdown-item"><a href="/fantiphistory"> <i class="fas fa-book"></i> &#160;
-                Tip History</a></li>
-            <li class="dropdown-item"><a href="/profile"><i class="fas fa-user-alt"></i> &#160; Fan
-                Profile</a></li>
+                        Tip History</a></li>
+            <li class="dropdown-item"><a href="/profile"><i class="fas fa-user-alt"></i> &#160; Your
+                        Profile</a></li>
             {{#if isCreator}}
             <div class="dropdown-divider"></div>
             <li class="dropdown-item"> <a href="/creatorprofile"> <i class="fas fa-user-circle"></i>
-                &#160; Creator Profile</a></li>
+                        &#160; Creator Profile</a></li>
             {{else}}
             <div class="dropdown-divider"></div>
             <li class="dropdown-item"><a href="#" data-toggle="modal" data-target="#createCreatorProfile">
-                <i class="fas fa-plus-circle"></i> &#160; Become Creator</a></li>
+                        <i class="fas fa-plus-circle"></i> &#160; Become Creator</a></li>
             {{/if}}
             <div class="dropdown-divider"></div>
             <li class="dropdown-item"><a href="/logout"> <i class="fas fa-sign-out-alt"></i> &#160;
-                Logout</a></li>
-          </ul>
-        </li>
-        {{!-- <img src="{{imagePath}}" alt="..." class="rounded-circle" height="50px" width="50px"
-                              data-toggle="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a> --}}
-        <li class="nav-item navbar-right">
-          <a href="#search" class="btn" data-toggle="collapse" style="margin-left:1%;"><i class="fas fa-search"></i></a>
-        </li>
-        {{!-- <ul class="dropdown-menu">
-          <li class="dropdown-item">
-                <p class="dropdown-item disabled">Logged in as <strong>{{name}}</strong></p>
+                        Logout</a></li>
+      </ul> --}}
+        </ul>
+        {{else}}
+        <ul class="nav navbar-nav  ml-auto">
+          <li class="nav-item navbar-right">
+            <a href="" class="btn float-sm-right" data-toggle="modal" data-target="#login">LOG IN</a>
           </li>
-          <div class="dropdown-divider"></div>
-          <li class="dropdown-item"><a href="/fantiphistory"> <i class="fas fa-book"></i> &#160;
-                      Tip History</a></li>
-          <li class="dropdown-item"><a href="/profile"><i class="fas fa-user-alt"></i> &#160; Your
-                      Profile</a></li>
-          {{#if isCreator}}
-          <div class="dropdown-divider"></div>
-          <li class="dropdown-item"> <a href="/creatorprofile"> <i class="fas fa-user-circle"></i>
-                      &#160; Creator Profile</a></li>
-          {{else}}
-          <div class="dropdown-divider"></div>
-          <li class="dropdown-item"><a href="#" data-toggle="modal" data-target="#createCreatorProfile">
-                      <i class="fas fa-plus-circle"></i> &#160; Become Creator</a></li>
-          {{/if}}
-          <div class="dropdown-divider"></div>
-          <li class="dropdown-item"><a href="/logout"> <i class="fas fa-sign-out-alt"></i> &#160;
-                      Logout</a></li>
-    </ul> --}}
-      </ul>
-      {{else}}
-      <ul class="nav navbar-nav  ml-auto">
-        <li class="nav-item navbar-right">
-          <a href="" class="btn float-sm-right" data-toggle="modal" data-target="#login">LOG IN</a>
-        </li>
-        <li class="nav-item navbar-right">
-          <a href="" class="btn btn-success float-sm-right signup" data-toggle="modal" data-target="#signup">SIGN
-            UP</a>
-        </li>
-        <li class="nav-item navbar-right">
-          <a href="#search" class="btn" data-toggle="collapse" style="margin-left:1%;"><i class="fas fa-search"></i></a>
-        </li>
-      </ul>
-      {{/if}}
-    </div>
-  </nav>
-  {{!-- Rest of the page body goes here --}}
-  {{!-- includes index.hbs --}}
-  <div class="main">
-    {{{body}}}
-  </div>
-</body>
-
-<footer class="footer">
-  <div class="container-fluid">
-    <div class="row justify-content-center">
-      <div class="col">
-        <h5 class="text-uppercase">Sitemap</h5>  
-        <ul class="list-unstyled">
-          <li>
-            <a href="/explore">Explore</a>
+          <li class="nav-item navbar-right">
+            <a href="" class="btn btn-success float-sm-right signup" data-toggle="modal" data-target="#signup">SIGN
+              UP</a>
           </li>
-          <li>
-            <a href="/learn">Learn</a>
-          </li>
-          <li>
-            <a href="/termsofuse">Terms of Use</a>
-          </li>
-          <li>
-            <a href="/privacypolicy">Privacy Policy</a>
+          <li class="nav-item navbar-right">
+            <a href="#search" class="btn" data-toggle="collapse" style="margin-left:1%;"><i class="fas fa-search"></i></a>
           </li>
         </ul>
-      </div> <!-- Site map col -->
-      <div class="col">
-        <h5 class="text-uppercase">Connect</h5>
-        <ul class="list-unstyled">
-          <li>
-            <a href="mailto:info@fantipper.com">info@fantipper.com</a>
-          </li>
-          <li>
-            <a href="https://www.facebook.com/fantipper/"><i class="fab fa-facebook-f"></i>FanTipper</a>
-          </li>
-          <li>
-            <a href="https://twitter.com/fantipper"><i class="fab fa-twitter"></i>FanTipper</a>
-          </li>
-          <li>
-            <a href="https://www.instagram.com/fantipper/"><i class="fab fa-instagram"></i>fantipper</a>
-          </li>
-        </ul>
-      </div> <!-- Social media col -->
-    </div>
-
-    <div class="row justify-content-center"> 
-      <div class="footer-copyright text-center py-3" id='footer_c'>:
+        {{/if}}
       </div>
-    </div> <!-- Copyright Row -->
+    </nav> <!-- End of navbar -->
+
+    {{!-- Rest of the page body goes here --}}
+    {{!-- includes index.hbs --}}
+
+    <div class="main">
+      {{{body}}}
+    </div>
   </div>
-</footer>
-</div>
+
+  <footer class="footer">
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col">
+          <h5 class="text-uppercase">Sitemap</h5>  
+          <ul class="list-unstyled">
+            <li>
+              <a href="/explore">Explore</a>
+            </li>
+            <li>
+              <a href="/learn">Learn</a>
+            </li>
+            <li>
+              <a href="/termsofuse">Terms of Use</a>
+            </li>
+            <li>
+              <a href="/privacypolicy">Privacy Policy</a>
+            </li>
+          </ul>
+        </div> <!-- Site map col -->
+        <div class="col">
+          <h5 class="text-uppercase">Connect</h5>
+          <ul class="list-unstyled">
+            <li>
+              <a href="mailto:info@fantipper.com">info@fantipper.com</a>
+            </li>
+            <li>
+              <a href="https://www.facebook.com/fantipper/"><i class="fab fa-facebook-f"></i>FanTipper</a>
+            </li>
+            <li>
+              <a href="https://twitter.com/fantipper"><i class="fab fa-twitter"></i>FanTipper</a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/fantipper/"><i class="fab fa-instagram"></i>fantipper</a>
+            </li>
+          </ul>
+        </div> <!-- Social media col -->
+      </div>
+
+      <div class="row justify-content-center"> 
+        <div class="footer-copyright text-center py-3" id='footer_c'>:
+        </div>
+      </div> <!-- Copyright Row -->
+    </div> <!-- Footer div -->
+  </footer>
+
+</body>
 </html>
