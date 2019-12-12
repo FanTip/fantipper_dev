@@ -1,6 +1,6 @@
 <meta name="csrf-token" content={{csrfToken}}>
 <div class="container" id="editfanptofile">
-  <link rel="stylesheet" href='/css/userProfileEdit.css' />
+  <link rel="stylesheet" href='/css/userProfile.css' />
   <div class="row" style="margin-top:1%;">
     <div class="col-lg-3" style="border-right : 1px double gray">
       <ul class="list-group">
@@ -11,7 +11,7 @@
           <p>{{name}}</p>
         </li>
         <li class="list-group">
-          <a href="/editfanprofile"><i class="fas fa-edit"></i>Edit Profile</a>
+          <a href="/editfanprofile" id="editPLink"><i class="fas fa-edit"></i>Edit Profile</a>
         </li>
         {{!-- <li class="list-group">
                     <a href="/notifications"><i class="fas fa-envelope"></i>Notifications</a>
@@ -20,10 +20,10 @@
                     <a href=""><i class="fas fa-certificate"></i>Offers</a>
                 </li> --}}
         <li class="list-group">
-          <a href="/messages"><i class="fas fa-comments"></i>Messages</a>
+          <a href="/messages" id="editPLink"><i class="fas fa-comments"></i>Messages</a>
         </li>
         <li class="list-group">
-          <a href="/fantiphistory" id="tiphistory"><i class="fas fa-book"></i>Tip History</a>
+          <a href="/fantiphistory" id="editPLink"><i class="fas fa-book"></i>Tip History</a>
         </li>
         {{!-- <li class="list-group">
                     <a href=""><i class="fas fa-money-check-alt"></i>Account Balance</a>
@@ -143,9 +143,7 @@
                 </div>
                 {{!-- {{/if}} --}}
                 <div id="card_append_base">
-
                 </div>
-
               </div>
             </div>
             <div class="dropdown-divider"></div>
@@ -157,10 +155,7 @@
     </div>
   </div>
 
-
-
-
-{{!-- Modal for updating credit card information --}}
+  {{!-- Modal for updating credit card information --}}
   <div ng-controller="myCtrl as m" class="modal fade" id="updateCardOptions" tabindex="-1" role="dialog"
     aria-labelledby="updateCardOptionsLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -174,45 +169,40 @@
           </div>
           <div class="modal-body">
             <div class="sr-root">
-
-          <div class="sr-main">
-            <div class="sr-payment-form card">
-              <div class="sr-form-row">
-                <label>
-                  Account details
-                </label>
-                <input type="text" id="email" placeholder="Email address" value="{{email}}"/>
-              </div>
-              <div class="sr-form-row">
-                <label>
-                  Payment details
-                </label>
-                <div class="sr-input sr-element sr-card-element" id="card-element">
-                  <!-- A Stripe card Element will be inserted here. -->
+              <div class="sr-main">
+                <div class="sr-payment-form card">
+                  <div class="sr-form-row">
+                    <label>
+                      Account details
+                    </label>
+                    <input type="text" id="email" placeholder="Email address" value="{{email}}"/>
+                  </div>
+                  <div class="sr-form-row">
+                    <label>
+                      Payment details
+                    </label>
+                    <div class="sr-input sr-element sr-card-element" id="card-element">
+                      <!-- A Stripe card Element will be inserted here. -->
+                    </div>
+                  </div>
+                  <div class="sr-field-error" id="card-errors" role="alert"></div>
+                  <button id="submit">
+                    <div class="spinner hidden" id="spinner"></div>
+                    <span id="button-text">Link your card to your account</span>
+                  </button>
                 </div>
               </div>
-              <div class="sr-field-error" id="card-errors" role="alert"></div>
-              <button id="submit">
-                <div class="spinner hidden" id="spinner"></div>
-                <span id="button-text">Link your card to your account</span>
-              </button>
             </div>
-          </div>
-        </div>
-        <link rel="stylesheet" href='/css/stripe_save_card.css' />
-        <script src="/javascripts/stripe_save_card.js"></script>
+            <link rel="stylesheet" href='/css/stripe_save_card.css' />
+            <script src="/javascripts/stripe_save_card.js"></script>
           </div>
           <div class="modal-footer">
             {{!-- <button type="submit" class="btn btn-primary">Add your card</button> --}}
           </div>
-      </div>
+        </div>
       </form>
     </div>
-  </div>
-
-
-
-
+  </div> <!-- End of Modal for updating credit card information -->
 
   <div class="modal fade" id="deleteAccount" tabindex="-1" role="dialog" aria-labelledby="deleteAccountLabel"
     aria-hidden="true">
@@ -231,7 +221,6 @@
             <button type="button" class="btn btn-secondary" data-dismiss="modal">No, Go back!</button>
             <button type="submit" class="btn btn-success">I'm pretty sure!</button>
           </form>
-
         </div>
       </div>
     </div>
