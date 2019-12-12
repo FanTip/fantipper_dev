@@ -17,7 +17,7 @@ html, body {
 
 .main {
     padding-top: 20px;
-    padding-bottom: 240px;
+    padding-bottom: 230px;
 }
 
 #message_base {
@@ -33,7 +33,7 @@ html, body {
 footer {
     height: 220px;
     width: 100%;
-    margin-top: -240px;
+    margin-top: -230px;
     position: absolute;
     /* overflow: hidden; */
     background-color: #414042;

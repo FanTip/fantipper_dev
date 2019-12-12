@@ -1,5 +1,5 @@
 <div class="container">
-  <link rel="stylesheet" href='/css/userProfileMessages.css' />
+  <link rel="stylesheet" href='/css/userProfile.css' />
   <div class="row" style="margin-top:1%;">
     <div class="col-sm-3" style="border-right : 1px double gray">
       <ul class="list-group">
@@ -10,7 +10,7 @@
           <p>{{name}}</p>
         </li>
         <li class="list-group">
-          <a href="/editfanprofile"><i class="fas fa-edit"></i>Edit Profile</a>
+          <a href="/editfanprofile" id="editPLink"><i class="fas fa-edit"></i>Edit Profile</a>
         </li>
         {{!-- <li class="list-group">
                     <a href="/notifications"><i class="fas fa-envelope"></i>Notifications</a>
@@ -19,10 +19,10 @@
                     <a href=""><i class="fas fa-certificate"></i>Offers</a>
                 </li> --}}
         <li class="list-group">
-          <a href="/messages"><i class="fas fa-comments"></i>Messages</a>
+          <a href="/messages" id="editPLink"><i class="fas fa-comments"></i>Messages</a>
         </li>
         <li class="list-group">
-          <a href="/fantiphistory" id="tiphistory"><i class="fas fa-book"></i>Tip History</a>
+          <a href="/fantiphistory" id="editPLink"><i class="fas fa-book"></i>Tip History</a>
         </li>
         {{!-- <li class="list-group">
                     <a href=""><i class="fas fa-money-check-alt"></i>Account Balance</a>
