@@ -1,8 +1,9 @@
 // Stripe.js saving card
 const express = require('express');
 const router = express.Router();
-// var csrf = require('csurf');
-// var csrfProtection = csrf();
+const _ = require('lodash');
+// let csrf = require('csurf');
+// let csrfProtection = csrf();
 const stripe = require('stripe')('sk_test_lzFXk4jctTfL15eqiv0l4hJD');
 
 const User = require('../../models/user');
@@ -21,24 +22,37 @@ router.get('/pub', function (req, res) {
 
 router.post('/intents', async function (req, res) {
   try {
-    let user = await User.findById(req.user._id).exec();
-    let customer = await stripe.customers.create({
-      email: user.email,
-      description: "Customer " + user.email,
-    });
+    let today = new Date();
+    let date = today.getFullYear() + '-' +
+      (today.getMonth() + 1) + '-' +
+      today.getDate() + '--' +
+      (today.getHours() > 12 ? (today.getHours() - 12) : today.getHours()) + ':' +
+      today.getMinutes() + ':' + today.getSeconds() + ':' +
+      today.getMilliseconds();
 
-    let customer_query = {
-      customer_id: customer.id
+
+    let user = await User.findById(req.user._id).exec();
+    if (!user.card.isCard) {
+      let customer = await stripe.customers.create({
+        email: user.email,
+        description: "Customer " + user.email + ' Created at :' + date,
+      });
+
+      let customer_query = {
+        customer_id: customer.id
+      }
+      await User.findByIdAndUpdate(req.user._id, customer_query).exec();
+
+      let intent = await stripe.setupIntents.create({
+        customer: customer.id
+      });
+
+      res.status(200).send(intent);
+    } else {
+      res.status(200).send({});
     }
 
-    // console.log(customer);
-    await User.findByIdAndUpdate(req.user._id, customer_query).exec();
 
-    let intent = await stripe.setupIntents.create({
-      customer: customer.id
-    });
-
-    res.status(200).send(intent);
   } catch (e) {
     res.status(500).send(e);
   }
@@ -46,25 +60,16 @@ router.post('/intents', async function (req, res) {
 
 router.post('/save-card-credentials', async function (req, res) {
   try {
-    let card = req.body;
+    let card = req.body.source;
+
     let query = {
       $set: {
-        'card.card_credentials': {
-          id: req.body.source.id,
-          card: req.body.source.card,
-          type: req.body.source.type,
-          object: req.body.source.object,
-          status: req.body.source.status,
-          usage: req.body.source.usage
-        }
+        'card.card_data': card
       }
-    };
+    }
 
     await User.findByIdAndUpdate(req.user._id, query).exec();
     let updated_user = await User.findById(req.user._id).exec();
-    // console.log(updated_user);
-
-
     res.status(200).json({});
   } catch (e) {
     res.status(500).json({});
@@ -72,7 +77,7 @@ router.post('/save-card-credentials', async function (req, res) {
 });
 
 
-router.post('/save-card-element', async function (req, res) {
+router.post('/save-payment-method', async function (req, res) {
   try {
     let query = {
       $set: {
@@ -87,6 +92,8 @@ router.post('/save-card-element', async function (req, res) {
         }
       }
     }
+
+
     await User.findByIdAndUpdate(req.user._id, query).exec();
     let updated = await User.findById(req.user._id).exec();
     let intent = await stripe.setupIntents.create({
@@ -112,43 +119,23 @@ router.get('/saved-card', async function (req, res) {
   }
 });
 
-router.get('/update_intents', async function (req, res) {
+router.post('/attach_customer', async function (req, res) {
   try {
-    // let user = await User.findById(req.user._id).exec();
-    
-    // const paymentMethod = await stripe.paymentMethods.attach(
-    //   user.card.payment_credentials.payment_method, {
-    //     customer: user.customer_id,
-    //   }
-    // );
-
-    // const paymentIntent = await stripe.paymentIntents.create({
-    //   amount: 1099,
-    //   currency: 'aud',
-    //   customer: user.customer_id,
-    //   payment_method: user.card.payment_credentials.payment_method,
-    //   off_session: true,
-    //   confirm: true,
-    // });
-    // console.log(paymentIntent);
-
+    let user = await User.findById(req.user._id).exec();
+    // Attach Once
+    const paymentMethod = await stripe.paymentMethods.attach(
+      user.card.payment_credentials.payment_method, {
+        customer: user.customer_id,
+      }
+    );
+    res.send(paymentMethod);
   } catch (e) {
-    // console.log(e)
+    res.send(e);
   }
+})
 
 
 
-  // const paymentMethod = await stripe.paymentMethods.attach(
-  //   user.card.payment_credentials.payment_method,
-  //   {
-  //     customer: user.customer_id,
-  //   }
-  // );
-  // console.log(user);
-
-
-  // res.send(paymentMethod);
-});
 
 
 module.exports = router;

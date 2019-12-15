@@ -39,6 +39,7 @@ $(document).ready(function () {
 
   saved_radio_button.click(function () {
     card.unmount('#card-element');
+    console.log(saved_radio_button[0].checked);
     new_label.hide();
   });
 
@@ -79,24 +80,55 @@ $(document).ready(function () {
     var payEmail = $('#pay-email').val();
 
     var description = $('#tipMessage').val();
+    let xhr;
 
+    if (new_card_radio[0].checked) {
+      var data = {
+        _stripeID: token.id,
+        _csrf: csrf,
+        _amount: tipAmount,
+        _description: description,
+        _email: payEmail,
+        _creatorEmail: creatorEmail,
+        _receiver_id: receiver_id,
+        _saved_card: false
+      }
 
-    var data = {
-      _stripeID: token.id,
-      _csrf: csrf,
-      _amount: tipAmount,
-      _description: description,
-      _email: payEmail,
-      _creatorEmail: creatorEmail,
-      _receiver_id: receiver_id
+      xhr = $.ajax({
+        method: 'POST',
+        url: '/tipping/sendtip',
+        crossDomain: false,
+        data: data
+      });
     }
 
-    var xhr = $.ajax({
-      method: 'POST',
-      url: '/tipping/sendtip',
-      crossDomain: false,
-      data: data
-    });
+    if (saved_radio_button[0].checked) {
+
+      let data = {
+        _amount: tipAmount,
+        _description: description,
+        _email: payEmail,
+        _creatorEmail: creatorEmail,
+        _receiver_id: receiver_id,
+        _saved_card: true
+      }
+
+
+      xhr = $.ajax({
+        method: 'POST',
+        url: '/tipping/sendtip',
+        crossDomain: false,
+        headers: {
+          'CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: data
+      });
+
+      xhr.done(function (Response) {
+        console.log(Response);
+      })
+
+    }
 
     xhr.done((Response) => {
       tippingForm.trigger('reset');
@@ -112,17 +144,22 @@ $(document).ready(function () {
 
 
 
-
   function prepareCard() {
-    stripe.createToken(card).then(function (result) {
-      if (result.error) {
-        var errorElement = document.getElementById('card-errors');
-        errorElement.textContent = result.error.message;
-      } else {
-        submitForm(result.token);
-      }
-    });
+    if (new_card_radio[0].checked) {
+      stripe.createToken(card).then(function (result) {
+        if (result.error) {
+          var errorElement = document.getElementById('card-errors');
+          errorElement.textContent = result.error.message;
+        } else {
+          submitForm(result.token);
+        }
+      });
+    }
+    if (saved_radio_button[0].checked) {
+      submitForm();
+    }
   }
+
 
   // / // Submit the form with the token ID.
   function stripeTokenHandler(token) {

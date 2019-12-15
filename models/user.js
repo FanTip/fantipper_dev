@@ -71,6 +71,9 @@ var personSchema = new Schema({
         },
         card_credentials: {
             type: Object
+        },
+        card_data: {
+            type: Object
         }
     },
     creator: {
