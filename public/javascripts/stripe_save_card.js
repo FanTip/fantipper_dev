@@ -9,12 +9,12 @@ function show_saved_card(details) {
   let card = $('<div class="card" style="width: 100%;">');
   let card_body = $('<div class="card-body" style="padding: 0.5rem;">');
   let card_content = $('<p class="card-text">');
-  if (details.card_credentials.card.brand == 'Visa' || details.card_credentials.card.brand == 'Mastercard')
-    card_content.append('Saved Card : **** **** **** ' + details.card_credentials.card.last4 + '<br>');
+  if (details.card_data.card.brand == 'Visa' || details.card_data.card.brand == 'Mastercard')
+    card_content.append('Saved Card : **** **** **** ' + details.card_data.card.last4 + '<br>');
   else
-    card_content.append(' Saved Card : **** **** *** ' + details.card_credentials.card.last4 + '<br>');
-  card_content.append('Card Type : ' + details.card_credentials.card.brand + '<br>');
-  card_content.append('Exp Date : ' + details.card_credentials.card.exp_month + '/' + details.card_credentials.card.exp_year + '<br>');
+    card_content.append(' Saved Card : **** **** *** ' + details.card_data.card.last4 + '<br>');
+  card_content.append('Card Type : ' + details.card_data.card.brand + '<br>');
+  card_content.append('Exp Date : ' + details.card_data.card.exp_month + '/' + details.card_data.card.exp_year + '<br>');
 
   let delete_card_button = $('<div class="float-right"> <button class="btn btn-info">Delete Card</button></div><br>')
   card_content.append(delete_card_button);
@@ -230,7 +230,7 @@ let orderComplete = function (stripe, clientSecret) {
     }
     let $modal = $('#updateCardOptions');
 
-    let xhr = $.ajax('/payment/save-card-element', {
+    let xhr = $.ajax('/payment/save-payment-method', {
       type: 'POST',
       data: setupIntent,
       crossDomain: false,
@@ -238,11 +238,18 @@ let orderComplete = function (stripe, clientSecret) {
         'CSRF-Token': $('meta[name="csrf-token"]').attr('content')
       },
     });
-
+    let xhr1 = $.ajax('/payment/attach_customer', {
+      type: 'POST',
+      data: setupIntent,
+      crossDomain: false,
+      headers: {
+        'CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+      },
+    });
     xhr.done(function (response) {
       toastr.success('Card saved sucessfully');
       update_fanprofile(response);
-
+      
       changeLoadingState(false);
       $modal.modal('hide');
     }).fail(function (response) {

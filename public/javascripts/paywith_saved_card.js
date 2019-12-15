@@ -14,10 +14,10 @@ $(document).ready(function () {
     xhr1.done(function (response) {
         if (response.isCard) {
             var card_test;
-            if (response.card_credentials.card.brand == 'Visa' || response.card_credentials.card.brand == 'Mastercard') {
-                card_test = ' **** **** **** ' + response.card_credentials.card.last4;
+            if (response.card_data.card.brand == 'Visa' || response.card_data.card.brand == 'Mastercard') {
+                card_test = ' **** **** **** ' + response.card_data.card.last4;
             } else {
-                card_test = ' **** ****** *' + response.card_credentials.card.last4;
+                card_test = ' **** ****** *' + response.card_data.card.last4;
             }
             preview_card_text.append(card_test);
         }
