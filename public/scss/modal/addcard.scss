@@ -1,0 +1,43 @@
+/* Css for add card modal on the editfanptofile.hbs */
+
+
+#updateCardOptions {
+  h3 {
+  font-family: 'Larsseit-Bold';
+  color: #00d178; 
+  }
+
+  .modal-body {
+    background-color: #f2f2f2;
+  }
+
+  .form-control {
+    display: block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: .375rem, .75rem;
+    font-size: 1rem;
+    margin-bottom: 3px;
+
+  }
+
+  #submit {
+    font-family: 'Larsseit-Bold';
+    letter-spacing: 2px;
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    border-radius: .25rem;
+
+  }
+
+  #submit:hover {
+    background-color: #218838;
+    border-color: #218838;
+  }
+}
+
+/* End of add card modal CSS */
