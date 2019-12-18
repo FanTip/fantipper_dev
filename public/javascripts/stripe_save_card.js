@@ -139,7 +139,7 @@ let stripeElements = function (publicKey, setupIntent) {
 
 
 
-
+    console.log(setupIntent.client_secret);
     stripe
       .confirmCardSetup(setupIntent.client_secret, {
         payment_method: {
