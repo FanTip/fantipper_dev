@@ -3,12 +3,11 @@
 html, body {
     width : 100%;
     height: 100%;
-    /* padding-top: 0px; */
     font: 14px;
     -webkit-font-smoothing : antialiased;
     font-family: 'Larsseit';
     background-color: white;
-    position: relative;
+    position: absolute;
 }
 
 .main-container {
@@ -31,15 +30,18 @@ html, body {
 }
 
 footer {
-    height: 220px;
+    height: 230px;
     width: 100%;
     margin-top: -230px;
-    position: absolute;
-    /* overflow: hidden; */
+    overflow: hidden;
     background-color: #414042;
     font-family: 'Larsseit';
-    /* position: relative; */
+    position: relative;
 }
+
+/* .col {
+    align-items: center;
+} */
 
 @media only screen and (max-width:330px) {
     footer { 
@@ -66,11 +68,13 @@ input[type=text]:focus {
     box-shadow: 1px 1px #00d278 !important;
     border:1px solid #00d278 !important;
 }
+
 input[type=email]:focus {
     outline: none;
     box-shadow: 1px 1px #00d278 !important;
     border:1px solid #00d278 !important;
 }
+
 input[type=password]:focus {
     outline: none;
     box-shadow: 1px 1px #00d278 !important;
@@ -91,6 +95,10 @@ textarea:focus {
 
 h1, h2, h3, h4, h5, p {
     font-family: 'Larsseit';
+}
+
+p {
+    word-wrap: break-word;
 }
 
 .notifications {
