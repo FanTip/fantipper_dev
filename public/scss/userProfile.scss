@@ -1,7 +1,15 @@
+.container {
+  padding-bottom: 60px;
+}
+
 #editPLink {
   color: #00D278;
 }
 
 #editPLink:hover {
   color: #00b96a;
+}
+
+#transparenttext {
+  color: transparent;
 }
