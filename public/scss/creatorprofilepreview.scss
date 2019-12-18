@@ -152,6 +152,7 @@
 
             .btn-tip-listing {
                 background-image: url('/images/button-fantip.svg');
+                background-size: cover;
                 height: 40px;
                 width: 130px;   
             }
@@ -318,19 +319,14 @@
 
         .creator-become-a-fan {
             text-align: center;
+            align-items: center;
 
             .btn-tip-listing {
                 background-image: url('/images/button-fantip.svg');
+                background-size: cover;                
                 height: 40px;
-                width: 130px; 
-            }
-
-            #tip-button {
-                text-align: center;
-                display: block;
-                margin: auto;
-                padding-bottom: 10px;
-                border-bottom: 1px solid #e4e2e2;
+                width: 130px;
+                display: inline-block;
             }
 
             h3 {
@@ -341,7 +337,7 @@
                 margin-bottom: 20px;
                 margin-top: 0;
                 letter-spacing: 1px;
-            }     
+            }
         }
     }
 }
