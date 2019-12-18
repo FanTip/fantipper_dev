@@ -5,7 +5,6 @@
 .navbar {
     padding-bottom: 10px;
     padding-top: 10px;
-    // overflow: hidden;
     background-color: #fff;
     position: fixed;
     top: 0;
@@ -15,45 +14,46 @@
     border-bottom-color: #cfccd1;
     border-bottom-style: solid;
 }
-.navbar-nav .link:hover{
+
+.navbar-nav .link:hover {
     border-bottom: #00D278 solid;
 }
-.navbar-nav .nav-item a:hover{
+
+.navbar-nav .nav-item a:hover {
     color: #00D278;
 }
 
-.navbar-nav .nav-item a{
+.navbar-nav .nav-item a {
     letter-spacing: 1pt;
     color: #414042;
     font-family: 'Larsseit-Bold';
 }
 
-.dropdown-menu .dropdown-item a{
+.dropdown-menu .dropdown-item a {
     color: #414042;
 }
 
-.dropdown-menu .dropdown-item a:hover{
+.dropdown-menu .dropdown-item a:hover {
     color: #00D278;
     text-decoration: none;
 }
 
-.navbar-nav .nav-item .signup{
+.navbar-nav .nav-item .signup {
     letter-spacing: 1pt;
     color: #fff;
     font-family: 'Larsseit-Bold';
 }
 
-.navbar-nav .nav-item .signup:hover{
+.navbar-nav .nav-item .signup:hover {
     letter-spacing: 1pt;
     color: #fff;
     font-family: 'Larsseit-Bold';
 }
 
-.navbar-nav .nav-item a:hover{
+.navbar-nav .nav-item a:hover {
     letter-spacing: 1pt;
     color: #00D278;
 }
-
 
 .affix {
     top: 0;
