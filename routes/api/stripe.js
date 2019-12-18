@@ -33,6 +33,7 @@ router.post('/intents', async function (req, res) {
 
     let user = await User.findById(req.user._id).exec();
     if (!user.card.isCard) {
+      console.log(user.card.isCard);
       let customer = await stripe.customers.create({
         email: user.email,
         description: "Customer " + user.email + ' Created at :' + date,
@@ -46,13 +47,10 @@ router.post('/intents', async function (req, res) {
       let intent = await stripe.setupIntents.create({
         customer: customer.id
       });
-      console.log(intent);
-      res.status(200).send(intent);
+      res.status(200).json(intent);
     } else {
       res.status(200).send({});
     }
-
-
   } catch (e) {
     res.status(500).send(e);
   }
