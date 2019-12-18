@@ -15,9 +15,6 @@
   text-transform: uppercase;
   font-size: 1.5rem; }
 
-.container-fluid {
-  margin-top: 6%; }
-
 @media screen and (max-width: 330px) {
   .container-fluid {
     margin-top: 6%; }
@@ -26,6 +23,3 @@
 
 #editor-container {
   height: 375px; }
-
-.footer .container-fluid {
-  margin-top: 0; }

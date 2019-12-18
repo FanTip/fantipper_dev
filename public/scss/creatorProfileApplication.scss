@@ -5,10 +5,12 @@
     padding-right: 10%;
     height : 100%;
 }
+
 #handshake {
     margin-top: 40px;
     margin-bottom: 20px;
 }
+
 //TODO: different screen size 
 
 #label_name{
@@ -17,29 +19,18 @@
     text-transform: uppercase;
     font-size: 1.5rem;
 }
-.container-fluid {
-    margin-top: 6%;
-}
 
 @media screen and (max-width:330px) {
+
     .container-fluid { 
         margin-top: 6%;
     }
+    
     #application {
         padding-top: 6%;
     }
 }
 
-// .container-fluid {
-//     padding-top: 3%;
-// }
-
 #editor-container { // Initialize Quill editor
     height: 375px;
-}
-
-.footer {
-    .container-fluid {
-        margin-top: 0;
-    }
 }
