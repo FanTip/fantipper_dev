@@ -46,7 +46,7 @@ router.post('/intents', async function (req, res) {
       let intent = await stripe.setupIntents.create({
         customer: customer.id
       });
-
+      console.log(intent);
       res.status(200).send(intent);
     } else {
       res.status(200).send({});
