@@ -130,16 +130,10 @@ let stripeElements = function (publicKey, setupIntent) {
   button.addEventListener("click", function (event) {
     event.preventDefault();
     changeLoadingState(true);
-    let email = document.getElementById("email").value;
+    let email = document.getElementById("cust_email").value;
 
     createCardtoSave(card, stripe);
 
-
-    console.log(card);
-
-
-
-    console.log(setupIntent.client_secret);
     stripe
       .confirmCardSetup(setupIntent.client_secret, {
         payment_method: {
@@ -158,7 +152,6 @@ let stripeElements = function (publicKey, setupIntent) {
           // The PaymentMethod was successfully setup
           // Be sure to attach the PaymentMethod to a Customer as shown by
           // the server webhook in this sample
-          console.log(result);
           orderComplete(stripe, setupIntent.client_secret);
         }
       });
@@ -168,6 +161,7 @@ let stripeElements = function (publicKey, setupIntent) {
 let getSetupIntent = function (publicKey) {
   return fetch("/payment/intents", {
       method: "post",
+      crossDomain: false,
       headers: {
         "Content-Type": "application/json",
         'CSRF-Token': $('meta[name="csrf-token"]').attr('content')
