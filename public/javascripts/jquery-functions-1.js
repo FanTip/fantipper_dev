@@ -8,8 +8,33 @@ $(document).ready(function () {
   let new_card_radio = $('#new');
   let new_label = $('#new_label');
   new_label.hide();
+  let sendTipButton = $('#sendTipButton');
+  let saved_card_check = false;
+  let new_card_check = false;
   // Create an instance of Elements.
   var elements = stripe.elements();
+
+  $('#tipCreator').on('show.bs.modal', function (e) {
+    let xhr_check_comp = $.ajax('/payment/user', {
+      type: 'GET',
+      crossDomain: false,
+      headers: {
+        'CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+      },
+    });
+  
+    xhr_check_comp.done(function(response){
+      if(response.creator.creatorEmail === $('#_creatorEmail').val()){
+        sendTipButton.attr("disabled", true);
+        sendTipButton.attr("value", "This transaction is invalid");
+      }
+      else{
+        sendTipButton.attr("disabled", false);
+      }
+    });
+  })
+
+  
 
   // Custom styling can be passed to options when creating an Element.
   // (Note that this demo uses a wider set of styles than the guide below.)
@@ -39,15 +64,17 @@ $(document).ready(function () {
 
   saved_radio_button.click(function () {
     card.unmount('#card-element');
-    console.log(saved_radio_button[0].checked);
     new_label.hide();
+    saved_card_check = true;
+    new_card_check = false;
   });
 
-  console.log(card);
 
   new_card_radio.click(function () {
     card.mount('#card-element');
     new_label.show();
+    saved_card_check = false;
+    new_card_check = true;
   })
 
   // Handle real-time validation errors from the card Element.
@@ -82,7 +109,7 @@ $(document).ready(function () {
     var description = $('#tipMessage').val();
     let xhr;
 
-    if (new_card_radio[0].checked) {
+    if (new_card_check) {
       var data = {
         _stripeID: token.id,
         _csrf: csrf,
@@ -102,7 +129,7 @@ $(document).ready(function () {
       });
     }
 
-    if (saved_radio_button[0].checked) {
+    if (saved_card_check) {
 
       let data = {
         _amount: tipAmount,
@@ -125,7 +152,6 @@ $(document).ready(function () {
       });
 
       xhr.done(function (Response) {
-        console.log(Response);
       })
 
     }
@@ -145,7 +171,7 @@ $(document).ready(function () {
 
 
   function prepareCard() {
-    if (new_card_radio[0].checked) {
+    if (new_card_check) {
       stripe.createToken(card).then(function (result) {
         if (result.error) {
           var errorElement = document.getElementById('card-errors');
@@ -155,7 +181,7 @@ $(document).ready(function () {
         }
       });
     }
-    if (saved_radio_button[0].checked) {
+    if (saved_card_check) {
       submitForm();
     }
   }
