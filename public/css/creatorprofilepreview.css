@@ -107,6 +107,7 @@
       border-left: 1px solid #e4e2e2; }
       .body-content .creator-content .creator-sidebar .btn-tip-listing {
         background-image: url("/images/button-fantip.svg");
+        background-size: cover;
         height: 40px;
         width: 130px; }
       .body-content .creator-content .creator-sidebar .creator-tips-total h5 {
@@ -124,7 +125,6 @@
         margin-bottom: 18px;
         line-height: 40px; }
       .body-content .creator-content .creator-sidebar .creator-tips-total .target-text {
-        word-break: break-all;
         color: #00d178;
         font-size: 25px;
         font-family: 'Larsseit-Bold';
@@ -215,17 +215,16 @@
             width: 64px;
             height: 64px; }
     .body-content .creator-lower .creator-become-a-fan {
-      text-align: center; }
+      text-align: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center; }
       .body-content .creator-lower .creator-become-a-fan .btn-tip-listing {
         background-image: url("/images/button-fantip.svg");
+        background-size: cover;
         height: 40px;
-        width: 130px; }
-      .body-content .creator-lower .creator-become-a-fan #tip-button {
-        text-align: center;
-        display: block;
-        margin: auto;
-        padding-bottom: 10px;
-        border-bottom: 1px solid #e4e2e2; }
+        width: 130px;
+        display: inline-block; }
       .body-content .creator-lower .creator-become-a-fan h3 {
         text-transform: uppercase;
         font-size: 24px;

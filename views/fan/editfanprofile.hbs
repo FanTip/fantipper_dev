@@ -1,9 +1,9 @@
 <meta name="csrf-token" content={{csrfToken}}>
-<div class="container" id="editfanptofile">
-  <link rel="stylesheet" href='/css/userProfile.css' />
-  <link rel="stylesheet" href='/css/modal/addcard.css' />
-  <link rel="stylesheet" href='/css/stripe_save_card.css' />
-  <script src="/javascripts/stripe_save_card.js"></script>
+<link rel="stylesheet" href='/css/userProfile.css' />
+<link rel="stylesheet" href='/css/modal/addcard.css' />
+<link rel="stylesheet" href='/css/stripe_save_card.css' />
+<script src="/javascripts/stripe_save_card.js"></script>
+  <div class="container" id="editfanptofile">
   <div class="row" style="margin-top:1%;">
     <div class="col-lg-3" style="border-right : 1px double gray">
       <ul class="list-group">
@@ -101,7 +101,7 @@
 
               {{else}}
               <div class="form-group col-md-3">
-                <label for=""> </label>
+                <label for="" id="transparenttext">Change Password</label>
                 <button type="button" class="btn btn-success float-sm-right form-control" data-toggle="modal"
                   data-target="#changePassword">Change Password</button>
               </div>

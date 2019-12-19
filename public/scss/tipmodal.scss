@@ -1,5 +1,6 @@
-#tipCreator{
-    .modal-body{
+#tipCreator {
+
+    .modal-body {
         background-color: #f2f2f2 ;
     }
    
@@ -33,6 +34,7 @@
             background-color: rgb(202, 199, 199);
             border-radius: 50%;
           }
+
           .checkmark:after {
             content: "";
             position: absolute;
@@ -61,7 +63,7 @@
         background-color: #ccc;
       }  
 
-      #sendTipButton{
+      #sendTipButton {
         background-color: #00d178;
         color: #f2f2f2;
         font-family: 'Larsseit';

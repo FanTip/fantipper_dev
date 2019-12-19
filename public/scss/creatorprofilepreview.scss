@@ -1,13 +1,12 @@
-.body-content{
+.body-content {
     padding-left: 15px;
     padding-right: 15px;
     
-
-    .text-center{
+    .text-center {
         text-align: center;
     }
     
-    .creator-head{
+    .creator-head {
         height: 100%;
         background: no-repeat center center;
         background-size: cover;
@@ -18,21 +17,22 @@
         position: relative;
         /* Center and scale the image nicely */
       
-        img{
+        img {
             width: 170px;
             height: 170px;
         }
-        .img-circle{
+
+        .img-circle {
             border-radius: 50%;
-            
         }
-        h2{
+
+        h2 {
             font-family: 'Larsseit-Bold';
             font-size: 40px;
             margin-top: 34px;
         }
 
-        h4{
+        h4 {
             text-transform: uppercase;
             font-family: 'Larsseit-Bold';
             font-size: 12px;
@@ -41,15 +41,15 @@
             letter-spacing: 1px;
             margin-top: 20px;
         }
-        h3{
+
+        h3 {
             text-transform: uppercase;
             font-size: 12px;
             margin-top: 0px;
             letter-spacing: 1px;
-
-            
         }
-        .category-token{
+
+        .category-token {
             border: 1px solid #d0d2d3;
             border-radius: 5px;
             padding: 2px;
@@ -61,22 +61,25 @@
             letter-spacing: .5px;
         }
 
-        .creator-share{
+        .creator-share {
             font-size: 13px;    
             margin-top: 70px;
-            #share-facebook{
+
+            #share-facebook {
                 border-radius: 5px;
                 transition: all 200ms ease-out;
                 font-family: 'Larsseit-Bold';
                 background-color: #355f9f;
             }
-            #share-twitter{
+
+            #share-twitter {
                 border-radius: 5px;
                 background-color: #2ba9e1;
                 transition: all 200ms ease-out;
                 font-family: 'Larsseit-Bold';
             }
-            #share-url{
+
+            #share-url {
                 border-radius: 5px;
                 color: #666;
                 background-color: #ccc;
@@ -84,7 +87,7 @@
                 font-family: 'Larsseit-Bold';
             }
         }
-        .creator-share > button{
+        .creator-share > button {
             color: #fff;
             margin: 2px;
             border: none;
@@ -102,50 +105,60 @@
     //     opacity: 0.1;
     // }
 
-    .creator-content{
+    .creator-content {
         margin-top: 30px;
-        .creator-main{
-            #about{
+
+        .creator-main {
+
+            #about {
                 border-bottom: 1px solid #e4e2e2;
                 margin-bottom: 20px;
-                h4{
-                    color: #00d278;
-                    text-transform: uppercase;
-                    font-family: 'Larsseit-Medium';
-                    font-size: 14px;
-                }
-            }
-            #gallery{
-                border-bottom: 1px solid #e4e2e2;
-                margin-bottom: 20px;
-                h4{
-                    color: #00d278;
-                    text-transform: uppercase;
-                    font-family: 'Larsseit-Medium';
-                    font-size: 14px;
-                }
-            }
-            #members{
-                border-bottom: 1px solid #e4e2e2;
-                margin-bottom: 20px;
-                h4{
-                    color: #00d278;
-                    text-transform: uppercase;
-                    font-family: 'Larsseit-Medium';
-                    font-size: 14px;
-                }
-            }
             
+                h4 {
+                    color: #00d278;
+                    text-transform: uppercase;
+                    font-family: 'Larsseit-Medium';
+                    font-size: 14px;
+                }
+            }
+
+            #gallery {
+                border-bottom: 1px solid #e4e2e2;
+                margin-bottom: 20px;
+
+                h4 {
+                    color: #00d278;
+                    text-transform: uppercase;
+                    font-family: 'Larsseit-Medium';
+                    font-size: 14px;
+                }
+            }
+
+            #members {
+                border-bottom: 1px solid #e4e2e2;
+                margin-bottom: 20px;
+
+                h4 {
+                    color: #00d278;
+                    text-transform: uppercase;
+                    font-family: 'Larsseit-Medium';
+                    font-size: 14px;
+                }
+            }
         }
-        .creator-sidebar{
+
+        .creator-sidebar {
             border-left: 1px solid #e4e2e2;
-            .btn-tip-listing{
+
+            .btn-tip-listing {
                 background-image: url('/images/button-fantip.svg');
+                background-size: cover;
                 height: 40px;
                 width: 130px;   
             }
 
-            .creator-tips-total{
+            .creator-tips-total {
+                
                 h5{
                     margin-top: 10px;
                     color: #8c8c8c;
@@ -155,15 +168,16 @@
                     margin-bottom: 5px;
                     letter-spacing: 1px;
                 }
-                .total{
+
+                .total {
                     color: #333;
                     font-size: 40px;
                     font-family: 'Larsseit-Bold';
                     margin-bottom: 18px;
                     line-height: 40px;
                 }
-                .target-text{
-                    word-break: break-all;
+
+                .target-text {
                     color: #00d178;
                     font-size: 25px;
                     font-family: 'Larsseit-Bold';
@@ -171,9 +185,11 @@
                 }
             }
             
-            #creatorFans{
-                .top-fan-list{
-                    h3{
+            #creatorFans {
+
+                .top-fan-list {
+
+                    h3 {
                         text-transform: uppercase;
                         font-size: 14px;
                         color: #00d278;
@@ -183,12 +199,13 @@
                         margin-right: 10px;
                         letter-spacing: 1px;
                     }
-                    ul{
+
+                    ul {
                         padding-left: 0;
                         height: 216px;
                         overflow: hidden;
 
-                        li{
+                        li {
                             position: relative;
                             display: block;
                             padding: 0;
@@ -199,21 +216,19 @@
                         }
                     }
                 }
-                
             }
-            
-            
-            
         }
     }
 
-    .creator-lower{
+    .creator-lower {
         background-color: #f5f5f5;
         padding-top: 65px;
         margin-top: 60px;
         padding-bottom: 60px;
-        .recent-comments{
-            h3{
+
+        .recent-comments {
+
+            h3 {
                 text-transform: uppercase;
                 font-size: 14px;
                 color: #00d278;
@@ -222,11 +237,13 @@
                 margin-top: 0;
                 letter-spacing: 1px;
             }
-            ul{
+
+            ul {
                 padding-left: 0;
                 overflow: hidden;
             }
-            li{
+
+            li {
                 position: relative;
                 display: block;
                 padding: 0;
@@ -234,31 +251,36 @@
                 background-color: #f5f5f5;
                 border: none;
             }
-            img{
+
+            img {
                 width: 70px;
                 height: 70px;
                 float: left;
                 clear: both;
                 margin-right: 16px;
             }
-            .comment{
+
+            .comment {
                 background-color: #fff;
                 min-height: 70px;
                 margin-left: 82px;
                 font-size: 14px;
                 color: #333;
                 padding: 20px;
-                small{
+
+                small {
                     font-size: 14px;
                     color: #999;
                 }
             }
-
         }
-        .creator-sidebar{
-            .fans{
+
+        .creator-sidebar {
+
+            .fans {
                 clear: both;
-                h3{
+
+                h3 {
                     text-transform: uppercase;
                     font-size: 14px;
                     color: #00d278;
@@ -267,50 +289,47 @@
                     margin-top: 0;
                     letter-spacing: 1px;
                 }
-                .pull-left{
+
+                .pull-left {
                     float: left!important;
                     color: #00d278;
                 }
-                .pull-right{
+
+                .pull-right {
                     float: right!important;
                     color: #00d278;
                 }
 
-                .fan-list{
+                .fan-list {
                     list-style: none;
                     padding-left: 0px;
 
-                    li{
+                    li {
                         display: inline-block;
                         margin-bottom: 3px;
 
-                        img{
+                        img {
                             width: 64px;
                             height: 64px;
                         }
                     }
                 }
-                
             }
-            
         }
-        .creator-become-a-fan{
+
+        .creator-become-a-fan {
             text-align: center;
-            .btn-tip-listing{
+            align-items: center;
+
+            .btn-tip-listing {
                 background-image: url('/images/button-fantip.svg');
+                background-size: cover;                
                 height: 40px;
-                width: 130px; 
-
-            }
-            #tip-button{
-                text-align: center;
-                display: block;
-                margin: auto;
-                padding-bottom: 10px;
-                border-bottom: 1px solid #e4e2e2;
+                width: 130px;
+                display: inline-block;
             }
 
-            h3{
+            h3 {
                 text-transform: uppercase;
                 font-size: 24px;
                 color: #00d278;
@@ -318,8 +337,7 @@
                 margin-bottom: 20px;
                 margin-top: 0;
                 letter-spacing: 1px;
-            }     
+            }
         }
     }
-    
 }
