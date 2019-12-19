@@ -40,8 +40,7 @@ router.post('/sendtip', async function (req, res, next) {
   try {
     let saved_card = req.body._saved_card;
     const token = req.body._stripeID;
-
-    if (!saved_card) {
+    if (saved_card === 'false') {
       stripe.customers.create({
           email: req.body._email,
           source: token

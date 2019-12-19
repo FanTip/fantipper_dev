@@ -26,7 +26,7 @@ router.get('/:url/:isMessages', async function (req, res) {
       let pic;
       for (let i = 0; i < tips.length; i++) {
         let paid_user = await User.findOne({'email' : tips[i].pay_email}).exec();
-        paid_user != null ? pic = paid_user.imagepath : 'null';
+        paid_user != null ? pic = paid_user.imagepath : pic = '/images/example.jpg';
         if (tips[i].tipmessage.length > 0) {
           messages.push({
             'message' : tips[i].tipmessage,
