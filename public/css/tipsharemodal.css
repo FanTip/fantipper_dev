@@ -23,6 +23,8 @@
   #shareTip .modal-body #facebook {
     margin-bottom: 10px;
     background-color: #3B5998;
+    border-color: #3B5998;
     color: #e4e2e2; }
   #shareTip .modal-body #twitter {
-    background-color: #1DA1F2; }
+    background-color: #1DA1F2;
+    border-color: #1DA1F2; }
