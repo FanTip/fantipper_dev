@@ -199,8 +199,7 @@ $(document).ready(function() {
         let creatorname = $('#creator_name_create').val();
         let staticURL = $('#staticURL').val();
         let short_desc = $('#short_desc').val();
-        let location_now = $('#location_now').va
-        l();
+        let location_now = $('#location_now').val();
 
         about_you = getAboutYou(quill);
 

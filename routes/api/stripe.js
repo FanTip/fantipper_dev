@@ -32,7 +32,8 @@ router.post('/intents', async function (req, res) {
 
 
     let user = await User.findById(req.user._id).exec();
-    if (!user.card.isCard) {
+    let existing_customer = user.customer_id ? await stripe.customers.retrieve(user.customer_id) : null;
+    if (_.isNull(existing_customer)) {
       let customer = await stripe.customers.create({
         email: user.email,
         description: "Customer " + user.email + ' Created at :' + date,
@@ -42,10 +43,11 @@ router.post('/intents', async function (req, res) {
         customer_id: customer.id
       }
       let usertest = await User.findByIdAndUpdate(req.user._id, customer_query).exec();
-	
+
       let intent = await stripe.setupIntents.create({
         customer: customer.id
       });
+      let cust = await stripe.customers.retrieve(customer.id);
       res.status(200).send(intent);
     } else {
       res.status(200).send({});
@@ -125,11 +127,52 @@ router.post('/attach_customer', async function (req, res) {
         customer: user.customer_id,
       }
     );
+
+    let retrive_customers = await stripe.customers.retrive(user.customer_id);
+    console.log(retrive_customers);
     res.send(paymentMethod);
   } catch (e) {
     res.send(e);
   }
-})
+});
+
+
+router.get('/test', async function (req, res) {
+  try {
+    // let User = await user.findById(req.user._id).exec();
+
+    await stripe.setupIntents.retrieve(
+      'seti_1Frmm7CRk5uRVwxaYfUmNTgq',
+      function (err, customer) {
+        if (err) {
+          console.log(err);
+          res.send(err)
+        } else {
+          console.log(customer);
+          res.send(customer);
+        }
+      }
+    );
+
+  } catch (e) {
+    res.send(e)
+  }
+});
+
+router.get('/delete-card', async function (req, res) {
+  try {
+    let user = await User.findById(req.user._id).exec();
+
+    let existing_customer = await stripe.customers.retrieve(user.customer_id);
+
+
+    console.log(existing_customer);
+    res.send(existing_customer);
+  } catch (e) { 
+    res.send(e);
+  } 
+});
+
 
 
 module.exports = router;

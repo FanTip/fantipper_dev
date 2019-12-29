@@ -56,6 +56,12 @@ $(document).ready(function () {
 
 function stripe_functionalities() {
 
+  let address = $('#address').val;
+  let address2 = $('#address2').val;
+  let city = $('#city').val;
+  let state = $('#state').val;
+  let postcode = $('#postcode').val;
+
   function createCardtoSave(card, stripe) {
     let user;
     let xhr = $.ajax('/payment/user', {
@@ -72,9 +78,9 @@ function stripe_functionalities() {
         owner: {
           name: user.name,
           address: {
-            line1: 'Test',
-            city: 'Melbourne',
-            postal_code: '3000',
+            line1: address + ' ' + address2,
+            city: city,
+            postal_code: postcode,
             country: 'AU',
           },
           email: user.email
