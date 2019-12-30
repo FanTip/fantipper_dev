@@ -3,6 +3,11 @@ p {
   font-size: 14px;
   font-family: 'Larsseit'; }
 
+h3 {
+  color: #00D278;
+  font-size: 16px;
+  font-family: 'Larsseit-Bold'; }
+
 .img-venn {
   display: block;
   margin-left: auto;
@@ -25,6 +30,18 @@ p {
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .active, .collapsible:hover {
   background-color: #f5f5f5; }
+
+.collapsible:after {
+  content: '\02795';
+  /* Unicode character for "plus" sign (+) */
+  font-size: 13px;
+  color: white;
+  float: right;
+  margin-left: 5px; }
+
+.active:after {
+  content: "\2796";
+  /* Unicode character for "minus" sign (-) */ }
 
 /* Style the collapsible content. Note: hidden by default */
 .content {
