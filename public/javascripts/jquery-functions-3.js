@@ -57,14 +57,13 @@ window.addEventListener('DOMContentLoaded', function() {
 
     });
 
-    // $modal.modal({backdrop : 'static', keyboard:false});
     $modal.on('shown.bs.modal', function() {
         cropper = new Cropper(image, {
             aspectRatio: 1,
             viewMode: 1,
         }), { backdrop: 'static', keyboard: false }
     });
-    // $modal.modal({backdrop : 'static', keyboard:false});
+
     $modal.on('hidden.bs.modal', function() {
         cropper.destroy();
         cropper = null;
