@@ -128,7 +128,7 @@ router.post('/attach_customer', async function (req, res) {
       }
     );
 
-    let retrive_customers = await stripe.customers.retrive(user.customer_id);
+    let retrive_customers = await stripe.customers.retrieve(user.customer_id);
     console.log(retrive_customers);
     res.send(paymentMethod);
   } catch (e) {

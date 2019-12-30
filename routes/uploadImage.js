@@ -6,7 +6,6 @@ const upload = require('../config/upload');
 var newModel = require('../models/user');
 
 router.post('/', function(req, res, next) {
-    console.log("lol");
     try {
         upload.upload(req, res, function(err) {
             var query = { email: req.user.email };
@@ -20,7 +19,7 @@ router.post('/', function(req, res, next) {
             });
         });
     } catch (e) {
-
+        console.log(e);
     }
 });
 

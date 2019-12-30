@@ -249,15 +249,16 @@ function stripe_functionalities() {
           'CSRF-Token': $('meta[name="csrf-token"]').attr('content')
         },
       });
-      let xhr1 = $.ajax('/payment/attach_customer', {
-        type: 'POST',
-        data: setupIntent,
-        crossDomain: false,
-        headers: {
-          'CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-        },
-      });
+      
       xhr.done(function (response) {
+        let xhr1 = $.ajax('/payment/attach_customer', {
+          type: 'POST',
+          data: setupIntent,
+          crossDomain: false,
+          headers: {
+            'CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+          },
+        });
         toastr.success('Card saved sucessfully');
         update_fanprofile(response);
         setTimeout(location.reload.bind(location), 2000);

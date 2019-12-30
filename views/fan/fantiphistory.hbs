@@ -42,63 +42,7 @@
       </ul>
     </dir>
     <div class="col-sm-9 ">
-      <h3>Tippees</h3>
-      <div ng-init="tippees = {{tippeedata}}">
-        <table class="table" id="tippeeTable">
-          <thead>
-            <tr>
-              <th scope="col">Tip date</th>
-              <th scope="col">Tippee ID</th>
-              <th scope="col">Tip Amount</th>
-              <th scope="col">Tip From</th>
-              <th scope="col">Tip Message</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="singleTippee in tippees ">
-              <td>{[{singleTippee.tipDate}]}</td>
-              <td>{[{singleTippee.tipeeID.email}]}</td>
-              <td>&#36;{[{singleTippee.tipAmount}]}</td>
-              <td>{[{singleTippee.tipFrom}]}</td>
-              <td>{[{singleTippee.tipMessage}]}</td>
-            </tr>
-          </tbody>
-        </table>
-
-      </div>
-
-      <h3>Tippers</h3>
-      <div ng-init="tippers = {{tipperdata}}">
-
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Tip date</th>
-              <th scope="col">Tipper ID</th>
-              <th scope="col">Tip Amount</th>
-              <th scope="col">Tip To</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="singleTipper in tippers">
-              <td>{[{singleTipper.tipDate}]}</td>
-              <td>{[{singleTipper.tipperID.email}]}</td>
-              <td>&#36;{[{singleTipper.tipAmount}]}</td>
-              <td>{[{singleTipper.tipTo}]}</td>
-            </tr>
-          </tbody>
-        </table>
-
-      </div>
-      {{!-- {{#each tippeedata}}
-            <h2>Tippee Data</h2>
-            <p>{{this}}</p>
-            {{/each}}
-
-            {{#each tipperdata}}
-            <h2>Tipper Data</h2>
-            <p>{{this}}</p>
-            {{/each}} --}}
+ 
     </div>
   </div>
 </div>
