@@ -12,8 +12,7 @@ const validator = require('express-validator');
 const exphbs = require('express-handlebars');
 const favicon = require('serve-favicon');
 const dotenv = require('dotenv');
-const stripe = require('stripe')('pk_test_puuwTbVu3nSLRPLaOHboUXos');
-
+const _ = require('lodash');
 
 require('./config/passport');
 require('./config/facebook-login');
@@ -101,7 +100,10 @@ app.use(function(req, res, next) {
         res.locals.location = req.user.location;
         if (req.user.creator.isCreator) {
             var temp = req.user.creator.creatorAbout;
-            temp = temp.replace(/['"]+/g, '');
+            if (!_.isEmpty(temp)) {
+                temp = temp.replace(/['"]+/g, '');
+            }
+
             res.locals.isCreator = req.user.creator.isCreator;
             res.locals.CreatorName = req.user.creator.creatorName;
             res.locals.CreatorDescription = req.user.creator.creatorDesc;
@@ -115,6 +117,8 @@ app.use(function(req, res, next) {
             res.locals.creatorBack = req.user.creator.creatorBack;
             res.locals.image1 = req.user.image1;
             res.locals.image2 = req.user.image2;
+            res.locals.Creator_facebook_url = req.user.creator.facebookURL;
+            res.locals.Creator_twitter_url = req.user.creator.twitterURL;
             // req.locals.categories = req.user.creator.creatorCategories;
         }
         res.locals.CardOption = req.user.card.isCard;
