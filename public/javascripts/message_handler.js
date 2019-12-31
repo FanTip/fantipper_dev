@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     let creator_url = $('#creatorUrl').val();
     let xhr = $.ajax({
         url: `/api/fetch_tips_api/` + creator_url + `/true`,
@@ -9,13 +9,11 @@ $(document).ready(function() {
         },
     });
 
-    xhr.done(function(response) {
+    xhr.done(function (response) {
         let messages_append = $('#total_messages');
         response.num_of_messages > 0 ? messages_append.append(response.num_of_messages) : messages_append.append('0');
         let base = $('#message_base');
-        if (response.messages.length == 0) {
-            base.append('<p> No messages available. </p>')
-        } else {
+        if (response.messages.length > 0) {
             for (let i = 0; i < response.messages.length; i++) {
                 if (response.messages[i].message.length > 0) {
                     let card = $('<div class="card" style="width: 100%;">');
@@ -28,10 +26,9 @@ $(document).ready(function() {
                     card.append(card_body);
                     base.append(card);
                 }
-
-
             }
-
+        } else {
+            base.append('<p> No messages available. </p>');
         }
 
     });

@@ -1,13 +1,15 @@
-var express = require('express');
-var router = express.Router();
-var upload = require('../config/upload');
-var multer = require('multer');
-var User = require('../models/user');
-var xss = require('xss');
+const express = require('express');
+const router = express.Router();
+const upload = require('../config/upload');
+const multer = require('multer');
+const User = require('../models/user');
+const xss = require('xss');
+const _l = require('./tools/logincheck');
+
 
 
 /* GET home page. */
-router.post('/profile', isLoggedIn, function(req, res, next) {
+router.post('/profile', _l.isLoggedIn, function(req, res, next) {
   upload.uploadTile(req, res, function(err){
     if(!err){
       var query = { email : req.user.email }
@@ -24,7 +26,7 @@ router.post('/profile', isLoggedIn, function(req, res, next) {
   });
 });
 
-router.post('/background', isLoggedIn, function(req, res, next) {
+router.post('/background', _l.isLoggedIn, function(req, res, next) {
   try{
     upload.uploadBackground(req, res, function(err){
       if(!err){

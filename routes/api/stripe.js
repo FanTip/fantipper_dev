@@ -8,7 +8,7 @@ const stripe = require('stripe')('sk_test_lzFXk4jctTfL15eqiv0l4hJD');
 
 const User = require('../../models/user');
 
-router.get('/user', async function(req, res) {
+router.get('/user', async function (req, res) {
     try {
         res.status(200).send(req.user);
     } catch (e) {
@@ -16,11 +16,20 @@ router.get('/user', async function(req, res) {
     }
 });
 
-router.get('/pub', function(req, res) {
+router.get('/is_card', async function (req, res) {
+    try {
+        let user = await User.findById(req.user._id).exec();
+        res.status(200).send(user.card.isCard);
+    } catch (e) {
+        res.send(e);
+    }
+});
+
+router.get('/pub', function (req, res) {
     res.status(200).json(process.env.STRIPE_PUB_KEY)
 });
 
-router.post('/intents', async function(req, res) {
+router.post('/intents', async function (req, res) {
     try {
         let today = new Date();
         let date = today.getFullYear() + '-' +
@@ -57,7 +66,7 @@ router.post('/intents', async function(req, res) {
     }
 });
 
-router.post('/save-card-credentials', async function(req, res) {
+router.post('/save-card-credentials', async function (req, res) {
     try {
         let card = req.body.source;
 
@@ -76,7 +85,7 @@ router.post('/save-card-credentials', async function(req, res) {
 });
 
 
-router.post('/save-payment-method', async function(req, res) {
+router.post('/save-payment-method', async function (req, res) {
     try {
         let query = {
             $set: {
@@ -107,7 +116,7 @@ router.post('/save-payment-method', async function(req, res) {
 
 });
 
-router.get('/saved-card', async function(req, res) {
+router.get('/saved-card', async function (req, res) {
     try {
         let card_data = await User.findById(req.user._id).exec();
 
@@ -118,7 +127,7 @@ router.get('/saved-card', async function(req, res) {
     }
 });
 
-router.post('/attach_customer', async function(req, res) {
+router.post('/attach_customer', async function (req, res) {
     try {
         let user = await User.findById(req.user._id).exec();
         // Attach Once
@@ -136,7 +145,7 @@ router.post('/attach_customer', async function(req, res) {
 });
 
 
-router.get('/delete-card', async function(req, res) {
+router.get('/delete-card', async function (req, res) {
     try {
         let user = await User.findById(req.user._id).exec();
 

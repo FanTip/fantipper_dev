@@ -5,10 +5,12 @@ let csrfProtection = csrf();
 let passport = require('passport');
 router.use(csrfProtection);
 var User = require('../models/user');
+const _l = require('./tools/logincheck');
+
 
 
 /* GET home page. */
-router.get('/', isLoggedIn, async function(req, res, next) {
+router.get('/', _l.isLoggedIn, async function(req, res, next) {
     let user = await User.findById(req.user._id).exec();
     let creatorurl = user.creator.creatorUrl;
 
@@ -17,7 +19,7 @@ router.get('/', isLoggedIn, async function(req, res, next) {
 });
 
 
-router.get('/preview', isLoggedIn, async function(req, res, next) {
+router.get('/preview', _l.isLoggedIn, async function(req, res, next) {
 
     let user = await User.findById(req.user._id).exec();
     let creatorurl = user.creator.creatorUrl;
@@ -26,7 +28,7 @@ router.get('/preview', isLoggedIn, async function(req, res, next) {
 
 });
 
-router.post('/updatecreator', isLoggedIn, function(req, res, next) {
+router.post('/updatecreator', _l.isLoggedIn, function(req, res, next) {
     User.findByIdAndUpdate(req.user._id, {
         $set: { 'creator.creatorCategories': req.body.name }
     }).exec(function(err, result) {
@@ -34,7 +36,7 @@ router.post('/updatecreator', isLoggedIn, function(req, res, next) {
     });
 });
 
-router.post('/create', isLoggedIn, function(req, res, next) {
+router.post('/create', _l.isLoggedIn, function(req, res, next) {
     req.checkBody('creator_name', 'Invalid Creator name').notEmpty();
     req.checkBody('creator_email', 'Invalid Email address').notEmpty().isEmail();
     if (req.validationErrors()) {
@@ -66,13 +68,6 @@ router.post('/create', isLoggedIn, function(req, res, next) {
 
 });
 module.exports = router;
-
-function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
-    }
-    res.redirect('/');
-}
 
 function notLoggedIn(req, res, next) {
     if (!req.isAuthenticated()) {
