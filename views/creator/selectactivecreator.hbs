@@ -2,7 +2,9 @@
 <div class="container">
   <link rel="stylesheet" href='/css/creatorprofileindex.css' />
   <link rel="stylesheet" href='/css/userProfileEdit.css' />
+  <script src="quill/quill.min.js"></script>
   <script src="/javascripts/username_finder.js"></script>
+
   <input type="hidden" value="{{csrfToken}}">
   <div class="row" id="profile_nav">
     <div class="col-lg-3" style="border-right : 1px double gray">
@@ -64,10 +66,6 @@
           <input type="text" id="shortdesc" name="shortdesc" class="form-control" value="{{CreatorDescription}}">
         </div>
         <div class="form-group">
-          <label for="maintext">Main Text</label>
-          <input type="text" id="maintext" name="maintext" class="form-control" value="{{CreatorAbout}}">
-        </div>
-        <div class="form-group">
           <label for="location">Creator Location</label>
           <input type="text" id="location_now" name="location" class="form-control form-control"
             value="{{CreatorLocation}}">
@@ -83,14 +81,36 @@
             </div>
             <input type="text" id="staticEmail" class="form-control" id="basic-url" readonly
               aria-describedby="basic-addon3" value="{{CreatorUserName}}">
-            <small id="emailHelp" class="form-text text-muted">Fantipper personal URL will be your username</small>
+            {{!-- <small id="emailHelp" class="form-text text-muted">Fantipper personal URL will be your username</small> --}}
           </div>
+          <small id="emailHelp" class="form-text text-muted">Fantipper personal URL will be your username</small>
 
-          <button onclick="copyFunction()" class="btn btn-primary">Copy</button>
-          <button id="shareBtn" class="btn btn-success clearfix">Share</button>
+          {{!-- <button onclick="copyFunction()" class="btn btn-primary">Copy</button>
+          <button id="shareBtn" class="btn btn-success clearfix">Share</button> --}}
 
         </div>
         {{/if}}
+        <div class="form-group">
+          <label for="facebook-url">Your facebook URL</label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon3"><i class="fab fa-facebook-f"></i></span>
+            </div>
+            <input type="text" class="form-control form-control" name="facebook-url" id="facebook-url"
+              value="{{Creator_facebook_url}}">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="twitter-url">Your Twitter URL</label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon3"><i class="fab fa-twitter"></i></span>
+            </div>
+            <input type="text" class="form-control form-control" name="twitter-url" id="twitter-url"
+              value="{{Creator_twitter_url}}">
+          </div>
+        </div>
 
         <div class="form-group">
           <h5>Change Profile image</h5>
@@ -252,6 +272,22 @@
           </div>
         </div>
 
+        {{!-- <div id="creator_profile_create-part_3" > --}}
+        <div class="form-group">
+          <label for="short_desc" id="label_name">ABOUT YOU</label>
+
+          <!-- Create the toolbar container -->
+          <div id="toolbar">
+                </div>
+
+          <!-- Create the editor container -->
+          <div id="editor-container" style="height: 250px;">
+            <p>{{CreatorAbout}}</p>
+          </div>
+
+        </div>
+
+        {{!-- </div> --}}
 
 
         <input type="hidden" name="_csrf" value="{{csrfToken}}">

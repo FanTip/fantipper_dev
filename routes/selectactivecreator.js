@@ -14,8 +14,7 @@ router.get('/', isLoggedIn, async function(req, res, next) {
 });
 
 router.post('/', isLoggedIn, async function(req, res, next) {
-    let status;
-    let response;
+
     try {
         let user = await User.findByIdAndUpdate(
             req.user._id, {
@@ -25,17 +24,16 @@ router.post('/', isLoggedIn, async function(req, res, next) {
                 'creator.creatorCategories': req.body.categories,
                 'creator.creatorAbout': req.body.maintext,
                 'creator.creatorLocation': req.body.location,
+                'creator.facebookURL': req.body.facebookURL,
+                'creator.twitterURL': req.body.twitterURL,
             }
         ).exec();
-        status = 200;
-        response = user;
+
+        res.status(200).send(user.creator);
     } catch (e) {
-        status = 500;
-        response = "Error occured while updating";
+
+        res.status(500).send({});
     }
-
-    res.status(status).json(response);
-
 });
 
 router.post('/delete', isLoggedIn, function(req, res, next) {

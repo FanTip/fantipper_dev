@@ -116,6 +116,12 @@ var personSchema = new Schema({
         },
         creatorAbout: {
             type: String
+        },
+        facebookURL: {
+            type: String
+        },
+        twitterURL: {
+            type: String
         }
     },
 
@@ -124,12 +130,12 @@ var personSchema = new Schema({
 });
 
 //encrypting the password
-personSchema.methods.encryptPassword = function (password) {
+personSchema.methods.encryptPassword = function(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(5), null);
 }
 
 //decrypting password and compare the passwords
-personSchema.methods.validPassword = function (password) {
+personSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
 }
 

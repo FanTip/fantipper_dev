@@ -64,9 +64,13 @@
                   {{/each}}
                 </h3>
                 <div class="creator-share">
+                  {{#if Creator_facebook_url}}
                   <button id="share-facebook"><i class="fab fa-facebook-f"></i>Share</button>
+                  {{/if}}
+                  {{#if Creator_twitter_url}}
                   <button id="share-twitter"><i class="fab fa-twitter"></i>Tweet</button>
-                  <button id="share-url"><i class="fas fa-paperclip"></i>{{CreatorURL}}</button>
+                  {{/if}}
+                  <button id="share-url"><i class="fas fa-paperclip"></i>fantipper.com/{{CreatorURL}}</button>
                 </div>
               </div>
             </div>

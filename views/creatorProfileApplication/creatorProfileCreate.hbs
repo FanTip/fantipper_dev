@@ -1,13 +1,14 @@
-<meta name="csrf-token" content="{{csrfToken}}"/>
-<link rel="stylesheet" href='/css/creatorProfileApplication.css'/>
+<meta name="csrf-token" content="{{csrfToken}}" />
+<script src="/javascripts/jquery-functions-3.js"></script>
+<link rel="stylesheet" href='/css/creatorProfileApplication.css' />
 <script src="quill/quill.min.js"></script>
-<script src="/javascripts/quill-settings/settings.js"></script>   
+<script src="/javascripts/quill-settings/settings.js"></script>
 <script src="/javascripts/cropper_settings.js"></script>
 
 <div class="container-fluid" id="application">
-     {{!-- ng-controller="CreatorApplicationController as CAC" --}}
-    <div ng-controller="CreatorApplicationController as CAC">
-    
+  {{!-- ng-controller="CreatorApplicationController as CAC" --}}
+  <div ng-controller="CreatorApplicationController as CAC">
+
     <div class="row" id="application_row">
       <div class="col-lg-3">
         <img src="/images/shake.png" alt="" id="handshake">
@@ -198,50 +199,53 @@
                 role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
             </div>
             <div class="background-alert" role="alert"></div>
-              <div class="modal fade" id="background-modal" tabindex="-1" role="dialog" aria-labelledby="background-modalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="modalLabel">Crop the Background image</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                          <span aria-hidden="true">&times;</span>
-                      </button>
+            <div class="modal fade" id="background-modal" tabindex="-1" role="dialog"
+              aria-labelledby="background-modalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">Crop the Background image</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="img-container">
+                      <img src="{{imagePath}}" id="background-image" height="600" width="600">
                     </div>
-                    <div class="modal-body">
-                      <div class="img-container">
-                          <img src="{{imagePath}}" id="background-image" height="600" width="600">
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                      <button type="button" class="btn btn-primary" id="backcrop">Crop</button>
-                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="backcrop">Crop</button>
                   </div>
                 </div>
               </div>
-        </div>
-        <div id="part_3" ng-model='part_3'>
-                {{!-- ng-show='part_3' --}}
-            <div id="creator_profile_create-part_3"  >
+            </div>
+          </div>
+          <div id="part_3" ng-model='part_3'>
+            {{!-- ng-show='part_3' --}}
+            <div id="creator_profile_create-part_3">
               <div class="form-group">
                 <label for="short_desc" id="label_name">ABOUT YOU</label>
 
                 <!-- Create the toolbar container -->
                 <div id="toolbar">
                 </div>
-            
+
                 <!-- Create the editor container -->
                 <div id="editor-container">
-                    <p>Tell us little bit about you!</p>
+                  <p>Tell us little bit about you!</p>
                 </div>
-                  
+
               </div>
               <button class="btn" id="Submit_profile">Submit Creator Profile</button>
               {{!-- <a href="#part_2" class="btn btn-danger" id="section2" data-ng-click="backpart2()">Back...</a> --}}
             </div>
+          </div>
         </div>
-      </div>
+          <script src="/javascripts/creator_profile_create.js"></script>
+
         <script src="/javascripts/cropper_settings.js"></script>
       </div>
     </div>
-</div>
+  </div>
