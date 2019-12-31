@@ -1,6 +1,5 @@
 // Autocomplete the location
 $(document).ready(function() {
-    console.log("bloodhound");
     var cities_au = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.whitespace,
         queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -21,7 +20,6 @@ $(document).ready(function() {
         displayKey: 'value',
         source: cities_au.ttAdapter(),
         display: function(item) {
-            console.log(item);
             if (item) {
                 return 'Username is already used!';
             }
