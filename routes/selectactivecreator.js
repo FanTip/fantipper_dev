@@ -10,7 +10,7 @@ router.use(csrfProtection);
 router.get('/', isLoggedIn, async function(req, res, next) {
     let user = await User.findById(req.user._id).exec();
     let categories = user.creator.creatorCategories;
-    res.render('creator/selectactivecreator', { title: 'Edit', csrfToken: req.csrfToken(), categories: categories });
+    res.render('creator/selectactivecreator', { title: 'Edit creator profile', csrfToken: req.csrfToken(), categories: categories });
 });
 
 router.post('/', isLoggedIn, async function(req, res, next) {
@@ -24,7 +24,7 @@ router.post('/', isLoggedIn, async function(req, res, next) {
                 'creator.creatorNameuser': req.body.username,
                 'creator.creatorCategories': req.body.categories,
                 'creator.creatorAbout': req.body.maintext,
-                'creator.creatorLocation': req.body.location, 
+                'creator.creatorLocation': req.body.location,
             }
         ).exec();
         status = 200;

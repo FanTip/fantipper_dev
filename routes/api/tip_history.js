@@ -25,7 +25,7 @@ router.get('/get-as-creator', async function(req, res) {
         let query = {
             creator_email: req.user.creator.creatorEmail
         }
-        let tips = await Tips.find(query).exec();
+        let tips = await Tips.find(query).sort({ date: -1 }).exec();
 
         res.status(200).send(tips);
 
