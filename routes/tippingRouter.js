@@ -7,6 +7,7 @@ let User = require('../models/user');
 let mongoose = require('mongoose');
 let tips = require('../models/tips');
 let stripe = require("stripe")("sk_test_lzFXk4jctTfL15eqiv0l4hJD");
+const _l = require('./tools/logincheck');
 
 router.use(csrfProtection);
 
@@ -33,7 +34,7 @@ async function saveTip(charge, req, res) {
 }
 
 // sending a tip to the reciepient 
-router.post('/sendtip', async function(req, res, next) {
+router.post('/sendtip', _l.isLoggedIn, async function (req, res, next) {
     try {
         let saved_card = req.body._saved_card;
         const token = req.body._stripeID;

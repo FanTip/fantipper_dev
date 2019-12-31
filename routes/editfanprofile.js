@@ -4,9 +4,11 @@ var csrf = require('csurf');
 var csrfProtection = csrf();
 var User = require('../models/user');
 // router.use(csrfProtection);
+const _l = require('./tools/logincheck');
+
 
 /* GET home page. */
-router.get('/', isLoggedIn, function(req, res, next) {
+router.get('/', _l.isLoggedIn, function(req, res, next) {
     res.render('fan/editfanprofile', { title: 'Edit fan profile', csrfToken: req.csrfToken() });
 });
 
@@ -33,7 +35,7 @@ router.post('/', function(req, res, next) {
 });
 
 // Delete the account
-router.post('/delete', isLoggedIn, function(req, res, next) {
+router.post('/delete', _l.isLoggedIn, function(req, res, next) {
     User.findByIdAndRemove(req.user._id, function(err) {
         if (err) {
             res.send(err);
@@ -45,7 +47,7 @@ router.post('/delete', isLoggedIn, function(req, res, next) {
     });
 });
 
-router.post('/updatecard', isLoggedIn, function(req, res, next) {
+router.post('/updatecard', _l.isLoggedIn, function(req, res, next) {
     User.findByIdAndUpdate(req.user._id, {
         $set: {
             'card.isCard': true,
@@ -64,7 +66,7 @@ router.post('/updatecard', isLoggedIn, function(req, res, next) {
     });
 });
 
-router.post('/deletecard', isLoggedIn, function(req, res, next) {
+router.post('/deletecard', _l.isLoggedIn, function(req, res, next) {
     User.findByIdAndUpdate(req.user._id, {
         $set: {
             'card.isCard': false,
@@ -83,7 +85,7 @@ router.post('/deletecard', isLoggedIn, function(req, res, next) {
     });
 });
 
-router.post('/changepassword', isLoggedIn, function(req, res, next) {
+router.post('/changepassword', _l.isLoggedIn, function(req, res, next) {
     if (req.user.validPassword(req.body.currentpassword)) {
         var newEncryptedPassword = req.user.encryptPassword(req.body.newpassword);
         var query = {
@@ -102,12 +104,6 @@ router.post('/changepassword', isLoggedIn, function(req, res, next) {
 
 module.exports = router;
 
-function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
-    }
-    res.redirect('/');
-}
 
 function notLoggedIn(req, res, next) {
     if (!req.isAuthenticated()) {
