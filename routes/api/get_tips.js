@@ -51,7 +51,16 @@ router.get('/:url/:isMessages', async function (req, res) {
   }
 });
 
+router.get('/tip_history/:user', async function(req, res){
+  try{
+    let user = await User.findById(req.user._id).exec();
+    let tip_history = await Tips.find({pay_email : user.email}).exec();
+    res.send(tip_history);
+  }
+  catch(e){
 
+  }
+});
 
 
 
