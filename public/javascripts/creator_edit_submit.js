@@ -28,9 +28,7 @@ function getAboutYou(quill) {
 
 $(document).ready(function() {
 
-
     let quill = initEditor();
-
 
     let submit = $("#submit_creator_edit");
 

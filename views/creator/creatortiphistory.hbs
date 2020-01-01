@@ -1,3 +1,4 @@
+<meta name="csrf-token" content="{{csrfToken}}" />
 <div class="container">
   <div class="row" style="margin-top:1%;">
     <dir class="col-sm-3" style="border-right : 1px double gray">
@@ -39,16 +40,61 @@
     </dir>
     <div class="col-sm-9 ">
       <div class="row">
-        <div class="col-sm-6"><h4>Creator Tip History</h4></div>
-        <div class="col-sm-3"> <button class="btn btn-primary"> Request a Payout </button> </div>
+        <div class="col-sm-6">
+          <h4>Creator Tip History</h4>
+        </div>
+        <div class="col-sm-3"> <button id="request_payout" class="btn btn-primary" data-toggle="modal" data-target="#payoutModal">
+            Request a Payout </button> </div>
         <div class="col-sm-3"> <button class="btn btn-primary"> Bank Details </button> </div>
       </div>
-      
-
       <input id="creator" type="hidden" value="creator" />
       <div id="creator_history_base"></div>
 
+
+
+      <div class="modal fade" id="payoutModal" tabindex="-1" role="dialog" aria-labelledby="payoutModalTitle"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Select transactions to payout</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div id="payouts_needed"></div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" id="request_payout_button" class="btn btn-primary">Request a payout</button>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <script src="/javascripts/request_payouts.js"></script>
       <script src="/javascripts/tip_history.js"></script>
+
     </div>
   </div>
 </div>

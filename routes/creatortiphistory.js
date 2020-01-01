@@ -6,7 +6,7 @@ var csrfProtection = csrf();
 router.use(csrfProtection);
 
 router.get('/', function(req, res, next) {
-    res.render('creator/creatortiphistory', { title: 'Creator tip history' });
+    res.render('creator/creatortiphistory', { title: 'Creator tip history', csrfToken: req.csrfToken() });
 
 });
 

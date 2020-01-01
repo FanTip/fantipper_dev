@@ -11,6 +11,20 @@ let tip = new Schema({
     date: { type: Date },
     loggedIn: { type: Schema.Types.ObjectId },
     tipmessage: { type: String },
+    paid: {
+        type: Boolean,
+        default: false
+    },
+    paid_date: {
+        type: Date
+    },
+    requested: {
+        type: Boolean,
+        default: false
+    },
+    request_date: {
+        type: Date
+    }
 });
 
 module.exports = mongoose.model(

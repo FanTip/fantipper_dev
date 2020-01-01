@@ -15,8 +15,6 @@ window.addEventListener('DOMContentLoaded', function() {
 
     let csrf_field = document.getElementById('csrf_field');
 
-    console.log(csrf_field.value);
-
     $progress.hide();
 
     let cropper;

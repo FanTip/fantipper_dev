@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    // $('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="tooltip"]').tooltip();
 
     let fan = $("#fan_history").val;
     let creator = $("#creator").val;
@@ -14,8 +14,8 @@ $(document).ready(function() {
             },
         });
 
-        xhr.done(function(respose) {
-            if (respose.length > 0) {
+        xhr.done(function(response) {
+            if (response.length > 0) {
                 let table = $('<table class="table">');
                 let thead = $('<thead>');
                 let tbody = $('<tbody>');
@@ -35,18 +35,20 @@ $(document).ready(function() {
 
                 fan_history_base.append(table);
 
-                for (let i = 0; i < respose.length; i++) {
+                for (let i = 0; i < response.length; i++) {
                     let tr = $('<tr>');
                     let th1 = $('<th scope="row">');
                     th1.append(i + 1);
                     let th2 = $('<th>');
-                    th2.append(respose[i].creator_email);
+                    th2.append(response[i].creator_email);
                     let th3 = $('<th>');
-                    th3.append("$ ")
-                    th3.append(respose[i].amount / 100);
-                    let th4 = $('<th>')
-                    th4.append(respose[i].date);
+                    th3.append("$ ");
+                    th3.append(response[i].amount / 100);
+                    let th4 = $('<th>');
+                    let m = moment(response[i].date);
+                    th4.append(m.format('MMM Do YY, h:mm:ss a'));
 
+                    //TO be moved to another functionality
                     // if (respose[i].tipmessage.length > 0) {
                     //     let comment = $('<i data-toggle="modal" data-target="#exampleModal" style="margin-left:50px" class="fas fa-comment"></i>');
                     //     let comment_tooltip = $('<a href="#" data-toggle="tooltip" title="Click to reply!">');
@@ -91,8 +93,8 @@ $(document).ready(function() {
             },
         });
 
-        xhr.done(function(respose) {
-            if (respose.length > 0) {
+        xhr.done(function(response) {
+            if (response.length > 0) {
                 let table = $('<table class="table">');
                 let thead = $('<thead>');
                 let tbody = $('<tbody>');
@@ -112,17 +114,28 @@ $(document).ready(function() {
 
                 creator_history_base.append(table);
 
-                for (let i = 0; i < respose.length; i++) {
+                for (let i = 0; i < response.length; i++) {
                     let tr = $('<tr>');
                     let th1 = $('<th scope="row">');
                     th1.append(i + 1);
                     let th2 = $('<th>');
-                    th2.append(respose[i].pay_email);
+                    th2.append(response[i].pay_email);
                     let th3 = $('<th>');
-                    th3.append("$ ")
-                    th3.append(respose[i].amount / 100);
-                    let th4 = $('<th>')
-                    th4.append(respose[i].date);
+                    th3.append("$ ");
+                    th3.append(response[i].amount / 100);
+                    let th4 = $('<th>');
+                    let m = moment(response[i].date);
+                    th4.append(m.format('MMM Do YY, h:mm:ss a'));
+                    if (response[i].requested) {
+                        let waiting = $('<span style="float:right;" data-toggle="tooltip" title="Transaction is pending!"><i class="fas fa-clock"></i></span>');
+                        th4.append(waiting);
+                    } else if (response[i].paid) {
+                        let paid = $('<span style="float:right;" data-toggle="tooltip" title="Transaction is processed!"><i class="fas fa-check"></i></span>');
+                        th4.append(paid);
+                    } else {
+                        let undecided = $('<span style="float:right;" data-toggle="tooltip" title="Action required!"><i class="fas fa-exclamation-circle"></i></span>');
+                        th4.append(undecided);
+                    }
 
                     // if (respose[i].tipmessage.length > 0) {
                     //     let comment = $('<i data-toggle="modal" data-target="#exampleModal" style="margin-left:50px" class="fas fa-comment"></i>');
