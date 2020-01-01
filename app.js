@@ -61,6 +61,7 @@ const fetch_tips_api = require('./routes/api/get_tips');
 const fetch_fan_creator_messages = require('./routes/api/get_messages');
 const fetch_tipped_fans = require('./routes/api/get_fans');
 const tiphistory_api = require('./routes/api/tip_history');
+const request_payouts_api = require('./routes/api/request_payouts');
 
 const app = express();
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon', 'favicon.ico')));
@@ -184,6 +185,8 @@ app.use('/api/categories', categories_api);
 app.use('/api/fetch_tips_api', fetch_tips_api);
 app.use('/api/fancreatemsg', fetch_fan_creator_messages);
 app.use('/api/fetch_fans', fetch_tipped_fans);
+app.use('/api/request_payouts', request_payouts_api);
+
 app.use('/creator/application', CreatorApplication);
 
 
