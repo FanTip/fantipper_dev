@@ -20,18 +20,21 @@ $(document).ready(function() {
                 for (i = 0; i < response.length; i++) {
                     let alert_secondary;
                     if (!response[i].requested) {
-                        alert_secondary = $('<div class="alert alert-secondary" role="alert">');
-                        let checkbox_class = $('<div class="checkbox">');
-                        let label = $('<label>');
-                        let checkbox_input = $('<input type="checkbox" id="option" class="options" name="name" value=' + response[i]._id + '>');
-                        let checkbox_content = '#' + (i + 1) + ' Tip from : ' + response[i].pay_email + ' Amount : $' + (response[i].amount / 100) + ' ';
+                        if (!response[i].paid) {
+                            alert_secondary = $('<div class="alert alert-secondary" role="alert">');
+                            let checkbox_class = $('<div class="checkbox">');
+                            let label = $('<label>');
+                            let checkbox_input = $('<input type="checkbox" id="option" class="options" name="name" value=' + response[i]._id + '>');
+                            let checkbox_content = '#' + (i + 1) + ' Tip from : ' + response[i].pay_email + ' Amount : $' + (response[i].amount / 100) + ' ';
 
-                        label.append(checkbox_input);
-                        label.append(checkbox_content);
-                        checkbox_class.append(label);
-                        alert_secondary.append(checkbox_class);
-                        payout_base.append(alert_secondary);
-                        existing_unconfirmed_transactions++;
+                            label.append(checkbox_input);
+                            label.append(checkbox_content);
+                            checkbox_class.append(label);
+                            alert_secondary.append(checkbox_class);
+                            payout_base.append(alert_secondary);
+                            existing_unconfirmed_transactions++;
+                        }
+
                     } else {
                         all_requested = true;
                     }
