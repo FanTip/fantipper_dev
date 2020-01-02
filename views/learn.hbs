@@ -16,7 +16,44 @@
         community ready to connect with the things they love.</p>
     </div>
 
+    <button type="button" class="collapsible">Fan Tipper is a community that rewards creativity.</button>
+    <div class="content">
+      <p>If you are a creator who is doing something great, something that people get value from, and would like to
+      allow fans an opportunity to express their gratitude, then we feel Fan Tipper could be of benefit to you.</p>
+      <p>If you are a fan that feels that the world is powered by creativity and it’s driven by people who follow their
+      passion, you can understand that isn’t always easy. So amazing people deserve to be supported.</p>
+      <p>Everyone has the ability to do something great, whether they are fans or creators.</p>
+      <p>Fan Tipper is about empowering people to restore the equilibrium. Providing a platform that allows you to perform a meaningful gesture of goodwill that is mutually acknowledged. It is also a way for fans to connect with creators. Opening a dialogue that enables fans to write comments, or FanPraise, when they tip a creator.
+      </p>
+      <p>If you know someone who deserves to have their actions acknowledged, let them know that there is a growing community ready to connect with the things they love.</p>
+    </div>
+
     <hr>
+
+    <button type="button" class="collapsible">How does it work?</button>
+    <div class="content">
+      <p>Fan Tipper is a new way to give and receive tips online. Think of it as a digital replacement for the tip jar or the buskers' hat. We created it because we think the end of coins shouldn’t be the end of generosity.</p>
+      <p>Even in a cashless society, small change can still make a big difference.</p>
+    </div>
+
+    <hr>
+    
+    <button type="button" class="collapsible">How does it work?</button>
+    <div class="content">
+      <p>Fan Tipper is a new way to give and receive tips online. Think of it as a digital replacement for the tip jar or the buskers' hat. We created it because we think the end of coins shouldn’t be the end of generosity.</p>
+      <p>Even in a cashless society, small change can still make a big difference.</p>
+    </div>
+
+    <button type="button" class="collapsible">How does it work?</button>
+    <div class="content">
+      <p>Fan Tipper is a new way to give and receive tips online. Think of it as a digital replacement for the tip jar or the buskers' hat. We created it because we think the end of coins shouldn’t be the end of generosity.</p>
+      <p>Even in a cashless society, small change can still make a big difference.</p>
+    </div>
+
+    <hr>
+    
+    
+
     <div>
       <h3>How does it work?</h3>
       <p>Fan Tipper is a new way to give and receive tips online. Think of it as a digital replacement for the tip jar
@@ -93,4 +130,20 @@
     document.execCommand("copy");
     alert("Copied the text: " + copyText.value);
   }
+</script>
+<script>
+  var coll = document.getElementsByClassName("collapsible");
+  var i;
+
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
+  } 
 </script>
