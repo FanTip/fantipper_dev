@@ -22,7 +22,7 @@ router.post('/request', async function(req, res) {
             requested_s.push(updated_tips._id);
         }
 
-        res.status(200).send(requested_s.length);
+        res.status(200).json(requested_s.length);
     } catch (e) {
         res.status(500).send(e);
     }

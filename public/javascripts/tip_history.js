@@ -1,9 +1,10 @@
-$(document).ready(function() {
-    $('[data-toggle="tooltip"]').tooltip();
+// $(document).ready(function() {
 
-    let fan = $("#fan_history").val;
-    let creator = $("#creator").val;
+$('[data-toggle="tooltip"]').tooltip();
+let fan = $("#fan_history").val;
+let creator = $("#creator").val;
 
+export function fan_tip_history_load() {
     if (fan) {
         let fan_history_base = $("#fan_history_base");
         let xhr = $.ajax('/api/tip-history/get-as-fan', {
@@ -16,7 +17,7 @@ $(document).ready(function() {
 
         xhr.done(function(response) {
             if (response.length > 0) {
-                let table = $('<table class="table">');
+                let table = $('<table class="table" id="fan_tip_history_table">');
                 let thead = $('<thead>');
                 let tbody = $('<tbody>');
                 let tr = $('<tr>');
@@ -83,8 +84,15 @@ $(document).ready(function() {
         });
     }
 
+}
+
+
+
+export function creator_tip_history_load() {
     if (creator) {
+
         let creator_history_base = $('#creator_history_base');
+        creator_history_base.empty();
         let xhr = $.ajax('/api/tip-history/get-as-creator', {
             type: 'GET',
             crossDomain: false,
@@ -95,7 +103,7 @@ $(document).ready(function() {
 
         xhr.done(function(response) {
             if (response.length > 0) {
-                let table = $('<table class="table">');
+                let table = $('<table class="table" id="creator_tip_history_table">');
                 let thead = $('<thead>');
                 let tbody = $('<tbody>');
                 let tr = $('<tr>');
@@ -110,9 +118,6 @@ $(document).ready(function() {
                 tr.append(th4);
                 thead.append(tr);
                 table.append(thead);
-
-
-                creator_history_base.append(table);
 
                 for (let i = 0; i < response.length; i++) {
                     let tr = $('<tr>');
@@ -137,18 +142,6 @@ $(document).ready(function() {
                         th4.append(undecided);
                     }
 
-                    // if (respose[i].tipmessage.length > 0) {
-                    //     let comment = $('<i data-toggle="modal" data-target="#exampleModal" style="margin-left:50px" class="fas fa-comment"></i>');
-                    //     let comment_tooltip = $('<a href="#" data-toggle="tooltip" title="Click to reply!">');
-                    //     comment_tooltip.append(comment);
-                    //     th4.append(comment_tooltip);
-                    // } else {
-                    //     let no_comment = $('<i style="margin-left:50px" class="fas fa-comment-slash"></i>');
-                    //     let no_comment_tooltip = $('<a href="#" data-toggle="tooltip" title="No comment!">');
-                    //     no_comment_tooltip.append(no_comment);
-                    //     th4.append(no_comment_tooltip);
-                    // }
-
                     tr.append(th1);
                     tr.append(th2);
                     tr.append(th3);
@@ -156,6 +149,7 @@ $(document).ready(function() {
                     tbody.append(tr);
                 }
                 table.append(tbody);
+                creator_history_base.append(table);
 
             } else {
                 let card = $('<div class="card" style="width: 100%;">');
@@ -167,8 +161,22 @@ $(document).ready(function() {
                 card.append(card_body);
                 creator_history_base.append(card);
             }
-
+            if ($('.table').length > 0) {
+                let t = $('.table');
+                for (let i = 0; i < t.length; i++) {
+                    let j = i + 1;
+                    if (j < t.length) {
+                        t[i + 1].remove();
+                    }
+                }
+            }
         });
+        // }
     }
+}
 
+$(document).ready(function() {
+    creator_tip_history_load();
+    fan_tip_history_load();
 });
+// });
