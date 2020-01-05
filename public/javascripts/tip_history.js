@@ -33,9 +33,6 @@ export function fan_tip_history_load() {
                 thead.append(tr);
                 table.append(thead);
 
-
-                fan_history_base.append(table);
-
                 for (let i = 0; i < response.length; i++) {
                     let tr = $('<tr>');
                     let th1 = $('<th scope="row">');
@@ -69,6 +66,7 @@ export function fan_tip_history_load() {
                     tbody.append(tr);
                 }
                 table.append(tbody);
+                fan_history_base.append(table);
 
             } else {
                 let card = $('<div class="card" style="width: 100%;">');
@@ -171,7 +169,6 @@ export function creator_tip_history_load() {
                 }
             }
         });
-        // }
     }
 }
 
