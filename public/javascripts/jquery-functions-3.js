@@ -80,6 +80,8 @@ window.addEventListener('DOMContentLoaded', function() {
             canvas = cropper.getCroppedCanvas({
                 width: 200,
                 height: 200,
+                imageSmoothingEnabled: true,
+                imageSmoothingQuality: 'high',
             });
             initialAvatarURL = avatar.src;
             avatar.src = canvas.toDataURL();

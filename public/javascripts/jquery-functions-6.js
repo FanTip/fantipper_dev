@@ -56,6 +56,8 @@ window.addEventListener('DOMContentLoaded', function() {
             viewMode: 1,
             checkCrossOrigin: false,
             background: false,
+            imageSmoothingEnabled: true,
+            imageSmoothingQuality: 'high',
         });
     }).on('hidden.bs.modal', function() {
         cropper.destroy();
