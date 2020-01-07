@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require('../../models/user');
 const Tips = require('../../models/tips');
 const _ = require('lodash');
+const log = require('../../config/log');
 
 // Get all fans who tipped a creator
 router.get('/:url/', async function(req, res) {
@@ -45,6 +46,8 @@ router.get('/:url/', async function(req, res) {
         }
         res.status(200).json(response);
     } catch (e) {
+        console.log(e);
+        log.log_save(e);
         res.status(500).send(e);
     }
 });

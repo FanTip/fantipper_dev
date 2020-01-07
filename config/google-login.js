@@ -1,7 +1,8 @@
-var passport = require('passport');
-var googleStrategy = require('passport-google-oauth').OAuth2Strategy;
-var User = require('../models/user');
-var mongoose = require('mongoose');
+const passport = require('passport');
+const googleStrategy = require('passport-google-oauth').OAuth2Strategy;
+const User = require('../models/user');
+const mongoose = require('mongoose');
+const log = require('../config/log');
 
 passport.use('google', new googleStrategy({
         clientID: '358968116641-0jnhgv8m97h4dj5kheijj3stt2tf3ohc.apps.googleusercontent.com',
@@ -36,6 +37,7 @@ passport.use('google', new googleStrategy({
 
                 NewUser.save(function(err) {
                     if (err) {
+                        log.log_save(err);
                         throw err;
                     }
                     return done(null, NewUser);

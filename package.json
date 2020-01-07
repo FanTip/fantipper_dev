@@ -53,7 +53,7 @@
     "read-chunk": "^3.0.0",
     "sass": "^1.23.7",
     "serve-favicon": "^2.5.0",
-    "socket.io": "^2.1.1",
+    "simple-node-logger": "^18.12.23",
     "stripe": "^7.14.0",
     "toastr": "^2.1.4",
     "typeahead": "^0.2.2",
