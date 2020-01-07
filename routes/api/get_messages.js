@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../../models/user');
 const Tips = require('../../models/tips');
+const log = require('../../config/log');
 
 router.get('/getfan', async function(req, res){
     try
@@ -19,6 +20,7 @@ router.get('/getfan', async function(req, res){
     }
     catch(e)
     {
+        log.log_save(e);
         res.status(401).send('Unauthorized');
     }
 
@@ -40,13 +42,10 @@ router.get('/getcreator', async function(req, res){
     }
     catch(e)
     {
+        log.log_save(e);
         res.status(401).send('Unauthorized');
     }
 
 });
-
-
-
-
 
 module.exports = router;

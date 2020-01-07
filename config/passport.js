@@ -1,7 +1,9 @@
-var passport = require('passport'); //requiring the passport package
-var User = require('../models/user'); //requiring the user model
-var LocalStrategy = require('passport-local').Strategy; //requiring the passport local strategy
-var mongoose = require('mongoose');
+const passport = require('passport'); //requiring the passport package
+const User = require('../models/user'); //requiring the user model
+const LocalStrategy = require('passport-local').Strategy; //requiring the passport local strategy
+const mongoose = require('mongoose');
+const log = require('../config/log');
+
 //Serializing the user
 passport.serializeUser(function(user, done){
     done(null, user.id);
@@ -28,7 +30,7 @@ passport.use('local.signup', new LocalStrategy({
         if(err){
             return done(err);// return back eny errors
         }
-        if(user){ //return an error message if user is already has an account            
+        if(user){ //return an error message if user is already has an account
             return done(null, false, {message: 'Email is already in use!'});
         }
 
@@ -55,6 +57,7 @@ passport.use('local.signup', new LocalStrategy({
         newUser.card.isCard = false;
         newUser.save(function(err, result){
             if(err){
+                log.log_save(err);
                 return done(err);
             }
             req.session.username = email;

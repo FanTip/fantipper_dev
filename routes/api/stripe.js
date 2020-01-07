@@ -5,6 +5,7 @@ const _ = require('lodash');
 // let csrf = require('csurf');
 // let csrfProtection = csrf();
 const stripe = require('stripe')('sk_test_lzFXk4jctTfL15eqiv0l4hJD');
+const log = require('../../config/log');
 
 const User = require('../../models/user');
 
@@ -12,6 +13,7 @@ router.get('/user', async function (req, res) {
     try {
         res.status(200).send(req.user);
     } catch (e) {
+        log.log_save(e);
         res.status(500).send({});
     }
 });
@@ -21,6 +23,7 @@ router.get('/is_card', async function (req, res) {
         let user = await User.findById(req.user._id).exec();
         res.status(200).send(user.card.isCard);
     } catch (e) {
+        log.log_save(e);
         res.send(e);
     }
 });
@@ -62,6 +65,7 @@ router.post('/intents', async function (req, res) {
             res.status(200).send({});
         }
     } catch (e) {
+        log.log_save(e);
         res.status(500).send(e);
     }
 });
@@ -80,6 +84,7 @@ router.post('/save-card-credentials', async function (req, res) {
         let updated_user = await User.findById(req.user._id).exec();
         res.status(200).json({});
     } catch (e) {
+        log.log_save(e);
         res.status(500).json({});
     }
 });
@@ -111,6 +116,7 @@ router.post('/save-payment-method', async function (req, res) {
 
         res.status(200).send(updated);
     } catch (e) {
+        log.log_save(e);
         res.status(500).send(e);
     }
 
@@ -123,6 +129,7 @@ router.get('/saved-card', async function (req, res) {
         res.status(200).send(card_data.card);
 
     } catch (e) {
+        log.log_save(e);
         res.status(500).send(e);
     }
 });
@@ -140,6 +147,7 @@ router.post('/attach_customer', async function (req, res) {
         let retrive_customers = await stripe.customers.retrieve(user.customer_id);
         res.send(paymentMethod);
     } catch (e) {
+        log.log_save(e);
         res.send(e);
     }
 });
@@ -174,6 +182,7 @@ router.get('/delete-card', async function (req, res) {
         }
 
     } catch (e) {
+        log.log_save(e);
         res.send(e);
     }
 });

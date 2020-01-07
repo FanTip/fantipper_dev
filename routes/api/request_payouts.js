@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const router = express.Router();
 const User = require("../../models/user");
 const Tips = require("../../models/tips");
-
+const log = require('../../config/log');
 
 router.post('/request', async function(req, res) {
     try {
@@ -24,6 +24,7 @@ router.post('/request', async function(req, res) {
 
         res.status(200).json(requested_s.length);
     } catch (e) {
+        log.log_save(e);
         res.status(500).send(e);
     }
 });

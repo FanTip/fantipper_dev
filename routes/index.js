@@ -4,8 +4,10 @@ var csrf = require('csurf');
 var csrfProtection = csrf();
 var User = require('../models/user');
 
+let log = require('../config/log');
+
 var server = require('http').Server(express);
-var io = require('socket.io')(server);
+// var io = require('socket.io')(server);
 
 router.use(csrfProtection);
 
@@ -20,7 +22,6 @@ router.get('/', function (req, res, next) {
     imagepath = req.user.imagepath;
   }
   var objs = [];
-
   User.find({
     'creator.isCreator': true
   }).exec(function (err, docs) {
@@ -39,13 +40,12 @@ router.get('/', function (req, res, next) {
         csrfToken: req.csrfToken()
       });
     }
-
-    io.on('connection', function (socket) {
-      socket.emit('news', {
-        hello: 'world'
-      });
-      socket.on('on other event', function (data) {});
-    });
+    // io.on('connection', function (socket) {
+    //   socket.emit('news', {
+    //     hello: 'world'
+    //   });
+    //   socket.on('on other event', function (data) {});
+    // });
   });
 });
 

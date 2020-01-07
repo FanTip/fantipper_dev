@@ -2,7 +2,7 @@
 var express = require('express');
 var router = express.Router();
 const upload = require('../config/upload');
-
+const log = require('../config/log');
 var newModel = require('../models/user');
 
 router.post('/', function(req, res, next) {
@@ -19,6 +19,7 @@ router.post('/', function(req, res, next) {
             });
         });
     } catch (e) {
+        log.log_save(e);
         console.log(e);
     }
 });

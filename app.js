@@ -13,10 +13,14 @@ const exphbs = require('express-handlebars');
 const favicon = require('serve-favicon');
 const dotenv = require('dotenv');
 const _ = require('lodash');
+const fs = require('fs');
+const log = require('simple-node-logger').createSimpleLogger('.access.log');
 
 require('./config/passport');
 require('./config/facebook-login');
 require('./config/google-login');
+
+require('./config/log');
 
 const apiRouter = require('./routes/api/fantipper');
 
@@ -79,18 +83,26 @@ app.set('view engine', 'hbs', exphbs({
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({
+    extended: true
+}));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 app.use(validator());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({ secret: 'fantipper', resave: false, saveUninitialized: false }));
+app.use(session({
+    secret: 'fantipper',
+    resave: false,
+    saveUninitialized: false
+}));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.locals.login = req.isAuthenticated();
     if (req.isAuthenticated()) {
 
@@ -148,7 +160,7 @@ app.use('/typeahead', express.static(path.join(__dirname, 'node_modules/typeahea
 app.use('/bloodhound', express.static(path.join(__dirname, 'node_modules/bloodhound/index.js')));
 
 
-app.use('/socket', express.static(path.join(__dirname, 'node_modules/socket.io/lib')));
+// app.use('/socket', express.static(path.join(__dirname, 'node_modules/socket.io/lib')));
 // Configuration to dropzone
 app.use('/dropzone', express.static(path.join(__dirname, 'node_modules/dropzone/dist')));
 
@@ -203,13 +215,13 @@ app.use('/payment', stripeRouter);
 app.use('/test', test);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     // next(createError(404));
     res.render('pagenotfound');
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -219,14 +231,22 @@ app.use(function(err, req, res, next) {
     res.render('error');
 });
 
+app.use(function (req, res) {
+    console.log('erre', new Error().stack);
+
+})
 
 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
+
+mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true
+});
 // mongoose.connect('mongodb://localhost:27017/fantipper',{useNewUrlParser : true});
 var db = mongoose.connection;
-db.once('open', function() {
+db.once('open', function () {
     console.log('Connection Successful');
 });
+
 
 
 

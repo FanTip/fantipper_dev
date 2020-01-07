@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../../models/user');
 const Tips = require('../../models/tips');
+const log = require('../../config/log');
 
 router.get('/:url/:isMessages', async function (req, res) {
   try {
@@ -31,7 +32,7 @@ router.get('/:url/:isMessages', async function (req, res) {
           messages.push({
             'message' : tips[i].tipmessage,
             'image' : pic
-          });          
+          });
         }
 
       }
@@ -45,8 +46,10 @@ router.get('/:url/:isMessages', async function (req, res) {
         tips_data: tips
       }
     }
+
     res.status(200).json(response);
   } catch (e) {
+    log.log_save(e);
     res.status(500).send(e);
   }
 });
@@ -58,7 +61,7 @@ router.get('/tip_history/:user', async function(req, res){
     res.send(tip_history);
   }
   catch(e){
-
+    log.log_save(e);
   }
 });
 

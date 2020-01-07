@@ -8,6 +8,7 @@ let mongoose = require('mongoose');
 let tips = require('../models/tips');
 let stripe = require("stripe")("sk_test_lzFXk4jctTfL15eqiv0l4hJD");
 const _l = require('./tools/logincheck');
+const log = require('../config/log');
 
 router.use(csrfProtection);
 
@@ -68,6 +69,7 @@ router.post('/sendtip', _l.isLoggedIn, async function (req, res, next) {
         }
 
     } catch (e) {
+        log.log_save(e);
         console.error(e);
     }
 
