@@ -15,7 +15,7 @@ const log_save = function (val) {
 
   fs.appendFile('.access.log', (JSON.stringify(data) + '\n'), function (err) {
     if (err) {
-      console.log(err);
+      log_save(err);
     }
   });
 }
