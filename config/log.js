@@ -9,7 +9,7 @@ const log_save = function (val) {
     today.getMinutes() + ':' + today.getSeconds() + ':' +
     today.getMilliseconds();
   let data = {
-    time: date,
+    time_of_log: date,
     error: val
   }
 
