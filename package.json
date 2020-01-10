@@ -8,6 +8,7 @@
   "dependencies": {
     "angular": "^1.7.9",
     "async": "^2.6.1",
+    "aws-sdk": "^2.600.0",
     "base64-img": "^1.0.4",
     "bcrypt-nodejs": "0.0.3",
     "bloodhound": "^1.0.0",

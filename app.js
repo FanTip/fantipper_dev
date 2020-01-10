@@ -13,8 +13,6 @@ const exphbs = require('express-handlebars');
 const favicon = require('serve-favicon');
 const dotenv = require('dotenv');
 const _ = require('lodash');
-const fs = require('fs');
-const log = require('simple-node-logger').createSimpleLogger('.access.log');
 
 require('./config/passport');
 require('./config/facebook-login');
@@ -225,7 +223,7 @@ app.use(function (err, req, res, next) {
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
-
+    
     // render the error page
     res.status(err.status || 500);
     res.render('error');
@@ -233,7 +231,7 @@ app.use(function (err, req, res, next) {
 
 app.use(function (req, res) {
     console.log('erre', new Error().stack);
-
+    console.log(process.env.AWSAccessKeyId);
 })
 
 
