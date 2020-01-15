@@ -1,40 +1,48 @@
-#shareTip{
-    h5{
+#shareTip {
+
+    h5 {
         color: #00d178;
         font-family: 'Larsseit-Medium';
     }
-    #tippeesDesc{
+
+    #tippeesDesc {
         font-size: 1em;
         font-family: 'Larsseit-Bold';
     }
-    .modal-body{
-        #desc1{
+
+    .modal-body {
+        background-color: #f2f2f2;
+        
+        #desc1 {
             font-family: 'Larsseit-Bold';
         }
-        #desc2{
+
+        #desc2 {
             font-family: 'Larsseit-Thin';
         }
-        #tippeesDesc{
+
+        #tippeesDesc {
             font-family: 'Larsseit-Bold';
             color: #00d278;      
             text-align: center;
         }
 
-        q{
+        q {
             font-family: 'Larsseit-Bold';
             font-size: 1.8em;
             color: #00d278;
         }
 
-        #facebook{
+        #facebook {
             margin-bottom: 10px;
             background-color: #3B5998;
+            border-color: #3B5998;
             color: #e4e2e2;
         }
-        #twittr{
+        
+        #twitter{
             background-color: #1DA1F2;
-        }   
-
-        background-color: #f2f2f2 ;
+            border-color: #1DA1F2;
+        }
     }
 }

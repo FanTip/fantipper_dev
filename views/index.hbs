@@ -1,58 +1,84 @@
-<meta name="csrf-token" content={{csrfToken}}>
-<link rel="stylesheet" href='/css/tiplist.css' />
+<meta name="csrf-token" content={{csrfToken}} />
+<link rel="stylesheet" href="/css/tiplist.css" />
 <script src="/javascripts/generic_javascript.js"></script>
 <script src="https://unpkg.com/popmotion/dist/popmotion.global.min.js"></script>
 
 <div class="container-fluid" id="body">
+  {{#if login}}
 
-  <div class="row">
-    <div class="col-lg-12 responsive-video" style="" id="listing">
-      {{!-- <div class="embed-responsive embed-responsive-16by9"> --}}
-      {{!-- ACE: commented that out to test with the video --}}
-      <div>
-        <iframe width="100%" height="600" src="https://www.youtube.com/embed/RFV3qV33LUA" frameborder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-      {{!-- <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/148051964" width="100%" height="300" frameborder="-1" ></iframe> --}}
-      {{!-- </div> --}}
-    </div>
-  </div>
-  {{# if login}}
   {{else}}
-  <div class="row">
-    <div class="col-lg-12">
-      <h1 class="text-center body-text main-text">Welcome to FanTipper, a community that rewards creativity. Join us and
-        celebrate the things you love.</h1>
-      <h1 class="text-center body-text"><a href="">Android</a> and <a href="">iOS</a> app now available.</h1>
+    <div class="row">
+      <div id="wrapper">
+        <iframe
+          id="video"
+          src="https://www.youtube.com/embed/RFV3qV33LUA"
+          frameborder="0"
+          allowfullscreen
+        >
+        </iframe>
+      </div>
+      {{! //vimeo link// src="https://player.vimeo.com/video/148051964"  }}
     </div>
-    <div class="col-lg-12 text-center">
-      <button class="btn btn-primary">Find out more</button>
-      <h5 class="body-text"> OR </h5>
-      <button class="btn btn-primary">Get Involved</button>
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="text-center body-text main-text">
+          Welcome to FanTipper, a community that rewards creativity.<br />Sign up to leave a comment of support.
+        </h1>
+        {{! commented out due to mobile application not ready yey }}
+        {{! <h1 class="text-center body-text"><a href="">Android</a> and <a href="">iOS</a> app now available.</h1> }}
+      </div>
+      <div class="mx-auto">
+        <div class="row text-center" style="align-items: center;">
+          <a href="/learn">
+            <button class="btn btn-primary">
+              Find out more
+            </button>
+          </a>
+          <h5 class="body-text">&nbsp;OR&nbsp;</h5>
+          <button class="btn btn-primary" data-toggle="modal" data-target="#signup">
+            Get Involved
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
   {{/if}}
 
   <div class="container">
     <div ng-controller="myCtrl as m" class="row" id="listing">
       <p ng-init="users = {{objects}}"></p>
-      <div ng-repeat="user in users | filter:searchText" class="col-md-4 col-xs-6">
-
+      <div
+        ng-repeat="user in users | filter:searchText"
+        class="col-md-4 col-xs-6"
+      >
         <div class="clearfix listing">
-
           <a href="{[{user.creator.creatorUrl}]}">
-            <img src="{[{user.creator.creatorTileImage}]}" class="card-img-top" alt="">
+            <img
+              src="{[{user.creator.creatorTileImage}]}"
+              class="card-img-top"
+              alt=""
+            />
           </a>
           <div class="listing-content">
             <a href="{[{user.creator.creatorUrl}]}">
-              <h3 class="one-line" title="{[{user.creator.creatorName}]}">{[{user.creator.creatorName}]}</h3>
-              <div class="listing-location one-line">{[{user.creator.creatorLocation}]}</div>
+              <h3 class="one-line" title="{[{user.creator.creatorName}]}">
+                {[{user.creator.creatorName}]}
+              </h3>
+              <div class="listing-location one-line">
+                {[{user.creator.creatorLocation}]}
+              </div>
               <div class="listing-categories one-line"></div>
-              <div class="clearfix listing-short">{[{user.creator.creatorDesc}]}</div>
-              <hr>
+              <div class="clearfix listing-short">
+                {[{user.creator.creatorDesc}]}
+              </div>
+              <hr />
               <div class="listing-tip-count pull-left">
-                <a id='tip-button' class="btn-tip-listing" data-toggle="modal" data-target="#tipCreator"
-                  ng-click="edit(user)">
+                <a
+                  id="tip-button"
+                  class="btn-tip-listing"
+                  data-toggle="modal"
+                  data-target="#tipCreator"
+                  ng-click="edit(user)"
+                >
                   <div class="btn-tip-listing"></div>
                 </a>
               </div>
@@ -62,64 +88,124 @@
         </div>
       </div>
 
-
-
-      <div class="modal fade" id="tipCreator" tabindex="-1" role="dialog" aria-labelledby="tipCreatorLabel"
-        aria-hidden="true">
+      <div
+        class="modal fade"
+        id="tipCreator"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="tipCreatorLabel"
+        aria-hidden="true"
+      >
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Tip {[{header}]}</h4>
-              <button class="close" ng-click="hideGuest();" type="button" data-dismiss="modal" aria-label="Close"><span
-                  aria-hidden="true">&times;</span>
+              <h4 class="modal-title">
+                Tip {[{header}]}
+              </h4>
+              <button
+                class="close"
+                ng-click="hideGuest();"
+                type="button"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">
+                  &times;
+                </span>
               </button>
             </div>
             <div class="modal-body">
-              {{!-- Initializing the stripe.js library --}}
+              {{! Initializing the stripe.js library }}
               <script src="http://js.stripe.com/v3/"></script>
               <form id="tipping-form" name="tippingForm" class="tipping-form">
                 <div class="row">
                   <div class="col-lg-3">
-                    <img src="{[{image}]}" alt="" class="rounded-circle" height="100px" width="100px"
-                      id="receiver_image">
+                    <img
+                      src="{[{image}]}"
+                      alt=""
+                      class="rounded-circle"
+                      height="100px"
+                      width="100px"
+                      id="receiver_image"
+                    />
                   </div>
                   <div class="col-lg-9">
                     <div class="form-group">
-                      <label for="tipamount">HOW MUCH WOULD YOU LIKE TO TIP?</label>
+                      <label for="tipamount">
+                        HOW MUCH WOULD YOU LIKE TO TIP?
+                      </label>
                       <div class="input-group">
-                        <div class="input-group-prepend"><span class="input-group-text"
-                            style="{color: #00d278}">$</span></div>
-                        <input type="text" name="tipamount" id="tipamount" check-if-number ng-model='tipValue' value=""
-                          class="form-control" required>
+                        <div class="input-group-prepend">
+                          <span
+                            class="input-group-text"
+                            style="{color: #00d278}"
+                          >
+                            $
+                          </span>
+                        </div>
+                        <input
+                          type="text"
+                          name="tipamount"
+                          id="tipamount"
+                          check-if-number
+                          ng-model="tipValue"
+                          value=""
+                          class="form-control"
+                          required
+                        />
                       </div>
                     </div>
                     <div class="form-group">
                       <div class="form-row">
                         <div class="col-xs-3">
                           <label class="radio-inline" id="radio">
-                            <input ng-model="tipValue" type="radio" value="2" name="optradio">$2<span class="checkmark"
-                              checked="checked"></span>
+                            <input
+                              ng-model="tipValue"
+                              type="radio"
+                              value="2"
+                              name="optradio"
+                            />
+                            $2
+                            <span class="checkmark" checked="checked"></span>
                             <span class="checkmark"></span>
                           </label>
                         </div>
                         <div class="col-xs-3">
                           <label class="radio-inline" id="radio">
-                            <input ng-model="tipValue" type="radio" value="5" name="optradio">$5<span
-                              class="checkmark"></span>
+                            <input
+                              ng-model="tipValue"
+                              type="radio"
+                              value="5"
+                              name="optradio"
+                            />
+                            $5
+                            <span class="checkmark"></span>
                             <span class="checkmark"></span>
                           </label>
                         </div>
                         <div class="col-xs-3">
                           <label class="radio-inline" id="radio">
-                            <input ng-model="tipValue" type="radio" value="10" name="optradio">$10<span
-                              class="checkmark"></span>
+                            <input
+                              ng-model="tipValue"
+                              type="radio"
+                              value="10"
+                              name="optradio"
+                            />
+                            $10
+                            <span class="checkmark"></span>
                             <span class="checkmark"></span>
                           </label>
                         </div>
                         <div class="col-xs-3">
                           <label class="radio-inline" id="radio">
-                            <input ng-model="tipValue" type="radio" value="20" name="optradio">$20<span
-                              class="checkmark"></span>
+                            <input
+                              ng-model="tipValue"
+                              type="radio"
+                              value="20"
+                              name="optradio"
+                            />
+                            $20
+                            <span class="checkmark"></span>
                             <span class="checkmark"></span>
                           </label>
                         </div>
@@ -131,51 +217,69 @@
                 <div class="row">
                   <div class="col-lg-12">
                     <div class="form-group">
-                      <textarea class="form-control" name="message" id="tipMessage" cols="30" rows="3"
-                        placeholder="Leave a message of support(optional)..."></textarea>
+                      <textarea
+                        class="form-control"
+                        name="message"
+                        id="tipMessage"
+                        cols="30"
+                        rows="3"
+                        placeholder="Leave a message of support(optional)..."
+                      ></textarea>
                     </div>
                   </div>
                 </div>
                 <div class="dropdown-divider"></div>
                 <div class="row">
                   <div class="col-lg-12">
-                    <h4>PAYMENT DETAILS</h4>
+                    <h4>
+                      PAYMENT DETAILS
+                    </h4>
                     <div class="form-group">
-                      {{!-- <div class="radio" id="radio">
+                      {{! <div class="radio" id="radio">
                                        <label for="paypal">
                                           <input type="radio" name="payment" id="paypal" value="payment"><i class="fab fa-paypal"></i>Paypal
                                           <span class="checkmark"></span>
                                        </label>
-                                    </div> --}}
-                      {{# if cardOptions}}
-                      <div class="radio" id="radio">
-                        <label for="saved">
-                          <input type="radio" name="payment" id="saved" value="payment"><i
-                            class="far fa-credit-card"></i>Saved Credit Card
-                          <small>({{cardName}}/{{cardNumber}})</small>
-                          <span class="checkmark"></span>
-                        </label>
-                      </div>
+                                    </div> }}
+                      {{#if cardOptions}}
+                        <div class="radio" id="radio">
+                          <label for="saved">
+                            <input
+                              type="radio"
+                              name="payment"
+                              id="saved"
+                              value="payment"
+                            />
+                            <i class="far fa-credit-card"></i>
+                            Saved Credit Card
+                            <small id="preview_card"></small>
+                            <span class="checkmark"></span>
+                          </label>
+                        </div>
                       {{/if}}
 
                       <div class="radio" id="radio">
                         <label for="new">
-                          <input type="radio" name="payment" id="new" value="payment" {{# if login}} checked {{/if}}><i
-                            class="far fa-credit-card"></i>Credit Card
+                          <input
+                            type="radio"
+                            name="payment"
+                            id="new"
+                            value="payment"
+                          />
+                          <i class="far fa-credit-card"></i>
+                          Credit Card
                           <span class="checkmark"></span>
                         </label>
                       </div>
                     </div>
 
-
                     <div class="form-group">
-                      <label for="card-element">
+                      <label for="card-element" id="new_label">
                         Credit or debit card
                       </label>
                       <div id="card-element">
                         <!-- A Stripe Element will be inserted here. -->
                       </div>
-
                       <!-- Used to display form errors. -->
                       <div id="card-errors" role="alert"></div>
                     </div>
@@ -214,30 +318,30 @@
                       }
                     </style>
 
-                    {{!-- <div class="form-group">
-                                    <input type="text" name="nameoncard" id="nameoncard" placeholder="Name on card" check-if-name ng-model='nameOnCard' class="form-control">
-                                 </div>
-                                 <div class="form-group">
-                                    <input type="text" name="cardnumber" check-if-number ng-model="cardNumber" id="cardnumber" placeholder="Card number" class="form-control">
-                                 </div>
-                                 <div class="form-group row">
-                                          <div class="col-md-4">
-                                             <input type="text" class="form-control" autocomplete="off" maxlength="3"  title="Three digits at back of your card" required="" check-if-number ng-model="cardCvv" id="cvv" placeholder="CVC">
-                                          </div>
-                                          <div class="col-md-4">
-                                             <select class="form-control" id="expMonth" ng-model='monthSelect' ng-options='month for month in months' name="cc_exp_mo" size="0">
-                                                <option value="">MM</option>
-                                             </select>
-                                          </div>
-                                          <div class="col-md-4">
-                                             <select ng-model="yearSelect" id="expYear" ng-options="year for year in years" class="form-control" name="cc_exp_yr" id="cc_exp_yr" size="0">
-                                                <option value="">YYYY</option>
-                                             </select>
-                                          </div>
-                                    </div> --}}
+                    {{! <div class="form-group">
+                          <input type="text" name="nameoncard" id="nameoncard" placeholder="Name on card" check-if-name ng-model='nameOnCard' class="form-control">
+                        </div>
+                        <div class="form-group">
+                          <input type="text" name="cardnumber" check-if-number ng-model="cardNumber" id="cardnumber" placeholder="Card number" class="form-control">
+                        </div>
+                        <div class="form-group row">
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" autocomplete="off" maxlength="3"  title="Three digits at back of your card" required="" check-if-number ng-model="cardCvv" id="cvv" placeholder="CVC">
+                                </div>
+                                <div class="col-md-4">
+                                    <select class="form-control" id="expMonth" ng-model='monthSelect' ng-options='month for month in months' name="cc_exp_mo" size="0">
+                                      <option value="">MM</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <select ng-model="yearSelect" id="expYear" ng-options="year for year in years" class="form-control" name="cc_exp_yr" id="cc_exp_yr" size="0">
+                                      <option value="">YYYY</option>
+                                    </select>
+                                </div>
+                          </div> }}
                   </div>
                 </div>
-                {{!-- <h4>BILLING ADDRESS</h4>
+                {{! <h4>BILLING ADDRESS</h4>
                            <div class="row">
                               <div class="col-lg-12">
                                  <div class="form-group">
@@ -263,32 +367,75 @@
                                     </div>
                                  </div>
                               </div>
-                           </div> --}}
+                           </div> }}
                 <div class="form-group">
-                  {{# if login}}
-                  <input type="text" class="form-control" id="pay-email" placeholder="Enter Email" value="{{email}}"
-                    disabled>
+                  {{#if login}}
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="pay-email"
+                      placeholder="Enter Email"
+                      value="{{email}}"
+                      disabled
+                    />
                   {{else}}
-                  <input type="text" class="form-control" id="pay-email" placeholder="Enter Email">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="pay-email"
+                      placeholder="Enter Email"
+                    />
                   {{/if}}
                 </div>
                 <div class="row">
                   <div class="col-lg-12">
                     <div class="form-group">
-                      <input type="hidden" name="_csrf" id="_csrf" value="{{csrfToken}}">
-                      <input type="hidden" name="_creatorEmail" id="_creatorEmail" value="{[{creatorEmail}]}">
-                      <input type="hidden" id="tippeename" value="{[{header}]}">
-                      <input type="hidden" id="description" value="{[{creatorDescription}]}">
-                      <input type="hidden" id="imgLocation" value="{[{image}]}">
-                      <input type="hidden" id="user_id" value="{[{user_id}]}">
-                      <button type="submit" id="sendTipButton" class="btn btn-lg btn-block">SEND <span
-                          style="color : #fff" ng-show='tipValue'> $ {[{tipValue}]}</span> TIP!</button>
+                      <input
+                        type="hidden"
+                        name="_csrf"
+                        id="_csrf"
+                        value="{{csrfToken}}"
+                      />
+                      <input
+                        type="hidden"
+                        name="_creatorEmail"
+                        id="_creatorEmail"
+                        value="{[{creatorEmail}]}"
+                      />
+                      <input
+                        type="hidden"
+                        id="tippeename"
+                        value="{[{header}]}"
+                      />
+                      <input
+                        type="hidden"
+                        id="description"
+                        value="{[{creatorDescription}]}"
+                      />
+                      <input
+                        type="hidden"
+                        id="imgLocation"
+                        value="{[{image}]}"
+                      />
+                      <input type="hidden" id="user_id" value="{[{user_id}]}" />
+                      <button
+                        type="submit"
+                        id="sendTipButton"
+                        class="btn btn-lg btn-block"
+                      >
+                        SEND
+                        <span style="color : #fff" ng-show="tipValue">
+                          $ {[{tipValue}]}
+                        </span>
+                        TIP!
+                      </button>
                     </div>
                   </div>
                 </div>
               </form>
-              {{!-- Preparing the Stripe card element --}}
+              {{! Preparing the Stripe card element }}
               <script src="/javascripts/cardprepare.js"></script>
+              <script src="/javascripts/paywith_saved_card.js"></script>
               <script src="/javascripts/jquery-functions-1.js"></script>
             </div>
           </div>
@@ -300,35 +447,69 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="recieve-title">Tip Recieved!</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+            <h5 class="modal-title" id="recieve-title">
+              Tip Recieved!
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">
+                &times;
+              </span>
             </button>
           </div>
           <div class="modal-body">
             <div class="row">
               <div class="col-md-3">
-                <img src="" alt="" class="rounded-circle" height="100px" width="100px" id="tippeeImgLocation">
+                <img
+                  src=""
+                  alt=""
+                  class="rounded-circle"
+                  height="100px"
+                  width="100px"
+                  id="tippeeImgLocation"
+                />
               </div>
               <div class="col-md-9">
-                <q><span id="tippeesDesc">Thank you for your support!</span></q>
+                <q>
+                  <span id="tippeesDesc">
+                    Thank you for your support!
+                  </span>
+                </q>
               </div>
             </div>
-            <hr>
+            <hr />
             <div class="row">
               <div class="col-md-12">
-                <p class="text-center" id="desc1">Your tip was successfully sent to <span id="tippeesName"></span>.</p>
-                <p class="text-center" id="desc2">share your tip and share the love!</p>
-                <a class="text-center" href="" id="receipt_link">View the receipt</a>
+                <p class="text-center" id="desc1">
+                  Your tip was successfully sent to
+                  <span id="tippeesName"></span>
+                  .
+                </p>
+                <p class="text-center" id="desc2">
+                  share your tip and share the love!
+                </p>
+                <a class="text-center" href="" id="receipt_link">
+                  View the receipt
+                </a>
               </div>
             </div>
             <div class="form-group">
-              <button class="btn btn-primary form-control" id="facebook"><i id="i" class="fab fa-facebook-f"></i>Share
-                it on Facebook</button>
-              <button class="btn btn-primary form-control" id="twittr"><i class="fab fa-twitter"></i>Tweet it!</button>
+              <button class="btn btn-primary form-control" id="facebook">
+                <i id="i" class="fab fa-facebook-f"></i>
+                Share
+                it on Facebook
+              </button>
+              <button class="btn btn-primary form-control" id="twitter">
+                <i class="fab fa-twitter"></i>
+                Tweet it!
+              </button>
             </div>
           </div>
-          {{!-- <div class="modal-footer"></div> --}}
+          {{! <div class="modal-footer"></div> }}
         </div>
       </div>
     </div>
@@ -337,18 +518,26 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="recieve-title">Tip Recieved!</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+            <h5 class="modal-title" id="recieve-title">
+              Tip Recieved!
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">
+                &times;
+              </span>
             </button>
           </div>
           <div class="modal-body">
             <div class="tip_bill">
-
             </div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
+</div>

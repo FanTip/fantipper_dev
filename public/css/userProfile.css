@@ -1,9 +1,11 @@
-body {
-  height: 100%; }
+.container {
+  padding-bottom: 60px; }
 
-.container-fluid {
-  padding-top: 20px; }
+#editPLink {
+  color: #00D278; }
 
-.main {
-  margin-top: 100px;
-  margin-bottom: 100px; }
+#editPLink:hover {
+  color: #00b96a; }
+
+#transparenttext {
+  color: transparent; }

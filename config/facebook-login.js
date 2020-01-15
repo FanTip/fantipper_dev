@@ -1,24 +1,26 @@
-var passport = require('passport');
-var Strategy = require('passport-facebook').Strategy;
-var User = require('../models/user');
-var mongoose = require('mongoose');
+const passport = require('passport');
+const Strategy = require('passport-facebook').Strategy;
+const User = require('../models/user');
+const mongoose = require('mongoose');
+const log = require('../config/log');
 
-
-passport.use('facebook',new Strategy({
+passport.use('facebook', new Strategy({
     clientID: '563423380470078',
     clientSecret: '214cce65d9185d7775c95e2a0a32e91a',
-    callbackURL: 'https://fantipper.herokuapp.com/login/facebook/callback' || 'http://localhost:3000/login/facebook/callback',
-    profileFields : ['emails','picture.type(large)','name']
+    callbackURL: 'https://fantipper.com.au/login/facebook/callback' || 'http://localhost:3000/login/facebook/callback',
+    profileFields: ['emails', 'picture.type(large)', 'name']
   },
-  function(accessToken, refreshToken, profile, done) {
-    process.nextTick(function(){
-      User.findOne({'facebookID' : profile.id}, function(err, user){
-        if(err){
+  function (accessToken, refreshToken, profile, done) {
+    process.nextTick(function () {
+      User.findOne({
+        'facebookID': profile.id
+      }, function (err, user) {
+        if (err) {
           return done(err);
         }
-        if(user){
+        if (user) {
           return done(null, user);
-        }else{
+        } else {
           var NewUser = new User();
           NewUser._id = new mongoose.Types.ObjectId();
           NewUser.facebookID = profile.id;
@@ -35,9 +37,10 @@ passport.use('facebook',new Strategy({
           NewUser.creator.creatorEmail = 'None Provided';
           NewUser.creator.creatorTileImage = '/images/example.jpg';
           NewUser.card.isCard = false;
-          
-          NewUser.save(function(err){
-            if(err){
+
+          NewUser.save(function (err) {
+            if (err) {
+              log.log_save(err);
               throw err;
             }
             return done(null, NewUser);
@@ -45,12 +48,12 @@ passport.use('facebook',new Strategy({
         }
       });
     });
-}));
+  }));
 
-passport.serializeUser(function(user, cb) {
-    cb(null, user);
-  });
-  
-  passport.deserializeUser(function(obj, cb) {
-    cb(null, obj);
-  });
+passport.serializeUser(function (user, cb) {
+  cb(null, user);
+});
+
+passport.deserializeUser(function (obj, cb) {
+  cb(null, obj);
+});

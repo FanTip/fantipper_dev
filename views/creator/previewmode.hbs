@@ -1,6 +1,6 @@
 <div class="container-fluid body-content">
   <div class="row" id="rowOpacity">
-    <div class="creator-head text-center" style="background-image: url(../{{creatorBack}});">
+    <div class="creator-head text-center" style="background-image: url({{creatorBack}});">
       <div style="
     background-color: rgba(30, 30, 30, 0.5);
     position: absolute;
@@ -10,7 +10,7 @@
     height: 100%;
 ">
         <div style="padding-top: 100px;">
-          <img src="../{{creatorTile}}" class="img-circle" alt="{{creatorTile}}">
+          <img src="{{creatorTile}}" class="img-circle" alt="{{creatorTile}}">
           <h2>{{CreatorName}}</h2>
           <h4>{{CreatorLocation}}</h4>
           <h3>
@@ -19,9 +19,13 @@
             {{/each}}
           </h3>
           <div class="creator-share">
+            {{#if Creator_facebook_url}}
             <button id="share-facebook"><i class="fab fa-facebook-f"></i>Share</button>
+            {{/if}}
+            {{#if Creator_twitter_url}}
             <button id="share-twitter"><i class="fab fa-twitter"></i>Tweet</button>
-            <button id="share-url"><i class="fas fa-paperclip"></i>{{CreatorURL}}</button>
+            {{/if}}
+            <button id="share-url"><i class="fas fa-paperclip"></i>fantipper.com/{{CreatorURL}}</button>
           </div>
         </div>
       </div>
@@ -81,11 +85,14 @@
           <div id="message_base"></div>
         </div>
         <div class="col-md-5 creator-sidebar">
+
           <div class="fans scrollable">
-            <div class="row">
-              <h3> <i class="fa fa-users"></i> 0 Fans </h3>
-              <div class="pull-left scroll-up"> <i class="fa fa-angle-up"></i></div>
-              <div class="pull-right scroll-down"> <i class="fa fa-angle-down"></i> </div>
+            <h3> <i class="fa fa-users"></i> <span id="total_fans"></span> Fans </h3> <br>
+            <div class="row text-center text-lg-left" id="all_fans_gallery">
+              <div class="col-md-12">
+              </div>
+              {{!-- <div class="pull-left scroll-up"> <i class="fa fa-angle-up"></i></div> --}}
+              {{!-- <div class="pull-right scroll-down"> <i class="fa fa-angle-down"></i> </div> --}}
             </div>
 
             <ul class="fan-list">
@@ -102,7 +109,7 @@
         <h3>become a fan of {{CreatorName}} and leave a message of support!</h3>
         <div class="row">
           <div class="col-lg-12">
-            <a id='tip-button' href="/tips" class="btn-tip-listing">
+            <a href="/tips">
               <div class="btn-tip-listing"></div>
             </a>
           </div>

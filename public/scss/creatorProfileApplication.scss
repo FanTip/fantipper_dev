@@ -1,13 +1,36 @@
-#application{
-    padding-top: 6%;
+#application {
+    padding-top: 4%;
+    background-color: #D6F8E8;
+    padding-left: 10%;
+    padding-right: 10%;
+    height : 100%;
 }
 
-.container-fluid {
-    padding-top: 3%;
+#handshake {
+    margin-top: 40px;
+    margin-bottom: 20px;
 }
 
-.footer {
-    .container-fluid {
-        margin-top: 0;
+//TODO: different screen size 
+
+#label_name {
+    padding:5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+}
+
+@media screen and (max-width:330px) {
+
+    .container-fluid { 
+        margin-top: 6%;
     }
+    
+    #application {
+        padding-top: 6%;
+    }
+}
+
+#editor-container { // Initialize Quill editor
+    height: 375px;
 }

@@ -6,21 +6,21 @@ var csrfProtection = csrf();
 var Messages = require('../models/message');
 router.use(csrfProtection);
 
-router.get('/', function(req, res, next){
-    res.render('fan/messages', {tittle : 'Messages', csrfToken : req.csrfToken()})
+router.get('/', function(req, res, next) {
+    res.render('fan/messages', { tittle: 'Messages', csrfToken: req.csrfToken() })
 });
 
 
-router.get('/getmessage',function(req, res, next){
+router.get('/getmessage', function(req, res, next) {
     Messages.find({}).exec(
-        function(err, result){
+        function(err, result) {
             res.status(200).send(result);
         }
     );
 
 });
 
-router.get('/delete', function(req, res, next){
+router.get('/delete', function(req, res, next) {
 
 });
 

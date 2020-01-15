@@ -1,5 +1,6 @@
 <div class="container">
   <link rel="stylesheet" href='/css/creatorprofileindex.css' />
+  <link rel="stylesheet" href='/css/userProfile.css' />
   <input type="hidden" value="{{csrfToken}}">
   <div class="row" id="profile_nav">
     <div class="col-lg-3" style="border-right : 1px double gray">
@@ -10,28 +11,28 @@
             <p>{{CreatorName}}</p>
         </li>
         <li class="list-group">
-          <a href="/creatorprofile/preview"><i class="fas fa-desktop"></i>Preview creator page</a>
+          <a href="/creatorprofile/preview" id="editPLink"><i class="fas fa-desktop"></i>Preview creator page</a>
         </li>
         <li class="list-group">
-          <a href="/selectactivecreator"><i class="fas fa-user-edit"></i>Edit Creator Profile</a>
+          <a href="/selectactivecreator" id="editPLink"><i class="fas fa-user-edit"></i>Edit Creator Profile</a>
         </li>
         {{!-- <li class="list-group">
-                    <a href=""><i class="fas fa-envelope"></i>Notifications</a>
+                    <a href="" id="editPLink"><i class="fas fa-envelope"></i>Notifications</a>
                 </li>
                 <li class="list-group">
-                    <a href=""><i class="fas fa-certificate"></i>Offers</a>
+                    <a href="" id="editPLink"><i class="fas fa-certificate"></i>Offers</a>
                 </li> --}}
         <li class="list-group">
-          <a href=""><i class="fas fa-comments"></i>Messages</a>
+          <a href="" id="editPLink"><i class="fas fa-comments"></i>Messages</a>
         </li>
         <li class="list-group">
-          <a href="/creatortiphistory"><i class="fas fa-book"></i>Tip History</a>
+          <a href="/creatortiphistory" id="editPLink"><i class="fas fa-book"></i>Tip History</a>
         </li>
         {{!-- <li class="list-group">
-                    <a href=""><i class="fas fa-money-check-alt"></i>Account Balance</a>
+                    <a href="" id="editPLink"><i class="fas fa-money-check-alt"></i>Account Balance</a>
                 </li>
                 <li class="list-group">
-                    <a href=""><i class="fas fa-users"></i>Groups</a>
+                    <a href="" id="editPLink"><i class="fas fa-users"></i>Groups</a>
                 </li> --}}
         <li class="list-group">
           <div class="dropdown-divider"></div>
@@ -45,7 +46,7 @@
       <h2>Creator Profile</h2>
       <div class="container-fluid body-content">
         <div class="row" id="rowOpacity">
-          <div class="creator-head text-center" style="background-image: url(../{{creatorBack}});">
+          <div class="creator-head text-center" style="background-image: url({{creatorBack}});">
             <div style="
                 background-color: rgba(30, 30, 30, 0.5);
                 position: absolute;
@@ -55,7 +56,7 @@
                 height: 100%;
             ">
               <div style="padding-top: 100px;">
-                <img src="../{{creatorTile}}" class="img-circle" alt="{{creatorTile}}">
+                <img src="{{creatorTile}}" class="img-circle" alt="{{creatorTile}}">
                 <h2>{{CreatorName}}</h2>
                 <h4>{{CreatorLocation}}</h4>
                 <h3>
@@ -64,9 +65,13 @@
                   {{/each}}
                 </h3>
                 <div class="creator-share">
+                  {{#if Creator_facebook_url}}
                   <button id="share-facebook"><i class="fab fa-facebook-f"></i>Share</button>
+                  {{/if}}
+                  {{#if Creator_twitter_url}}
                   <button id="share-twitter"><i class="fab fa-twitter"></i>Tweet</button>
-                  <button id="share-url"><i class="fas fa-paperclip"></i>{{CreatorURL}}</button>
+                  {{/if}}
+                  <button id="share-url"><i class="fas fa-paperclip"></i>fantipper.com/{{CreatorURL}}</button>
                 </div>
               </div>
             </div>
@@ -145,7 +150,7 @@
               <h3>become a fan of {{CreatorName}} and leave a message of support!</h3>
               <div class="row">
                 <div class="col-lg-12">
-                  <a id='tip-button' href="/tips" class="btn-tip-listing">
+                  <a href="/tips">
                     <div class="btn-tip-listing"></div>
                   </a>
                 </div>

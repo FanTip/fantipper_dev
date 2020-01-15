@@ -1,0 +1,269 @@
+:root {
+
+    --body-color: rgb(247, 250, 252);
+  
+    --button-color: rgb(30, 166, 114);
+  
+    --accent-color: #0a721b;
+  
+    --secondary-color: #ed5f74;
+  
+    --link-color: #ffffff;
+  
+    --font-color: rgb(105, 115, 134);
+  
+    --gray-border: rgba(0, 0, 0, 0.15);
+  
+    --gray-light: rgba(0, 0, 0, 0.4);
+  
+    --body-font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  
+    --radius: 6px;
+  
+    --form-width: 400px;
+  
+  }
+  
+  
+
+
+
+
+
+/* Layout */
+
+.sr-root {
+
+    display: flex;
+
+    flex-direction: row;
+
+    width: 100%;
+
+    max-width: 980px;
+
+    padding: 48px;
+
+    align-content: center;
+
+    justify-content: center;
+
+    height: auto;
+
+    min-height: 100vh;
+
+    margin: 0 auto;
+
+}
+
+.sr-main {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    height: 100%;
+
+    align-self: center;
+
+    padding: 50px 50px 75px 50px;
+
+    background: var(--body-color);
+
+    width: var(--form-width);
+
+    border-radius: var(--radius);
+
+    box-shadow: 0px 0px 0px 0.5px rgba(50, 50, 93, 0.1),
+
+        0px 2px 5px 0px rgba(50, 50, 93, 0.1), 0px 1px 1.5px 0px rgba(0, 0, 0, 0.07);
+
+}
+
+.sr-picker {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+
+}
+
+.sr-picker button {
+
+    background: none !important;
+
+    border: none;
+
+    padding: 0 !important;
+
+    /*optional*/
+
+    font-family: arial, sans-serif;
+
+    /*input has OS specific font-family*/
+
+    color: var(--accent-color);
+
+    cursor: pointer;
+
+    width: 75px;
+
+    box-shadow: none;
+
+    border-radius: 0;
+
+}
+
+.sr-picker button:hover,
+
+.sr-picker button:focus,
+
+.sr-picker button.selected {
+
+    outline: none;
+
+    box-shadow: none;
+
+    border-radius: 0;
+
+}
+
+.sr-picker button:hover,
+
+.sr-picker button:focus {
+
+    border-bottom: 2px solid var(--secondary-color);
+
+}
+
+.sr-picker button.selected {
+
+    border-bottom: 2px solid var(--accent-color);
+
+}
+
+.sr-field-error {
+
+    color: var(--font-color);
+
+    text-align: left;
+
+    font-size: 13px;
+
+    line-height: 17px;
+
+    margin-top: 12px;
+
+}
+
+
+
+/* Inputs */
+
+.sr-input,
+
+input[type="text"] {
+
+    border: 1px solid var(--gray-border);
+
+    border-radius: var(--radius);
+
+    padding: 5px 12px;
+
+    height: 44px;
+
+    width: 100%;
+
+    transition: box-shadow 0.2s ease;
+
+    background: white;
+
+    -moz-appearance: none;
+
+    -webkit-appearance: none;
+
+    appearance: none;
+
+}
+
+.sr-input:focus,
+
+input[type="text"]:focus,
+
+button:focus,
+
+.focused {
+
+    box-shadow: 0 0 0 1px rgba(50, 151, 211, 0.3), 0 1px 1px 0 rgba(0, 0, 0, 0.07),
+
+        0 0 0 4px rgba(50, 151, 211, 0.3);
+
+    outline: none;
+
+    z-index: 9;
+
+}
+
+.sr-input::placeholder,
+
+input[type="text"]::placeholder {
+
+    color: var(--gray-light);
+
+}
+
+.sr-result {
+
+    height: 44px;
+
+    -webkit-transition: height 1s ease;
+
+    -moz-transition: height 1s ease;
+
+    -o-transition: height 1s ease;
+
+    transition: height 1s ease;
+
+    color: var(--font-color);
+
+    overflow: auto;
+
+}
+
+.sr-result code {
+
+    overflow: scroll;
+
+}
+
+.sr-result.expand {
+
+    height: 350px;
+
+}
+
+
+
+.sr-combo-inputs-row {
+
+    box-shadow: 0px 0px 0px 0.5px rgba(50, 50, 93, 0.1),
+
+        0px 2px 5px 0px rgba(50, 50, 93, 0.1), 0px 1px 1.5px 0px rgba(0, 0, 0, 0.07);
+
+    border-radius: 7px;
+
+}
+
+
+
+/* Form */
+
+.sr-form-row {
+
+    margin: 16px 0;
+
+}

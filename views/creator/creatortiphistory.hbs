@@ -1,4 +1,6 @@
+<meta name="csrf-token" content="{{csrfToken}}" />
 <div class="container">
+  <link rel="stylesheet" href='/css/userProfile.css' />
   <div class="row" style="margin-top:1%;">
     <dir class="col-sm-3" style="border-right : 1px double gray">
       <ul class="list-group">
@@ -8,28 +10,28 @@
             <p>{{CreatorName}}</p>
         </li>
         <li class="list-group">
-          <a href="/creatorprofile/preview"><i class="fas fa-desktop"></i>Preview creator page</a>
+          <a href="/creatorprofile/preview" id="editPLink"><i class="fas fa-desktop"></i>Preview creator page</a>
         </li>
         <li class="list-group">
-          <a href="/selectactivecreator"><i class="fas fa-user-edit"></i>Edit Creator Profile</a>
+          <a href="/selectactivecreator" id="editPLink"><i class="fas fa-user-edit"></i>Edit Creator Profile</a>
         </li>
         {{!-- <li class="list-group">
-                    <a href=""><i class="fas fa-envelope"></i>Notifications</a>
+                    <a href="" id="editPLink"><i class="fas fa-envelope"></i>Notifications</a>
                 </li>
                 <li class="list-group">
-                    <a href=""><i class="fas fa-certificate"></i>Offers</a>
+                    <a href="" id="editPLink"><i class="fas fa-certificate"></i>Offers</a>
                 </li> --}}
         <li class="list-group">
-          <a href=""><i class="fas fa-comments"></i>Messages</a>
+          <a href="" id="editPLink"><i class="fas fa-comments"></i>Messages</a>
         </li>
         <li class="list-group">
-          <a href="/creatortiphistory"><i class="fas fa-book"></i>Tip History</a>
+          <a href="/creatortiphistory" id="editPLink"><i class="fas fa-book"></i>Tip History</a>
         </li>
         {{!-- <li class="list-group">
-                    <a href=""><i class="fas fa-money-check-alt"></i>Account Balance</a>
+                    <a href="" id="editPLink"><i class="fas fa-money-check-alt"></i>Account Balance</a>
                 </li>
                 <li class="list-group">
-                    <a href=""><i class="fas fa-users"></i>Groups</a>
+                    <a href="" id="editPLink"><i class="fas fa-users"></i>Groups</a>
                 </li> --}}
         <li class="list-group">
           <div class="dropdown-divider"></div>
@@ -38,53 +40,45 @@
       </ul>
     </dir>
     <div class="col-sm-9 ">
-      <h3>Tippees</h3>
-      <div ng-init="tippees = {{tippeedata}}">
+      <div class="row">
+        <div class="col-sm-6">
+          <h4>Creator Tip History</h4>
+        </div>
+        <div class="col-sm-3"> <button id="request_payout" class="btn btn-primary" data-toggle="modal"
+            data-target="#payoutModal">
+            Request a Payout </button> </div>
+        <div class="col-sm-3"> <button class="btn btn-primary"> Bank Details </button> </div>
+      </div>
+      <input id="creator" type="hidden" value="creator" />
+      <div id="creator_history_base"></div>
 
-        <table class="table">
-          <thead>
-            <th scope="col"></th>
-          </thead>
-          <tbody>
-            <tr ng-repeat="singleTippee in tippees ">
-              <td>{[{singleTippee.tipDate}]}</td>
-              <td>{[{singleTippee.tipeeID.email}]}</td>
-              <td>&#36;{[{singleTippee.tipAmount}]}</td>
-              <td>{[{singleTippee.tipFrom}]}</td>
-              <td>{[{singleTippee.tipMessage}]}</td>
-            </tr>
-          </tbody>
-        </table>
+
+
+      <div class="modal fade" id="payoutModal" tabindex="-1" role="dialog" aria-labelledby="payoutModalTitle"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Select transactions to payout</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div id="payouts_needed"></div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" id="request_payout_button" class="btn btn-primary">Request a payout</button>
+            </div>
+          </div>
+        </div>
 
       </div>
 
-      <h3>Tippers</h3>
-      <div ng-init="tippers = {{tipperdata}}">
+      <script type="module" src="/javascripts/tip_history.js"></script>
+      <script type="module" src="/javascripts/request_payouts.js"></script>
 
-        <table class="table">
-          <thead>
-            <th scope="col"></th>
-          </thead>
-          <tbody>
-            <tr ng-repeat="singleTipper in tippers">
-              <td>{[{singleTipper.tipperID.email}]}</td>
-              <td>{[{singleTipper.tipTo}]}</td>
-              <td>{[{singleTipper.tipDate}]}</td>
-              <td>&#36;{[{singleTipper.tipAmount}]}</td>
-            </tr>
-          </tbody>
-        </table>
-
-      </div>
-      {{!-- {{#each tippeedata}}
-            <h2>Tippee Data</h2>
-            <p>{{this}}</p>
-            {{/each}}
-
-            {{#each tipperdata}}
-            <h2>Tipper Data</h2>
-            <p>{{this}}</p>
-            {{/each}} --}}
     </div>
   </div>
 </div>

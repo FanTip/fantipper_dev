@@ -2,7 +2,9 @@
 <div class="container">
   <link rel="stylesheet" href='/css/creatorprofileindex.css' />
   <link rel="stylesheet" href='/css/userProfileEdit.css' />
+  <script src="quill/quill.min.js"></script>
   <script src="/javascripts/username_finder.js"></script>
+
   <input type="hidden" value="{{csrfToken}}">
   <div class="row" id="profile_nav">
     <div class="col-lg-3" style="border-right : 1px double gray">
@@ -13,28 +15,28 @@
             <p>{{CreatorName}}</p>
         </li>
         <li class="list-group">
-          <a href="/creatorprofile/preview"><i class="fas fa-desktop"></i>Preview creator page</a>
+          <a href="/creatorprofile/preview" id="editPLink"><i class="fas fa-desktop"></i>Preview creator page</a>
         </li>
         <li class="list-group">
-          <a href="/selectactivecreator"><i class="fas fa-user-edit"></i>Edit Creator Profile</a>
+          <a href="/selectactivecreator" id="editPLink"><i class="fas fa-user-edit"></i>Edit Creator Profile</a>
         </li>
         {{!-- <li class="list-group">
-                    <a href=""><i class="fas fa-envelope"></i>Notifications</a>
+                    <a href="" id="editPLink"><i class="fas fa-envelope"></i>Notifications</a>
                 </li>
                 <li class="list-group">
-                    <a href=""><i class="fas fa-certificate"></i>Offers</a>
+                    <a href="" id="editPLink"><i class="fas fa-certificate"></i>Offers</a>
                 </li> --}}
         <li class="list-group">
-          <a href=""><i class="fas fa-comments"></i>Messages</a>
+          <a href="" id="editPLink"><i class="fas fa-comments"></i>Messages</a>
         </li>
         <li class="list-group">
-          <a href="/creatortiphistory"><i class="fas fa-book"></i>Tip History</a>
+          <a href="/creatortiphistory" id="editPLink"><i class="fas fa-book"></i>Tip History</a>
         </li>
         {{!-- <li class="list-group">
-                    <a href=""><i class="fas fa-money-check-alt"></i>Account Balance</a>
+                    <a href="" id="editPLink"><i class="fas fa-money-check-alt"></i>Account Balance</a>
                 </li>
                 <li class="list-group">
-                    <a href=""><i class="fas fa-users"></i>Groups</a>
+                    <a href="" id="editPLink"><i class="fas fa-users"></i>Groups</a>
                 </li> --}}
         <li class="list-group">
           <div class="dropdown-divider"></div>
@@ -64,10 +66,6 @@
           <input type="text" id="shortdesc" name="shortdesc" class="form-control" value="{{CreatorDescription}}">
         </div>
         <div class="form-group">
-          <label for="maintext">Main Text</label>
-          <input type="text" id="maintext" name="maintext" class="form-control" value="{{CreatorAbout}}">
-        </div>
-        <div class="form-group">
           <label for="location">Creator Location</label>
           <input type="text" id="location_now" name="location" class="form-control form-control"
             value="{{CreatorLocation}}">
@@ -83,20 +81,43 @@
             </div>
             <input type="text" id="staticEmail" class="form-control" id="basic-url" readonly
               aria-describedby="basic-addon3" value="{{CreatorUserName}}">
-            <small id="emailHelp" class="form-text text-muted">Fantipper personal URL will be your username</small>
+            {{!-- <small id="emailHelp" class="form-text text-muted">Fantipper personal URL will be your username</small> --}}
           </div>
+          <small id="emailHelp" class="form-text text-muted">Fantipper personal URL will be your username</small>
 
-          <button onclick="copyFunction()" class="btn btn-primary">Copy</button>
-          <button id="shareBtn" class="btn btn-success clearfix">Share</button>
+          {{!-- <button onclick="copyFunction()" class="btn btn-primary">Copy</button>
+          <button id="shareBtn" class="btn btn-success clearfix">Share</button> --}}
 
         </div>
         {{/if}}
+        <div class="form-group">
+          <label for="facebook-url">Your facebook URL</label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon3"><i class="fab fa-facebook-f"></i></span>
+            </div>
+            <input type="text" class="form-control form-control" name="facebook-url" id="facebook-url"
+              value="{{Creator_facebook_url}}">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="twitter-url">Your Twitter URL</label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon3"><i class="fab fa-twitter"></i></span>
+            </div>
+            <input type="text" class="form-control form-control" name="twitter-url" id="twitter-url"
+              value="{{Creator_twitter_url}}">
+          </div>
+        </div>
 
         <div class="form-group">
           <h5>Change Profile image</h5>
           <div id="profileImage cont">
             <label class="label">
-              <img src="../{{creatorTile}}" alt="Creator avatar" class="rounded image" id="avatar">
+              <img src="{{creatorTile}}" alt="Creator avatar" class="rounded image" id="avatar"width="300"
+                height="200">
               <input type="file" class="sr-only" name="image" id="input" accept="image/*">
             </label>
             <div class="progress">
@@ -134,8 +155,8 @@
           <div id="backgroundImage">
             {{!-- Implemeting background image --}}
             <label class="label">
-              <img src="../{{creatorBack}}" alt="background image" class="rounded" id="background" width="300"
-                height="200">
+              <img src="{{creatorBack}}" alt="background image" class="rounded" id="background" width="500"
+                height="300">
               <input type="file" class="sr-only" name="image" id="background-input" accept="image/*">
             </label>
             <div class="background-progress">
@@ -252,6 +273,22 @@
           </div>
         </div>
 
+        {{!-- <div id="creator_profile_create-part_3" > --}}
+        <div class="form-group">
+          <label for="short_desc" id="label_name">ABOUT YOU</label>
+
+          <!-- Create the toolbar container -->
+          <div id="toolbar">
+                </div>
+
+          <!-- Create the editor container -->
+          <div id="editor-container" style="height: 250px;">
+            <p>{{CreatorAbout}}</p>
+          </div>
+
+        </div>
+
+        {{!-- </div> --}}
 
 
         <input type="hidden" name="_csrf" value="{{csrfToken}}">

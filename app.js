@@ -12,12 +12,13 @@ const validator = require('express-validator');
 const exphbs = require('express-handlebars');
 const favicon = require('serve-favicon');
 const dotenv = require('dotenv');
-const stripe = require('stripe')('pk_test_puuwTbVu3nSLRPLaOHboUXos');
-
+const _ = require('lodash');
 
 require('./config/passport');
 require('./config/facebook-login');
 require('./config/google-login');
+
+require('./config/log');
 
 const apiRouter = require('./routes/api/fantipper');
 
@@ -32,6 +33,8 @@ const profileRouter = require('./routes/profile');
 const logoutRouter = require('./routes/logout');
 const exploreRouter = require('./routes/explore');
 const learnRouter = require('./routes/learn');
+const termsofuseRouter = require('./routes/termsofuse');
+const privacypolicyRouter = require('./routes/privacypolicy');
 const uploadImage = require('./routes/uploadImage');
 const editFanProfile = require('./routes/editfanprofile');
 const creatorProfile = require('./routes/creatorprofile');
@@ -58,6 +61,9 @@ const test = require('./routes/creatorAppComplete');
 const categories_api = require('./routes/api/get_set_categories');
 const fetch_tips_api = require('./routes/api/get_tips');
 const fetch_fan_creator_messages = require('./routes/api/get_messages');
+const fetch_tipped_fans = require('./routes/api/get_fans');
+const tiphistory_api = require('./routes/api/tip_history');
+const request_payouts_api = require('./routes/api/request_payouts');
 
 const app = express();
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon', 'favicon.ico')));
@@ -75,18 +81,26 @@ app.set('view engine', 'hbs', exphbs({
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({
+    extended: true
+}));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 app.use(validator());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({ secret: 'fantipper', resave: false, saveUninitialized: false }));
+app.use(session({
+    secret: 'fantipper',
+    resave: false,
+    saveUninitialized: false
+}));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.locals.login = req.isAuthenticated();
     if (req.isAuthenticated()) {
 
@@ -97,7 +111,10 @@ app.use(function(req, res, next) {
         res.locals.location = req.user.location;
         if (req.user.creator.isCreator) {
             var temp = req.user.creator.creatorAbout;
-            temp = temp.replace(/['"]+/g, '');
+            if (!_.isEmpty(temp)) {
+                temp = temp.replace(/['"]+/g, '');
+            }
+
             res.locals.isCreator = req.user.creator.isCreator;
             res.locals.CreatorName = req.user.creator.creatorName;
             res.locals.CreatorDescription = req.user.creator.creatorDesc;
@@ -111,6 +128,8 @@ app.use(function(req, res, next) {
             res.locals.creatorBack = req.user.creator.creatorBack;
             res.locals.image1 = req.user.image1;
             res.locals.image2 = req.user.image2;
+            res.locals.Creator_facebook_url = req.user.creator.facebookURL;
+            res.locals.Creator_twitter_url = req.user.creator.twitterURL;
             // req.locals.categories = req.user.creator.creatorCategories;
         }
         res.locals.CardOption = req.user.card.isCard;
@@ -139,7 +158,7 @@ app.use('/typeahead', express.static(path.join(__dirname, 'node_modules/typeahea
 app.use('/bloodhound', express.static(path.join(__dirname, 'node_modules/bloodhound/index.js')));
 
 
-app.use('/socket', express.static(path.join(__dirname, 'node_modules/socket.io/lib')));
+// app.use('/socket', express.static(path.join(__dirname, 'node_modules/socket.io/lib')));
 // Configuration to dropzone
 app.use('/dropzone', express.static(path.join(__dirname, 'node_modules/dropzone/dist')));
 
@@ -156,8 +175,10 @@ app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
 app.use('/profile', profileRouter);
 app.use('/logout', logoutRouter);
-app.use('/learn', learnRouter);
 app.use('/explore', exploreRouter);
+app.use('/learn', learnRouter);
+app.use('/termsofuse', termsofuseRouter);
+app.use('/privacypolicy', privacypolicyRouter);
 app.use('/editfanprofile', editFanProfile);
 app.use('/creatorprofile', creatorProfile);
 app.use('/selectactivecreator', selectActiveCreator);
@@ -169,10 +190,12 @@ app.use('/api/fantipper', apiRouter); // https://fantipper.herokuapp.com/api/fan
 app.use('/api/cities', searchCitiesRouter);
 app.use('/api/username', searchUsernamesRouter);
 
-
+app.use('/api/tip-history', tiphistory_api)
 app.use('/api/categories', categories_api);
 app.use('/api/fetch_tips_api', fetch_tips_api);
 app.use('/api/fancreatemsg', fetch_fan_creator_messages);
+app.use('/api/fetch_fans', fetch_tipped_fans);
+app.use('/api/request_payouts', request_payouts_api);
 
 app.use('/creator/application', CreatorApplication);
 
@@ -190,30 +213,38 @@ app.use('/payment', stripeRouter);
 app.use('/test', test);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     // next(createError(404));
     res.render('pagenotfound');
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
-
+    
     // render the error page
     res.status(err.status || 500);
     res.render('error');
 });
 
+app.use(function (req, res) {
+    console.log('erre', new Error().stack);
+    console.log(process.env.AWSAccessKeyId);
+})
 
 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
+
+mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true
+});
 // mongoose.connect('mongodb://localhost:27017/fantipper',{useNewUrlParser : true});
 var db = mongoose.connection;
-db.once('open', function() {
+db.once('open', function () {
     console.log('Connection Successful');
 });
+
 
 
 

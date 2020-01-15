@@ -1,6 +1,35 @@
+.container-fluid {
+  margin-top: 2%; }
+
 #listing {
-  min-height: 300px;
+  min-height: 200px;
   padding-bottom: 40px; }
+
+#wrapper {
+  width: 97%;
+  max-width: 1200px;
+  padding: 20px 0;
+  margin: auto;
+  min-height: 100%; }
+
+#wrapper iframe {
+  display: block;
+  width: 100%;
+  margin: auto;
+  height: 500px; }
+
+.btn.btn-primary {
+  background-color: #00d278;
+  border-color: #00d278;
+  margin-bottom: 10px; }
+
+.btn.btn-primary:hover {
+  background-color: #00b96a;
+  border-color: #00b96a; }
+
+@media screen and (max-width: 330px) {
+  #wrapper {
+    width: auto; } }
 
 .listing {
   overflow: hidden;

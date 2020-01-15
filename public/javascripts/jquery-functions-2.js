@@ -26,7 +26,7 @@ $(function() {
             $(location).attr('href', '/profile');
 
         }).fail(function(response) {
-            toastr.error('Check your yousername/password again!');
+            toastr.error('Check your email / password again!');
         });
 
     });
