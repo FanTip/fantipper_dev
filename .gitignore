@@ -4,3 +4,4 @@ public/uploads
 out/
 .vscode/
 .vs
+.access.log
