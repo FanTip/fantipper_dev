@@ -1,7 +1,7 @@
 <div class="container">
   <link rel="stylesheet" href='/css/userProfile.css' />
-  <div class="row" style="margin-top:1%;">
-    <dir class="col-sm-3" style="border-right : 1px double gray">
+  <div class="row">
+    <div class="col-sm-3" id="primary">
       <ul class="list-group">
         <li class="list-group">
           <span> <a href="/profile"> <img src="{{imagePath}}" alt="..." class="rounded-circle" height="50px"
@@ -40,8 +40,9 @@
           {{/if}}
         </li>
       </ul>
-    </dir>
-    <div class="col-sm-9 ">
+    </div> <!-- end of primary -->
+
+    <div class="col-sm-9" id="secondary">
       <h2>Fan Profile</h2>
       <form>
         <div class="form-group">
@@ -71,9 +72,8 @@
           </div>
         </div>
       </form>
-    </div>
-  </div>
-</div>
+    </div> <!-- end of secondary -->
+</div> <!-- end of row -->
 <script>
   function copyFunction() {
     var copyText = document.getElementById("staticEmail");
@@ -82,3 +82,4 @@
     alert("Copied the text: " + copyText.value);
   }
 </script>
+</div>

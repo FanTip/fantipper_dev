@@ -1,17 +1,19 @@
 <meta name="csrf-token" content="{{csrfToken}}" />
 <div class="container">
   <link rel="stylesheet" href='/css/creatorprofileindex.css' />
-  <link rel="stylesheet" href='/css/userProfileEdit.css' />
+  <link rel="stylesheet" href='/css/userProfile.css' />
   <script src="quill/quill.min.js"></script>
   <script src="/javascripts/username_finder.js"></script>
 
   <input type="hidden" value="{{csrfToken}}">
   <div class="row" id="profile_nav">
-    <div class="col-lg-3" style="border-right : 1px double gray">
+    <div class="col-lg-3" id="primary-lg">
       <ul class="list-group">
         <li class="list-group">
-          <span> <a href="/creatorprofile"> <img src="{{creatorTile}}" alt="..." class="rounded-circle" height="50px"
-                width="50px"></a>
+          <span>
+            <a href="/creatorprofile">
+              <img src="{{creatorTile}}" alt="..." class="rounded-circle">
+            </a>
             <p>{{CreatorName}}</p>
         </li>
         <li class="list-group">
@@ -40,7 +42,7 @@
                 </li> --}}
         <li class="list-group">
           <div class="dropdown-divider"></div>
-          <a href="/profile">Back to fan profile</a>
+          <a href="/profile">Back to Fan Profile</a>
         </li>
         <div class="dropdown-divider"></div>
         <button class="btn btn-danger float-sm-right" data-toggle="modal" data-target="#deleteAccount">Delete Creator
@@ -48,9 +50,9 @@
         <div class="dropdown-divider"></div>
         <a href="">Privacy Settings</a>
       </ul>
-
     </div>
-    <div class="col-lg-9" ng-controller="usernameCtrl">
+
+    <div class="col-lg-9" ng-controller="usernameCtrl" id="secondary-creator">
       <h3>Edit Creator Profile</h3>
       <form action="/selectactivecreator" method="POST" ng-init="creator_username = {{CreatorUserName}}">
         <div class="form-group" ng-model="creator_username">
@@ -114,23 +116,26 @@
 
         <div class="form-group">
           <h5>Change Profile image</h5>
-          <div id="profileImage cont">
+          <div class="text-center">
             <label class="label">
               <img src="../{{creatorTile}}" alt="Creator avatar" class="rounded image" id="avatar">
               <input type="file" class="sr-only" name="image" id="input" accept="image/*">
+              <div class="overlay">
+                <p>Change</p>
+              </div>
             </label>
             <div class="progress">
               <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0"
                 aria-valuemin="0" aria-valuemax="100">0%</div>
             </div>
 
-            <div class="alert" role="alert"></div>
             <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
               aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title" id="modalLabel">Crop the Creator image</h5>
+                    {{!-- FIXME: remove span  --}}
                     <button type="button" class="close" data-dismiss="modal" aria-label="close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -151,12 +156,14 @@
           <br>
 
           <h5>Change Background image</h5>
-          <div id="backgroundImage">
+          <div class="text-center" id="backgroundImage">
             {{!-- Implemeting background image --}}
             <label class="label">
-              <img src="../{{creatorBack}}" alt="background image" class="rounded" id="background" width="300"
-                height="200">
+              <img src="../{{creatorBack}}" alt="background image" class="rounded image-background" id="background">
               <input type="file" class="sr-only" name="image" id="background-input" accept="image/*">
+              <div class="overlay">
+                <p>Change</p>
+              </div>
             </label>
             <div class="background-progress">
               <div id="background-progress-bar" class="progress-bar progress-bar-striped progress-bar-animated"
@@ -188,11 +195,10 @@
             </div>
           </div>
         </div>
-        <div id="testing">
 
-        </div>
         <div class="form-group">
-          <label for="categories">CATEGORIES</label>
+          <h5>Categories</h5>
+          <label for="categories"></label>
           <div class="row">
             <div class="col-sm-4">
               <div class="checkbox">
@@ -274,7 +280,8 @@
 
         {{!-- <div id="creator_profile_create-part_3" > --}}
         <div class="form-group">
-          <label for="short_desc" id="label_name">ABOUT YOU</label>
+          <h5> About You</h5>
+          <label for="short_desc" id="label_name"></label>
 
           <!-- Create the toolbar container -->
           <div id="toolbar">
@@ -314,7 +321,7 @@
         <form action="/selectactivecreator/delete" method="POST">
           <input type="hidden" name="_csrf" value="{{csrfToken}}">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">No, Go back!</button>
-          <button type="submit" class="btn btn-primary">I'm pretty sure!</button>
+          <button type="submit" class="btn btn-success">I'm pretty sure!</button>
         </form>
 
       </div>

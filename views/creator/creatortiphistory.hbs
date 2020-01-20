@@ -1,8 +1,8 @@
 <meta name="csrf-token" content="{{csrfToken}}" />
 <div class="container">
   <link rel="stylesheet" href='/css/userProfile.css' />
-  <div class="row" style="margin-top:1%;">
-    <dir class="col-sm-3" style="border-right : 1px double gray">
+  <div class="row">
+    <dir class="col-sm-3" id="primary">
       <ul class="list-group">
         <li class="list-group">
           <span> <a href="/creatorprofile"> <img src="{{creatorTile}}" alt="..." class="rounded-circle" height="50px"
@@ -35,14 +35,14 @@
                 </li> --}}
         <li class="list-group">
           <div class="dropdown-divider"></div>
-          <a href="/profile">Back to fan profile</a>
+          <a href="/profile">Back to Fan Profile</a>
         </li>
       </ul>
     </dir>
-    <div class="col-sm-9 ">
+    <div class="col-sm-9" id="secondary">
       <div class="row">
         <div class="col-sm-6">
-          <h4>Creator Tip History</h4>
+          <h2>Creator Tip History</h2>
         </div>
         <div class="col-sm-3"> <button id="request_payout" class="btn btn-primary" data-toggle="modal"
             data-target="#payoutModal">

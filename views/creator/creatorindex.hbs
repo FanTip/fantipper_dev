@@ -3,7 +3,7 @@
   <link rel="stylesheet" href='/css/userProfile.css' />
   <input type="hidden" value="{{csrfToken}}">
   <div class="row" id="profile_nav">
-    <div class="col-lg-3" style="border-right : 1px double gray">
+    <div class="col-lg-3" id="primary">
       <ul class="list-group">
         <li class="list-group">
           <span> <a href="/creatorprofile"> <img src="{{creatorTile}}" alt="..." class="rounded-circle" height="50px"
@@ -36,13 +36,13 @@
                 </li> --}}
         <li class="list-group">
           <div class="dropdown-divider"></div>
-          <a href="/profile">Back to fan profile</a>
+          <a href="/profile">Back to Fan Profile</a>
         </li>
       </ul>
 
 
     </div>
-    <div class="col-lg-9">
+    <div class="col-lg-9" id="secondary">
       <h2>Creator Profile</h2>
       <div class="container-fluid body-content">
         <div class="row" id="rowOpacity">

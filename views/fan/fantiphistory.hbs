@@ -1,7 +1,7 @@
 <div class="container">
   <link rel="stylesheet" href='/css/userProfile.css' />
-  <div class="row" style="margin-top:1%;">
-    <dir class="col-sm-3" style="border-right : 1px double gray">
+  <div class="row">
+    <dir class="col-sm-3" id="primary">
       <ul class="list-group">
         <li class="list-group">
           <span> <a href="/profile"> <img src="{{imagePath}}" alt="..." class="rounded-circle" height="50px"
@@ -41,8 +41,8 @@
         </li>
       </ul>
     </dir>
-    <div class="col-sm-9 ">
-      <h4>Fan Tip History</h4>
+    <div class="col-sm-9" id="secondary">
+      <h2>Fan Tip History</h2>
       <input id="fan_history" type="hidden" value="fan" />
       <div id="fan_history_base"></div>
 
