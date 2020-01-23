@@ -4,13 +4,15 @@
 <link rel="stylesheet" href='/css/stripe_save_card.css' />
 <script src="/javascripts/stripe_save_card.js"></script>
   <div class="container" id="editfanptofile">
-  <div class="row" style="margin-top:1%;">
-    <div class="col-lg-3" style="border-right : 1px double gray">
+  <div class="row">
+    <div class="col-lg-3" id="primary-lg">
       <ul class="list-group">
         <li class="list-group">
-          <span><a href="/profile"> <img src="{{imagePath}}" alt="..." class="rounded-circle" height="50px"
-                width="50px"></a>
-            <a href="/editImage" class="glyphicon glyphicon-pencil"></a></span>
+          <span>
+            <a href="/profile">
+              <img src="{{imagePath}}" alt="..." class="rounded-circle">
+            </a>
+          </span>
           <p>{{name}}</p>
         </li>
         <li class="list-group">
@@ -50,45 +52,49 @@
         </li>
       </ul>
     </div>
-    <div class="col-lg-9" ng-controller="myCtrl as m">
-      <h4>Edit fan profile</h4>
-      <div class="row justify-content-center">
-        <div class="col-4 cont">
 
-          <label class="label">
-            <img src="{{imagePath}}" alt="user profile picture" class="rounded-circle image" height="200px"
-              width="200px" id="fan-avatar">
-            <input type="file" class="sr-only" name="image" id="fan-input" accept="image/*">
-            <input type="hidden" value={{csrfToken}} id="csrf_field">
-            <div class="middle">
-              <p>Change</p>
-            </div>
-          </label>
-
-          <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="modalLabel">Edit profile image</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+    <div class="col-lg-9" ng-controller="myCtrl as m" id="secondary">
+      <h2>Edit fan profile</h2>
+      <div class="text-center">
+        <label class="label">
+          <img src="{{imagePath}}" alt="user profile picture" class="rounded-circle image" id="fan-avatar">
+          <input type="file" class="sr-only" name="image" id="fan-input" accept="image/*">
+          <input type="hidden" value={{csrfToken}} id="csrf_field">
+          <div class="overlay">
+            <p>Change</p>
+          </div>
+        </label>
+        {{!-- Modal for uploading image --}}
+        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Edit profile image</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="img-container">
+                  <img src="{{imagePath}}" id="image" height="600" width="600">
                 </div>
-                <div class="modal-body">
-                  <div class="img-container">
-                    <img src="{{imagePath}}" id="image" height="600" width="600">
+              </div>
+
+              <div class="modal-footer">
+                <div class="btn-toolbar" role="toolbar">
+                  <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                   </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                  <button type="button" class="btn btn-primary" id="crop">Crop</button>
+                  <div class="btn-group" role="group" aria-label="Second group">
+                    <button class="btn btn-success" type="button" id="crop">Crop</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      
       <div class="row">
         <div class="col-12">
           <form action="/editfanprofile" method="POST">
@@ -102,7 +108,7 @@
 
               {{else}}
               <div class="form-group col-md-3">
-                <label for="" id="transparenttext">Change Password</label>
+                <label for="Change Password">Change Password</label>
                 <button type="button" class="btn btn-success float-sm-right form-control" data-toggle="modal"
                   data-target="#changePassword">Change Password</button>
               </div>
