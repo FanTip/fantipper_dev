@@ -1,6 +1,7 @@
 .container {
-  padding-bottom: 60px;
+  // padding-bottom: 60px;
 }
+
 
 #editPLink {
   color: #00D278;
@@ -10,6 +11,103 @@
   color: #00b96a;
 }
 
-#transparenttext {
-  color: transparent;
+#primary, #primary-lg { 
+  margin-right: auto;
+  border-right: 1px double gray;
+
+  a .rounded-circle {
+    height: 80px;
+    width: 80px;
+    margin-bottom: 0.5em;
+  }
 }
+
+
+#secondary {
+  .text-center {
+    position: relative;
+    color: white;
+
+    .image {
+      height: 200px;
+      width: 200px;
+    }
+
+    .overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+    }
+  }
+
+  label:hover {
+    .image {
+      opacity: 0.3;
+    }
+
+    .overlay {
+      opacity: 1;
+    }
+  }
+}
+
+#secondary-creator{
+  .text-center {
+    position: relative;
+    color: white;
+
+    .image {
+      height: 200px;
+      width: 200px;
+    }
+
+    .image-background {
+      height: 260px;
+      // width: 300px;
+    }
+
+    .overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+    }
+  }
+
+  label:hover {
+    .image, .image-background  {
+      opacity: 0.3;
+    }
+
+    .overlay {
+      opacity: 1;
+    }
+  }
+}
+
+@media screen and (max-width: 575px) {
+  #primary { 
+    padding-bottom: 2em;
+    border-right: 0px;
+    border-bottom : 1px double gray;
+    margin-bottom: 2em;
+   }
+}
+
+@media screen and (max-width: 991.98px) {
+  #primary-lg { 
+    padding-bottom: 2em;
+    border-right: 0px;
+    border-bottom : 1px double gray;
+    margin-bottom: 2em;
+   }
+}
+
+
+// smaller than or equal to 768 px (smartphones)
+// larger than 768 px (small devices, tablets)
+// larger than 992 px (medium devices)
+// larger than 1200px (large devices)

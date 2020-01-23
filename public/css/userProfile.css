@@ -1,11 +1,71 @@
-.container {
-  padding-bottom: 60px; }
-
 #editPLink {
   color: #00D278; }
 
 #editPLink:hover {
   color: #00b96a; }
 
-#transparenttext {
-  color: transparent; }
+#primary, #primary-lg {
+  margin-right: auto;
+  border-right: 1px double gray; }
+  #primary a .rounded-circle, #primary-lg a .rounded-circle {
+    height: 80px;
+    width: 80px;
+    margin-bottom: 0.5em; }
+
+#secondary .text-center {
+  position: relative;
+  color: white; }
+  #secondary .text-center .image {
+    height: 200px;
+    width: 200px; }
+  #secondary .text-center .overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    opacity: 0; }
+
+#secondary label:hover .image {
+  opacity: 0.3; }
+
+#secondary label:hover .overlay {
+  opacity: 1; }
+
+#secondary-creator .text-center {
+  position: relative;
+  color: white; }
+  #secondary-creator .text-center .image {
+    height: 200px;
+    width: 200px; }
+  #secondary-creator .text-center .image-background {
+    height: 260px; }
+  #secondary-creator .text-center .overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    opacity: 0; }
+
+#secondary-creator label:hover .image, #secondary-creator label:hover .image-background {
+  opacity: 0.3; }
+
+#secondary-creator label:hover .overlay {
+  opacity: 1; }
+
+@media screen and (max-width: 575px) {
+  #primary {
+    padding-bottom: 2em;
+    border-right: 0px;
+    border-bottom: 1px double gray;
+    margin-bottom: 2em; } }
+
+@media screen and (max-width: 991.98px) {
+  #primary-lg {
+    padding-bottom: 2em;
+    border-right: 0px;
+    border-bottom: 1px double gray;
+    margin-bottom: 2em; } }
