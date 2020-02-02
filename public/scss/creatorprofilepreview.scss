@@ -1,284 +1,178 @@
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-    
-    .text-center {
-        text-align: center;
+@media screen and (max-width: 768px) {
+    .body-content .creator-content .creator-main {
+        border-right: 0px;
     }
-    
-    .creator-head {
-        height: 100%;
-        background: no-repeat center center;
-        background-size: cover;
-        color: #fff;
-        height: 576px;
-        width: 100%;
-        padding-top: 118px;
-        position: relative;
+}
+
+.creator-head {
+    background: no-repeat center center;
+    background-size: cover;
+    color: #fff;
+    height: 700px;
+    width: 100%;
+    position: relative;
         /* Center and scale the image nicely */
-      
-        img {
-            width: 170px;
-            height: 170px;
-        }
+    
+    .background-fliter-div {
+        background-color: rgba(30, 30, 30, 0.5);
+        padding-top: 100px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
 
-        .img-circle {
-            border-radius: 50%;
-        }
+    #creator-name {
+        font-family: 'Larsseit-Bold';
+        font-size: 40px;
+        margin-top: 34px;
+        text-transform: uppercase;
+    }
+    
+    #creator-location {
+        text-transform: uppercase;
+        font-family: 'Larsseit-Bold';
+        font-size: 12px;
+        color: #d0d2d3;
+        letter-spacing: 1px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }        
+    
+    .category-token {
+        font-family: 'Larsseit-Bold';
+        border: 1px solid #d0d2d3;
+        border-radius: 5px;
+        padding: 2px;
+        color: #d0d2d3;
+        font-size: 11px;
+        line-height: 26px;
+        letter-spacing: .5px;
+    }
 
-        h2 {
-            font-family: 'Larsseit-Bold';
-            font-size: 40px;
-            margin-top: 34px;
-        }
+    .creator-share {
+        font-size: 13px;    
+        margin-top: 70px;
 
-        h4 {
-            text-transform: uppercase;
-            font-family: 'Larsseit-Bold';
-            font-size: 12px;
-            color: #d0d2d3;
-            margin-bottom: 18px;
-            letter-spacing: 1px;
-            margin-top: 20px;
-        }
-
-        h3 {
-            text-transform: uppercase;
-            font-size: 12px;
-            margin-top: 0px;
-            letter-spacing: 1px;
-        }
-
-        .category-token {
-            border: 1px solid #d0d2d3;
+        #share-facebook {
             border-radius: 5px;
-            padding: 2px;
-            color: #d0d2d3;
-            font-size: 11px;
+            transition: all 200ms ease-out;
             font-family: 'Larsseit-Bold';
-            line-height: 26px;
-            text-transform: uppercase;
-            letter-spacing: .5px;
+            background-color: #355f9f;
         }
 
-        .creator-share {
-            font-size: 13px;    
-            margin-top: 70px;
-
-            #share-facebook {
-                border-radius: 5px;
-                transition: all 200ms ease-out;
-                font-family: 'Larsseit-Bold';
-                background-color: #355f9f;
-            }
-
-            #share-twitter {
-                border-radius: 5px;
-                background-color: #2ba9e1;
-                transition: all 200ms ease-out;
-                font-family: 'Larsseit-Bold';
-            }
-
-            #share-url {
-                border-radius: 5px;
-                color: #666;
-                background-color: #ccc;
-                transition: all 200ms ease-out;
-                font-family: 'Larsseit-Bold';
-            }
+        #share-twitter {
+            border-radius: 5px;
+            background-color: #2ba9e1;
+            transition: all 200ms ease-out;
+            font-family: 'Larsseit-Bold';
         }
-        .creator-share > button {
-            color: #fff;
-            margin: 2px;
-            border: none;
-            padding-left: 10px;
-            padding-right: 10px;
-            height: 32px;
+
+        #share-url {
+            border-radius: 5px;
+            color: #666;
+            background-color: #ccc;
+            transition: all 200ms ease-out;
+            font-family: 'Larsseit-Bold';
         }
     }
-
-    // #rowOpacity{
-    //     background: rgba(39,62,84,0.82);
-    //     overflow: hidden;
-    //     height: 100%;
-    //     z-index: 3;
-    //     opacity: 0.1;
-    // }
-
-    .creator-content {
-        margin-top: 30px;
-
-        .creator-main {
-
-            #about {
-                border-bottom: 1px solid #e4e2e2;
-                margin-bottom: 20px;
-            
-                h4 {
-                    color: #00d278;
-                    text-transform: uppercase;
-                    font-family: 'Larsseit-Medium';
-                    font-size: 14px;
-                }
-            }
-
-            #gallery {
-                border-bottom: 1px solid #e4e2e2;
-                margin-bottom: 20px;
-
-                h4 {
-                    color: #00d278;
-                    text-transform: uppercase;
-                    font-family: 'Larsseit-Medium';
-                    font-size: 14px;
-                }
-            }
-
-            #members {
-                border-bottom: 1px solid #e4e2e2;
-                margin-bottom: 20px;
-
-                h4 {
-                    color: #00d278;
-                    text-transform: uppercase;
-                    font-family: 'Larsseit-Medium';
-                    font-size: 14px;
-                }
-            }
-        }
-
-        .creator-sidebar {
-            border-left: 1px solid #e4e2e2;
-
-            .btn-tip-listing {
-                background-image: url('/images/button-fantip.svg');
-                background-size: cover;
-                height: 40px;
-                width: 130px;   
-            }
-
-            .creator-tips-total {
-                
-                h5{
-                    margin-top: 10px;
-                    color: #8c8c8c;
-                    font-size: 14px;
-                    font-family: 'Larsseit-Bold';
-                    text-transform: uppercase;
-                    margin-bottom: 5px;
-                    letter-spacing: 1px;
-                }
-
-                .total {
-                    color: #333;
-                    font-size: 40px;
-                    font-family: 'Larsseit-Bold';
-                    margin-bottom: 18px;
-                    line-height: 40px;
-                }
-
-                .target-text {
-                    color: #00d178;
-                    font-size: 25px;
-                    font-family: 'Larsseit-Bold';
-                    line-height: 30px;
-                }
-            }
-            
-            #creatorFans {
-
-                .top-fan-list {
-
-                    h3 {
-                        text-transform: uppercase;
-                        font-size: 14px;
-                        color: #00d278;
-                        font-family: 'Larsseit-Bold';
-                        margin-bottom: 20px;
-                        margin-top: 0;
-                        margin-right: 10px;
-                        letter-spacing: 1px;
-                    }
-
-                    ul {
-                        padding-left: 0;
-                        height: 216px;
-                        overflow: hidden;
-
-                        li {
-                            position: relative;
-                            display: block;
-                            padding: 0;
-                            margin-bottom: 2px;
-                            background-color: #f5f5f5;
-                            height: 70px;
-                            border: none;
-                        }
-                    }
-                }
-            }
-        }
+    .creator-share > button {
+        color: #fff;
+        margin: 2px;
+        border: none;
+        padding-left: 10px;
+        padding-right: 10px;
+        height: 32px;
     }
+}
 
-    .creator-lower {
-        background-color: #f5f5f5;
-        padding-top: 65px;
-        margin-top: 60px;
-        padding-bottom: 60px;
+.creator-content {
+    margin-top: 30px;
 
-        .recent-comments {
+    .creator-main {
+        border-right: 2px double #e4e2e2;
 
-            h3 {
-                text-transform: uppercase;
-                font-size: 14px;
+
+        #about {
+            border-bottom: 1px solid #e4e2e2;
+            margin-bottom: 20px;
+        
+            h4 {
                 color: #00d278;
+                text-transform: uppercase;
+                font-family: 'Larsseit-Medium';
+                font-size: 14px;
+            }
+        }
+
+        #gallery {
+            border-bottom: 1px solid #e4e2e2;
+            margin-bottom: 20px;
+
+            h4 {
+                color: #00d278;
+                text-transform: uppercase;
+                font-family: 'Larsseit-Medium';
+                font-size: 14px;
+            }
+        }
+
+        #members {
+            border-bottom: 1px solid #e4e2e2;
+            margin-bottom: 20px;
+
+            h4 {
+                color: #00d278;
+                text-transform: uppercase;
+                font-family: 'Larsseit-Medium';
+                font-size: 14px;
+            }
+        }
+    }
+    
+
+
+    #content-secondary {
+
+        .btn-tip-listing {
+            background-image: url('/images/button-fantip.svg');
+            background-size: cover;
+            height: 40px;
+            width: 130px;   
+        }
+
+        .creator-tips-total {
+            
+            h5{
+                margin-top: 10px;
+                color: #8c8c8c;
+                font-size: 14px;
                 font-family: 'Larsseit-Bold';
-                margin-bottom: 20px;
-                margin-top: 0;
+                text-transform: uppercase;
+                margin-bottom: 5px;
                 letter-spacing: 1px;
             }
 
-            ul {
-                padding-left: 0;
-                overflow: hidden;
-            }
-
-            li {
-                position: relative;
-                display: block;
-                padding: 0;
-                margin-bottom: 15px;
-                background-color: #f5f5f5;
-                border: none;
-            }
-
-            img {
-                width: 70px;
-                height: 70px;
-                float: left;
-                clear: both;
-                margin-right: 16px;
-            }
-
-            .comment {
-                background-color: #fff;
-                min-height: 70px;
-                margin-left: 82px;
-                font-size: 14px;
+            .total {
                 color: #333;
-                padding: 20px;
+                font-size: 40px;
+                font-family: 'Larsseit-Bold';
+                margin-bottom: 18px;
+                line-height: 40px;
+            }
 
-                small {
-                    font-size: 14px;
-                    color: #999;
-                }
+            .target-text {
+                color: #00d178;
+                font-size: 25px;
+                font-family: 'Larsseit-Bold';
+                line-height: 30px;
             }
         }
+        
+        #creatorFans {
 
-        .creator-sidebar {
-
-            .fans {
-                clear: both;
+            .top-fan-list {
 
                 h3 {
                     text-transform: uppercase;
@@ -287,57 +181,153 @@
                     font-family: 'Larsseit-Bold';
                     margin-bottom: 20px;
                     margin-top: 0;
+                    margin-right: 10px;
                     letter-spacing: 1px;
                 }
 
-                .pull-left {
-                    float: left!important;
-                    color: #00d278;
-                }
-
-                .pull-right {
-                    float: right!important;
-                    color: #00d278;
-                }
-
-                .fan-list {
-                    list-style: none;
-                    padding-left: 0px;
+                ul {
+                    padding-left: 0;
+                    height: 216px;
+                    overflow: hidden;
 
                     li {
-                        display: inline-block;
-                        margin-bottom: 3px;
-
-                        img {
-                            width: 64px;
-                            height: 64px;
-                        }
+                        position: relative;
+                        display: block;
+                        padding: 0;
+                        margin-bottom: 2px;
+                        background-color: #f5f5f5;
+                        height: 70px;
+                        border: none;
                     }
                 }
             }
         }
+    }
+}
 
-        .creator-become-a-fan {
-            text-align: center;
-            align-items: center;
+.creator-lower {
+    background-color: #f5f5f5;
+    padding-top: 65px;
+    margin-top: 60px;
+    padding-bottom: 60px;
 
-            .btn-tip-listing {
-                background-image: url('/images/button-fantip.svg');
-                background-size: cover;                
-                height: 40px;
-                width: 130px;
-                display: inline-block;
+    .recent-comments {
+
+        h3 {
+            text-transform: uppercase;
+            font-size: 14px;
+            color: #00d278;
+            font-family: 'Larsseit-Bold';
+            margin-bottom: 20px;
+            margin-top: 0;
+            letter-spacing: 1px;
+        }
+
+        ul {
+            padding-left: 0;
+            overflow: hidden;
+        }
+
+        li {
+            position: relative;
+            display: block;
+            padding: 0;
+            margin-bottom: 15px;
+            background-color: #f5f5f5;
+            border: none;
+        }
+
+        img {
+            width: 70px;
+            height: 70px;
+            float: left;
+            clear: both;
+            margin-right: 16px;
+        }
+
+        .comment {
+            background-color: #fff;
+            min-height: 70px;
+            margin-left: 82px;
+            font-size: 14px;
+            color: #333;
+            padding: 20px;
+
+            small {
+                font-size: 14px;
+                color: #999;
             }
+        }
+    }
+
+    .creator-sidebar {
+
+        .fans {
+            clear: both;
 
             h3 {
                 text-transform: uppercase;
-                font-size: 24px;
+                font-size: 14px;
                 color: #00d278;
                 font-family: 'Larsseit-Bold';
                 margin-bottom: 20px;
                 margin-top: 0;
                 letter-spacing: 1px;
             }
+
+            .pull-left {
+                float: left!important;
+                color: #00d278;
+            }
+
+            .pull-right {
+                float: right!important;
+                color: #00d278;
+            }
+
+            .fan-list {
+                list-style: none;
+                padding-left: 0px;
+
+                li {
+                    display: inline-block;
+                    margin-bottom: 3px;
+
+                    img {
+                        width: 64px;
+                        height: 64px;
+                    }
+                }
+            }
         }
+    }
+
+    .creator-become-a-fan {
+        text-align: center;
+        align-items: center;
+
+        .btn-tip-listing {
+            background-image: url('/images/button-fantip.svg');
+            background-size: cover;                
+            height: 40px;
+            width: 130px;
+            display: inline-block;
+        }
+
+        h3 {
+            text-transform: uppercase;
+            font-size: 24px;
+            color: #00d278;
+            font-family: 'Larsseit-Bold';
+            margin-bottom: 20px;
+            margin-top: 0;
+            letter-spacing: 1px;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .body-content .creator-content .creator-main {
+        border-right: 0px;
     }
 }
