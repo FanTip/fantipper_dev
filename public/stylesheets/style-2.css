@@ -16,7 +16,7 @@ html, body {
 }
 
 .main {
-    padding-bottom: 250px;
+    padding-bottom: 280px;
 }
 
 .container {
@@ -36,18 +36,32 @@ html, body {
 }
 
 footer {
-    height: 230px;
+    height: 260px;
     width: 100%;
-    margin-top: -230px;
+    margin-top: -260px;
     overflow: hidden;
     background-color: #414042;
-    font-family: 'Larsseit';
+    font-family: 'Larsseit-Light';
     position: relative;
 }
 
 footer h5 {
     letter-spacing: 2px;
     color: #7f7e80;
+}
+
+footer #footer_c {
+    color: white;
+}
+
+footer #footersocialmedia {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+footer #footersocialmedia li {
+    display: inline;
 }
 
 footer a {

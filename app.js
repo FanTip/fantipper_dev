@@ -49,6 +49,7 @@ const facebookRouter = require('./routes/facebook-login');
 const googleRouter = require('./routes/google-login');
 
 const fanTipHistory = require('./routes/fantiphistory');
+const paymentoptions = require('./routes/paymentoptions');
 const creatorTipHistory = require('./routes/creatortiphistory');
 
 const stripeRouter = require('./routes/api/stripe');
@@ -206,6 +207,7 @@ app.use('/auth/google', googleRouter);
 
 app.use('/messages', messagRouter);
 app.use('/fantiphistory', fanTipHistory);
+app.use('/paymentoptions', paymentoptions);
 app.use('/creatortiphistory', creatorTipHistory);
 
 app.use('/payment', stripeRouter);

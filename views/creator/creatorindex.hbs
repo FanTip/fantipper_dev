@@ -3,7 +3,7 @@
   <link rel="stylesheet" href='/css/userProfile.css' />
   <input type="hidden" value="{{csrfToken}}">
   <div class="row" id="profile_nav">
-    <div class="col-lg-3" id="primary">
+    <div class="col-lg-3" id="primary-lg">
       <ul class="list-group">
         <li class="list-group">
           <span> <a href="/creatorprofile"> <img src="{{creatorTile}}" alt="..." class="rounded-circle" height="50px"
@@ -26,7 +26,7 @@
           <a href="" id="editPLink"><i class="fas fa-comments"></i>Messages</a>
         </li>
         <li class="list-group">
-          <a href="/creatortiphistory" id="editPLink"><i class="fas fa-book"></i>Tip History</a>
+          <a href="/creatortiphistory" id="editPLink"><i class="fas fa-money-check-alt"></i>Tip History</a>
         </li>
         {{!-- <li class="list-group">
                     <a href="" id="editPLink"><i class="fas fa-money-check-alt"></i>Account Balance</a>
@@ -36,43 +36,34 @@
                 </li> --}}
         <li class="list-group">
           <div class="dropdown-divider"></div>
-          <a href="/profile" id="editPLink">Back to fan profile</a>
+          <a href="/profile" id="editPLink">Back to Fan Profile</a>
         </li>
       </ul>
 
 
     </div>
-    <div class="col-lg-9" id="secondary">
+    <div class="col-lg-9" id="secondary-creator">
       <h2>Creator Profile</h2>
       <div class="container-fluid body-content">
-        <div class="row" id="rowOpacity">
-          <div class="creator-head text-center" style="background-image: url({{creatorBack}});">
-            <div style="
-                background-color: rgba(30, 30, 30, 0.5);
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-            ">
-              <div style="padding-top: 100px;">
-                <img src="{{creatorTile}}" class="img-circle" alt="{{creatorTile}}">
-                <h2>{{CreatorName}}</h2>
-                <h4>{{CreatorLocation}}</h4>
-                <h3>
-                  {{#each categories}}
-                  <span class="category-token">{{this}}</span>
-                  {{/each}}
-                </h3>
-                <div class="creator-share">
-                  {{#if Creator_facebook_url}}
-                  <button id="share-facebook"><i class="fab fa-facebook-f"></i>Share</button>
-                  {{/if}}
-                  {{#if Creator_twitter_url}}
-                  <button id="share-twitter"><i class="fab fa-twitter"></i>Tweet</button>
-                  {{/if}}
-                  <button id="share-url"><i class="fas fa-paperclip"></i>fantipper.com/{{CreatorURL}}</button>
-                </div>
+        <div class="row">
+          <div class="text-center creator-head" style="background-image: url({{creatorBack}});">
+            <div class="background-fliter-div">
+              <img src="{{creatorTile}}" class="rounded-circle" alt="{{creatorTile}}">
+              <p id="creator-name">{{CreatorName}}</p>
+              <p id="creator-location">{{CreatorLocation}}</p>
+              <div>
+                {{#each categories}}
+                <span class="category-token">{{this}}</span>
+                {{/each}}
+              </div>
+              <div class="creator-share">
+                {{#if Creator_facebook_url}}
+                <button id="share-facebook"><i class="fab fa-facebook-f"></i>Share</button>
+                {{/if}}
+                {{#if Creator_twitter_url}}
+                <button id="share-twitter"><i class="fab fa-twitter"></i>Tweet</button>
+                {{/if}}
+                <button id="share-url"><i class="fas fa-paperclip"></i>fantipper.com/{{CreatorURL}}</button>
               </div>
             </div>
           </div>
@@ -93,7 +84,7 @@
                                 <h4>Members</h4>
                             </div> --}}
             </div>
-            <div class="col-md-5 creator-sidebar">
+            <div class="col-md-5 creator-sidebar" id="content-secondary">
               <a href="/tips">
                 <div class="btn-tip-listing"></div>
               </a>
