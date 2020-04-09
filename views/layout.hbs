@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html ng-app='fantipperApp' lang="en">
+{{!-- <html ng-app='fantipperApp' lang="en"> --}}
+<html>
 
 <head>
   <title>{{title}}</title>
@@ -41,7 +42,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular-route.js"></script>
   {{!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script> --}}
 
-  <script src="/javascripts/library/typeahead.js"></script>
+  <script src="/javascripts/sources/library/typeahead.js"></script>
 
   {{!--Quill text editor --}}
   <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
@@ -71,7 +72,7 @@
   <script src="/cropperjs/cropper.js"></script>
 
   {{!-- Moments.js intergration --}}
-  <script src="/javascripts/library/moments.js"></script>
+  <script src="/javascripts/sources/library/moments.js"></script>
 
   <link rel="stylesheet" href='/css/navbar.css' />
 
@@ -83,22 +84,22 @@
   <script src="https://js.stripe.com/v3/"></script>
   {{!-- Custom jQuery functions --}}
   {{!-- <script src="/javascripts/jquery-functions-1.js"></script> --}}
-  <script src="/javascripts/jquery-functions-2.js"></script>
-  <script src="/javascripts/jquery-functions-3.js"></script>
-  <script src="/javascripts/jquery-functions-4.js"></script>
-  <script src="/javascripts/jquery-functions-5.js"></script>
-  <script src="/javascripts/jquery-functions-6.js"></script>
-  <script src="/javascripts/generic_javascript.js"></script>
-  <script src="/javascripts/tip_handler.js"></script>
-  <script src="/javascripts/message_handler.js"></script>
-  <script src="/javascripts/fan_message_handler.js"></script>
-  <script src="/javascripts/attach_all_fans.js"></script>
-  <script src="/javascripts/checking_if_card_set.js"></script>
+  <script src="/javascripts/sources/jquery-functions-2.js"></script>
+  <script src="/javascripts/sources/jquery-functions-3.js"></script>
+  <script src="/javascripts/sources/jquery-functions-4.js"></script>
+  <script src="/javascripts/sources/jquery-functions-5.js"></script>
+  <script src="/javascripts/sources/jquery-functions-6.js"></script>
+  <script src="/javascripts/sources/generic_javascript.js"></script>
+  <script src="/javascripts/sources/tip_handler.js"></script>
+  <script src="/javascripts/sources/message_handler.js"></script>
+  <script src="/javascripts/sources/fan_message_handler.js"></script>
+  <script src="/javascripts/sources/attach_all_fans.js"></script>
+  <script src="/javascripts/sources/checking_if_card_set.js"></script>
   {{!-- <script src="/stripe/stripe.js"></script> --}}
 
   {{!-- Custom angularjs functions --}}
-  <script src="/javascripts/setting-1.js"></script>
-  <script src="/javascripts/setting-2.js"></script>
+  <script src="/javascripts/sources/setting-1.js"></script>
+  <script src="/javascripts/sources/setting-2.js"></script>
   {{!-- <script src="https://checkout.stripe.com/checkout.js"></script> --}}
 
   {{!-- Responsive Layout. Set the view on all screens at a 1×1 aspect ratio 
@@ -400,5 +401,6 @@
       </div>
     </div> <!-- Footer div -->
   </footer>
+    <script src="/dist/main.js"></script>
 </body>
 </html>

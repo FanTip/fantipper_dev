@@ -1,6 +1,6 @@
 <meta name="csrf-token" content={{csrfToken}} />
 <link rel="stylesheet" href="/css/tiplist.css" />
-<script src="/javascripts/generic_javascript.js"></script>
+<script src="/javascripts/sources/generic_javascript.js"></script>
 <script src="https://unpkg.com/popmotion/dist/popmotion.global.min.js"></script>
 
 <div class="container-fluid" id="body">
@@ -44,6 +44,10 @@
   {{/if}}
 
   <div class="container">
+
+    <div id="fans-list-base"></div>
+
+
     <div ng-controller="myCtrl as m" class="row" id="listing">
       <p ng-init="users = {{objects}}"></p>
       <div
@@ -434,9 +438,9 @@
                 </div>
               </form>
               {{! Preparing the Stripe card element }}
-              <script src="/javascripts/cardprepare.js"></script>
-              <script src="/javascripts/paywith_saved_card.js"></script>
-              <script src="/javascripts/jquery-functions-1.js"></script>
+              <script src="/javascripts/sources/cardprepare.js"></script>
+              <script src="/javascripts/sources/paywith_saved_card.js"></script>
+              <script src="/javascripts/sources/jquery-functions-1.js"></script>
             </div>
           </div>
         </div>
