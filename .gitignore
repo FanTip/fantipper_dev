@@ -1,10 +1,11 @@
 node_modules
 public/uploads
+public/dist/*.js
+public/dist/*.map
+
 # Ignore editors
 .access.log
 out/
 .vscode/
 .vs
 .access.log
-public/dist/*.js
-public/dist/*.map
