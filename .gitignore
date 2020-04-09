@@ -6,3 +6,5 @@ out/
 .vscode/
 .vs
 .access.log
+public/dist/*.js
+public/dist/*.map
