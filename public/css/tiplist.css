@@ -46,7 +46,12 @@
   .listing .btn-tip-listing {
     background-image: url("/images/button-fantip.svg");
     height: 40px;
-    width: 130px; }
+    width: 130px; 
+    background-size: cover;
+    border-radius: 10px;
+    box-shadow: 1px 1px #00d278 !important;
+    outline: none;
+  }
   .listing .listing-content {
     height: 242px;
     padding: 19px;

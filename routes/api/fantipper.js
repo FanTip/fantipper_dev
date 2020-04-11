@@ -3,9 +3,9 @@ var express = require('express');
 var router = express.Router();
 
 
-router.get('/', function(req, res) {
+router.get('/', function (req, res) {
     user.find()
-        .exec(function(err, resUser) {
+        .exec(function (err, resUser) {
             if (err) {
                 res.status(500).send(err);
             } else {
@@ -14,10 +14,20 @@ router.get('/', function(req, res) {
         });
 });
 
+router.get('/logged', async function (req, res) {
+    try {
+        if (req.user._id) {
+            res.status(200).json(true);
+        }
+    }
+    catch (e) {
+        res.status(500).send(e);
+    }
+});
 
-router.post('/', function(req, res) {
+router.post('/', function (req, res) {
     user.findOne({ email: req.body.email }).exec(
-        function(err, resUser) {
+        function (err, resUser) {
             if (err) { res.status(500).send(err) }
             if (resUser) {
                 res.status(200).send("User already exists, Please login");
@@ -27,7 +37,7 @@ router.post('/', function(req, res) {
                 newUser.password = newUser.encryptPassword(req.body.password);
                 newUser.name = req.body.name;
 
-                newUser.save(function(err, result) {
+                newUser.save(function (err, result) {
                     if (err) {
                         res.status(500).send(err);
                     }
@@ -38,11 +48,11 @@ router.post('/', function(req, res) {
     );
 });
 
-router.get('/found/:username', function(req, res, next) {
+router.get('/found/:username', function (req, res, next) {
     var searchQuery = {
         'creator.creatorNameuser': req.params.username
     }
-    user.findOne(searchQuery).exec(function(err, result) {
+    user.findOne(searchQuery).exec(function (err, result) {
         if (result) {
             res.status(200).send(result);
         } else {
@@ -52,11 +62,11 @@ router.get('/found/:username', function(req, res, next) {
 
 });
 
-router.get('/:email', function(req, res, next) {
+router.get('/:email', function (req, res, next) {
     var searchQuery = {
         'email': req.params.email
     }
-    user.findOne(searchQuery).exec(function(err, result) {
+    user.findOne(searchQuery).exec(function (err, result) {
         if (result) {
             res.status(200).send(result);
         } else {
@@ -66,10 +76,10 @@ router.get('/:email', function(req, res, next) {
 
 });
 
-router.get('/:email/:password', function(req, res, next) {
+router.get('/:email/:password', function (req, res, next) {
     if (req.params.email && req.params.password) {
         user.findOne({ email: req.params.email })
-            .exec(function(err, resUser) {
+            .exec(function (err, resUser) {
                 if (err) {
                     res.status(500).send(err);
                 }

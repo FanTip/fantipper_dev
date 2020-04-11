@@ -1,0 +1,1 @@
+export const FETCH_FANS_LIST = 'FETCH_FANS_LIST';
