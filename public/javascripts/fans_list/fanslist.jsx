@@ -27,11 +27,15 @@ class FansList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tipmodal: false,
-      name: ''
+      tipModal: false,
+      name: '',
+      imgUrl: '',
+      tipAmount: 0
     };
 
     this.toggle = this.toggle.bind(this);
+
+    this.setTipAMount = this.setTipAMount.bind(this);
 
     this.submit = this.submit.bind(this);
     this.getFan = this.getFan.bind(this);
@@ -41,15 +45,22 @@ class FansList extends React.Component {
     this.props.fetch_fans_list();
   }
 
+  setTipAMount(amount) {
+    this.setState(prevState => ({
+      tipAmount: amount
+    }));
+  }
+
   submit(event) {
     event.preventDefault();
     console.log('vhfbvfbdhvbjhbfdjh');
   }
   toggle(fan) {
-    console.log("the fuck");
+    console.log(fan.creatorName);
     this.setState(prevState => ({
       tipModal: !prevState.tipModal,
-      name: fan.creatorName
+      name: fan.creatorName,
+      imgUrl: fan.image
     }));
   }
 
@@ -70,7 +81,7 @@ class FansList extends React.Component {
                   <img src={fan.image} loadin="lazy" className="card-img-top" alt="Profile Pic" />
                 </a>
                 <div className="listing-content">
-                  <a href={fan.creatorURL}> 
+                  <a href={fan.creatorURL}>
                     <h3 className="one-line" title={fan.creatorName}>{fan.creatorName}</h3>
                     <div className="listing-location one-line"> {fan.creatorLocation}</div>
                     {/* TODO */}
@@ -86,28 +97,6 @@ class FansList extends React.Component {
                 </div>
               </div>
             </div>
-            <Modal isOpen={this.state.tipmodal} toggle={() => (this.toggle(""))} className={this.props.className}>
-              <ModalHeader toggle={() => (this.toggle(""))}>{this.state.name}</ModalHeader>
-              <ModalBody>
-                <Form onSubmit={this.submit}>
-                  <FormGroup row>
-                    <Label for="item" sm={2}>Add {this.state.name}</Label>
-                    <Col sm={10}>
-                      <p>hfjdvgjhfsdgbvjhfdbvjh</p>
-                    </Col>
-                  </FormGroup>
-                  <FormGroup check row>
-                    <Col sm={{ size: 10, offset: 1 }}>
-                      <Button>Submit {this.state.name}</Button>
-                    </Col>
-                  </FormGroup>
-                </Form>
-              </ModalBody>
-              {/* <ModalFooter>
-            <Button color="primary" onClick={() => (this.toggle(""))}>Do Something</Button>{' '}
-            <Button color="secondary" onClick={() => (this.toggle(""))}>Cancel</Button>
-          </ModalFooter> */}
-            </Modal>
           </>
         )
       });
@@ -121,7 +110,64 @@ class FansList extends React.Component {
       <div className="row" id="listing">
         {fans_list}
 
-      </div>
+
+        <Modal isOpen={this.state.tipModal} toggle={() => (this.toggle(""))} className={this.props.className}>
+          <ModalHeader toggle={() => (this.toggle.button(this, ""))}> Tip {this.state.name}</ModalHeader>
+          <ModalBody>
+            <Row>
+              {/* fan image in circled */}
+              <Col lg={3}>
+                <img src={this.state.imgUrl} alt="" className="rounded-circle"
+                  height="100px"
+                  width="100px"
+                  id="receiver_image" />
+              </Col>
+
+              {/* Tip amount radio button */}
+              <Col lg={9}>
+                <FormGroup check>
+                  <Label check>HOW MUCH WOULD YOU LIKE TO TIP?</Label>
+                  <div className="input-group">
+                    <div className="input-group-prepend">
+                      <span className="input-group-text" style={{ color: '#00d278' }}>$</span>
+                      <Input type="text" name="tipamount" id="tipamount" className="form-control" required></Input>
+                    </div>
+                  </div>
+                </FormGroup>
+                <FormGroup>
+                  <div className="form-row">
+                    <Col xs={3}>
+                      <Label className="radio-inline" check>
+                        <Input type="radio" name="radio1" value='2' />{' '}$2
+                    </Label>
+                    </Col>
+                    <Col xs={3}>
+                      <Label className="radio-inline" check>
+                        <Input type="radio" name="radio1" value='2' />{' '}$2
+                    </Label>
+                    </Col>
+                    <Col xs={3}>
+                      <Label className="radio-inline" check>
+                        <Input type="radio" name="radio1" value='2' />{' '}$2
+                    </Label>
+                    </Col>
+                    <Col xs={3}>
+                      <Label className="radio-inline" check>
+                        <Input type="radio" name="radio1" value='2' />{' '}$2
+                    </Label>
+                    </Col>
+                  </div>
+                </FormGroup>
+              </Col>
+            </Row>
+            <p>{this.state.name}</p>
+          </ModalBody>
+          {/* <ModalFooter>
+            <Button color="primary" onClick={() => (this.toggle(""))}>Do Something</Button>{' '}
+            <Button color="secondary" onClick={() => (this.toggle(""))}>Cancel</Button>
+          </ModalFooter> */}
+        </Modal>
+      </div >
     )
   }
 }

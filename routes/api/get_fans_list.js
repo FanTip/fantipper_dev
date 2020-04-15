@@ -17,13 +17,11 @@ router.get('/', async function (req, res) {
                 creatorDescription: element.creator.creatorDesc,
                 creatorLocation: element.creator.creatorLocation,
                 creatorURL: element.creator.creatorUrl,
-                categories:element.creator.creatorCategories,
+                categories: element.creator.creatorCategories,
                 user_id: element._id
             }
             formated_users.push(data);
         });
-        console.log(formated_users);
-
         res.status(200).json(formated_users);
     } catch (e) {
         log.log_save(e);
