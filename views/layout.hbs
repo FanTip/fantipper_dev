@@ -143,10 +143,10 @@
               <div class="form-group">
                 <input name="password" type="password" id="password" placeholder="Password" class="form-control">
               </div>
-              <div class="form-group">
+              {{!-- <div class="form-group">
                 <label id="checkbox"><input type="checkbox" value="">Remember me?</label>
                 <a href="#" id="forgot-password" class="float-right">Forgot password?</a>
-              </div>
+              </div> --}}
               <input type="hidden" name="_csrf" id="_csrf" value="{{csrfToken}}">
               <button type="submit" class="btn btn-success form-control" name="button">LOGIN</button>
             </form>
@@ -170,7 +170,6 @@
               <a href="" data-toggle="modal" data-target="#login"data-dismiss="modal"> Log In!
               </a>
             </p>
-            <p class="text-center" id="beta">During our beta phase we are accepting creators by invites only. Get involved by requesting an invite.</p>
             <div class="form-group">
               <hr>
               <button type="button" class="btn form-control" id="facebook-button-signup" name="button"><i id="i"
@@ -226,7 +225,7 @@
                 Claim your custom URL.
               </div>
               <div class="form-group">
-                <a href="/creator/application" class="btn btn-success">Proceed to Creator Application Form</a>
+                <a href="/creator/application" class="btn btn-success">Let's build your creator page!</a>
               </div>
             </form>
           </div>
