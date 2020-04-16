@@ -54,7 +54,6 @@ router.post('/intents', async function (req, res) {
             let customer_query = {
                 customer_id: customer.id
             }
-            let usertest = await User.findByIdAndUpdate(req.user._id, customer_query).exec();
 
             let intent = await stripe.setupIntents.create({
                 customer: customer.id
@@ -65,7 +64,7 @@ router.post('/intents', async function (req, res) {
             res.status(200).send({});
         }
     } catch (e) {
-        log.log_save(e);
+        log.log_save(e.msg);
         res.status(500).send(e);
     }
 });

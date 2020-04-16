@@ -5,15 +5,12 @@ const User = require("../../models/user");
 const Tips = require("../../models/tips");
 const log = require('../../config/log');
 
-router.post('/request', async function(req, res) {
+router.post('/request', async function (req, res) {
     try {
-
-        console.log(req.body.ids);
         let ids = req.body.ids;
         let requested_s = [];
         for (i = 0; i < ids.length; i++) {
             let id = mongoose.Types.ObjectId(ids[i]);
-            console.log(id);
             let query = {
                 requested: true,
                 request_date: new Date()
