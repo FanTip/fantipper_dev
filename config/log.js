@@ -10,7 +10,7 @@ const log_save = function (val) {
     today.getMilliseconds();
   let data = {
     time_of_log: date,
-    error: val
+    error: val.message
   }
 
   fs.appendFile('.access.log', (JSON.stringify(data) + '\n'), function (err) {

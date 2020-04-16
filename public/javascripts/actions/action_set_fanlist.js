@@ -12,3 +12,4 @@ export const fetch_fans_list = () => dispatch => {
       });
     });
 }
+

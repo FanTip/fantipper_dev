@@ -11,7 +11,10 @@ const User = require('../../models/user');
 
 router.get('/user', async function (req, res) {
     try {
-        res.status(200).send(req.user);
+        if(req.user)
+            res.status(200).send(req.user);
+        else
+            res.status(200).send(false);
     } catch (e) {
         log.log_save(e);
         res.status(500).send({});
