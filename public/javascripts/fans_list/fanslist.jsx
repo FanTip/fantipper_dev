@@ -34,6 +34,7 @@ class FansList extends React.Component {
       tipModal: false,
       name: '',
       imgUrl: '',
+      creatorEmail: '',
       tipAmount: 0,
       toggleStripe: false
     };
@@ -69,11 +70,11 @@ class FansList extends React.Component {
   }
 
   toggle(fan) {
-    console.log(fan.creatorName);
     this.setState(prevState => ({
       tipModal: !prevState.tipModal,
       name: fan.creatorName,
       imgUrl: fan.image,
+      creatorEmail: fan.creatorEmail,
       tipAmount: 0
     }));
   }
@@ -123,6 +124,13 @@ class FansList extends React.Component {
                     {/* TODO */}
                     {/* <div className="listing-categories one-line">
                   </div> */}
+                    <br />
+                    <div className='creator-head' style={{ height: '1px' }}>
+                      {fan.categories.map(cat =>
+                        <span className="category-token" style={{ fontSize: '8px' }}>{cat}</span>
+                      )}
+                    </div>
+                    <br />
                     <div className="clearfix listing-short">{fan.creatorDescription}</div>
                     <hr />
                   </a>
@@ -145,14 +153,36 @@ class FansList extends React.Component {
 
     let payment_options;
     if (this.props.user) {
+      let saved_card;
+      if (this.props.user.isCard) {
+        saved_card =
+          <div>
+            <Label id="radio" >
+              <input type="radio" name="optradio" />
+              <i class="far fa-credit-card"></i> Pay with saved card
+              <span className="checkmark" checked="checked"></span>
+              <span className="checkmark"></span>
+            </Label>
+          </div>
+      } else {
+        saved_card =
+          <div>
+            <p>No saved card </p>
+          </div>
+      }
+
       payment_options =
         <div>
-          <p>Loggedin</p>
-          <label>
-            Check
-            <input type="radio" onClick={this.toggleStripe.bind(this)} />
-          </label>
-          {this.state.toggleStripe ? <CardElement options={CARD_ELEMENT_OPTIONS} /> : <div>NO</div>}
+          <div>
+            {saved_card}
+            <Label id="radio" >
+              <input type="radio" name="optradio" onClick={this.toggleStripe.bind(this)} />
+              <i class="far fa-credit-card"></i> Credit Card
+              <span className="checkmark" checked="checked"></span>
+              <span className="checkmark"></span>
+            </Label>
+          </div>
+          {this.state.toggleStripe ? <CardElement options={CARD_ELEMENT_OPTIONS} /> : <div></div>}
         </div>
 
     } else {
@@ -254,7 +284,7 @@ class FansList extends React.Component {
             <Row>
               <Col lg={12}>
                 <FormGroup>
-                  <button id="sendTipButton" className="btn btn-lg btn-block">
+                  <button id="sendTipButton" className="btn btn-lg btn-block" >
                     SEND
                     <span style={{ color: '#fff' }}> {this.state.tipAmount > 0 ? '$' + this.state.tipAmount : ''} </span>
                     TIP!

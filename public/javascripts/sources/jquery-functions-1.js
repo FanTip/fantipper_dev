@@ -38,44 +38,44 @@ $(document).ready(function () {
 
   // Custom styling can be passed to options when creating an Element.
   // (Note that this demo uses a wider set of styles than the guide below.)
-  var style = {
-    base: {
-      color: '#32325d',
-      fontFamily: '"Larsseit", Helvetica, sans-serif',
-      fontSmoothing: 'antialiased',
-      fontSize: '16px',
-      '::placeholder': {
-        color: '#aab7c4'
-      }
-    },
-    invalid: {
-      color: '#fa755a',
-      iconColor: '#fa755a'
-    }
-  };
+  // var style = {
+  //   base: {
+  //     color: '#32325d',
+  //     fontFamily: '"Larsseit", Helvetica, sans-serif',
+  //     fontSmoothing: 'antialiased',
+  //     fontSize: '16px',
+  //     '::placeholder': {
+  //       color: '#aab7c4'
+  //     }
+  //   },
+  //   invalid: {
+  //     color: '#fa755a',
+  //     iconColor: '#fa755a'
+  //   }
+  // };
 
   // Create an instance of the card Element.
-  var card = elements.create('card', {
-    hidePostalCode: true,
-    style: style
-  });
+  // var card = elements.create('card', {
+  //   hidePostalCode: true,
+  //   style: style
+  // });
 
   // Add an instance of the card Element into the `card-element` <div>.
 
-  saved_radio_button.click(function () {
-    card.unmount('#card-element');
-    new_label.hide();
-    saved_card_check = true;
-    new_card_check = false;
-  });
+  // saved_radio_button.click(function () {
+  //   card.unmount('#card-element');
+  //   new_label.hide();
+  //   saved_card_check = true;
+  //   new_card_check = false;
+  // });
 
 
-  new_card_radio.click(function () {
-    card.mount('#card-element');
-    new_label.show();
-    saved_card_check = false;
-    new_card_check = true;
-  })
+  // new_card_radio.click(function () {
+  //   card.mount('#card-element');
+  //   new_label.show();
+  //   saved_card_check = false;
+  //   new_card_check = true;
+  // })
 
   // Handle real-time validation errors from the card Element.
   card.addEventListener('change', function (event) {
