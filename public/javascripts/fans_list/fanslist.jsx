@@ -41,6 +41,7 @@ class FansList extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.toggleStripe = this.toggleStripe.bind(this);
+    this.toggleSaved = this.toggleSaved.bind(this);
     this.handleChangeTipAmount = this.handleChangeTipAmount.bind(this);
 
     this.setTipAMount = this.setTipAMount.bind(this);
@@ -49,8 +50,8 @@ class FansList extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetch_fans_list();
     this.props.fetch_logged_in_user();
+    this.props.fetch_fans_list();
   }
 
   setTipAMount(amount) {
@@ -83,6 +84,11 @@ class FansList extends React.Component {
     this.setState(prevState => ({
       toggleStripe: !prevState.toggleStripe
     }));
+  }
+  toggleSaved() {
+    this.setState({
+      toggleStripe: false
+    })
   }
 
   render() {
@@ -121,15 +127,6 @@ class FansList extends React.Component {
                   <a href={fan.creatorURL}>
                     <h3 className="one-line" title={fan.creatorName}>{fan.creatorName}</h3>
                     <div className="listing-location one-line"> {fan.creatorLocation}</div>
-                    {/* TODO */}
-                    {/* <div className="listing-categories one-line">
-                  </div> */}
-                    <br />
-                    <div className='creator-head' style={{ height: '1px' }}>
-                      {fan.categories.map(cat =>
-                        <span className="category-token" style={{ fontSize: '8px' }}>{cat}</span>
-                      )}
-                    </div>
                     <br />
                     <div className="clearfix listing-short">{fan.creatorDescription}</div>
                     <hr />
@@ -154,12 +151,13 @@ class FansList extends React.Component {
     let payment_options;
     if (this.props.user) {
       let saved_card;
-      if (this.props.user.isCard) {
+      if (!_.isEmpty(this.props.user.card)) {
+        let card_data = this.props.user.card;
         saved_card =
           <div>
             <Label id="radio" >
-              <input type="radio" name="optradio" />
-              <i class="far fa-credit-card"></i> Pay with saved card
+              <input type="radio" name="optradio" onClick={this.toggleSaved.bind(this)} />
+              <i class="far fa-credit-card"></i> Pay with saved card <small>{card_data.card_data.card.last4}</small>
               <span className="checkmark" checked="checked"></span>
               <span className="checkmark"></span>
             </Label>
@@ -176,7 +174,7 @@ class FansList extends React.Component {
           <div>
             {saved_card}
             <Label id="radio" >
-              <input type="radio" name="optradio" onClick={this.toggleStripe.bind(this)} />
+              <input type="radio" name="optradio" onClick={this.toggleStripe.bind(this)} checked={this.state.toggleStripe} />
               <i class="far fa-credit-card"></i> Credit Card
               <span className="checkmark" checked="checked"></span>
               <span className="checkmark"></span>
@@ -188,7 +186,7 @@ class FansList extends React.Component {
     } else {
       payment_options =
         <div>
-          <p>Pay by card: </p>
+          <p onLoad={this.toggleStripe.bind(this)}>Pay by card: </p>
           <CardElement options={CARD_ELEMENT_OPTIONS} />
         </div>
     }
@@ -281,10 +279,11 @@ class FansList extends React.Component {
                 {payment_options}
               </Col>
             </Row>
+            <br />
             <Row>
               <Col lg={12}>
                 <FormGroup>
-                  <button id="sendTipButton" className="btn btn-lg btn-block" >
+                  <button id="sendTipButton" className="btn btn-lg btn-block" disabled={this.state.amount != '0' && this.state.toggleStripe} >
                     SEND
                     <span style={{ color: '#fff' }}> {this.state.tipAmount > 0 ? '$' + this.state.tipAmount : ''} </span>
                     TIP!
