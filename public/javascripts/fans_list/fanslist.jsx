@@ -63,7 +63,6 @@ class FansList extends React.Component {
 
   submit(event) {
     event.preventDefault();
-    console.log('vhfbvfbdhvbjhbfdjh');
   }
 
   handleChangeTipAmount(event) {
@@ -157,7 +156,7 @@ class FansList extends React.Component {
           <div>
             <Label id="radio" >
               <input type="radio" name="optradio" onClick={this.toggleSaved.bind(this)} />
-              <i class="far fa-credit-card"></i> Pay with saved card <small>{card_data.card_data.card.last4}</small>
+              <i class="far fa-credit-card"></i> Pay with saved card <small>**** **** **** {card_data.card_data.card.last4}</small>
               <span className="checkmark" checked="checked"></span>
               <span className="checkmark"></span>
             </Label>
@@ -180,7 +179,15 @@ class FansList extends React.Component {
               <span className="checkmark"></span>
             </Label>
           </div>
-          {this.state.toggleStripe ? <CardElement options={CARD_ELEMENT_OPTIONS} /> : <div></div>}
+          {this.state.toggleStripe ?
+            <div className='form-group'>
+              <label id='new_label'>
+                Credit or debit card
+              </label>
+              <CardElement options={CARD_ELEMENT_OPTIONS} />
+            </div>
+
+            : <div></div>}
         </div>
 
     } else {
@@ -273,10 +280,12 @@ class FansList extends React.Component {
                 {/* Payment details section */}
                 <h3>PAYMENT DETAILS</h3>
                 <div className="dropdown-divider"></div>
-                <form>
-                  {/* <CardElement options={CARD_ELEMENT_OPTIONS} /> */}
-                </form>
                 {payment_options}
+              </Col>
+            </Row>
+            <Row style={{paddingTop : '2%'}}>
+              <Col lg={12}>
+                <Input type='text' className="form-control" id="pay-email" placeholder="Enter Email"></Input>
               </Col>
             </Row>
             <br />
