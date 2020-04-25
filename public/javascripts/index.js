@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom';
 
 import { Provider } from 'react-redux';
 import store from './store.js';
-import { Elements } from '@stripe/react-stripe-js';
+import { Elements, ElementsConsumer, useElements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 //Pages
 import FansList from './fans_list/fanslist.jsx'
@@ -16,6 +16,8 @@ import FansList from './fans_list/fanslist.jsx'
 const fans_list_target = document.getElementById('fans-list-base');
 const stripePromise = loadStripe("pk_test_puuwTbVu3nSLRPLaOHboUXos");
 
+console.log(useElements);
+console.log(ElementsConsumer)
 
 if (fans_list_target) {
     ReactDOM.render(

@@ -1,31 +1,24 @@
 'use strict'
 import React from 'react';
 import PropTypes from 'prop-types';
-const _ = require('lodash');
 import { connect } from 'react-redux';
 import { fetch_fans_list } from '../actions/action_set_fanlist.js';
 import { fetch_logged_in_user } from '../actions/get_logged_in.js';
-
-import { CardElement } from '@stripe/react-stripe-js';
-
-
+import { CardElement, ElementsConsumer } from '@stripe/react-stripe-js';
 import {
-  Container,
   Row,
   Col,
-  Breadcrumb,
-  BreadcrumbItem,
-  Button,
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter,
-  Form,
   FormGroup,
   Label,
   Input,
 
 } from 'reactstrap';
+
+const _ = require('lodash');
+const axios = require('axios');
 
 class FansList extends React.Component {
   constructor(props) {
@@ -36,17 +29,18 @@ class FansList extends React.Component {
       imgUrl: '',
       creatorEmail: '',
       tipAmount: 0,
-      toggleStripe: false
+      toggleStripe: false,
+      error: ''
     };
 
     this.toggle = this.toggle.bind(this);
     this.toggleStripe = this.toggleStripe.bind(this);
     this.toggleSaved = this.toggleSaved.bind(this);
     this.handleChangeTipAmount = this.handleChangeTipAmount.bind(this);
-
     this.setTipAMount = this.setTipAMount.bind(this);
 
     this.submit = this.submit.bind(this);
+    this.sendTip = this.sendTip.bind(this);
   }
 
   componentDidMount() {
@@ -60,9 +54,26 @@ class FansList extends React.Component {
     }));
   }
 
+  sendTip = async (token) => {
+    console.log(token);
+  }
 
-  submit(event) {
-    event.preventDefault();
+  submit(stripe, elements) {
+    console.log(stripe);
+    console.log(elements);
+    let card = elements.getElement(CardElement);
+    console.log(card);
+    let token = stripe.createToken(card).then((value) => {
+      if (value.error) {
+        this.setState({
+          error: value.error
+        })
+      }
+      else {
+        this.sendTip(value.token.id);
+      }
+    });
+    console.log(token);
   }
 
   handleChangeTipAmount(event) {
@@ -283,7 +294,7 @@ class FansList extends React.Component {
                 {payment_options}
               </Col>
             </Row>
-            <Row style={{paddingTop : '2%'}}>
+            <Row style={{ paddingTop: '2%' }}>
               <Col lg={12}>
                 <Input type='text' className="form-control" id="pay-email" placeholder="Enter Email"></Input>
               </Col>
@@ -291,15 +302,20 @@ class FansList extends React.Component {
             <br />
             <Row>
               <Col lg={12}>
-                <FormGroup>
-                  <button id="sendTipButton" className="btn btn-lg btn-block" disabled={this.state.amount != '0' && this.state.toggleStripe} >
-                    SEND
-                    <span style={{ color: '#fff' }}> {this.state.tipAmount > 0 ? '$' + this.state.tipAmount : ''} </span>
-                    TIP!
-                  </button>
-                </FormGroup>
+                <ElementsConsumer>
+                  {({ stripe, elements }) => (
+                    <FormGroup>
+                      <button onClick={this.submit.bind(this, stripe, elements)} id="sendTipButton" className="btn btn-lg btn-block" disabled={this.state.amount != '0' && this.state.toggleStripe} >
+                        SEND
+                        <span style={{ color: '#fff' }}> {this.state.tipAmount > 0 ? '$' + this.state.tipAmount : ''} </span>
+                        TIP!
+                      </button>
+                    </FormGroup>
+                  )}
+                </ElementsConsumer>
               </Col>
             </Row>
+            <p>{this.state.error}</p>
           </ModalBody>
         </Modal>
       </div >
