@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetch_fans_list } from '../actions/action_set_fanlist.js';
 import { fetch_logged_in_user } from '../actions/get_logged_in.js';
+import { fetch_csrf } from '../actions/csrf.js'
 import { CardElement, ElementsConsumer } from '@stripe/react-stripe-js';
 import {
   Row,
@@ -24,13 +25,20 @@ class FansList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      csrf: '',
       tipModal: false,
       name: '',
       imgUrl: '',
       creatorEmail: '',
       tipAmount: 0,
-      toggleStripe: false,
-      error: ''
+      toggleStripe: false, // this decides whether saved card or new card to use
+      error: '',
+      isloading: false,
+      tipMessage: '',
+      payersEmail: '',
+      isSamePerson: false,
+      selectedUserId: '',
+      tipSendersEmail: ''
     };
 
     this.toggle = this.toggle.bind(this);
@@ -38,14 +46,23 @@ class FansList extends React.Component {
     this.toggleSaved = this.toggleSaved.bind(this);
     this.handleChangeTipAmount = this.handleChangeTipAmount.bind(this);
     this.setTipAMount = this.setTipAMount.bind(this);
+    this.setTipMessage = this.setTipMessage.bind(this);
+    this.setTipSendersEmail = this.setTipSendersEmail.bind(this);
 
     this.submit = this.submit.bind(this);
     this.sendTip = this.sendTip.bind(this);
+    this.tipFromNewCard = this.tipFromNewCard.bind(this);
   }
 
   componentDidMount() {
     this.props.fetch_logged_in_user();
     this.props.fetch_fans_list();
+    // this.props.fetch_csrf();
+    fetch('/csrf')
+    .then(res => res.json())
+    .then((result) => {
+      console.log(result);
+    })
   }
 
   setTipAMount(amount) {
@@ -53,14 +70,62 @@ class FansList extends React.Component {
       tipAmount: amount
     }));
   }
+  setTipMessage(event) {
+    this.setState({ tipMessage: event.target.value });
+  }
+
+  setTipSendersEmail(event) {
+    console.log(event);
+    this.setState({ tipSendersEmail: event.target.value });
+  }
+
+
+  tipFromNewCard = async (token) => {
+    let data = {
+      _stripeID: token,
+      _amount: this.state.tipAmount,
+      _description: this.state.tipMessage,
+      _email: this.state.payersEmail,
+      _creatorEmail: this.state.tipSendersEmail,
+      _receiver_id: this.state.selectedUserId,
+      _saved_card: false,
+      _csrf: this.state.csrf
+    }
+
+    axios.post('/tipping/sendtip', {
+      crossDomain: false,
+      data: data
+    })
+      .then(function (response) {
+        console.log("Done");
+        console.log(response);
+        this.setState({ isloading: false });
+      })
+      .catch(function (response) {
+        console.log("Error occured");
+      })
+  }
 
   sendTip = async (token) => {
     console.log(token);
+
+
+    if (this.state.toggleStripe) {
+      console.log('truenb ieie');
+    } else {
+      console.log('falsooooo');
+      this.tipFromNewCard(token);
+      // if (!_.isEmpty(csrf)) {
+
+      // }
+
+    }
   }
 
   submit(stripe, elements) {
-    console.log(stripe);
-    console.log(elements);
+    //Start loading icon
+    this.setState({ isloading: true })
+
     let card = elements.getElement(CardElement);
     console.log(card);
     let token = stripe.createToken(card).then((value) => {
@@ -83,11 +148,24 @@ class FansList extends React.Component {
   toggle(fan) {
     this.setState(prevState => ({
       tipModal: !prevState.tipModal,
+      isloading: false,
       name: fan.creatorName,
       imgUrl: fan.image,
       creatorEmail: fan.creatorEmail,
-      tipAmount: 0
+      tipAmount: 0,
+      selectedUserId: fan.user_id
     }));
+    if (this.props.user) {
+      if (fan.creatorEmail === this.props.user.creator.creatorEmail) {
+        this.setState(prevState => ({
+          isSamePerson: true
+        }));
+      } else {
+        this.setState({
+          isSamePerson: false
+        })
+      }
+    }
   }
 
   toggleStripe() {
@@ -98,7 +176,8 @@ class FansList extends React.Component {
   toggleSaved() {
     this.setState({
       toggleStripe: false
-    })
+    });
+
   }
 
   render() {
@@ -209,6 +288,25 @@ class FansList extends React.Component {
         </div>
     }
 
+    let loading;
+    if (this.state.isloading) {
+      loading =
+        <div>
+          <p>
+            <i class="fa fa-spinner fa-spin" style={{ fontSize: '24px' }}></i>
+            Payment is processing ...
+          </p>
+        </div>
+    }
+
+    let isSamePerson;
+    if (this.state.isSamePerson) {
+      isSamePerson =
+        <div>
+          <small className="text-center">This is you!</small>
+        </div>
+    }
+
 
 
     return (
@@ -282,7 +380,7 @@ class FansList extends React.Component {
             <Row>
               <Col lg={12}>
                 <FormGroup>
-                  <textarea className="form-control" name="message" id="tipMessage" cols="30" rows="3" placeholder="Leave a message of support(optional)..."></textarea>
+                  <textarea className="form-control" name="message" id="tipMessage" cols="30" rows="3" onChange={this.setTipMessage} placeholder="Leave a message of support(optional)..."></textarea>
                 </FormGroup>
               </Col>
             </Row>
@@ -296,7 +394,7 @@ class FansList extends React.Component {
             </Row>
             <Row style={{ paddingTop: '2%' }}>
               <Col lg={12}>
-                <Input type='text' className="form-control" id="pay-email" placeholder="Enter Email"></Input>
+                <input type='text' className="form-control" id="pay-email" value={this.state.tipSendersEmail} onChange={this.setTipSendersEmail} placeholder="Enter Email" />
               </Col>
             </Row>
             <br />
@@ -305,7 +403,7 @@ class FansList extends React.Component {
                 <ElementsConsumer>
                   {({ stripe, elements }) => (
                     <FormGroup>
-                      <button onClick={this.submit.bind(this, stripe, elements)} id="sendTipButton" className="btn btn-lg btn-block" disabled={this.state.amount != '0' && this.state.toggleStripe} >
+                      <button onClick={this.submit.bind(this, stripe, elements)} id="sendTipButton" className="btn btn-lg btn-block" disabled={this.state.isSamePerson} >
                         SEND
                         <span style={{ color: '#fff' }}> {this.state.tipAmount > 0 ? '$' + this.state.tipAmount : ''} </span>
                         TIP!
@@ -313,6 +411,12 @@ class FansList extends React.Component {
                     </FormGroup>
                   )}
                 </ElementsConsumer>
+                {isSamePerson}
+              </Col>
+            </Row>
+            <Row>
+              <Col lg={12}>
+                {loading}
               </Col>
             </Row>
             <p>{this.state.error}</p>
@@ -326,13 +430,16 @@ class FansList extends React.Component {
 FansList.prototypes = {
   fetch_fans_list: PropTypes.func.isRequired,
   fetch_logged_in_user: PropTypes.func.isRequired,
+  fetch_csrf: PropTypes.func.isRequired,
 
-  fans: PropTypes.array.isRequired
+  fans: PropTypes.array.isRequired,
+  csrf: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
   fans: state.fans.fans_list,
-  user: state.user.user
+  user: state.user.user,
+  csrf: state.csrf.csrf
 });
 
-export default connect(mapStateToProps, { fetch_fans_list, fetch_logged_in_user })(FansList);
+export default connect(mapStateToProps, { fetch_fans_list, fetch_logged_in_user, fetch_csrf })(FansList);

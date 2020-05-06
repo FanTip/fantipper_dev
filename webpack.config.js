@@ -41,7 +41,9 @@ module.exports = {
   },
   node: {
     __dirname: false,
-    __filename: true
+    __filename: true,
+    fs: 'empty',
+    net: 'empty'
   },
   mode: "production",
   entry: path.resolve(__dirname) + '/public/javascripts/index.js',

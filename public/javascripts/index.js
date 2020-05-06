@@ -16,8 +16,6 @@ import FansList from './fans_list/fanslist.jsx'
 const fans_list_target = document.getElementById('fans-list-base');
 const stripePromise = loadStripe("pk_test_puuwTbVu3nSLRPLaOHboUXos");
 
-console.log(useElements);
-console.log(ElementsConsumer)
 
 if (fans_list_target) {
     ReactDOM.render(

@@ -92,5 +92,13 @@ router.get('/:url', function (req, res, next) {
 
 });
 
+router.get('/csrf', async function (req, res) {
+  try {
+    res.status(200).send(req.csrfToken());
+  }
+  catch (e) {
+    res.status(500).send('Internal error occured');
+  }
+})
 
 module.exports = router;
