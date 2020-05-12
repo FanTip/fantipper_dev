@@ -121,38 +121,38 @@ $(document).ready(function () {
         _saved_card: false
       }
 
-      xhr = $.ajax({
-        method: 'POST',
-        url: '/tipping/sendtip',
-        crossDomain: false,
-        data: data
-      });
-    }
+    //   xhr = $.ajax({
+    //     method: 'POST',
+    //     url: '/tipping/sendtip',
+    //     crossDomain: false,
+    //     data: data
+    //   });
+    // }
 
-    if (saved_card_check) {
+    // if (saved_card_check) {
 
-      let data = {
-        _amount: tipAmount,
-        _description: description,
-        _email: payEmail,
-        _creatorEmail: creatorEmail,
-        _receiver_id: receiver_id,
-        _saved_card: true
-      }
+    //   let data = {
+    //     _amount: tipAmount,
+    //     _description: description,
+    //     _email: payEmail,
+    //     _creatorEmail: creatorEmail,
+    //     _receiver_id: receiver_id,
+    //     _saved_card: true
+    //   }
 
 
-      xhr = $.ajax({
-        method: 'POST',
-        url: '/tipping/sendtip',
-        crossDomain: false,
-        headers: {
-          'CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-        },
-        data: data
-      });
+    //   xhr = $.ajax({
+    //     method: 'POST',
+    //     url: '/tipping/sendtip',
+    //     crossDomain: false,
+    //     headers: {
+    //       'CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+    //     },
+    //     data: data
+    //   });
 
-      xhr.done(function (Response) {
-      })
+    //   xhr.done(function (Response) {
+    //   })
 
     }
 

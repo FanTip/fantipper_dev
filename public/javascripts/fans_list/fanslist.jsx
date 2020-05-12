@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetch_fans_list } from '../actions/action_set_fanlist.js';
 import { fetch_logged_in_user } from '../actions/get_logged_in.js';
-import { fetch_csrf } from '../actions/csrf.js'
 import { CardElement, ElementsConsumer } from '@stripe/react-stripe-js';
 import {
   Row,
@@ -19,7 +18,6 @@ import {
 } from 'reactstrap';
 
 const _ = require('lodash');
-const axios = require('axios');
 
 class FansList extends React.Component {
   constructor(props) {
@@ -27,6 +25,7 @@ class FansList extends React.Component {
     this.state = {
       csrf: '',
       tipModal: false,
+      receiptModal: false,
       name: '',
       imgUrl: '',
       creatorEmail: '',
@@ -38,10 +37,12 @@ class FansList extends React.Component {
       payersEmail: '',
       isSamePerson: false,
       selectedUserId: '',
-      tipSendersEmail: ''
+      tipSendersEmail: '',
+      receiptLink: ''
     };
 
     this.toggle = this.toggle.bind(this);
+    this.toggleReceipt = this.toggleReceipt.bind(this);
     this.toggleStripe = this.toggleStripe.bind(this);
     this.toggleSaved = this.toggleSaved.bind(this);
     this.handleChangeTipAmount = this.handleChangeTipAmount.bind(this);
@@ -52,16 +53,14 @@ class FansList extends React.Component {
     this.submit = this.submit.bind(this);
     this.sendTip = this.sendTip.bind(this);
     this.tipFromNewCard = this.tipFromNewCard.bind(this);
+    this.tipFromExistingCard = this.tipFromExistingCard.bind(this);
   }
 
   componentDidMount() {
     this.props.fetch_logged_in_user();
     this.props.fetch_fans_list();
-    // this.props.fetch_csrf();
-    fetch('/csrf')
-    .then(res => res.json())
-    .then((result) => {
-      console.log(result);
+    this.setState({
+      csrf: $('meta[name="csrf-token"]').attr('content')
     })
   }
 
@@ -75,70 +74,100 @@ class FansList extends React.Component {
   }
 
   setTipSendersEmail(event) {
-    console.log(event);
     this.setState({ tipSendersEmail: event.target.value });
   }
 
 
   tipFromNewCard = async (token) => {
-    let data = {
-      _stripeID: token,
-      _amount: this.state.tipAmount,
-      _description: this.state.tipMessage,
-      _email: this.state.payersEmail,
-      _creatorEmail: this.state.tipSendersEmail,
-      _receiver_id: this.state.selectedUserId,
-      _saved_card: false,
-      _csrf: this.state.csrf
+    if (this.state.toggleStripe) {
+      fetch('/tipping/sendtip', {
+        method: 'POST',
+        body: JSON.stringify({
+          _stripeID: token,
+          _amount: this.state.tipAmount,
+          _description: this.state.tipMessage,
+          _email: this.state.tipSendersEmail,
+          _creatorEmail: this.state.creatorEmail,
+          _receiver_id: this.state.selectedUserId,
+          _saved_card: 'false',
+          _csrf: this.state.csrf
+        }),
+        headers: {
+          'CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+          'Content-type': 'application/json'
+        }
+      }).then(res => res.json())
+        .then((result) => {
+          console.log(result);
+          this.setState({
+            receiptLink: result.charge.receipt_url
+          })
+          this.toggle('');
+          this.toggleReceipt(true);
+        });
     }
+  }
 
-    axios.post('/tipping/sendtip', {
-      crossDomain: false,
-      data: data
-    })
-      .then(function (response) {
-        console.log("Done");
-        console.log(response);
-        this.setState({ isloading: false });
-      })
-      .catch(function (response) {
-        console.log("Error occured");
-      })
+  tipFromExistingCard = async () => {
+    if (!this.state.toggleStripe) {
+      fetch('/tipping/sendtip', {
+        method: 'POST',
+        body: JSON.stringify({
+          _amount: this.state.tipAmount,
+          _description: this.state.tipMessage,
+          _email: this.state.tipSendersEmail,
+          _creatorEmail: this.state.creatorEmail,
+          _receiver_id: this.state.selectedUserId,
+          _saved_card: 'true',
+          _csrf: this.state.csrf
+        }),
+        headers: {
+          'CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+          'Content-type': 'application/json'
+        }
+      }).then(res => res.json())
+        .then((result) => {
+          console.log(result);
+          this.setState({
+            receiptLink: result.charge.charges.data[0].receipt_url
+          })
+          this.toggle('');
+          this.toggleReceipt(true);
+        })
+    }
   }
 
   sendTip = async (token) => {
     console.log(token);
-
-
-    if (this.state.toggleStripe) {
-      console.log('truenb ieie');
+    if (!this.state.toggleStripe) {
+      this.tipFromExistingCard();
     } else {
-      console.log('falsooooo');
       this.tipFromNewCard(token);
-      // if (!_.isEmpty(csrf)) {
-
-      // }
-
     }
   }
 
   submit(stripe, elements) {
-    //Start loading icon
-    this.setState({ isloading: true })
+    if (!this.state.toggleStripe) {
+      //Start loading icon
+      this.setState({ isloading: true })
+      this.sendTip("");
+    } else {
+      //Start loading icon
+      this.setState({ isloading: true })
 
-    let card = elements.getElement(CardElement);
-    console.log(card);
-    let token = stripe.createToken(card).then((value) => {
-      if (value.error) {
-        this.setState({
-          error: value.error
-        })
-      }
-      else {
-        this.sendTip(value.token.id);
-      }
-    });
-    console.log(token);
+      let card = elements.getElement(CardElement);
+
+      let token = stripe.createToken(card).then((value) => {
+        if (value.error) {
+          this.setState({
+            error: value.error
+          })
+        }
+        else {
+          this.sendTip(value.token.id);
+        }
+      });
+    }
   }
 
   handleChangeTipAmount(event) {
@@ -168,14 +197,21 @@ class FansList extends React.Component {
     }
   }
 
-  toggleStripe() {
+  toggleReceipt(toggler) {
     this.setState(prevState => ({
-      toggleStripe: !prevState.toggleStripe
+      receiptModal: !prevState.receiptModal
+    }))
+  }
+
+  toggleStripe(value) {
+    this.setState(({
+      toggleStripe: value,
+
     }));
   }
-  toggleSaved() {
+  toggleSaved(value) {
     this.setState({
-      toggleStripe: false
+      toggleStripe: value
     });
 
   }
@@ -245,8 +281,8 @@ class FansList extends React.Component {
         saved_card =
           <div>
             <Label id="radio" >
-              <input type="radio" name="optradio" onClick={this.toggleSaved.bind(this)} />
-              <i class="far fa-credit-card"></i> Pay with saved card <small>**** **** **** {card_data.card_data.card.last4}</small>
+              <input type="radio" name="optradio" onClick={this.toggleSaved.bind(this,false)} />
+              <i class="far fa-credit-card"></i> Pay with saved card <small id="preview_card">**** **** **** {card_data.card_data.card.last4}</small>
               <span className="checkmark" checked="checked"></span>
               <span className="checkmark"></span>
             </Label>
@@ -263,7 +299,7 @@ class FansList extends React.Component {
           <div>
             {saved_card}
             <Label id="radio" >
-              <input type="radio" name="optradio" onClick={this.toggleStripe.bind(this)} checked={this.state.toggleStripe} />
+              <input type="radio" name="optradio" onClick={this.toggleStripe.bind(this,true)} checked={this.state.toggleStripe} />
               <i class="far fa-credit-card"></i> Credit Card
               <span className="checkmark" checked="checked"></span>
               <span className="checkmark"></span>
@@ -283,7 +319,7 @@ class FansList extends React.Component {
     } else {
       payment_options =
         <div>
-          <p onLoad={this.toggleStripe.bind(this)}>Pay by card: </p>
+          <p onLoad={this.toggleStripe.bind(this, true)}>Pay by card: </p>
           <CardElement options={CARD_ELEMENT_OPTIONS} />
         </div>
     }
@@ -303,7 +339,9 @@ class FansList extends React.Component {
     if (this.state.isSamePerson) {
       isSamePerson =
         <div>
-          <small className="text-center">This is you!</small>
+          <p className="text-center" >
+            <small className="text-center">This is you!</small>
+          </p>
         </div>
     }
 
@@ -422,6 +460,23 @@ class FansList extends React.Component {
             <p>{this.state.error}</p>
           </ModalBody>
         </Modal>
+
+
+        <Modal id="shareTip" isOpen={this.state.receiptModal} toggleReceipt={() => (this.toggleReceipt(""))} className={this.props.className}>
+          <ModalHeader toggle={() => (this.toggleReceipt(""))}> <h4 className="modal-title">Tip {this.state.name}</h4> </ModalHeader>
+          <ModalBody>
+            <Row>
+              <Col md={12}>
+                <p className="text-center" > <q><span className="text-center" id="tippeesDesc">Thank you for your support</span></q>  </p>
+              </Col>
+            </Row>
+            <hr />
+            <p className="text-center" id="desc1">Your tip was successfully sent.</p>
+            <p className="text-center" > <a href={this.state.receiptLink} id="receipt_link" target="_blank"> View the receipt </a></p>
+          </ModalBody>
+        </Modal>
+
+
       </div >
     )
   }
@@ -433,13 +488,11 @@ FansList.prototypes = {
   fetch_csrf: PropTypes.func.isRequired,
 
   fans: PropTypes.array.isRequired,
-  csrf: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
   fans: state.fans.fans_list,
-  user: state.user.user,
-  csrf: state.csrf.csrf
+  user: state.user.user
 });
 
-export default connect(mapStateToProps, { fetch_fans_list, fetch_logged_in_user, fetch_csrf })(FansList);
+export default connect(mapStateToProps, { fetch_fans_list, fetch_logged_in_user })(FansList);

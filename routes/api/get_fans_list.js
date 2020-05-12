@@ -29,4 +29,10 @@ router.get('/', async function (req, res) {
     }
 });
 
+
+router.post('/t', function(req, res){
+    console.log(req.body)
+    res.send('fgcghfcfghcfhgc');
+})
+
 module.exports = router;
