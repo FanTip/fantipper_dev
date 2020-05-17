@@ -40,12 +40,6 @@ router.get('/', function (req, res, next) {
         csrfToken: req.csrfToken()
       });
     }
-    // io.on('connection', function (socket) {
-    //   socket.emit('news', {
-    //     hello: 'world'
-    //   });
-    //   socket.on('on other event', function (data) {});
-    // });
   });
 });
 
