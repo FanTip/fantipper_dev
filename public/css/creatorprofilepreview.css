@@ -103,9 +103,12 @@
         font-size: 14px; }
   .creator-content #content-secondary .btn-tip-listing {
     background-image: url("/images/button-fantip.svg");
-    background-size: cover;
     height: 40px;
-    width: 130px; }
+    width: 130px; 
+    background-size: cover;
+    border-radius: 10px;
+    box-shadow: 1px 1px #00d278 !important;
+    outline: none; }
   .creator-content #content-secondary .creator-tips-total h5 {
     margin-top: 10px;
     color: #8c8c8c;

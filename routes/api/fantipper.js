@@ -62,6 +62,20 @@ router.get('/found/:username', function (req, res, next) {
 
 });
 
+router.get('/payacreator/:url', async function (req, res) {
+    try {
+        let query = {
+            'creator.creatorNameuser': req.params.url
+        }
+        console.log(query)
+        let result = await user.findOne(query).exec();
+        res.status(200).json(result.creator);
+    }
+    catch (e) {
+        res.status(500).json('Something went wrong, try again');
+    }
+})
+
 router.get('/:email', function (req, res, next) {
     var searchQuery = {
         'email': req.params.email

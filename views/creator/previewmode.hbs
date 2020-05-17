@@ -1,5 +1,6 @@
-<div class="container-fluid body-content">
+<meta name="csrf-token" content={{csrfToken}} />
 
+<div class="container-fluid body-content">
   <div class="row">
     <div class="text-center creator-head" style="background-image: url({{creatorBack}});">
       <div class="background-fliter-div">
@@ -39,9 +40,8 @@
                 </div> --}}
       </div>
       <div class="col-md-5 creator-sidebar" id="content-secondary">
-        <a href="/tips">
-          <div class="btn-tip-listing"></div>
-        </a>
+        <div id="pay_creator_from"></div>
+        
         <div class="creator-tips-total" style="margin:auto">
           <h5>Tips</h5>
           <p class="total" id="total_tips"></p>
