@@ -9,12 +9,15 @@ const log = require('../../config/log');
 
 const User = require('../../models/user');
 
-router.get('/user', async function (req, res) {
+router.get('/user', function (req, res) {
     try {
-        if(req.user)
-            res.status(200).send(req.user);
-        else
-            res.status(200).send(false);
+        if (req.user) {
+            console.log(req.user);
+            res.status(200).json(req.user);
+        } else {
+            res.status(200).json(false);
+        }
+
     } catch (e) {
         log.log_save(e);
         res.status(500).send({});
@@ -143,8 +146,8 @@ router.post('/attach_customer', async function (req, res) {
         // Attach Once
         const paymentMethod = await stripe.paymentMethods.attach(
             user.card.payment_credentials.payment_method, {
-                customer: user.customer_id,
-            }
+            customer: user.customer_id,
+        }
         );
 
         let retrive_customers = await stripe.customers.retrieve(user.customer_id);

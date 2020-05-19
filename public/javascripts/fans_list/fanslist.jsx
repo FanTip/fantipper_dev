@@ -272,18 +272,22 @@ class FansList extends React.Component {
 
     let payment_options;
     if (this.props.user) {
+      console.log(this.props);
       let saved_card;
       if (!_.isEmpty(this.props.user.card)) {
-        let card_data = this.props.user.card;
-        saved_card =
-          <div>
-            <Label id="radio" >
-              <input type="radio" name="optradio" onClick={this.toggleSaved.bind(this, false)} />
-              <i class="far fa-credit-card"></i> Pay with saved card <small id="preview_card">**** **** **** {card_data.card_data.card.last4}</small>
-              <span className="checkmark" checked="checked"></span>
-              <span className="checkmark"></span>
-            </Label>
-          </div>
+        if (this.props.user.card.isCard) {
+          let card_data = this.props.user.card;
+          saved_card =
+            <div>
+              <Label id="radio" >
+                <input type="radio" name="optradio" onClick={this.toggleSaved.bind(this, false)} />
+                <i class="far fa-credit-card"></i> Pay with saved card <small id="preview_card">**** **** **** {card_data.card_data.card.last4}</small>
+                <span className="checkmark" checked="checked"></span>
+                <span className="checkmark"></span>
+              </Label>
+            </div>
+        }
+
       } else {
         saved_card =
           <div>
@@ -485,6 +489,7 @@ FansList.prototypes = {
   fetch_csrf: PropTypes.func.isRequired,
 
   fans: PropTypes.array.isRequired,
+  user: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
