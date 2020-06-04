@@ -25,9 +25,16 @@ class PayACreator extends React.Component {
       csrf: '',
       creator: {},
       togglePayModal: false,
-      toggleStripe: false,
+      receiptModal: false,
+      toggleStripe: true,
       isSamePerson: false,
-
+      isLoading: false,
+      tipSendersEmail: '',
+      tipMessage: '',
+      enterCardDetailsCompleted: false,
+      cardError: '',
+      isCardError: true,
+      receiptLink: ''
     };
     this.toggleSaved = this.toggleSaved.bind(this);
     this.toggleStripe = this.toggleStripe.bind(this);
@@ -36,13 +43,15 @@ class PayACreator extends React.Component {
     this.setTipMessage = this.setTipMessage.bind(this);
     this.setTipSendersEmail = this.setTipSendersEmail.bind(this);
 
+    this.toggleReceipt = this.toggleReceipt.bind(this);
+
+    this.stripeElementChange = this.stripeElementChange.bind(this);
     this.submit = this.submit.bind(this);
   }
 
   componentDidMount() {
     this.props.fetch_logged_in_user();
     let url = document.getElementById('creatorUrl').value;
-    console.log(url);
     fetch('/api/fantipper/payacreator/' + url, {
       method: 'GET',
       headers: {
@@ -51,7 +60,6 @@ class PayACreator extends React.Component {
       }
     }).then(res => res.json())
       .then((result) => {
-        console.log(result);
         this.setState({
           creator: result
         });
@@ -61,11 +69,30 @@ class PayACreator extends React.Component {
     })
   }
 
+
   toggle() {
     this.setState(prevState => ({
       togglePayModal: !prevState.togglePayModal
     }))
+    if (this.props.user) {
+      if (this.state.creator.creatorEmail == this.props.user.creator.creatorEmail) {
+        this.setState(prevState => ({
+          isSamePerson: true
+        }));
+      } else {
+        this.setState({
+          isSamePerson: false
+        })
+      }
+    }
   }
+
+  toggleReceipt(value) {
+    this.setState(prevState => ({
+      receiptModal: !prevState.receiptModal
+    }))
+  }
+
   setTipAMount(amount) {
     this.setState(prevState => ({
       tipAmount: amount
@@ -81,19 +108,109 @@ class PayACreator extends React.Component {
   toggleStripe(value) {
     this.setState(({
       toggleStripe: value,
-
+      isCardError: true
     }));
   }
 
   toggleSaved(value) {
     this.setState({
-      toggleStripe: value
+      toggleStripe: value,
+      isCardError: false
     });
 
   }
 
-  submit() {
-    console.log('vfvfdvfd');
+  stripeElementChange(element) {
+    this.setState({
+      enterCardDetailsCompleted: element.complete
+    });
+    if (!_.isEmpty(element.error)) {
+      this.setState({
+        cardError: element.error.message,
+        isCardError: true
+      });
+    } else {
+      this.setState({
+        cardError: '',
+        isCardError: false
+      });
+    }
+  }
+  submit = async (stripe, elements) => {
+    if (!this.state.toggleStripe) {
+      this.setState({ isLoading: true });
+
+      fetch('/tipping/sendtip', {
+        method: 'POST',
+        body: JSON.stringify({
+          _amount: this.state.tipAmount,
+          _description: this.state.tipMessage,
+          _email: this.state.tipSendersEmail,
+          _creatorEmail: this.state.creatorEmail,
+          _receiver_id: this.state.selectedUserId,
+          _saved_card: 'true',
+          _csrf: this.state.csrf
+        }),
+        headers: {
+          'CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+          'Content-type': 'application/json'
+        }
+      }).then(res => res.json())
+        .then((result) => {
+          this.setState({
+            receiptLink: result.charge.charges.data[0].receipt_url
+          })
+          this.toggle('');
+          this.toggleReceipt(true);
+          this.setState({
+            cardError: '',
+            isCardError: true
+          })
+        })
+    } else {
+      this.setState({ isLoading: true });
+      let card = elements.getElement(CardElement);
+
+      let token = stripe.createToken(card).then((value) => {
+        if (value.error) {
+          this.setState({
+            error: value.error
+          })
+        }
+        else {
+          fetch('/tipping/sendtip', {
+            method: 'POST',
+            body: JSON.stringify({
+              _stripeID: value.token.id,
+              _amount: this.state.tipAmount,
+              _description: this.state.tipMessage,
+              _email: this.state.tipSendersEmail,
+              _creatorEmail: this.state.creator.creatorEmail,
+              _receiver_id: this.state.selectedUserId,
+              _saved_card: 'false',
+              _csrf: this.state.csrf
+            }),
+            headers: {
+              'CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+              'Content-type': 'application/json'
+            }
+          }).then(res => res.json())
+            .then((result) => {
+              this.setState({
+                receiptLink: result.charge.receipt_url
+              })
+              this.toggle('');
+              this.toggleReceipt(true);
+              this.setState({
+                cardError: '',
+                isCardError: true
+              })
+            });
+        }
+      });
+
+    }
+
   }
 
   render() {
@@ -154,7 +271,7 @@ class PayACreator extends React.Component {
               <label id='new_label'>
                 Credit or debit card
               </label>
-              <CardElement options={CARD_ELEMENT_OPTIONS} />
+              <CardElement onChange={(elements) => this.stripeElementChange(elements)} options={CARD_ELEMENT_OPTIONS} />
             </div>
 
             : <div></div>}
@@ -164,8 +281,20 @@ class PayACreator extends React.Component {
       payment_options =
         <div>
           <p onLoad={this.toggleStripe.bind(this, true)}>Pay by card: </p>
-          <CardElement options={CARD_ELEMENT_OPTIONS} />
+          <CardElement onChange={(elements) => this.stripeElementChange(elements)} options={CARD_ELEMENT_OPTIONS} />
         </div>
+    }
+
+    let card_errors;
+    if (!_.isEmpty(this.state.cardError)) {
+      card_errors =
+        <div>
+          <p className="text-center" >
+            <small className="text-center" style={{ color: 'red' }}>{this.state.cardError}</small>
+          </p>
+        </div>
+    } else {
+      card_errors = <small></small>
     }
 
     let isSamePerson;
@@ -174,6 +303,17 @@ class PayACreator extends React.Component {
         <div>
           <p className="text-center" >
             <small className="text-center">This is you!</small>
+          </p>
+        </div>
+    }
+
+    let loading;
+    if (this.state.isloading) {
+      loading =
+        <div>
+          <p>
+            {/* <i class="fa fa-spinner fa-spin" style={{ fontSize: '24px' }}></i> */}
+            Payment is processing ...
           </p>
         </div>
     }
@@ -271,12 +411,13 @@ class PayACreator extends React.Component {
               </Col>
             </Row>
             <br />
+            {card_errors}
             <Row>
               <Col lg={12}>
                 <ElementsConsumer>
                   {({ stripe, elements }) => (
                     <FormGroup>
-                      <button onClick={this.submit.bind(this, stripe, elements)} id="sendTipButton" className="btn btn-lg btn-block" disabled={this.state.isSamePerson} >
+                      <button onClick={this.submit.bind(this, stripe, elements)} id="sendTipButton" className="btn btn-lg btn-block" disabled={this.state.isSamePerson || this.state.isCardError} >
                         SEND
                         <span style={{ color: '#fff' }}> {this.state.tipAmount > 0 ? '$' + this.state.tipAmount : ''} </span>
                         TIP!
@@ -289,11 +430,31 @@ class PayACreator extends React.Component {
             </Row>
             <Row>
               <Col lg={12}>
+                {loading}
               </Col>
             </Row>
             <p>{this.state.error}</p>
           </ModalBody>
         </Modal>
+
+
+
+        <Modal id="shareTip" isOpen={this.state.receiptModal} toggleReceipt={() => (this.toggleReceipt(""))} className={this.props.className}>
+          <ModalHeader toggle={() => (this.toggleReceipt(""))}> <h4 className="modal-title">Tip {this.state.name}</h4> </ModalHeader>
+          <ModalBody>
+            <Row>
+              <Col md={12}>
+                <p className="text-center" > <q><span className="text-center" id="tippeesDesc">Thank you for your support</span></q>  </p>
+              </Col>
+            </Row>
+            <hr />
+            <p className="text-center" id="desc1">Your tip was successfully sent.</p>
+            <p className="text-center" > <a href={this.state.receiptLink} id="receipt_link" target="_blank"> View the receipt </a></p>
+          </ModalBody>
+        </Modal>
+
+
+
       </div >
     )
   }
@@ -307,4 +468,4 @@ const mapStateToProps = state => ({
   user: state.user.user
 });
 
-export default connect(mapStateToProps,{fetch_logged_in_user}) (PayACreator);
+export default connect(mapStateToProps, { fetch_logged_in_user })(PayACreator);
