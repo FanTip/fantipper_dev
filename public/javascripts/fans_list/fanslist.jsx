@@ -38,6 +38,9 @@ class FansList extends React.Component {
       isSamePerson: false,
       selectedUserId: '',
       tipSendersEmail: '',
+      enterCardDetailsCompleted: false,
+      cardError: '',
+      isCardError: true,
       receiptLink: ''
     };
 
@@ -50,6 +53,7 @@ class FansList extends React.Component {
     this.setTipMessage = this.setTipMessage.bind(this);
     this.setTipSendersEmail = this.setTipSendersEmail.bind(this);
 
+    this.stripeElementChange = this.stripeElementChange.bind(this);
     this.submit = this.submit.bind(this);
     this.sendTip = this.sendTip.bind(this);
     this.tipFromNewCard = this.tipFromNewCard.bind(this);
@@ -77,6 +81,23 @@ class FansList extends React.Component {
     this.setState({ tipSendersEmail: event.target.value });
   }
 
+  stripeElementChange(element) {
+    this.setState({
+      enterCardDetailsCompleted: element.complete
+    });
+    if (!_.isEmpty(element.error)) {
+      this.setState({
+        cardError: element.error.message,
+        isCardError: true
+      });
+    } else {
+      this.setState({
+        cardError: '',
+        isCardError: false
+      });
+    }
+  }
+
 
   tipFromNewCard = async (token) => {
     fetch('/tipping/sendtip', {
@@ -97,12 +118,15 @@ class FansList extends React.Component {
       }
     }).then(res => res.json())
       .then((result) => {
-        console.log(result);
         this.setState({
           receiptLink: result.charge.receipt_url
         })
         this.toggle('');
         this.toggleReceipt(true);
+        this.setState({
+          cardError: '',
+          isCardError: true
+        })
       });
   }
 
@@ -124,18 +148,20 @@ class FansList extends React.Component {
       }
     }).then(res => res.json())
       .then((result) => {
-        console.log(result);
         this.setState({
           receiptLink: result.charge.charges.data[0].receipt_url
         })
         this.toggle('');
         this.toggleReceipt(true);
+        this.setState({
+          cardError: '',
+          isCardError: true
+        })
       })
 
   }
 
   sendTip = async (token) => {
-    console.log(token);
     if (!this.state.toggleStripe) {
       this.tipFromExistingCard();
     } else {
@@ -203,12 +229,13 @@ class FansList extends React.Component {
   toggleStripe(value) {
     this.setState(({
       toggleStripe: value,
-
+      isCardError: true
     }));
   }
   toggleSaved(value) {
     this.setState({
-      toggleStripe: value
+      toggleStripe: value,
+      isCardError: false
     });
 
   }
@@ -272,7 +299,6 @@ class FansList extends React.Component {
 
     let payment_options;
     if (this.props.user) {
-      console.log(this.props);
       let saved_card;
       if (!_.isEmpty(this.props.user.card)) {
         if (this.props.user.card.isCard) {
@@ -311,7 +337,7 @@ class FansList extends React.Component {
               <label id='new_label'>
                 Credit or debit card
               </label>
-              <CardElement options={CARD_ELEMENT_OPTIONS} />
+              <CardElement onChange={(elements) => this.stripeElementChange(elements)} options={CARD_ELEMENT_OPTIONS} />
             </div>
 
             : <div></div>}
@@ -321,7 +347,7 @@ class FansList extends React.Component {
       payment_options =
         <div>
           <p onLoad={this.toggleStripe.bind(this, true)}>Pay by card: </p>
-          <CardElement options={CARD_ELEMENT_OPTIONS} />
+          <CardElement onChange={(elements) => this.stripeElementChange(elements)} options={CARD_ELEMENT_OPTIONS} />
         </div>
     }
 
@@ -334,6 +360,18 @@ class FansList extends React.Component {
             Payment is processing ...
           </p>
         </div>
+    }
+
+    let card_errors;
+    if (!_.isEmpty(this.state.cardError)) {
+      card_errors =
+        <div>
+          <p className="text-center" >
+            <small className="text-center" style={{ color: 'red' }}>{this.state.cardError}</small>
+          </p>
+        </div>
+    } else {
+      card_errors = <small></small>
     }
 
     let isSamePerson;
@@ -437,12 +475,13 @@ class FansList extends React.Component {
               </Col>
             </Row>
             <br />
+            {card_errors}
             <Row>
               <Col lg={12}>
                 <ElementsConsumer>
                   {({ stripe, elements }) => (
                     <FormGroup>
-                      <button onClick={this.submit.bind(this, stripe, elements)} id="sendTipButton" className="btn btn-lg btn-block" disabled={this.state.isSamePerson} >
+                      <button onClick={this.submit.bind(this, stripe, elements)} id="sendTipButton" className="btn btn-lg btn-block" disabled={this.state.isSamePerson || this.state.isCardError} >
                         SEND
                         <span style={{ color: '#fff' }}> {this.state.tipAmount > 0 ? '$' + this.state.tipAmount : ''} </span>
                         TIP!

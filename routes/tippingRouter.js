@@ -37,7 +37,6 @@ async function saveTip(charge, req, res) {
 // sending a tip to the reciepient 
 router.post('/sendtip', async function (req, res, next) {
   try {
-    console.log(req.body);
     let saved_card = req.body._saved_card;
     const token = req.body._stripeID;
     if (saved_card === 'false') {
