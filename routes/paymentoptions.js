@@ -6,8 +6,15 @@ var async = require('async');
 
 router.use(csrfProtection);
 
-router.get('/', function(req, res, next) {
-    res.render('fan/paymentoptions', { title: 'Payment Options' });
+router.get('/', isLoggedIn, function (req, res, next) {
+  res.render('fan/paymentoptions', { title: 'Payment Options', csrfToken: req.csrfToken() });
 });
 
 module.exports = router;
+
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/');
+}

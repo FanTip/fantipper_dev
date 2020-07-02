@@ -61,7 +61,9 @@ var personSchema = new Schema({
     card_holder_details: {
         type: Object
     },
-
+    intent: {
+        type: Object
+    },
     card: {
         isCard: {
             type: Boolean
@@ -130,12 +132,12 @@ var personSchema = new Schema({
 });
 
 //encrypting the password
-personSchema.methods.encryptPassword = function(password) {
+personSchema.methods.encryptPassword = function (password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(5), null);
 }
 
 //decrypting password and compare the passwords
-personSchema.methods.validPassword = function(password) {
+personSchema.methods.validPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
 }
 

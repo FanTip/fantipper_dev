@@ -12,7 +12,6 @@ const User = require('../../models/user');
 router.get('/user', function (req, res) {
     try {
         if (req.user) {
-            console.log(req.user);
             res.status(200).json(req.user);
         } else {
             res.status(200).json(false);
@@ -27,7 +26,7 @@ router.get('/user', function (req, res) {
 router.get('/is_card', async function (req, res) {
     try {
         let user = await User.findById(req.user._id).exec();
-        res.status(200).send(user.card.isCard);
+        res.status(200).json(user.card.isCard);
     } catch (e) {
         log.log_save(e);
         res.send(e);
@@ -35,7 +34,13 @@ router.get('/is_card', async function (req, res) {
 });
 
 router.get('/pub', function (req, res) {
-    res.status(200).json(process.env.STRIPE_PUB_KEY)
+    try {
+        res.status(200).json(process.env.STRIPE_PUB_KEY);
+    }
+    catch (e) {
+        res.status(500).json({});
+    }
+
 });
 
 router.post('/intents', async function (req, res) {
@@ -65,10 +70,12 @@ router.post('/intents', async function (req, res) {
             let intent = await stripe.setupIntents.create({
                 customer: customer.id
             });
+
+            let save_intent = await User.findByIdAndUpdate(req.user._id, { intent: intent }).exec();
             let cust = await stripe.customers.retrieve(customer.id);
-            res.status(200).send(intent);
+            res.status(200).json(intent);
         } else {
-            res.status(200).send({});
+            res.status(200).json({});
         }
     } catch (e) {
         log.log_save(e);
@@ -132,7 +139,7 @@ router.get('/saved-card', async function (req, res) {
     try {
         let card_data = await User.findById(req.user._id).exec();
 
-        res.status(200).send(card_data.card);
+        res.status(200).json(card_data.card);
 
     } catch (e) {
         log.log_save(e);
